@@ -26,6 +26,35 @@ services:
     networks:
       - project_network
 
+#   postgres:
+#     image: postgres:15
+#     container_name: project_postgres
+#     restart: always
+#     environment:
+#       POSTGRES_DB: school_db
+#       POSTGRES_USER: user
+#       POSTGRES_PASSWORD: 123
+#     volumes:
+#       - pgdata:/var/lib/postgresql/data
+#     ports:
+#       - "5432:5432"
+#     networks:
+#       - project_network
+
+#   pgadmin:
+#     image: dpage/pgadmin4
+#     container_name: project_pgadmin
+#     restart: always
+#     environment:
+#       PGADMIN_DEFAULT_EMAIL: admin@admin.com
+#       PGADMIN_DEFAULT_PASSWORD: admin123
+#     ports:
+#       - "5050:80"
+#     networks:
+#       - project_network
+#     depends_on:
+#       - postgres
+
   mysql:
     image: mysql:8.2.0
     restart: always
@@ -86,5 +115,7 @@ volumes:
     driver: local
   mysql_data:
     driver: local
+#   pgdata:
+#     driver: local
   redis_data:
     driver: local
