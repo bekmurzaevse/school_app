@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('events', function (Blueprint $table) {
             $table->id();
             $table->json('name');
-            $table->json('description');
+            $table->json('description')->nullable();
             $table->foreignId('school_id')->constrained('schools')->restrictOnDelete()->cascadeOnUpdate();
             $table->dateTime('start_time');
             $table->string('location');

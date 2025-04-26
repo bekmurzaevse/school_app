@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('files', function (Blueprint $table) {
             $table->id();
             $table->json('name');
-            $table->json('description');
+            $table->json('description')->nullable();
             $table->foreignId('event_id')->constrained('events')->restrictOnDelete()->cascadeOnUpdate();
             $table->string('path');
             $table->timestamps();
