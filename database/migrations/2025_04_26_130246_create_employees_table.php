@@ -13,7 +13,7 @@ return new class extends Migration {
         Schema::create('employees', function (Blueprint $table) {
             $table->id();
             $table->json('full_name');
-            $table->integer('phone');
+            $table->bigInteger('phone');
             $table->foreignId('photo_id')->constrained('photos')->cascadeOnUpdate()->restrictOnDelete();
             $table->string('email')->unique();
             $table->foreignId('position_id')->constrained('positions')->cascadeOnUpdate()->restrictOnDelete();
