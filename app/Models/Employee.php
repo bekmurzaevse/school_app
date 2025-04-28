@@ -28,4 +28,9 @@ class Employee extends Model
     {
         return $this->belongsTo(Position::class);
     }
+
+    public function photo(): BelongsTo
+    {
+        return $this->belongsTo(Photo::class);
+    }
 }
