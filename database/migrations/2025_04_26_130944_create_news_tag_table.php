@@ -12,8 +12,8 @@ return new class extends Migration {
     {
         Schema::create('news_tag', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('news_id')->constrained('news')->cascadeOnUpdate()->restrictOnDelete();
-            $table->foreignId('tag_id')->constrained('tags')->cascadeOnUpdate()->restrictOnDelete();
+            $table->foreignId('news_id')->constrained('news')->restrictOnUpdate()->cascadeOnDelete();
+            $table->foreignId('tag_id')->constrained('tags')->restrictOnUpdate()->cascadeOnDelete();
             $table->timestamps();
         });
     }
