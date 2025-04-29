@@ -4,9 +4,16 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Spatie\Translatable\HasTranslations;
 
 class Tag extends Model
 {
+    use HasTranslations;
+
+    public $translatable = [
+        'name', 
+        'description'
+    ];
     protected $fillable = [
         'name',
         'description',

@@ -4,9 +4,13 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Spatie\Translatable\HasTranslations;
 
 class Employee extends Model
 {
+    use HasTranslations;
+
+    public $translatable = ['full_name'];
     protected $fillable = [
         'full_name',
         'phone',
