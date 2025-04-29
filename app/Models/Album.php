@@ -5,9 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Spatie\Translatable\HasTranslations;
 
 class Album extends Model
 {
+    use HasTranslations;
+
+    public array $translatable = ['title', 'description'];
     protected $fillable = [
         'title',
         'school_id',
