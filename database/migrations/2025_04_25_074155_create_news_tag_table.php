@@ -14,7 +14,6 @@ return new class extends Migration {
             $table->id();
             $table->foreignId('news_id')->constrained('news')->restrictOnUpdate()->cascadeOnDelete();
             $table->foreignId('tag_id')->constrained('tags')->restrictOnUpdate()->cascadeOnDelete();
-            $table->timestamps();
         });
     }
 

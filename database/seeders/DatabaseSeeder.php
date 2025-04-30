@@ -26,6 +26,10 @@ class DatabaseSeeder extends Seeder
             AlbumSeeder::class,
             PhotoSeeder::class,
             CategorySeeder::class,
+            EmployeeSeeder::class,
+            NewsSeeder::class,
+            TagSeeder::class,
+            NewsTagSeeder::class
         ]);
 
     }

@@ -5,9 +5,16 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-
+use Spatie\Translatable\HasTranslations;
 class News extends Model
 {
+    use HasTranslations;
+
+    public $translatable = [
+        'title',
+        'short_content',
+        'content'
+    ];
     protected $fillable = [
         'title',
         'short_content',
