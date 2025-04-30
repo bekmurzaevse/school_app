@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\v1\SchoolController;
-use App\Http\Controllers\EmployeeController;
+use App\Http\Controllers\v1\EmployeeController;
 use Illuminate\Support\Facades\Route;
 use App\Models\Category;
 
@@ -25,10 +25,10 @@ Route::prefix('schools')->group(function () {
     Route::delete('/delete/{id}', [SchoolController::class, 'delete']);
 });
 
-Route::prefix('employee')->group(function() {
+Route::prefix('employee')->group(function () {
     Route::get('/', [EmployeeController::class, 'index']);
     Route::get('/{id}', [EmployeeController::class, 'show']);
-    Route::get('create', [EmployeeController::class, 'create']);
-    Route::get('update/{id}', [EmployeeController::class, 'update']);
-    Route::get('delete{id}', [EmployeeController::class, 'delete']);
+    Route::post('create', [EmployeeController::class, 'create']);
+    Route::put('update/{id}', [EmployeeController::class, 'update']);
+    Route::delete('delete{id}', [EmployeeController::class, 'delete']);
 });
