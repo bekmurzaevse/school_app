@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Category\CategoryController;
 use App\Http\Controllers\v1\SchoolController;
 use Illuminate\Support\Facades\Route;
 use App\Models\Category;
@@ -23,4 +24,12 @@ Route::prefix('schools')->group(function () {
     Route::put('/update/{id}', [SchoolController::class, 'update']);
     Route::delete('/delete/{id}', [SchoolController::class, 'delete']);
 
+});
+
+Route::prefix('categories')->group(function () {
+    Route::get('/', [CategoryController::class, 'index']);         
+    Route::get('{id}', [CategoryController::class, 'show']);    
+    Route::post('/create', [CategoryController::class, 'store']);   
+    Route::put('/update/{id}', [CategoryController::class, 'update']);  
+    Route::delete('/delete/{id}', [CategoryController::class, 'destroy']); 
 });
