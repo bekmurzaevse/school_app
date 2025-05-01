@@ -12,17 +12,55 @@ class CategorySeeder extends Seeder
      */
     public function run(): void
     {
-        Category::create([
-            'name' => [
-                'en' => 'Apple',
-                'uz' => 'Olma',
-                'ru' => 'Яблоко',
+        Category::insert([
+            [
+                'name' => json_encode([
+                    'en' => 'Library',
+                    'ru' => 'Библиотека',
+                    'uz' => 'Kutubxona',
+                    'kk' => 'Kitapxana',
+                ]),
+                'description' => json_encode([
+                    'en' => 'Electronic and traditional library services, list of available books.',
+                    'ru' => 'Электронные и традиционные библиотечные услуги, список доступных книг.',
+                    'uz' => "Elektron va an'anaviy kutubxona xizmatlari, mavjud kitoblar ro‘yxati.",
+                    'kk' => "Elektron ha'm kıtapxana xizmeti, bar bolg'an kıtaplar dizimi.",
+                ]),
+                'created_at' => now(),
+                'updated_at' => now(),
             ],
-            'description' => [
-                'en' => 'Fresh and delicious apples.',
-                'uz' => 'Yangi va mazali olma.',
-                'ru' => 'Свежие и вкусные яблоки.',
+            [
+                'name' => json_encode([
+                    'en' => 'Achievements',
+                    'ru' => 'Достижения',
+                    'uz' => 'Yutuqlar',
+                    'kk' => 'Jetiskenlikler',
+                ]),
+                'description' => json_encode([
+                    'en' => 'The successes and awards achieved by our students and school.',
+                    'ru' => 'Успехи и награды, достигнутые нашими учениками и школой.',
+                    'uz' => "O‘quvchilar va maktabimiz erishgan muvaffaqiyat va mukofotlar.",
+                    'kk' => "Oqıwshılar ha'm mektebimiz erisken jetiskenlikler ha'm sıylıqlar ",
+                ]),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'name' => json_encode([
+                    'en' => 'Sports',
+                    'ru' => 'Спорт',
+                    'uz' => 'Sport',
+                    'kk' => 'Sport',
+                ]),
+                'description' => json_encode([
+                    'en' => 'All school sports activities',
+                    'ru' => 'Все школьные спортивные мероприятия',
+                    'uz' => 'Barcha maktab sport faoliyatlari',
+                    'kk' => "Mektepdegi barliq sport tu'rleri",
+                ]),
+                'created_at' => now(),
+                'updated_at' => now(),
             ],
         ]);
     }
-}
+}    
