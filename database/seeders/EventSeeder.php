@@ -13,7 +13,7 @@ class EventSeeder extends Seeder
      */
     public function run(): void
     {
-        Event::insert([
+        Event::create(
             [
                 'name' => [
                     'en' => 'Science Fair',
@@ -32,26 +32,27 @@ class EventSeeder extends Seeder
                 'location' => 'Main Hall',
                 'created_at' => now(),
                 'updated_at' => now(),
+            ]
+        );
+        Event::create([
+            'name' => [
+                'en' => 'Football Tournament',
+                'ru' => 'Футбольный турнир',
+                'uz' => 'Futbol turniri',
+                'kk' => 'Futbol jarisi',
             ],
-            [
-                'name' => [
-                    'en' => 'Football Tournament',
-                    'ru' => 'Футбольный турнир',
-                    'uz' => 'Futbol turniri',
-                    'kk' => 'Futbol jarisi',
-                ],
-                'description' => [
-                    'en' => 'Inter-school football competition',
-                    'ru' => 'Межшкольное футбольное соревнование',
-                    'uz' => 'Maktablararo futbol musobaqasi',
-                    'kk' => 'Mektepler ara futbol jarisi',
-                ],
-                'school_id' => 1,
-                'start_time' => now()->addDays(7),
-                'location' => 'Football Field',
-                'created_at' => now(),
-                'updated_at' => now(),
+            'description' => [
+                'en' => 'Inter-school football competition',
+                'ru' => 'Межшкольное футбольное соревнование',
+                'uz' => 'Maktablararo futbol musobaqasi',
+                'kk' => 'Mektepler ara futbol jarisi',
             ],
+            'school_id' => 1,
+            'start_time' => now()->addDays(7),
+            'location' => 'Football Field',
+            'created_at' => now(),
+            'updated_at' => now(),
         ]);
+        
     }
 }

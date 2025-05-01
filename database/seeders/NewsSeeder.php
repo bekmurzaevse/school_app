@@ -102,7 +102,7 @@ class NewsSeeder extends Seeder
                 'kk' => 'Ózbekstan húkimeti xalıq arasında cifrlı sawatlılıqtı asırıw boyınsha keń qamtılǵan milliy programmanı járiyaladı. \"Hámme ushın cifrlı keleshek\" dep atalǵan baslama mámleket boylap biypul oqıw kursları hám resurslarini usınıs etedi, bunda kompyuterdiń tiykarǵı kónlikpeleri, internetten paydalanıw, onlayn qawipsizlik hám cifrlı baylanıs sıyaqlı jónelislerge itibar qaratıladı. Prezident Shavkat Mirziyoyev mámlekettiń ekonomikalıq rawajlanıwı hám zamanagóy dúnyada puqaralarina múmkinshiliklerin keńeytiw ushın cifrlı sawatlılıqtıń zárúrligini aytıp ótdi. Programma tálim mákemeleri hám texnologiya kompaniyaları menen sheriklikte ámelge asıriladı hám kelesi bes jıl ishinde millionlap Ózbekstanlıqlardı qamtıp alıw maqset etilgen.',
             ],
             'author_id' => 2,
-            'cover_image' => 4
+            'cover_image' => 3
         ]);
     }
 }
