@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Resources;
+namespace App\Http\Resources\v1\Employee;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
@@ -20,9 +20,9 @@ class EmployeeResource extends JsonResource
             'id' => $this->id,
             'full_name' => $this->getTranslation('full_name', app()->getLocale()),
             'phone' => $this->phone,
-            'photo' => new PhotoResource($this->photo),
+            'photo' => $this->photo,
             'email' => $this->email,
-            'position' => new PositionResource($this->position),
+            'position' => $this->position,
             'birth_date' => $this->birth_date
         ];
     }

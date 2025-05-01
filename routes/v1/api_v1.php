@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\v1\NewsController;
 use App\Http\Controllers\v1\SchoolController;
 use App\Http\Controllers\v1\EmployeeController;
 use Illuminate\Support\Facades\Route;
@@ -31,4 +32,12 @@ Route::prefix('employee')->group(function () {
     Route::post('create', [EmployeeController::class, 'create']);
     Route::put('update/{id}', [EmployeeController::class, 'update']);
     Route::delete('delete{id}', [EmployeeController::class, 'delete']);
+});
+
+Route::prefix('news')->group(function () {
+    Route::get('/', [NewsController::class, 'index']);
+    Route::get('/{id}', [NewsController::class, 'show']);
+    Route::post('create', [NewsController::class, 'create']);
+    Route::put('update/{id}', [NewsController::class, 'update']);
+    Route::delete('delete{id}', [NewsController::class, 'delete']);
 });
