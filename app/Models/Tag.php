@@ -2,22 +2,21 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Spatie\Translatable\HasTranslations;
 
-class File extends Model
+class Tag extends Model
 {
-    use HasFactory, HasTranslations;
+    use HasTranslations;
 
-    public $translatable = ['name', 'description'];
-
+    public $translatable = [
+        'name', 
+        'description'
+    ];
     protected $fillable = [
         'name',
         'description',
-        'event_id',
-        'path',
     ];
 
     protected function casts(): array
@@ -28,8 +27,8 @@ class File extends Model
         ];
     }
 
-    public function event(): BelongsTo
+    public function news(): BelongsToMany
     {
-        return $this->belongsTo(Event::class);
+        return $this->belongsToMany(News::class, 'news_tag', 'tag_id', 'news_id');
     }
 }
