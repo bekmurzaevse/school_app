@@ -6,10 +6,13 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Spatie\LaravelPackageTools\Concerns\Package\HasTranslations;
 
 class Event extends Model
 {
-    use HasFactory;
+    use HasFactory, HasTranslations;
+
+    public $translatable = ['name', 'description'];
 
     protected $fillable = [
         'name',
