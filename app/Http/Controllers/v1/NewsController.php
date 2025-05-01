@@ -54,9 +54,9 @@ class NewsController extends Controller
      * @param \App\Actions\v1\News\UpdateAction $action
      * @return JsonResponse
      */
-    public function update(UpdateRequest $request, UpdateAction $action): JsonResponse
+    public function update(int $id, UpdateRequest $request, UpdateAction $action): JsonResponse
     {
-        return $action(UpdateDto::from($request));
+        return $action($id, UpdateDto::from($request));
     }
 
     /**

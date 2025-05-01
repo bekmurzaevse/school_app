@@ -14,16 +14,16 @@ class EmployeeResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
-        $locale = app()->getLocale();
-
         return [
             'id' => $this->id,
-            'full_name' => $this->getTranslation('full_name', app()->getLocale()),
+            'full_name' => $this->full_name,
             'phone' => $this->phone,
             'photo' => $this->photo,
             'email' => $this->email,
             'position' => $this->position,
-            'birth_date' => $this->birth_date
+            'birth_date' => $this->birth_date->format('Y-m-d'),
+            'created_at' => $this->created_at->format('Y-m-d H:i:s'),
+            'updated_at' => $this->updated_at->format('Y-m-d H:i:s'),
         ];
     }
 }

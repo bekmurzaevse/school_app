@@ -21,8 +21,9 @@ class DeleteAction
     public function __invoke(int $id): JsonResponse
     {
         try {
-            $school = News::findOrFail($id);
-            $school->delete();
+            $news = News::findOrFail($id);
+            $news->tags()->detach();
+            $news->delete();
 
             return static::toResponse(
                 message: 'News Deleted',

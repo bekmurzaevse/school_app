@@ -30,7 +30,7 @@ readonly class UpdateDto
             photoId: $request->get('photo_id'),
             email: $request->get('email'),
             positionId: $request->get('position_id'),
-            birthDate: $request->get('birth_date')
+            birthDate: $request->birthDate()
         );
     }
 }

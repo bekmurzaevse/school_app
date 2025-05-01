@@ -31,7 +31,7 @@ Route::prefix('employee')->group(function () {
     Route::get('/{id}', [EmployeeController::class, 'show']);
     Route::post('create', [EmployeeController::class, 'create']);
     Route::put('update/{id}', [EmployeeController::class, 'update']);
-    Route::delete('delete{id}', [EmployeeController::class, 'delete']);
+    Route::delete('delete/{id}', [EmployeeController::class, 'delete']);
 });
 
 Route::prefix('news')->group(function () {
@@ -39,5 +39,5 @@ Route::prefix('news')->group(function () {
     Route::get('/{id}', [NewsController::class, 'show']);
     Route::post('create', [NewsController::class, 'create']);
     Route::put('update/{id}', [NewsController::class, 'update']);
-    Route::delete('delete{id}', [NewsController::class, 'delete']);
+    Route::delete('delete/{id}', [NewsController::class, 'delete']);
 });

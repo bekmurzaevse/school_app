@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\v1\Employee;
 
+use Carbon\Carbon;
 use Illuminate\Foundation\Http\FormRequest;
 
 class UpdateRequest extends FormRequest
@@ -33,5 +34,10 @@ class UpdateRequest extends FormRequest
             'position_id' => 'required|numeric|exists:positions,id',
             'birth_date' => 'required|date|before:today'
         ];
+    }
+
+    public function birthDate(): Carbon
+    {
+        return Carbon::parse($this->input('birth_date'));
     }
 }

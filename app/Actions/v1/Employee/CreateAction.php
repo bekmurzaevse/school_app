@@ -18,6 +18,7 @@ class CreateAction
             'phone' => $dto->phone,
             'photo_id' => $dto->photoId,
             'position_id' => $dto->positionId,
+            'email' => $dto->email,
             'birth_date' => $dto->birthDate,
         ];
 

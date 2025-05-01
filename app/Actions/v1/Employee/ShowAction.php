@@ -3,6 +3,7 @@
 namespace App\Actions\v1\Employee;
 
 use App\Exceptions\ApiResponseException;
+use App\Http\Resources\v1\Employee\EmployeeResource;
 use App\Models\Employee;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use App\Traits\ResponseTrait;
@@ -29,7 +30,7 @@ class ShowAction
 
             return static::toResponse(
                 message: 'Successfully received',
-                data: $employee
+                data: new EmployeeResource($employee)
             );
         } catch (ModelNotFoundException $ex) {
             throw new ApiResponseException('Employee Not Found', 404);

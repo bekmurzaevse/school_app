@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Spatie\Translatable\HasTranslations;
+
 class News extends Model
 {
     use HasTranslations;
@@ -33,12 +34,12 @@ class News extends Model
 
     public function author(): BelongsTo
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'author_id', 'id');
     }
 
     public function coverImage(): BelongsTo
     {
-        return $this->belongsTo(Photo::class);
+        return $this->belongsTo(Photo::class, 'cover_image', 'id');
     }
 
     public function tags(): BelongsToMany

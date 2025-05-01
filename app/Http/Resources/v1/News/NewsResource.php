@@ -14,13 +14,11 @@ class NewsResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
-        $locale = app()->getLocale();
-
         return [
             'id' => $this->id,
-            'title' => $this->getTranslation('title', app()->getLocale()),
-            'short_content' => $this->getTranslation('short_content', app()->getLocale()),
-            'content' => $this->getTranslation('content', app()->getLocale()),
+            'title' => $this->title,
+            'short_content' => $this->short_content,
+            'content' => $this->content,
             'author' => $this->author,
             'cover_image' => $this->coverImage,
             'tags' => $this->tags

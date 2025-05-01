@@ -16,8 +16,8 @@ class UpdateAction
     public function __invoke(int $id, UpdateDto $dto)
     {
         try {
-            $news = News::findOrFail($id);
-          
+            $news = News::with(['coverImage', 'author'])->findOrFail($id);
+
             $news->update([
                 'title' => $dto->title,
                 'short_content' => $dto->shortContent,
@@ -25,8 +25,8 @@ class UpdateAction
                 'author_id' => $dto->authorId,
                 'cover_image' => $dto->coverImage,
             ]);
-            
-            if($dto->tags){
+
+            if ($dto->tags) {
                 $news->tags()->sync(
                     $dto->tags
                 );

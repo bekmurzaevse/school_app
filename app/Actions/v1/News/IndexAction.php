@@ -3,7 +3,6 @@
 namespace App\Actions\v1\News;
 
 use App\Http\Resources\v1\News\NewsCollection;
-use App\Http\Resources\v1\News\NewsResource;
 use App\Models\News;
 use App\Traits\ResponseTrait;
 use Illuminate\Http\JsonResponse;
@@ -21,7 +20,7 @@ class IndexAction
     {
         $key = 'news:' . app()->getLocale() . ':' . md5(request()->fullUrl());
         $news = Cache::remember($key, now()->addDay(), function () {
-            return News::with(['author', 'coverImage'])->get();
+            return News::with(['author', 'coverImage'])->paginate(10);
         });
 
         return static::toResponse(
