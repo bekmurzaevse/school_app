@@ -15,18 +15,18 @@ class EventSeeder extends Seeder
     {
         Event::insert([
             [
-                'name' => ([
+                'name' => [
                     'en' => 'Science Fair',
                     'ru' => 'Научная ярмарка',
                     'uz' => 'Fan ko‘rgazmasi',
                     'kk' => "Pa'n ko'rgizbesi",
-                ]),
-                'description' => ([
+                ],
+                'description' => [
                     'en' => 'Annual school science fair',
                     'ru' => 'Ежегодная школьная научная ярмарка',
                     'uz' => 'Har yili o‘tkaziladigan maktab fan ko‘rgazmasi',
                     'kk' => "Ha'r jili o'tkiziletug'in pa'n ko'zgizbesi",
-                ]),
+                ],
                 'school_id' => 1,
                 'start_time' => now()->addDays(3),
                 'location' => 'Main Hall',
@@ -34,18 +34,18 @@ class EventSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'name' => ([
+                'name' => [
                     'en' => 'Football Tournament',
                     'ru' => 'Футбольный турнир',
                     'uz' => 'Futbol turniri',
                     'kk' => 'Futbol jarisi',
-                ]),
-                'description' => ([
+                ],
+                'description' => [
                     'en' => 'Inter-school football competition',
                     'ru' => 'Межшкольное футбольное соревнование',
                     'uz' => 'Maktablararo futbol musobaqasi',
                     'kk' => 'Mektepler ara futbol jarisi',
-                ]),
+                ],
                 'school_id' => 1,
                 'start_time' => now()->addDays(7),
                 'location' => 'Football Field',
