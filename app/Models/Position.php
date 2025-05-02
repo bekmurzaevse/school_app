@@ -17,7 +17,6 @@ class Position extends Model
     protected $fillable = [
         'name',
         'school_id',
-        'phone',
         'description',
     ];
 

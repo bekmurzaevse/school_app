@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\v1\AlbumController;
+use App\Http\Controllers\v1\PositionController;
 use App\Http\Controllers\v1\NewsController;
 use App\Http\Controllers\v1\SchoolController;
 use App\Http\Controllers\v1\EmployeeController;
@@ -49,4 +51,19 @@ Route::prefix('tag')->group(function () {
     Route::post('create', [TagController::class, 'create']);
     Route::put('update/{id}', [TagController::class, 'update']);
     Route::delete('delete/{id}', [TagController::class, 'delete']);
+});
+Route::prefix('positions')->group(function () {
+    Route::get('/', [PositionController::class, 'index']);
+    Route::get('/{id}', [PositionController::class, 'show']);
+    Route::post('/create', [PositionController::class, 'create']);
+    Route::put('/update/{id}', [PositionController::class, 'update']);
+    Route::delete('/delete/{id}', [PositionController::class, 'delete']);
+});
+
+Route::prefix('albums')->group(function () {
+    Route::get('/', [AlbumController::class, 'index']);
+    Route::get('/{id}', [AlbumController::class, 'show']);
+    Route::post('/create', [AlbumController::class, 'create']);
+    Route::put('/update/{id}', [AlbumController::class, 'update']);
+    Route::delete('/delete/{id}', [AlbumController::class, 'delete']);
 });
