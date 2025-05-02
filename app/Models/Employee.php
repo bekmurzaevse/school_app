@@ -23,6 +23,7 @@ class Employee extends Model
     protected function casts(): array
     {
         return [
+            'birth_date' => 'date',
             'created_at' => 'datetime',
             'updated_at' => 'datetime',
         ];
