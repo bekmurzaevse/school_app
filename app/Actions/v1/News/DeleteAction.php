@@ -22,7 +22,6 @@ class DeleteAction
     {
         try {
             $news = News::findOrFail($id);
-            $news->tags()->detach();
             $news->delete();
 
             return static::toResponse(
