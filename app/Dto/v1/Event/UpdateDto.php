@@ -25,7 +25,7 @@ readonly class UpdateDto
             name: $request->get('name'),
             description: $request->get('description'),
             schoolId: $request->get('school_id'),
-            startTime: $request->startTime(),
+            startTime: $request->get('start_time'),
             location: $request->get('location'),
         );
     }

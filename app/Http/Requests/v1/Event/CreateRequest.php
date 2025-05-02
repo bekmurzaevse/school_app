@@ -3,7 +3,6 @@
 namespace App\Http\Requests\v1\Event;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Support\Carbon;
 
 class CreateRequest extends FormRequest
 {
@@ -16,8 +15,9 @@ class CreateRequest extends FormRequest
     }
 
     /**
-     * Summary of rules
-     * @return array{description: string, description.en: string, description.kk: string, description.ru: string, description.uz: string, location: string, name: string, name.en: string, name.kk: string, name.ru: string, name.uz: string, school_id: string, start_time: string}
+     * Get the validation rules that apply to the request.
+     *
+     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
      */
     public function rules(): array
     {
@@ -36,10 +36,5 @@ class CreateRequest extends FormRequest
             'start_time' => 'required|date_format:Y-m-d H:i:s',
             'location' => 'required|string',
         ];
-    }
-
-    public function startTime(): Carbon
-    {
-        return Carbon::parse($this->input('start_time'));
     }
 }

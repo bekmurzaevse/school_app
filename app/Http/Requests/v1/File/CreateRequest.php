@@ -12,8 +12,9 @@ class CreateRequest extends FormRequest
     }
 
     /**
-     * Summary of rules
-     * @return array{description: string, description.en: string, description.kk: string, description.ru: string, description.uz: string, event_id: string, name: string, name.en: string, name.kk: string, name.ru: string, name.uz: string, path: string}
+     * Get the validation rules that apply to the request.
+     *
+     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
      */
     public function rules(): array
     {
@@ -29,7 +30,7 @@ class CreateRequest extends FormRequest
             'description.ru' => 'nullable|string',
             'description.kk' => 'nullable|string',
             'event_id' => 'nullable|exists:events,id', 
-            'path' => 'nullable|string', 
+            'path' => 'required|string', 
         ];
     }
 }

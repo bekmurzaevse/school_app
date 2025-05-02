@@ -15,8 +15,9 @@ class UpdateRequest extends FormRequest
     }
 
     /**
-     * Summary of rules
-     * @return array{description: string, description.en: string, description.kk: string, description.ru: string, description.uz: string, name: string, name.en: string, name.kk: string, name.ru: string, name.uz: string}
+     * Get the validation rules that apply to the request.
+     *
+     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
      */
     public function rules(): array
     {
