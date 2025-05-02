@@ -3,7 +3,6 @@
 namespace App\Dto\v1\Employee;
 
 use App\Http\Requests\v1\Employee\UpdateRequest;
-use Carbon\Carbon;
 
 readonly class UpdateDto
 {
@@ -13,7 +12,7 @@ readonly class UpdateDto
         public int $photoId,
         public string $email,
         public int $positionId,
-        public Carbon $birthDate,
+        public string $birthDate,
     ) {
     }
 
@@ -30,7 +29,7 @@ readonly class UpdateDto
             photoId: $request->get('photo_id'),
             email: $request->get('email'),
             positionId: $request->get('position_id'),
-            birthDate: $request->birthDate()
+            birthDate: $request->get('birth_date')
         );
     }
 }
