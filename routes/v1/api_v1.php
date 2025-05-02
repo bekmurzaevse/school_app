@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\v1\AlbumController;
+use App\Http\Controllers\v1\DocumentController;
 use App\Http\Controllers\v1\CategoryController;
 use App\Http\Controllers\v1\EventController;
 use App\Http\Controllers\v1\FileController;
@@ -71,6 +72,10 @@ Route::prefix('albums')->group(function () {
     Route::delete('/delete/{id}', [AlbumController::class, 'delete']);
 });
 
+Route::prefix('document')->group(function () {
+    Route::post('upload', [DocumentController::class, 'upload']);
+});
+
 Route::prefix('categories')->group(function () {
     Route::get('/', [CategoryController::class, 'index']);
     Route::get('/{id}', [CategoryController::class, 'show']);
@@ -94,4 +99,3 @@ Route::prefix('files')->group(function () {
     Route::put('/update/{id}', [FileController::class, 'update']);
     Route::delete('/delete/{id}', [FileController::class, 'delete']);
 });
-
