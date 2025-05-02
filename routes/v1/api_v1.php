@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\v1\AlbumController;
+use App\Http\Controllers\v1\DocumentController;
 use App\Http\Controllers\v1\PositionController;
 use App\Http\Controllers\v1\NewsController;
 use App\Http\Controllers\v1\SchoolController;
@@ -66,4 +67,8 @@ Route::prefix('albums')->group(function () {
     Route::post('/create', [AlbumController::class, 'create']);
     Route::put('/update/{id}', [AlbumController::class, 'update']);
     Route::delete('/delete/{id}', [AlbumController::class, 'delete']);
+});
+
+Route::prefix('document')->group(function () {
+    Route::post('upload', [DocumentController::class, 'upload']);
 });
