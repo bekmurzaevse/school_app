@@ -3,6 +3,7 @@
 use App\Http\Controllers\v1\NewsController;
 use App\Http\Controllers\v1\SchoolController;
 use App\Http\Controllers\v1\EmployeeController;
+use App\Http\Controllers\v1\TagController;
 use Illuminate\Support\Facades\Route;
 use App\Models\Category;
 
@@ -40,4 +41,12 @@ Route::prefix('news')->group(function () {
     Route::post('create', [NewsController::class, 'create']);
     Route::put('update/{id}', [NewsController::class, 'update']);
     Route::delete('delete/{id}', [NewsController::class, 'delete']);
+});
+
+Route::prefix('tag')->group(function () {
+    Route::get('/', [TagController::class, 'index']);
+    Route::get('/{id}', [TagController::class, 'show']);
+    Route::post('create', [TagController::class, 'create']);
+    Route::put('update/{id}', [TagController::class, 'update']);
+    Route::delete('delete/{id}', [TagController::class, 'delete']);
 });
