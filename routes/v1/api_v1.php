@@ -1,6 +1,9 @@
 <?php
 
 use App\Http\Controllers\v1\AlbumController;
+use App\Http\Controllers\v1\CategoryController;
+use App\Http\Controllers\v1\EventController;
+use App\Http\Controllers\v1\FileController;
 use App\Http\Controllers\v1\PositionController;
 use App\Http\Controllers\v1\NewsController;
 use App\Http\Controllers\v1\SchoolController;
@@ -67,3 +70,28 @@ Route::prefix('albums')->group(function () {
     Route::put('/update/{id}', [AlbumController::class, 'update']);
     Route::delete('/delete/{id}', [AlbumController::class, 'delete']);
 });
+
+Route::prefix('categories')->group(function () {
+    Route::get('/', [CategoryController::class, 'index']);
+    Route::get('/{id}', [CategoryController::class, 'show']);
+    Route::post('/create', [CategoryController::class, 'create']);
+    Route::put('/update/{id}', [CategoryController::class, 'update']);
+    Route::delete('/delete/{id}', [CategoryController::class, 'delete']);
+});
+
+Route::prefix('events')->group(function () {
+    Route::get('/', [EventController::class, 'index']);
+    Route::get('/{id}', [EventController::class, 'show']);
+    Route::post('/create', [EventController::class, 'create']);
+    Route::put('/update/{id}', [EventController::class, 'update']);
+    Route::delete('/delete/{id}', [EventController::class, 'delete']);
+});
+
+Route::prefix('files')->group(function () {
+    Route::get('/', [FileController::class, 'index']);
+    Route::get('/{id}', [FileController::class, 'show']);
+    Route::post('/create', [FileController::class, 'create']);
+    Route::put('/update/{id}', [FileController::class, 'update']);
+    Route::delete('/delete/{id}', [FileController::class, 'delete']);
+});
+
