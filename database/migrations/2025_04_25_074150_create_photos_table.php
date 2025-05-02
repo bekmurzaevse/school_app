@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->string('path');
-            $table->foreignId('album_id')->constrained('albums')->nullable()->restrictOnDelete()->cascadeOnUpdate();
+            $table->foreignId('album_id')->nullable()->default(null)->constrained('albums')->restrictOnDelete()->cascadeOnUpdate();
             $table->json('description')->nullable();
             $table->timestamps();
         });
