@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\v1\AlbumController;
+use App\Http\Controllers\v1\PhotoController;
 use App\Http\Controllers\v1\PositionController;
 use App\Http\Controllers\v1\SchoolController;
 use Illuminate\Support\Facades\Route;
@@ -42,4 +43,12 @@ Route::prefix('albums')->group(function () {
     Route::post('/create', [AlbumController::class, 'create']);
     Route::put('/update/{id}', [AlbumController::class, 'update']);
     Route::delete('/delete/{id}', [AlbumController::class, 'delete']);
+});
+
+Route::prefix('photos')->group(function () {
+    Route::get('/', [PhotoController::class, 'index']);
+    Route::get('/{id}', [PhotoController::class, 'show']);
+    Route::post('/create', [PhotoController::class, 'create']);
+    Route::post('/update/{id}', [PhotoController::class, 'update']);
+    Route::delete('/delete/{id}', [PhotoController::class, 'delete']);
 });
