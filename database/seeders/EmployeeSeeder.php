@@ -34,9 +34,9 @@ class EmployeeSeeder extends Seeder
                 'kk' => 'Maykl Braun',
             ],
             'phone' => '+998911234568',
-            'photo_id' => 2,
+            'photo_id' => 1,
             'email' => 'michaelbrown@gmail.com',
-            'position_id' => 2,
+            'position_id' => 1,
             'birth_date' => '1992-08-27'
         ]);
 
@@ -48,9 +48,9 @@ class EmployeeSeeder extends Seeder
                 'kk' => 'Aleksey Kuznetsov',
             ],
             'phone' => '+998911234561',
-            'photo_id' => 3,
+            'photo_id' => 1,
             'email' => 'alexeykuznetsov@gmail.com',
-            'position_id' => 3,
+            'position_id' => 1,
             'birth_date' => '1994-12-31'
         ]);
 
