@@ -7,11 +7,14 @@ use App\Actions\v1\File\DeleteAction;
 use App\Actions\v1\File\IndexAction;
 use App\Actions\v1\File\ShowAction;
 use App\Actions\v1\File\UpdateAction;
+use App\Actions\v1\File\UploadAction;
 use App\Dto\v1\File\CreateDto;
 use App\Dto\v1\File\UpdateDto;
+use App\Dto\v1\File\UploadDto;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\v1\File\CreateRequest;
 use App\Http\Requests\v1\File\UpdateRequest;
+use App\Http\Requests\v1\File\UploadRequest;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Validation\Rules\In;
 
@@ -40,6 +43,17 @@ class FileController extends Controller
     }
 
     /**
+     * Summary of upload
+     * @param \App\Http\Requests\v1\File\UploadRequest $request
+     * @param \App\Actions\v1\File\UploadAction $action
+     * @return JsonResponse
+     */
+    public function upload(UploadRequest $request, UploadAction $action): JsonResponse
+    {
+        return $action(UploadDto::from($request));
+    }
+
+    /**
      * Summary of show
      * @param int $id
      * @param \App\Actions\v1\File\ShowAction $action
@@ -53,6 +67,7 @@ class FileController extends Controller
     /**
      * Summary of update
      * @param \App\Http\Requests\v1\File\UpdateRequest $request
+     * @param int $id
      * @param \App\Actions\v1\File\UpdateAction $action
      * @return JsonResponse
      */

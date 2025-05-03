@@ -52,6 +52,7 @@ class EventController extends Controller
     /**
      * Summary of update
      * @param \App\Http\Requests\v1\Event\UpdateRequest $request
+     * @param int $id
      * @param \App\Actions\v1\Event\UpdateAction $action
      * @return JsonResponse
      */
