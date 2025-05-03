@@ -52,6 +52,7 @@ class CategoryController extends Controller
     /**
      * Summary of update
      * @param \App\Http\Requests\v1\Category\UpdateRequest $request
+     * @param int $id
      * @param \App\Actions\v1\Category\UpdateAction $action
      * @return JsonResponse
      */
