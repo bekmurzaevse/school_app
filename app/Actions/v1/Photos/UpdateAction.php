@@ -15,10 +15,16 @@ class UpdateAction
 {
     use ResponseTrait;
 
+    /**
+     * Summary of __invoke
+     * @param int $id
+     * @param \App\Dto\v1\Photos\UpdateDto $dto
+     * @throws \App\Exceptions\ApiResponseException
+     * @return JsonResponse
+     */
     public function __invoke(int $id, UpdateDto $dto): JsonResponse
     {
         try {
-
             $photo = Photo::findOrFail($id);
             Storage::disk('public')->delete($photo->path);
 

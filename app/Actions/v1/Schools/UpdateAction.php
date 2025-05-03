@@ -12,6 +12,13 @@ class UpdateAction
 {
     use ResponseTrait;
 
+    /**
+     * Summary of __invoke
+     * @param int $id
+     * @param \App\Dto\v1\Schools\UpdateDto $dto
+     * @throws \App\Exceptions\ApiResponseException
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function __invoke(int $id, UpdateDto $dto)
     {
         try {
