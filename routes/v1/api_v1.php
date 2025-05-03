@@ -79,6 +79,7 @@ Route::prefix('photos')->group(function () {
     Route::post('/create', [PhotoController::class, 'create']);
     Route::post('/update/{id}', [PhotoController::class, 'update']);
     Route::delete('/delete/{id}', [PhotoController::class, 'delete']);
+});
 
 Route::prefix('document')->group(function () {
     Route::post('upload', [DocumentController::class, 'upload']);
