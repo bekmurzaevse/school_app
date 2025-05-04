@@ -25,15 +25,7 @@ class IndexAction
 
         return static::toResponse(
             message: 'Successfully received',
-            data: [
-                'items' => new TagCollection($tag),
-                'pagination' => [
-                    'current_page' => $tag->currentPage(),
-                    'per_page' => $tag->perPage(),
-                    'last_page' => $tag->lastPage(),
-                    'total' => $tag->total(),
-                ],
-            ]
+            data: new TagCollection($tag)
         );
     }
 }

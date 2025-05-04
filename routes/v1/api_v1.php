@@ -34,7 +34,7 @@ Route::prefix('schools')->group(function () {
     Route::delete('/delete/{id}', [SchoolController::class, 'delete']);
 });
 
-Route::prefix('employee')->group(function () {
+Route::prefix('employees')->group(function () {
     Route::get('/', [EmployeeController::class, 'index']);
     Route::get('/{id}', [EmployeeController::class, 'show']);
     Route::post('create', [EmployeeController::class, 'create']);
@@ -50,7 +50,7 @@ Route::prefix('news')->group(function () {
     Route::delete('delete/{id}', [NewsController::class, 'delete']);
 });
 
-Route::prefix('tag')->group(function () {
+Route::prefix('tags')->group(function () {
     Route::get('/', [TagController::class, 'index']);
     Route::get('/{id}', [TagController::class, 'show']);
     Route::post('create', [TagController::class, 'create']);
@@ -79,9 +79,15 @@ Route::prefix('photos')->group(function () {
     Route::post('/create', [PhotoController::class, 'create']);
     Route::post('/update/{id}', [PhotoController::class, 'update']);
     Route::delete('/delete/{id}', [PhotoController::class, 'delete']);
+});
 
-Route::prefix('document')->group(function () {
+Route::prefix('documents')->group(function () {
+    Route::get('/', [DocumentController::class, 'index']);
+    Route::get('show/{id}', [DocumentController::class, 'show']);
     Route::post('upload', [DocumentController::class, 'upload']);
+    Route::get('download/{id}', [DocumentController::class, 'download']);
+    Route::put('update/{id}', [DocumentController::class, 'update']);
+    Route::delete('delete/{id}', [DocumentController::class, 'delete']);
 });
 
 Route::prefix('categories')->group(function () {

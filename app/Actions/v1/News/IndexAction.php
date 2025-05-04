@@ -25,15 +25,7 @@ class IndexAction
 
         return static::toResponse(
             message: 'Successfully received',
-            data: [
-                'items' => new NewsCollection($news),
-                'pagination' => [
-                    'current_page' => $news->currentPage(),
-                    'per_page' => $news->perPage(),
-                    'last_page' => $news->lastPage(),
-                    'total' => $news->total(),
-                ],
-            ]
+            data: new NewsCollection($news)
         );
     }
 }
