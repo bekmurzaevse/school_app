@@ -10,6 +10,10 @@ class IndexAction
 {
     use ResponseTrait;
 
+    /**
+     * Summary of __invoke
+     * @return JsonResponse
+     */
     public function __invoke(): JsonResponse
     {
         $categories = Category::all();

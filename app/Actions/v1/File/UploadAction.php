@@ -12,6 +12,11 @@ class UploadAction
 {
     use ResponseTrait;
 
+    /**
+     * Summary of __invoke
+     * @param \App\Dto\v1\File\UploadDto $dto
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function __invoke(UploadDto $dto)
     {
         $file = $dto->file;
