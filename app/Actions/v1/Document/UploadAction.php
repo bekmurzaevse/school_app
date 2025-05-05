@@ -15,11 +15,12 @@ class UploadAction
     public function __invoke(UploadDto $dto)
     {
         $file = $dto->file;
+
         $originalFilename = $file->getClientOriginalName();
-        $fileName = preg_replace('/\.[^.]+$/', '', $originalFilename);
+        $fileName = pathinfo($originalFilename, PATHINFO_FILENAME);
         $fileName = $fileName . '_' . Str::random(10) . '_' . now()->format('Y-m-d-H:i:s') . '.' . $file->extension();
-        $path = 'documents';
-        $savedPath = Storage::disk('public')->putFileAs($path, $file, $fileName);
+
+        $savedPath = Storage::disk('public')->putFileAs('documents', $file, $fileName);
 
         $data = [
             'name' => $dto->name,

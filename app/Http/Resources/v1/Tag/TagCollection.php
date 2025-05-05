@@ -14,6 +14,14 @@ class TagCollection extends ResourceCollection
      */
     public function toArray(Request $request): array
     {
-        return parent::toArray($request);
+        return [
+            'items' => $this->collection,
+            'pagination' => [
+                'current_page' => $this->currentPage(),
+                'per_page' => $this->perPage(),
+                'last_page' => $this->lastPage(),
+                'total' => $this->total(),
+            ]
+        ];
     }
 }

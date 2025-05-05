@@ -25,15 +25,7 @@ class IndexAction
 
         return static::toResponse(
             message: 'Successfully received',
-            data: [
-                'items' => new EmployeeCollection($employees),
-                'pagination' => [
-                    'current_page' => $employees->currentPage(),
-                    'per_page' => $employees->perPage(),
-                    'last_page' => $employees->lastPage(),
-                    'total' => $employees->total(),
-                ],
-            ]
+            data: new EmployeeCollection($employees)
         );
     }
 }

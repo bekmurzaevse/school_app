@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Resources\v1\News;
+namespace App\Http\Resources\v1\Document;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 
-class NewsCollection extends ResourceCollection
+class DocumentCollection extends ResourceCollection
 {
     /**
      * Transform the resource collection into an array.
