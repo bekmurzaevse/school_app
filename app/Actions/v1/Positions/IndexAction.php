@@ -20,7 +20,7 @@ class IndexAction
     {
         $key = 'positions:' . app()->getLocale() . ':' . md5(request()->fullUrl());
         $positions = Cache::remember($key, now()->addDay(), function () {
-            return Position::with(['school'])->paginate(10);
+            return Position::with('school')->paginate(10);
         });
 
         return static::toResponse(
