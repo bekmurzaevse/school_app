@@ -25,15 +25,7 @@ class IndexAction
 
         return static::toResponse(
             message: 'Photolar dizimi',
-            data: [
-                'items' => new PhotoCollection($photos),
-                'pagination' => [
-                    'current_page' => $photos->currentPage(),
-                    'per_page' => $photos->perPage(),
-                    'last_page' => $photos->lastPage(),
-                    'total' => $photos->total(),
-                ],
-            ]
+            data: new PhotoCollection($photos)
         );
     }
 }

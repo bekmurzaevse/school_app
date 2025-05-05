@@ -8,7 +8,7 @@ use Illuminate\Http\UploadedFile;
 readonly class CreateDto
 {
     public function __construct(
-        public UploadedFile $photo,
+        public array $photos,
         public string $title,
         // public string $path,
         public ?int $albumId,
@@ -24,7 +24,7 @@ readonly class CreateDto
     public static function from(CreateRequest $request): self
     {
         return new self(
-            photo: $request->file('photo'),
+            photos: $request->file('photos'),
             title: $request->get('title'),
             // path: $request->get('path'),
             albumId: $request->get(key: 'album_id'),
