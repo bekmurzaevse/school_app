@@ -25,15 +25,7 @@ class IndexAction
 
         return static::toResponse(
             message: 'Albomlar dizimi',
-            data: [
-                'items' => new AlbumCollection($albums),
-                'pagination' => [
-                    'current_page' => $albums->currentPage(),
-                    'per_page' => $albums->perPage(),
-                    'last_page' => $albums->lastPage(),
-                    'total' => $albums->total(),
-                ],
-            ]
+            data: new AlbumCollection($albums)
         );
     }
 }

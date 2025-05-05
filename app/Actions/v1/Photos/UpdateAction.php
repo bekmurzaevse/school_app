@@ -26,16 +26,16 @@ class UpdateAction
     public function __invoke(int $id, UpdateDto $dto): JsonResponse
     {
         try {
-            $photo = Photo::with('school')->findOrFail($id);
+            $photo = Photo::with('album')->findOrFail($id);
             Storage::disk('public')->delete($photo->path);
 
-            $file = $dto->photo;
-            $originalFilename = $file->getClientOriginalName();
-            $fileName = preg_replace('/\.[^.]+$/', '', $originalFilename);
-            $fileName = $fileName . '_' . Str::random(10) . '_' . now()->format('Y-m-d-H:i:s') . '.' . $file->extension();
-            $path = 'photos';
-            $savedPath = Storage::disk('public')->putFileAs($path, $file, $fileName);
+            $photo = $dto->photo;
 
+            $originalFilename = $photo->getClientOriginalName();
+            $fileName = pathinfo($originalFilename, PATHINFO_FILENAME);
+            $fileName = $fileName . '_' . Str::random(10) . '_' . now()->format('Y-m-d-H:i:s') . '.' . $photo->extension();
+
+            $savedPath = Storage::disk('public')->putFileAs('photos', $photo, $fileName);
             $photo->update([
                 'title' => $dto->title,
                 'path' => $savedPath,

@@ -27,15 +27,7 @@ class IndexAction
 
         return static::toResponse(
             message: 'School list',
-            data: [
-                'items' => new SchoolCollection($schools->items()),
-                'pagination' => [
-                    'current_page' => $schools->currentPage(),
-                    'per_page' => $schools->perPage(),
-                    'last_page' => $schools->lastPage(),
-                    'total' => $schools->total(),
-                ],
-            ]
+            data: new SchoolCollection($schools)
         );
     }
 }

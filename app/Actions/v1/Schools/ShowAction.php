@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Actions\V1\Schools;
+namespace App\Actions\v1\Schools;
 
 use App\Exceptions\ApiResponseException;
 use App\Http\Resources\v1\School\SchoolResource;

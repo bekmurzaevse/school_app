@@ -25,15 +25,7 @@ class IndexAction
 
         return static::toResponse(
             message: 'Position list',
-            data: [
-                'items' => new PositionCollection($positions),
-                'pagination' => [
-                    'current_page' => $positions->currentPage(),
-                    'per_page' => $positions->perPage(),
-                    'last_page' => $positions->lastPage(),
-                    'total' => $positions->total(),
-                ],
-            ]
+            data: new PositionCollection($positions)
         );
     }
 }
