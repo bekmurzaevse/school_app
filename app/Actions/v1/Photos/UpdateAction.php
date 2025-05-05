@@ -4,6 +4,7 @@ namespace App\Actions\v1\Photos;
 
 use App\Dto\v1\Photos\UpdateDto;
 use App\Exceptions\ApiResponseException;
+use App\Http\Resources\v1\Photo\PhotoResource;
 use App\Models\Photo;
 use App\Traits\ResponseTrait;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
@@ -25,7 +26,7 @@ class UpdateAction
     public function __invoke(int $id, UpdateDto $dto): JsonResponse
     {
         try {
-            $photo = Photo::findOrFail($id);
+            $photo = Photo::with('school')->findOrFail($id);
             Storage::disk('public')->delete($photo->path);
 
             $file = $dto->photo;
@@ -44,7 +45,7 @@ class UpdateAction
 
             return static::toResponse(
                 message: "Photo jan'alandi!",
-                data: $photo
+                data: new PhotoResource($photo)
             );
         } catch (ModelNotFoundException $ex) {
             throw new ApiResponseException("$id - id li photo bazada tabilmadi!", 404);

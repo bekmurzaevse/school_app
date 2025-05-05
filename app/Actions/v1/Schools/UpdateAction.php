@@ -4,6 +4,7 @@ namespace App\Actions\v1\Schools;
 
 use App\Dto\v1\Schools\UpdateDto;
 use App\Exceptions\ApiResponseException;
+use App\Http\Resources\v1\School\SchoolResource;
 use App\Models\School;
 use App\Traits\ResponseTrait;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
@@ -33,7 +34,7 @@ class UpdateAction
 
             return static::toResponse(
                 message: "Mektep jan'alandi!",
-                data: $school
+                data: new SchoolResource($school)
             );
         } catch (ModelNotFoundException $ex) {
             throw new ApiResponseException("$id - id li mektep bazada tabilmadi!", 404);
