@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Actions\V1\Category;
+namespace App\Actions\v1\Category;
 
 use App\Exceptions\ApiResponseException;
 use App\Models\Category;
@@ -12,6 +12,12 @@ class ShowAction
 {
     use ResponseTrait;
 
+    /**
+     * Summary of __invoke
+     * @param int $id
+     * @throws \App\Exceptions\ApiResponseException
+     * @return JsonResponse
+     */
     public function __invoke(int $id): JsonResponse
     {
         try {
