@@ -28,22 +28,18 @@ class UpdateAction
         try {
             $doc = Document::findOrFail($id);
 
-            if ($dto->file) {
-                $file = $dto->file;
-                $filePath = $doc->path;
-                
-                if (Storage::disk('public')->exists($filePath)) {
-                    Storage::disk('public')->delete($filePath);
-                }
+            $file = $dto->file;
+            $filePath = $doc->path;
 
-                $originalFilename = $file->getClientOriginalName();
-                $fileName = pathinfo($originalFilename, PATHINFO_FILENAME);
-                $fileName = $fileName . '_' . Str::random(10) . '_' . now()->format('Y-m-d-H:i:s') . '.' . $file->extension();
-
-                $savedPath = Storage::disk('public')->putFileAs('documents', $file, $fileName);
-            } else {
-                $savedPath = $doc->path;
+            if (Storage::disk('public')->exists($filePath)) {
+                Storage::disk('public')->delete($filePath);
             }
+
+            $originalFilename = $file->getClientOriginalName();
+            $fileName = pathinfo($originalFilename, PATHINFO_FILENAME);
+            $fileName = $fileName . '_' . Str::random(10) . '_' . now()->format('Y-m-d-H:i:s') . '.' . $file->extension();
+
+            $savedPath = Storage::disk('public')->putFileAs('documents', $file, $fileName);
 
             $doc->update([
                 'name' => $dto->name,

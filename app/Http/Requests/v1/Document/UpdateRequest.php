@@ -34,7 +34,7 @@ class UpdateRequest extends FormRequest
             'description.uz' => 'required|string',
             'description.ru' => 'required|string',
             'description.en' => 'required|string',
-            'file' => 'nullable|file|mimes:pdf,docx'
+            'file' => 'required|file|mimes:pdf,docx'
         ];
     }
 }
