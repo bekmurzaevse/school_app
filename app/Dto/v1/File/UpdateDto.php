@@ -11,7 +11,7 @@ readonly class UpdateDto
         public ?array $description,
         public string $path,
         public int $eventId,
-        public ?UploadedFile $file,
+        public UploadedFile $file,
     ) {}
 
     /**
