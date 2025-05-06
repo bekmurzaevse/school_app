@@ -12,7 +12,7 @@ readonly class UpdateDto
         public int $schoolId,
         public int $categoryId,
         public array $description,
-        public ?UploadedFile $file
+        public UploadedFile $file
         ) {
     }
 
