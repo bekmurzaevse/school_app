@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\School;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
@@ -24,21 +25,21 @@ class UserFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => fake()->name(),
-            'email' => fake()->unique()->safeEmail(),
-            'email_verified_at' => now(),
-            'password' => static::$password ??= Hash::make('password'),
-            'remember_token' => Str::random(10),
+            'first_name' => json_encode([
+                'uz' => $this->faker->firstName,
+                'ru' => $this->faker->firstName,
+                'en' => $this->faker->firstName,
+            ]),
+            'username' => $this->faker->unique()->userName,
+            'password' => Hash::make('password'), 
+            'description' => json_encode([
+                'uz' => $this->faker->sentence,
+                'ru' => $this->faker->sentence,
+                'en' => $this->faker->sentence,
+            ]),
+            'phone' => $this->faker->phoneNumber,
+            'school_id' => School::inRandomOrder()->first()->id, 
+            'birth_date' => $this->faker->date('Y-m-d', '2010-01-01'),
         ];
-    }
-
-    /**
-     * Indicate that the model's email address should be unverified.
-     */
-    public function unverified(): static
-    {
-        return $this->state(fn (array $attributes) => [
-            'email_verified_at' => null,
-        ]);
     }
 }
