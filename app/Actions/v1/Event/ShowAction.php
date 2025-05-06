@@ -3,10 +3,12 @@
 namespace App\Actions\v1\Event;
 
 use App\Exceptions\ApiResponseException;
+use App\Http\Resources\v1\Event\EventResource;
 use App\Models\Event;
 use App\Traits\ResponseTrait;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Facades\Cache;
 
 class ShowAction
 {
@@ -21,14 +23,18 @@ class ShowAction
     public function __invoke(int $id): JsonResponse
     {
         try {
-            $event = Event::findOrFail($id);
+            $key = 'events:show:' . app()->getLocale() . ':' . md5(request()->fullUrl());
+
+            $event = Cache::remember($key, now()->addDay(), function () use ($id) {
+                return Event::with(['school', 'files'])->findOrFail($id);
+            });
 
             return static::toResponse(
-                message: "$id - id li ta'dbir",
-                data: $event
+                message: 'Tadbir maʼlumotlari olindi',
+                data: new EventResource($event)
             );
         } catch (ModelNotFoundException $ex) {
-            throw new ApiResponseException("$id - id li ta'dbir tabilmadi", 404);
+            throw new ApiResponseException('Tadbir topilmadi', 404);
         }
     }
 }

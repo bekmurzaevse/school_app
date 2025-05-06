@@ -3,10 +3,12 @@
 namespace App\Actions\v1\File;
 
 use App\Exceptions\ApiResponseException;
+use App\Http\Resources\v1\File\FileResource;
 use App\Models\File;
 use App\Traits\ResponseTrait;
-use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Storage;
 
 class ShowAction
 {
@@ -20,15 +22,19 @@ class ShowAction
      */
     public function __invoke(int $id): JsonResponse
     {
-        try {
-            $file = File::findOrFail($id);
+        $key = 'file:show:' . app()->getLocale() . ':' . md5(request()->fullUrl());
 
-            return static::toResponse(
-                message: "$id - id li fayl",
-                data: $file
-            );
-        } catch (ModelNotFoundException $ex) {
-            throw new ApiResponseException("$id - id li fayl tabilmadi", 404);
+        $file = Cache::remember($key, now()->addDay(), function () use ($id) {
+            return File::with(['event'])->find($id);
+        });
+
+        if (!$file || !Storage::disk('public')->exists($file->path)) {
+            throw new ApiResponseException('File Not Found', 404);
         }
+
+        return static::toResponse(
+            message: 'Successfully received',
+            data: new FileResource($file)
+        );
     }
 }
