@@ -22,7 +22,7 @@ class ShowAction
      */
     public function __invoke(int $id): JsonResponse
     {
-        $key = 'file:show:' . app()->getLocale() . ':' . md5(request()->fullUrl());
+        $key = 'files:show:' . app()->getLocale() . ':' . md5(request()->fullUrl());
 
         $file = Cache::remember($key, now()->addDay(), function () use ($id) {
             return File::with(['event'])->find($id);

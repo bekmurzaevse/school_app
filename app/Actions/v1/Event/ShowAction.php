@@ -34,7 +34,7 @@ class ShowAction
                 data: new EventResource($event)
             );
         } catch (ModelNotFoundException $ex) {
-            throw new ApiResponseException('Tadbir topilmadi', 404);
+            throw new ApiResponseException('Tadbir tabilmadi', 404);
         }
     }
 }

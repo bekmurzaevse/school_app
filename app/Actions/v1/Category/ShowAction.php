@@ -23,7 +23,7 @@ class ShowAction
     public function __invoke(int $id): JsonResponse
     {
         try {
-            $key = 'category:show:' . app()->getLocale() . ':' . md5(request()->fullUrl());
+            $key = 'categories:show:' . app()->getLocale() . ':' . md5(request()->fullUrl());
 
             $category = Cache::remember($key, now()->addDay(), function () use ($id) {
 
