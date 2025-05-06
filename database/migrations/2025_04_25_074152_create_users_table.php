@@ -16,8 +16,8 @@ return new class extends Migration
             $table->json('first_name');
             $table->string('username')->unique();
             $table->string('password');
-            $table->json('description');
-            $table->string('phone');
+            $table->json('description')->nullable();
+            $table->string('phone')->unique();
             $table->foreignId('school_id')->constrained('schools', 'id')->cascadeOnUpdate()->restrictOnDelete();
             $table->date('birth_date');
             $table->timestamps();
