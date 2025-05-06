@@ -30,7 +30,7 @@ class UpdateRequest extends FormRequest
             'description.ru' => 'nullable|string',
             'description.kk' => 'nullable|string',
             'event_id' => 'nullable|exists:events,id', 
-            'file' => 'nullable|file|mimes:pdf,docx,jpg,png|max:20480', 
+            'file' => 'required|file|mimes:pdf,docx,jpg,png|max:20480', 
         ];
     }
 }
