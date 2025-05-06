@@ -26,15 +26,28 @@ class ShowAction
             $key = 'events:show:' . app()->getLocale() . ':' . md5(request()->fullUrl());
 
             $event = Cache::remember($key, now()->addDay(), function () use ($id) {
-                return Event::with(['school', 'files'])->findOrFail($id);
+                $event = Event::with(['school', 'files'])->findOrFail($id);
+
+                // Alding'i event
+                $event->previous = Event::where('id', '<', $event->id)
+                    ->orderBy('id', 'desc')
+                    ->first();
+
+                // Keyingi event
+                $event->next = Event::where('id', '>', $event->id)
+                    ->orderBy('id', 'asc')
+                    ->first();
+
+                return $event;
             });
 
             return static::toResponse(
-                message: 'Tadbir maʼlumotlari olindi',
+                message: "Ta'dbir mag'liwmatlari alindi",
                 data: new EventResource($event)
             );
+
         } catch (ModelNotFoundException $ex) {
-            throw new ApiResponseException('Tadbir tabilmadi', 404);
+            throw new ApiResponseException("Ta'dbir tabilmadi", 404);
         }
     }
 }
