@@ -21,7 +21,7 @@ class IndexAction
         $key = 'events:' . app()->getLocale() . ':' . md5(request()->fullUrl());
 
         $events = Cache::remember($key, now()->addDay(), function () {
-            return Event::where('school_id', 1)->paginate(10);
+            return Event::with('school')->paginate(10);
         });
 
         return static::toResponse(

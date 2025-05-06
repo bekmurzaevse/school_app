@@ -110,7 +110,6 @@ Route::prefix('files')->group(function () {
     Route::get('/', [FileController::class, 'index']);
     Route::get('/{id}', [FileController::class, 'show']);
     Route::post('/upload', [FileController::class, 'upload']);
-    Route::post('/create', [FileController::class, 'create']);
     Route::put('/update/{id}', [FileController::class, 'update']);
     Route::delete('/delete/{id}', [FileController::class, 'delete']);
 });
