@@ -28,22 +28,19 @@ class UpdateAction
         try {
             $file = File::findOrFail($id);
 
-            if ($dto->file) {
-                $uploadedFile = $dto->file;
-                $oldPath = $file->path;
+            $uploadedFile = $dto->file;
+            $oldPath = $file->path;
 
-                if (Storage::disk('public')->exists($oldPath)) {
-                    Storage::disk('public')->delete($oldPath);
-                }
-
-                $originalName = $uploadedFile->getClientOriginalName();
-                $newFileName = pathinfo($originalName, PATHINFO_FILENAME);
-                $newFileName = $newFileName . '_' . Str::random(10) . '_' . now()->format('Y-m-d-H-i-s') . '.' . $uploadedFile->extension();
-
-                $newPath = Storage::disk('public')->putFileAs('files', $uploadedFile, $newFileName);
-            } else {
-                $newPath = $file->path;
+            if (Storage::disk('public')->exists($oldPath)) {
+                Storage::disk('public')->delete($oldPath);
             }
+
+            $originalName = $uploadedFile->getClientOriginalName();
+            $newFileName = pathinfo($originalName, PATHINFO_FILENAME);
+            $newFileName = $newFileName . '_' . Str::random(10) . '_' . now()->format('Y-m-d-H-i-s') . '.' . $uploadedFile->extension();
+
+            $newPath = Storage::disk('public')->putFileAs('files', $uploadedFile, $newFileName);
+            
 
             $file->update([
                 'name' => $dto->name,
