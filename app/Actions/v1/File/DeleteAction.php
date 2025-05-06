@@ -7,6 +7,7 @@ use App\Models\File;
 use App\Traits\ResponseTrait;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Facades\Storage;
 
 class DeleteAction
 {
@@ -22,6 +23,12 @@ class DeleteAction
     {
         try {
             $file = File::findOrFail($id);
+            $filePath = $file->path;
+
+            if (Storage::disk('public')->exists($filePath)) {
+                Storage::disk('public')->delete($filePath);
+            }
+
             $file->delete();
 
             return static::toResponse(

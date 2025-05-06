@@ -2,6 +2,8 @@
 
 namespace App\Dto\v1\File;
 
+use Illuminate\Http\UploadedFile;
+
 readonly class UpdateDto
 {
     public function __construct(
@@ -9,6 +11,7 @@ readonly class UpdateDto
         public ?array $description,
         public string $path,
         public int $eventId,
+        public UploadedFile $file,
     ) {}
 
     /**
@@ -23,6 +26,7 @@ readonly class UpdateDto
             description: $request->get('description'),
             path: $request->get('path'),
             eventId: $request->get('event_id'),
+            file: $request->file('file')
         );
     }
     

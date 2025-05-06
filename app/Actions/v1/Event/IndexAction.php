@@ -2,9 +2,11 @@
 
 namespace App\Actions\v1\Event;
 
+use App\Http\Resources\v1\Event\EventCollection;
 use App\Models\Event;
 use App\Traits\ResponseTrait;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Facades\Cache;
 
 class IndexAction
 {
@@ -16,11 +18,15 @@ class IndexAction
      */
     public function __invoke(): JsonResponse
     {
-        $events = Event::where('school_id', 1)->get();
+        $key = 'events:' . app()->getLocale() . ':' . md5(request()->fullUrl());
+
+        $events = Cache::remember($key, now()->addDay(), function () {
+            return Event::with('school')->paginate(10);
+        });
 
         return static::toResponse(
             message: "1-mektep ta'dbirleri dizimi",
-            data: $events
+            data: new EventCollection($events)
         );
     }
 }

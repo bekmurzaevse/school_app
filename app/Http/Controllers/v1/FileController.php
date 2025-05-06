@@ -31,16 +31,6 @@ class FileController extends Controller
         return $action();
     }
 
-    /**
-     * Summary of create
-     * @param \App\Http\Requests\v1\File\CreateRequest $request
-     * @param \App\Actions\v1\File\CreateAction $action
-     * @return JsonResponse
-     */
-    public function create(CreateRequest $request, CreateAction $action): JsonResponse
-    {
-        return $action(CreateDto::from($request));
-    }
 
     /**
      * Summary of upload

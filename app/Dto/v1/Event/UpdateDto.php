@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Dto\V1\Event;
+namespace App\Dto\v1\Event;
 
 use App\Http\Requests\v1\Event\UpdateRequest;
 
