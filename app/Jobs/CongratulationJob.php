@@ -10,7 +10,6 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Queue\Queueable;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Http;
-use Illuminate\Support\Facades\Log;
 
 class CongratulationJob implements ShouldQueue
 {
@@ -33,10 +32,7 @@ class CongratulationJob implements ShouldQueue
      */
     public function handle(): void
     {
-        Log::alert("Congratulation222 - " . $this->employeeId . " - " . $this->text);
         if ($this->employeeId == 0 || $this->text == "") {
-            Log::alert("Kelmedi");
-
             $list = Employee::all();
             foreach ($list as $employee){
                 $date = Carbon::create($employee->birth_date);
@@ -52,10 +48,6 @@ class CongratulationJob implements ShouldQueue
             }
 
         } else {
-
-            Log::alert("employeeId - ". $this->employeeId);
-            Log::alert("text - ". $this->text);
-
             try {
                 $employee = Employee::findOrFail($this->employeeId)->first();
                 Http::withHeaders([
@@ -69,7 +61,6 @@ class CongratulationJob implements ShouldQueue
             } catch(ModelNotFoundException $ex){
                 throw new ApiResponseException("Employee not found!", 404);
             }
-
         }
 
     }
@@ -86,5 +77,4 @@ class CongratulationJob implements ShouldQueue
         });
         return $token;
     }
-
 }
