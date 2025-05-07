@@ -11,8 +11,8 @@ use App\Http\Controllers\v1\NewsController;
 use App\Http\Controllers\v1\SchoolController;
 use App\Http\Controllers\v1\EmployeeController;
 use App\Http\Controllers\v1\TagController;
+use App\Http\Controllers\v1\UserController;
 use Illuminate\Support\Facades\Route;
-use App\Models\Category;
 
 Route::pattern('id', '\d+');
 Route::pattern('hash', '[a-z0-9]+');
@@ -22,8 +22,21 @@ Route::pattern('base', '[a-zA-Z0-9]+');
 Route::pattern('slug', '[a-z0-9-]+');
 Route::pattern('username', '[a-z0-9_-]{3,16}');
 
-Route::get('/', function () {
-    return Category::first()->name;
+/**
+ * Login 
+ */
+Route::prefix('auth')->middleware('guest:sanctum')->group(function () {
+    Route::post('login', [UserController::class, 'login']);
+});
+
+/**
+ * User Profile and Logout
+ */
+Route::middleware(['auth:sanctum', 'ability:access-token'])->group(function () {
+    Route::prefix('auth')->group(function () {
+        Route::get('me', [UserController::class, 'profile']);
+        Route::post('logout', [UserController::class, 'logout']);
+    });
 });
 
 Route::prefix('schools')->group(function () {
