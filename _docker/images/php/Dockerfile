@@ -36,6 +36,9 @@ RUN curl -sS https://getcomposer.org/installer | php -- \
 
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
+RUN apt-get update && apt-get install -y tzdata
+RUN ln -snf /usr/share/zoneinfo/Asia/Tashkent /etc/localtime && echo "Asia/Tashkent" > /etc/timezone
+
 USER www-data
 
 WORKDIR /var/www/backend
