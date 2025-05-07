@@ -15,16 +15,12 @@ class CongratulationJob implements ShouldQueue
 {
     use Queueable;
 
-    public int $employeeId = 0;
-    public int $text = "";
-
     /**
      * Create a new job instance.
      */
-    public function __construct(int $employeeId = 0, string $text = "")
+    public function __construct()
     {
-        $this->employeeId = $employeeId;
-        $this->text = $text;
+
     }
 
     /**
@@ -32,7 +28,7 @@ class CongratulationJob implements ShouldQueue
      */
     public function handle(): void
     {
-        if ($this->employeeId == 0 || $this->text == "") {
+        // if ($this->employeeId == 0 || $this->text == "") {
             $list = Employee::all();
             foreach ($list as $employee){
                 $date = Carbon::create($employee->birth_date);
@@ -47,21 +43,21 @@ class CongratulationJob implements ShouldQueue
                 }
             }
 
-        } else {
-            try {
-                $employee = Employee::findOrFail($this->employeeId)->first();
-                Http::withHeaders([
-                    'Authorization' => 'Bearer ' . $this->getToken(),
-                ])->post('notify.eskiz.uz/api/message/sms/send', [
-                    'mobile_phone' => $employee->phone,
-                    // 'message' => 'Это тест от Eskiz',
-                    'message' => $this->text,
-                    'from' => '4546',
-                ]);
-            } catch(ModelNotFoundException $ex){
-                throw new ApiResponseException("Employee not found!", 404);
-            }
-        }
+        // } else {
+            // try {
+            //     $employee = Employee::findOrFail($this->employeeId)->first();
+            //     Http::withHeaders([
+            //         'Authorization' => 'Bearer ' . $this->getToken(),
+            //     ])->post('notify.eskiz.uz/api/message/sms/send', [
+            //         'mobile_phone' => $employee->phone,
+            //         // 'message' => 'Это тест от Eskiz',
+            //         'message' => $this->text,
+            //         'from' => '4546',
+            //     ]);
+            // } catch(ModelNotFoundException $ex){
+            //     throw new ApiResponseException("Employee not found!", 404);
+            // }
+        // }
 
     }
 
