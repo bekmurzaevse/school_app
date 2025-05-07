@@ -19,8 +19,7 @@ return Application::configure(basePath: dirname(__DIR__))
         //
     })
     ->withSchedule(function (Schedule $schedule) {
-        // $schedule->job(new CongratulationJob)->dailyAt('19:42');
-        $schedule->job(new CongratulationJob())->everyMinute();
+        $schedule->job(new CongratulationJob())->dailyAt('09:00');
     })
     ->withExceptions(function (Exceptions $exceptions) {
 
