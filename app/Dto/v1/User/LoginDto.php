@@ -7,7 +7,7 @@ use App\Http\Requests\v1\User\LoginRequest;
 readonly class LoginDto
 {
     public function __construct(
-        public int $phone,
+        public string $phone,
         public string $password
     ) {
     }
