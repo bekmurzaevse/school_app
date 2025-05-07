@@ -26,90 +26,115 @@ Route::get('/', function () {
     return Category::first()->name;
 });
 
+/**
+ * Admin
+ */
+Route::middleware(middleware: 'role:admin')->group(function () {
+    Route::prefix('schools')->group(function () {
+        Route::get('/', [SchoolController::class, 'index']);//Admin
+        Route::post('/create', [SchoolController::class, 'create']);//Admin
+        Route::put('/update/{id}', [SchoolController::class, 'update']);//Admin
+        Route::delete('/delete/{id}', [SchoolController::class, 'delete']);//Admin
+    });
+    Route::prefix('employees')->group(function () {
+        Route::get('/{id}', [EmployeeController::class, 'show']);
+        Route::post('create', [EmployeeController::class, 'create']);
+        Route::put('update/{id}', [EmployeeController::class, 'update']);
+        Route::delete('delete/{id}', [EmployeeController::class, 'delete']);
+    });
+    Route::prefix('news')->group(function () {
+        Route::post('create', [NewsController::class, 'create']);//Admin
+        Route::put('update/{id}', [NewsController::class, 'update']);//Admin
+        Route::delete('delete/{id}', [NewsController::class, 'delete']);//Admin
+    });
+    Route::prefix('tags')->group(function () {
+        Route::get('/', [TagController::class, 'index']);//Admin
+        Route::get('/{id}', [TagController::class, 'show']);//Admin
+        Route::post('create', [TagController::class, 'create']);//Admin
+        Route::put('update/{id}', [TagController::class, 'update']);//Admin
+        Route::delete('delete/{id}', [TagController::class, 'delete']);//Admin
+    });
+    Route::prefix('positions')->group(function () {
+        Route::get('/{id}', [PositionController::class, 'show']);//Admin
+        Route::post('/create', [PositionController::class, 'create']);//Admin
+        Route::put('/update/{id}', [PositionController::class, 'update']);//Admin
+        Route::delete('/delete/{id}', [PositionController::class, 'delete']);//Admin
+    });
+    Route::prefix('albums')->group(function () {
+        Route::get('/', [AlbumController::class, 'index']);//User
+        Route::get('/{id}', [AlbumController::class, 'show']);//User
+        Route::post('/create', [AlbumController::class, 'create']);//Admin
+        Route::put('/update/{id}', [AlbumController::class, 'update']);//Admin
+        Route::delete('/delete/{id}', [AlbumController::class, 'delete']);//Admin
+    });
+    Route::prefix('photos')->group(function () {
+        Route::post('/create', [PhotoController::class, 'create']);//Admin
+        Route::post('/update/{id}', [PhotoController::class, 'update']);//Admin
+        Route::delete('/delete/{id}', [PhotoController::class, 'delete']);//Admin
+    });
+    Route::prefix('documents')->group(function () {
+        Route::post('upload', [DocumentController::class, 'upload']);//Admin
+        Route::put('update/{id}', [DocumentController::class, 'update']);//Admin
+        Route::delete('delete/{id}', [DocumentController::class, 'delete']);//Admin
+    });
+    Route::prefix('categories')->group(function () {
+        Route::post('/create', [CategoryController::class, 'create']);//Admin
+        Route::put('/update/{id}', [CategoryController::class, 'update']);//Admin
+        Route::delete('/delete/{id}', [CategoryController::class, 'delete']);//Admin
+    });
+    Route::prefix('events')->group(function () {
+        Route::post('/create', [EventController::class, 'create']);//Admin
+        Route::put('/update/{id}', [EventController::class, 'update']);//Admin
+        Route::delete('/delete/{id}', [EventController::class, 'delete']);//Admin
+    });
+    Route::prefix('files')->group(function () {
+        Route::post('/upload', [FileController::class, 'upload']);//Admin
+        Route::put('/update/{id}', [FileController::class, 'update']);//Admin
+        Route::delete('/delete/{id}', [FileController::class, 'delete']);//Admin
+    });
+});
+
+/**
+ * User
+ */
 Route::prefix('schools')->group(function () {
-    Route::get('/', [SchoolController::class, 'index']);
-    Route::get('/{id}', [SchoolController::class, 'show']);
-    Route::post('/create', [SchoolController::class, 'create']);
-    Route::put('/update/{id}', [SchoolController::class, 'update']);
-    Route::delete('/delete/{id}', [SchoolController::class, 'delete']);
+    Route::get('/{id}', [SchoolController::class, 'show']);///User
 });
-
 Route::prefix('employees')->group(function () {
-    Route::get('/', [EmployeeController::class, 'index']);
-    Route::get('/{id}', [EmployeeController::class, 'show']);
-    Route::post('create', [EmployeeController::class, 'create']);
-    Route::put('update/{id}', [EmployeeController::class, 'update']);
-    Route::delete('delete/{id}', [EmployeeController::class, 'delete']);
+    Route::get('/', [EmployeeController::class, 'index']);//User
 });
-
 Route::prefix('news')->group(function () {
-    Route::get('/', [NewsController::class, 'index']);
-    Route::get('/{id}', [NewsController::class, 'show']);
-    Route::post('create', [NewsController::class, 'create']);
-    Route::put('update/{id}', [NewsController::class, 'update']);
-    Route::delete('delete/{id}', [NewsController::class, 'delete']);
+    Route::get('/', [NewsController::class, 'index']); //User
+    Route::get('/{id}', [NewsController::class, 'show']);//User
 });
-
 Route::prefix('tags')->group(function () {
-    Route::get('/', [TagController::class, 'index']);
-    Route::get('/{id}', [TagController::class, 'show']);
-    Route::post('create', [TagController::class, 'create']);
-    Route::put('update/{id}', [TagController::class, 'update']);
-    Route::delete('delete/{id}', [TagController::class, 'delete']);
+
 });
 Route::prefix('positions')->group(function () {
-    Route::get('/', [PositionController::class, 'index']);
-    Route::get('/{id}', [PositionController::class, 'show']);
-    Route::post('/create', [PositionController::class, 'create']);
-    Route::put('/update/{id}', [PositionController::class, 'update']);
-    Route::delete('/delete/{id}', [PositionController::class, 'delete']);
+    Route::get('/', [PositionController::class, 'index']);//User
 });
-
 Route::prefix('albums')->group(function () {
-    Route::get('/', [AlbumController::class, 'index']);
-    Route::get('/{id}', [AlbumController::class, 'show']);
-    Route::post('/create', [AlbumController::class, 'create']);
-    Route::put('/update/{id}', [AlbumController::class, 'update']);
-    Route::delete('/delete/{id}', [AlbumController::class, 'delete']);
+    Route::get('/', [AlbumController::class, 'index']);//User
+    Route::get('/{id}', [AlbumController::class, 'show']);//User
 });
-
 Route::prefix('photos')->group(function () {
-    Route::get('/', [PhotoController::class, 'index']);
-    Route::get('/{id}', [PhotoController::class, 'show']);
-    Route::post('/create', [PhotoController::class, 'create']);
-    Route::post('/update/{id}', [PhotoController::class, 'update']);
-    Route::delete('/delete/{id}', [PhotoController::class, 'delete']);
+    Route::get('/', [PhotoController::class, 'index']);//User
+    Route::get('/{id}', [PhotoController::class, 'show']);//User
 });
-
 Route::prefix('documents')->group(function () {
-    Route::get('/', [DocumentController::class, 'index']);
-    Route::get('show/{id}', [DocumentController::class, 'show']);
-    Route::post('upload', [DocumentController::class, 'upload']);
-    Route::get('download/{id}', [DocumentController::class, 'download']);
-    Route::put('update/{id}', [DocumentController::class, 'update']);
-    Route::delete('delete/{id}', [DocumentController::class, 'delete']);
+    Route::get('/', [DocumentController::class, 'index']);//User
+    Route::get('show/{id}', [DocumentController::class, 'show']);//User
+    Route::get('download/{id}', [DocumentController::class, 'download']);//User
 });
-
 Route::prefix('categories')->group(function () {
-    Route::get('/', [CategoryController::class, 'index']);
-    Route::get('/{id}', [CategoryController::class, 'show']);
-    Route::post('/create', [CategoryController::class, 'create']);
-    Route::put('/update/{id}', [CategoryController::class, 'update']);
-    Route::delete('/delete/{id}', [CategoryController::class, 'delete']);
+    Route::get('/', [CategoryController::class, 'index']);//User
+    Route::get('/{id}', [CategoryController::class, 'show']);//User
 });
-
 Route::prefix('events')->group(function () {
-    Route::get('/', [EventController::class, 'index']);
-    Route::get('/{id}', [EventController::class, 'show']);
-    Route::post('/create', [EventController::class, 'create']);
-    Route::put('/update/{id}', [EventController::class, 'update']);
-    Route::delete('/delete/{id}', [EventController::class, 'delete']);
+    Route::get('/', [EventController::class, 'index']);//User
+    Route::get('/{id}', [EventController::class, 'show']);//User
 });
-
 Route::prefix('files')->group(function () {
-    Route::get('/', [FileController::class, 'index']);
-    Route::get('/{id}', [FileController::class, 'show']);
-    Route::post('/upload', [FileController::class, 'upload']);
-    Route::put('/update/{id}', [FileController::class, 'update']);
-    Route::delete('/delete/{id}', [FileController::class, 'delete']);
+    Route::get('/', [FileController::class, 'index']);//User
+    Route::get('/{id}', [FileController::class, 'show']);//User
 });
