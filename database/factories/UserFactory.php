@@ -23,7 +23,7 @@ class UserFactory extends Factory
     public function definition(): array
     {
         return [
-            'first_name' => [
+            'full_name' => [
                 'uz' => $this->faker->firstName,
                 'ru' => $this->faker->firstName,
                 'en' => $this->faker->firstName,

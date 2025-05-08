@@ -18,8 +18,6 @@ class IndexAction
      */
     public function __invoke(): JsonResponse
     {
-        $schools = School::all();
-
         $key = 'schools:' . app()->getLocale() . ':' . md5(request()->fullUrl());
         $schools = Cache::remember($key, now()->addDay(), function () {
             return School::paginate(10);

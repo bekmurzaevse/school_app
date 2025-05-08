@@ -9,6 +9,7 @@ readonly class CreateDto
     public function __construct(
         public array $fullName,
         public string $phone,
+        public string $password,
         public int $photoId,
         public string $email,
         public int $positionId,
@@ -26,6 +27,7 @@ readonly class CreateDto
         return new self(
             fullName: $request->get('full_name'),
             phone: $request->get('phone'),
+            password: $request->get('password'),
             photoId: $request->get('photo_id'),
             email: $request->get('email'),
             positionId: $request->get('position_id'),
