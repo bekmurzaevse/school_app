@@ -26,23 +26,11 @@ class ShowAction
             $key = 'events:show:' . app()->getLocale() . ':' . md5(request()->fullUrl());
 
             $event = Cache::remember($key, now()->addDay(), function () use ($id) {
-                $event = Event::with(['school', 'files'])->findOrFail($id);
-
-                // Alding'i event
-                $event->previous = Event::where('id', '<', $event->id)
-                    ->orderBy('id', 'desc')
-                    ->first();
-
-                // Keyingi event
-                $event->next = Event::where('id', '>', $event->id)
-                    ->orderBy('id', 'asc')
-                    ->first();
-
-                return $event;
+                return Event::with(['school', 'files'])->findOrFail($id);
             });
 
             return static::toResponse(
-                message: "Ta'dbir mag'liwmatlari alindi",
+                message: "Ta'dbir haqqinda mag'liwmatlar alindi",
                 data: new EventResource($event)
             );
 
