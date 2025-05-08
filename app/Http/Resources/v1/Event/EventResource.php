@@ -38,10 +38,12 @@ class EventResource extends JsonResource
             'previous_event' => $previous ? [
                 'id' => $previous->id,
                 'name' => $previous->name,
+                'path' => url("/api/v1/events/{$previous->id}"),
             ] : null,
             'next_event' => $next ? [
                 'id' => $next->id,
                 'name' => $next->name,
+                'path' => url("/api/v1/events/{$next->id}"),
             ] : null,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
