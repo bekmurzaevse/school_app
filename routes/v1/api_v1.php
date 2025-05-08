@@ -12,6 +12,8 @@ use App\Http\Controllers\v1\SchoolController;
 use App\Http\Controllers\v1\EmployeeController;
 use App\Http\Controllers\v1\TagController;
 use App\Http\Controllers\v1\UserController;
+use App\Models\Employee;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Route;
 
 Route::pattern('id', '\d+');
@@ -23,7 +25,7 @@ Route::pattern('slug', '[a-z0-9-]+');
 Route::pattern('username', '[a-z0-9_-]{3,16}');
 
 /**
- * Login 
+ * Login
  */
 Route::prefix('auth')->middleware('guest:sanctum')->group(function () {
     Route::post('login', [UserController::class, 'login']);
@@ -42,7 +44,7 @@ Route::middleware(['auth:sanctum', 'ability:access-token'])->group(function () {
 /**
  * Admin
  */
-Route::middleware(middleware: 'role:admin')->group(function () {
+Route::middleware( 'role:admin')->group(function () {
     Route::prefix('schools')->group(function () {
         Route::get('/', [SchoolController::class, 'index']);//Admin
         Route::post('/create', [SchoolController::class, 'create']);//Admin
@@ -74,8 +76,6 @@ Route::middleware(middleware: 'role:admin')->group(function () {
         Route::delete('/delete/{id}', [PositionController::class, 'delete']);//Admin
     });
     Route::prefix('albums')->group(function () {
-        Route::get('/', [AlbumController::class, 'index']);//User
-        Route::get('/{id}', [AlbumController::class, 'show']);//User
         Route::post('/create', [AlbumController::class, 'create']);//Admin
         Route::put('/update/{id}', [AlbumController::class, 'update']);//Admin
         Route::delete('/delete/{id}', [AlbumController::class, 'delete']);//Admin
@@ -105,11 +105,31 @@ Route::middleware(middleware: 'role:admin')->group(function () {
         Route::put('/update/{id}', [FileController::class, 'update']);//Admin
         Route::delete('/delete/{id}', [FileController::class, 'delete']);//Admin
     });
+
+});
+
+Route::prefix('users')->group(function () {
+    Route::get('/', [UserController::class, 'index']);//User
+    Route::get('/{id}', [UserController::class, 'show']);//User
+    Route::post('/create', [UserController::class, 'create']);//Admin
+    // Route::put('/update/{id}', [AlbumController::class, 'update']);//Admin
+    // Route::delete('/delete/{id}', [AlbumController::class, 'delete']);//Admin
 });
 
 /**
  * User
  */
+Route::get('/', function () {
+    $today = Carbon::today();
+    $start = Carbon::now()->setHour(0)->setMinute(0)->setSecond(1);
+    $end = Carbon::now()->setHour(23)->setMinute(59)->setSecond(59);
+    // $from = Carbon::now('Asia/Tashkent')->startOfHour()->startOfMinute()->startOfSecond();
+    // $to = Carbon::now()->endOfHour()->endOfMinute()->endOfSecond();
+    // return $today;
+    $employees = Employee::whereBetween('birth_date', [$start, $end])->get();
+    return $employees;
+});
+
 Route::prefix('schools')->group(function () {
     Route::get('/{id}', [SchoolController::class, 'show']);///User
 });

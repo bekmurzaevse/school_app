@@ -1,9 +1,9 @@
-<?php
+<?php 
 
-namespace App\Actions\v1\Employee;
+namespace App\Actions\v1\User;
 
-use App\Dto\v1\Employee\CreateDto;
-use App\Models\Employee;
+use App\Dto\v1\User\CreateDto;
+use App\Models\User;
 use App\Traits\ResponseTrait;
 use Illuminate\Http\JsonResponse;
 
@@ -13,20 +13,21 @@ class CreateAction
 
     public function __invoke(CreateDto $dto): JsonResponse
     {
+
         $data = [
             'full_name' => $dto->fullName,
-            'phone' => $dto->phone,
-            'photo_id' => $dto->photoId,
+            'username' => $dto->username,
             'password' => $dto->password,
-            'position_id' => $dto->positionId,
-            'email' => $dto->email,
+            'phone' => $dto->phone,
+            'description' => $dto->description,
+            'school_id' => $dto->schoolId,
             'birth_date' => $dto->birthDate,
         ];
 
-        Employee::create($data);
+        User::create($data);
 
         return static::toResponse(
-            message: 'Employee created'
+            message: "User created"
         );
     }
 }

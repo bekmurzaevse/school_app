@@ -13,7 +13,7 @@ use Spatie\Translatable\HasTranslations;
 
 class User extends Authenticatable
 {
-    /** @use HasFactory<\Database\Factories\UserFactory> */
+    
     use HasFactory, Notifiable, HasRoles, HasTranslations, HasApiTokens;
 
     /**
@@ -21,7 +21,7 @@ class User extends Authenticatable
      * @var array
      */
     public $translatable = [
-        'first_name',
+        'full_name',
         'description'
     ];
 
@@ -31,8 +31,9 @@ class User extends Authenticatable
      * @var list<string>
      */
     protected $fillable = [
-        'first_name',
+        'full_name',
         'username',
+        'password',
         'description',
         'phone',
         'school_id',

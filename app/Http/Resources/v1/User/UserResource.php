@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources\v1\User;
 
+use App\Http\Resources\v1\School\SchoolResource;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -16,10 +17,10 @@ class UserResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'first_name' => $this->first_name,
+            'full_name' => $this->full_name,
             'description' => $this->description,
             'phone' => $this->phone,
-            'school_id' => $this->school_id,
+            'school' => new SchoolResource($this->schoolId),
             'birth_date' => $this->birth_date,
             'created_at' => $this->created_at->format('Y-m-d H:i:s'),
             'updated_at' => $this->updated_at->format('Y-m-d H:i:s'),
