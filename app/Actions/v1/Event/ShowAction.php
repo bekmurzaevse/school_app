@@ -30,11 +30,12 @@ class ShowAction
             });
 
             return static::toResponse(
-                message: 'Tadbir maʼlumotlari olindi',
+                message: "Ta'dbir haqqinda mag'liwmatlar alindi",
                 data: new EventResource($event)
             );
+
         } catch (ModelNotFoundException $ex) {
-            throw new ApiResponseException('Tadbir tabilmadi', 404);
+            throw new ApiResponseException("Ta'dbir tabilmadi", 404);
         }
     }
 }

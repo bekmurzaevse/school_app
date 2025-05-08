@@ -53,6 +53,44 @@ class EventSeeder extends Seeder
             'created_at' => now(),
             'updated_at' => now(),
         ]);
+        Event::create([
+            'name' => [
+                'en' => 'New Year Celebration',
+                'ru' => 'Празднование Нового года',
+                'uz' => 'Yangi yil bayrami',
+                'kk' => "Jan'a jıl bayramı",
+            ],
+            'description' => [
+                'en' => 'Information about the New Year celebration event',
+                'ru' => 'Информация о праздновании Нового года',
+                'uz' => 'Yangi yil bayrami tadbiri haqida maʼlumotlar',
+                'kk' => "Jan'a jıl bayramı haqqında mag'lıwmatlar",
+            ],
+            'school_id' => 1,
+            'start_time' => now()->addDays(30),
+            'location' => 'Mektep zalı',
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+        Event::create([
+            'name' => [
+                'en' => 'Event Navruz',
+                'ru' => 'Праздник Навруз',
+                'uz' => 'Navroz bayrami',
+                'kk' => 'Nawriz bayrami',
+            ],
+            'description' => [
+                'en' => 'Information about the Navruz holiday event',
+                'ru' => 'Межшкольное футбольное соревнование',
+                'uz' => 'Navroz bayrami tadbiri haqida malumotlar',
+                'kk' => 'Nawriz bayrami haqqinda magliwmatlar',
+            ],
+            'school_id' => 1,
+            'start_time' => now()->addDays(7),
+            'location' => 'Mektep maydanshasi',
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
         
     }
 }
