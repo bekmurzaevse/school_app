@@ -37,11 +37,11 @@ class EventResource extends JsonResource
             'files' => FileResource::collection($this->whenLoaded('files')),
             'previous_event' => $previous ? [
                 'id' => $previous->id,
-                'name' => $previous->name[$locale] ?? $previous->name,
+                'name' => $previous->name,
             ] : null,
             'next_event' => $next ? [
                 'id' => $next->id,
-                'name' => $next->name[$locale] ?? $next->name,
+                'name' => $next->name,
             ] : null,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
