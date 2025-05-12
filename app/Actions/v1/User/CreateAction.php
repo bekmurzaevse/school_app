@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace App\Actions\v1\User;
 
@@ -24,7 +24,8 @@ class CreateAction
             'birth_date' => $dto->birthDate,
         ];
 
-        User::create($data);
+        $user = User::create($data);
+        $user->assignRole('admin');
 
         return static::toResponse(
             message: "User created"
