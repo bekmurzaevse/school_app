@@ -5,7 +5,7 @@ namespace App\Dto\v1\Photos;
 use App\Http\Requests\v1\Photo\UpdateRequest;
 use Illuminate\Http\UploadedFile;
 
-class UpdateDto
+readonly class UpdateDto
 {
     public function __construct(
         public UploadedFile $photo,

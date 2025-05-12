@@ -44,90 +44,95 @@ Route::middleware(['auth:sanctum', 'ability:access-token'])->group(function () {
 /**
  * Admin
  */
-Route::middleware( 'role:admin')->group(function () {
-    Route::prefix('schools')->group(function () {
-        Route::get('/', [SchoolController::class, 'index']);//Admin
-        Route::post('/create', [SchoolController::class, 'create']);//Admin
-        Route::put('/update/{id}', [SchoolController::class, 'update']);//Admin
-        Route::delete('/delete/{id}', [SchoolController::class, 'delete']);//Admin
+Route::middleware('auth:sanctum')->group(function () {
+
+    Route::middleware( 'role:admin')->group(function () {
+        Route::prefix('schools')->group(function () {
+        Route::get('/', [SchoolController::class, 'index']);
+        Route::post('/create', [SchoolController::class, 'create']);
+        Route::put('/update/{id}', [SchoolController::class, 'update']);
+        Route::delete('/delete/{id}', [SchoolController::class, 'delete']);
     });
     Route::prefix('employees')->group(function () {
         Route::get('/{id}', [EmployeeController::class, 'show']);
         Route::post('create', [EmployeeController::class, 'create']);
         Route::put('update/{id}', [EmployeeController::class, 'update']);
         Route::delete('delete/{id}', [EmployeeController::class, 'delete']);
+
+        Route::post('congratulation', [EmployeeController::class, 'congratulation']);
     });
     Route::prefix('news')->group(function () {
-        Route::post('create', [NewsController::class, 'create']);//Admin
-        Route::put('update/{id}', [NewsController::class, 'update']);//Admin
-        Route::delete('delete/{id}', [NewsController::class, 'delete']);//Admin
-    });
-    Route::prefix('tags')->group(function () {
-        Route::get('/', [TagController::class, 'index']);//Admin
-        Route::get('/{id}', [TagController::class, 'show']);//Admin
-        Route::post('create', [TagController::class, 'create']);//Admin
-        Route::put('update/{id}', [TagController::class, 'update']);//Admin
-        Route::delete('delete/{id}', [TagController::class, 'delete']);//Admin
-    });
-    Route::prefix('positions')->group(function () {
-        Route::get('/{id}', [PositionController::class, 'show']);//Admin
-        Route::post('/create', [PositionController::class, 'create']);//Admin
-        Route::put('/update/{id}', [PositionController::class, 'update']);//Admin
-        Route::delete('/delete/{id}', [PositionController::class, 'delete']);//Admin
-    });
-    Route::prefix('albums')->group(function () {
-        Route::post('/create', [AlbumController::class, 'create']);//Admin
-        Route::put('/update/{id}', [AlbumController::class, 'update']);//Admin
-        Route::delete('/delete/{id}', [AlbumController::class, 'delete']);//Admin
-    });
-    Route::prefix('photos')->group(function () {
-        Route::post('/create', [PhotoController::class, 'create']);//Admin
-        Route::post('/update/{id}', [PhotoController::class, 'update']);//Admin
-        Route::delete('/delete/{id}', [PhotoController::class, 'delete']);//Admin
-    });
-    Route::prefix('documents')->group(function () {
-        Route::post('upload', [DocumentController::class, 'upload']);//Admin
-        Route::put('update/{id}', [DocumentController::class, 'update']);//Admin
-        Route::delete('delete/{id}', [DocumentController::class, 'delete']);//Admin
-    });
-    Route::prefix('categories')->group(function () {
-        Route::post('/create', [CategoryController::class, 'create']);//Admin
-        Route::put('/update/{id}', [CategoryController::class, 'update']);//Admin
-        Route::delete('/delete/{id}', [CategoryController::class, 'delete']);//Admin
-    });
-    Route::prefix('events')->group(function () {
-        Route::post('/create', [EventController::class, 'create']);//Admin
-        Route::put('/update/{id}', [EventController::class, 'update']);//Admin
-        Route::delete('/delete/{id}', [EventController::class, 'delete']);//Admin
-    });
-    Route::prefix('files')->group(function () {
-        Route::post('/upload', [FileController::class, 'upload']);//Admin
-        Route::put('/update/{id}', [FileController::class, 'update']);//Admin
-        Route::delete('/delete/{id}', [FileController::class, 'delete']);//Admin
+            Route::post('create', [NewsController::class, 'create']);
+            Route::put('update/{id}', [NewsController::class, 'update']);
+            Route::delete('delete/{id}', [NewsController::class, 'delete']);
+        });
+        Route::prefix('tags')->group(function () {
+            Route::get('/', [TagController::class, 'index']);
+            Route::get('/{id}', [TagController::class, 'show']);
+            Route::post('create', [TagController::class, 'create']);
+            Route::put('update/{id}', [TagController::class, 'update']);
+            Route::delete('delete/{id}', [TagController::class, 'delete']);
+        });
+        Route::prefix('positions')->group(function () {
+            Route::get('/{id}', [PositionController::class, 'show']);
+            Route::post('/create', [PositionController::class, 'create']);
+            Route::put('/update/{id}', [PositionController::class, 'update']);
+            Route::delete('/delete/{id}', [PositionController::class, 'delete']);
+        });
+        Route::prefix('albums')->group(function () {
+            Route::post('/create', [AlbumController::class, 'create']);
+            Route::put('/update/{id}', [AlbumController::class, 'update']);
+            Route::delete('/delete/{id}', [AlbumController::class, 'delete']);
+        });
+        Route::prefix('photos')->group(function () {
+            Route::post('/create', [PhotoController::class, 'create']);
+            Route::post('/update/{id}', [PhotoController::class, 'update']);
+            Route::delete('/delete/{id}', [PhotoController::class, 'delete']);
+        });
+        Route::prefix('documents')->group(function () {
+            Route::post('upload', [DocumentController::class, 'upload']);
+            Route::put('update/{id}', [DocumentController::class, 'update']);
+            Route::delete('delete/{id}', [DocumentController::class, 'delete']);
+        });
+        Route::prefix('categories')->group(function () {
+            Route::post('/create', [CategoryController::class, 'create']);
+            Route::put('/update/{id}', [CategoryController::class, 'update']);
+            Route::delete('/delete/{id}', [CategoryController::class, 'delete']);
+        });
+        Route::prefix('events')->group(function () {
+            Route::post('/create', [EventController::class, 'create']);
+            Route::put('/update/{id}', [EventController::class, 'update']);
+            Route::delete('/delete/{id}', [EventController::class, 'delete']);
+        });
+        Route::prefix('files')->group(function () {
+            Route::post('/upload', [FileController::class, 'upload']);
+            Route::put('/update/{id}', [FileController::class, 'update']);
+            Route::delete('/delete/{id}', [FileController::class, 'delete']);
+        });
+
+        Route::prefix('users')->group(function () {
+            Route::get('/', [UserController::class, 'index']);
+            Route::get('/{id}', [UserController::class, 'show']);
+            Route::post('/create', [UserController::class, 'create']);
+            Route::put('/update/{id}', [UserController::class, 'update']);
+            Route::delete('/delete/{id}', [UserController::class, 'delete']);
+        });
     });
 
 });
 
-Route::prefix('users')->group(function () {
-    Route::get('/', [UserController::class, 'index']);//User
-    Route::get('/{id}', [UserController::class, 'show']);//User
-    Route::post('/create', [UserController::class, 'create']);//Admin
-    // Route::put('/update/{id}', [AlbumController::class, 'update']);//Admin
-    // Route::delete('/delete/{id}', [AlbumController::class, 'delete']);//Admin
-});
+
+// Route::
 
 /**
  * User
  */
 Route::get('/', function () {
-    $today = Carbon::today();
-    $start = Carbon::now()->setHour(0)->setMinute(0)->setSecond(1);
-    $end = Carbon::now()->setHour(23)->setMinute(59)->setSecond(59);
-    // $from = Carbon::now('Asia/Tashkent')->startOfHour()->startOfMinute()->startOfSecond();
-    // $to = Carbon::now()->endOfHour()->endOfMinute()->endOfSecond();
-    // return $today;
-    $employees = Employee::whereBetween('birth_date', [$start, $end])->get();
-    return $employees;
+    $today = Carbon::now();
+    $users = Employee::whereMonth('birth_date', $today->month)
+             ->whereDay('birth_date', $today->day)
+             ->get();
+    return ['text'=>"Tuwilg'an ku'n iyelerin bu'gingi tuwilg'an ku'nleri menen qutliqlaymiz!!!", 'list' => $users];
 });
 
 Route::prefix('schools')->group(function () {

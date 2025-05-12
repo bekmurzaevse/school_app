@@ -3,6 +3,7 @@
 namespace App\Http\Requests\v1\School;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class UpdateRequest extends FormRequest
 {
@@ -32,7 +33,11 @@ class UpdateRequest extends FormRequest
             'history.uz' => 'required|string',
             'history.ru' => 'required|string',
             'history.en' => 'required|string',
-            'phone' => 'required|string|unique:schools,phone',
+            'phone' => [
+                'required',
+                'string',
+                Rule::unique('schools', 'phone')->ignore($this->route('id')),
+            ],
             'location' => 'required|string',
             'description' => 'nullable|array',
             'description.kk' => 'nullable|string',
