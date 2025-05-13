@@ -48,11 +48,11 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::middleware( 'role:admin')->group(function () {
         Route::prefix('schools')->group(function () {
-        Route::get('/', [SchoolController::class, 'index']);
-        Route::post('/create', [SchoolController::class, 'create']);
-        Route::put('/update/{id}', [SchoolController::class, 'update']);
-        Route::delete('/delete/{id}', [SchoolController::class, 'delete']);
-    });
+            Route::get('/', [SchoolController::class, 'index']);
+            Route::post('/create', [SchoolController::class, 'create']);
+            Route::put('/update/{id}', [SchoolController::class, 'update']);
+            Route::delete('/delete/{id}', [SchoolController::class, 'delete']);
+        });
     Route::prefix('employees')->group(function () {
         Route::get('/{id}', [EmployeeController::class, 'show']);
         Route::post('create', [EmployeeController::class, 'create']);

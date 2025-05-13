@@ -24,16 +24,17 @@ class CreateRequest extends FormRequest
     {
         return [
             'name' => 'required|array',
-            'name.kk' => ['required', 'string', Rule::unique('positions', 'name->kk')],
+            // 'name.kk' => ['required', 'string', Rule::unique('positions', 'name->kk')],
+            'name.kk' => 'required|string|unique:positions,name->kk',
             'name.uz' => 'required|string',
             'name.ru' => 'required|string',
             'name.en' => 'required|string',
             'school_id' => 'required|integer|exists:schools,id',
-            'description' => 'required|array',
-            'description.kk' => 'required|string',
-            'description.uz' => 'required|string',
-            'description.ru' => 'required|string',
-            'description.en' => 'required|string',
+            'description' => 'nullable|array',
+            'description.kk' => 'nullable|string',
+            'description.uz' => 'nullable|string',
+            'description.ru' => 'nullable|string',
+            'description.en' => 'nullable|string',
         ];
     }
 
