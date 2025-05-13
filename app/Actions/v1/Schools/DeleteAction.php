@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace App\Actions\v1\Schools;
 
@@ -7,6 +7,7 @@ use App\Models\School;
 use App\Traits\ResponseTrait;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Facades\Log;
 
 class DeleteAction
 {
@@ -26,7 +27,7 @@ class DeleteAction
 
             return static::toResponse(
                 message: "$id - id li Mektep o'shirildi!",
-            );   
+            );
         } catch (ModelNotFoundException $ex) {
             throw new ApiResponseException("$id - id li mektep bazada tabilmadi!", 404);
         }

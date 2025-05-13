@@ -26,26 +26,28 @@ class UpdateAction
     public function __invoke(int $id, UpdateDto $dto): JsonResponse
     {
         try {
-            $photo = Photo::with('album')->findOrFail($id);
-            Storage::disk('public')->delete($photo->path);
+            $photoModel = Photo::with('album')->findOrFail($id);
 
-            $photo = $dto->photo;
+            Storage::disk('public')->delete($photoModel->path);
 
-            $originalFilename = $photo->getClientOriginalName();
+            $uploadedFile = $dto->photo;
+
+            $originalFilename = $uploadedFile->getClientOriginalName();
             $fileName = pathinfo($originalFilename, PATHINFO_FILENAME);
-            $fileName = $fileName . '_' . Str::random(10) . '_' . now()->format('Y-m-d-H:i:s') . '.' . $photo->extension();
+            $fileName = $fileName . '_' . Str::random(10) . '_' . now()->format('Y-m-d-H-i-s') . '.' . $uploadedFile->extension();
 
-            $savedPath = Storage::disk('public')->putFileAs('photos', $photo, $fileName);
-            $photo->update([
+            $savedPath = Storage::disk('public')->putFileAs('photos', $uploadedFile, $fileName);
+
+            $photoModel->update([
                 'title' => $dto->title,
                 'path' => $savedPath,
                 'school_id' => $dto->albumId,
-                'description' => $dto->description
+                'description' => $dto->description,
             ]);
 
             return static::toResponse(
                 message: "Photo jan'alandi!",
-                data: new PhotoResource($photo)
+                data: new PhotoResource($photoModel)
             );
         } catch (ModelNotFoundException $ex) {
             throw new ApiResponseException("$id - id li photo bazada tabilmadi!", 404);
