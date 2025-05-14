@@ -73,9 +73,4 @@ class EmployeeController extends Controller
         return $action($id);
     }
 
-    public function congratulation(AddRequest $request, AddAction $action)
-    {
-        return $action(AddDto::from($request));
-    }
-
 }
