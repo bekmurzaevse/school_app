@@ -1,8 +1,8 @@
 <?php 
 
-namespace App\Dto\v1\Employee;
+namespace App\Dto\v1\Main;
 
-use App\Http\Requests\v1\Employee\AddRequest;
+use App\Http\Requests\v1\Main\AddRequest;
 
 readonly class AddDto
 {
@@ -14,7 +14,7 @@ readonly class AddDto
 
     /**
      * Summary of from
-     * @param \App\Http\Requests\v1\Employee\AddRequest $request
+     * @param \App\Http\Requests\v1\Main\AddRequest $request
      * @return AddDto
      */
     public static function from(AddRequest $request): self
