@@ -3,8 +3,10 @@
 namespace Database\Seeders;
 
 use App\Models\Document;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class DocumentSeeder extends Seeder
 {
@@ -13,6 +15,12 @@ class DocumentSeeder extends Seeder
      */
     public function run(): void
     {
+        $file = UploadedFile::fake()->create('school_3O.pdf', 1024, 'application/pdf');
+        $originalFilename = $file->getClientOriginalName();
+        $fileName = pathinfo($originalFilename, PATHINFO_FILENAME);
+        $fileName = $fileName . '_' . Str::random(10) . '_' . now()->format('Y-m-d-H:i:s') . '.' . $file->extension();
+        $path = Storage::disk('public')->putFileAs('documents', $file, $fileName);
+        
         Document::create([
             'name' => [
                 'en' => 'School Annual Report',
@@ -28,10 +36,17 @@ class DocumentSeeder extends Seeder
             ],
             'school_id' => 1, 
             'category_id' => 1, 
-            'path' => 'uploads/school_annual_report.pdf',
+            'path' => $path,
             'created_at' => now(),
             'updated_at' => now(),
         ]);
+
+        $file = UploadedFile::fake()->create('school_31.pdf', 1024, 'application/pdf');
+        $originalFilename = $file->getClientOriginalName();
+        $fileName = pathinfo($originalFilename, PATHINFO_FILENAME);
+        $fileName = $fileName . '_' . Str::random(10) . '_' . now()->format('Y-m-d-H:i:s') . '.' . $file->extension();
+        $path = Storage::disk('public')->putFileAs('documents', $file, $fileName);
+        
         Document::create([
             'name' => [
                 'en' => 'Curriculum Document',
@@ -47,7 +62,7 @@ class DocumentSeeder extends Seeder
             ],
             'school_id' => 1, 
             'category_id' => 2, 
-            'path' => 'uploads/curriculum_document.pdf',
+            'path' => $path,
             'created_at' => now(),
             'updated_at' => now(),
         ]);

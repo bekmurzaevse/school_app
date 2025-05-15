@@ -17,7 +17,6 @@ class CreateAction
             'full_name' => $dto->fullName,
             'phone' => $dto->phone,
             'photo_id' => $dto->photoId,
-            'password' => $dto->password,
             'position_id' => $dto->positionId,
             'email' => $dto->email,
             'birth_date' => $dto->birthDate,
