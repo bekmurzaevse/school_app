@@ -20,7 +20,6 @@ class UpdateRequest extends FormRequest
         return [
             'photo' => 'required|image|mimes:jpeg,png,jpg|max:2048',
             'title' =>'required|string',
-            // 'path' =>'required|string|unique:photos,path',
             'album_id' =>'nullable|integer|exists:albums,id',
             'description' =>'nullable|array',
             'description.kk' =>'nullable|string',

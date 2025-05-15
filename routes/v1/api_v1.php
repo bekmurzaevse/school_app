@@ -13,8 +13,6 @@ use App\Http\Controllers\v1\SchoolController;
 use App\Http\Controllers\v1\EmployeeController;
 use App\Http\Controllers\v1\TagController;
 use App\Http\Controllers\v1\UserController;
-use App\Models\Employee;
-use Carbon\Carbon;
 use Illuminate\Support\Facades\Route;
 
 Route::pattern('id', '\d+');
@@ -59,8 +57,6 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::post('create', [EmployeeController::class, 'create']);
         Route::put('update/{id}', [EmployeeController::class, 'update']);
         Route::delete('delete/{id}', [EmployeeController::class, 'delete']);
-
-        // Route::post('congratulation', [EmployeeController::class, 'congratulation']);
     });
     Route::prefix('news')->group(function () {
             Route::post('create', [NewsController::class, 'create']);
@@ -121,9 +117,6 @@ Route::middleware('auth:sanctum')->group(function () {
     });
 
 });
-
-
-// Route::
 
 /**
  *  Birth date
