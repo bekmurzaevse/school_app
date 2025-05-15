@@ -2,9 +2,9 @@
 
 namespace App\Dto\v1\User;
 
-use App\Http\Requests\v1\User\CreateRequest;
+use App\Http\Requests\v1\User\UpdateRequest;
 
-readonly class CreateDto
+readonly class UpdateDto
 {
     public function __construct(
         public array $fullName,
@@ -17,7 +17,7 @@ readonly class CreateDto
     ) {
     }
 
-    public static function from(CreateRequest $request): self
+    public static function from(UpdateRequest $request): self
     {
         return new self(
             fullName: $request->get('full_name'),

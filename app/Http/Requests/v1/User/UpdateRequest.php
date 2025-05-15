@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\v1\Employee;
+namespace App\Http\Requests\v1\User;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
@@ -28,15 +28,24 @@ class UpdateRequest extends FormRequest
             'full_name.uz' => 'required|string',
             'full_name.ru' => 'required|string',
             'full_name.en' => 'required|string',
+            'username' => [
+                'required',
+                'string',
+                Rule::unique('users', 'username')->ignore($this->route('id')),
+        ],
+            'password' => 'required|string',
+            'description' => 'nullable|array',
+            'description.kk' => 'nullable|string',
+            'description.uz' => 'nullable|string',
+            'description.ru' => 'nullable|string',
+            'description.en' => 'nullable|string',
             'phone' => [
                 'required',
                 'string',
-                Rule::unique('employees', 'phone')->ignore($this->route('id'))
-            ],
-            'photo_id' => 'required|numeric|exists:photos,id',
-            'email' => 'required|email',
-            'position_id' => 'required|numeric|exists:positions,id',
-            'birth_date' => 'required|date|before:today'
+                Rule::unique('users', 'phone')->ignore($this->route('id')),
+        ],
+            'school_id' => 'required|integer|exists:schools,id',
+            'birth_date' => 'required|date_format:Y-m-d|before:today',
         ];
     }
 }

@@ -2,14 +2,17 @@
 
 namespace App\Http\Controllers\v1;
 
+use App\Actions\v1\Employee\AddAction;
 use App\Actions\v1\Employee\DeleteAction;
 use App\Actions\v1\Employee\IndexAction;
 use App\Actions\v1\Employee\ShowAction;
 use App\Actions\v1\Employee\CreateAction;
 use App\Actions\v1\Employee\UpdateAction;
+use App\Dto\v1\Employee\AddDto;
 use App\Dto\v1\Employee\CreateDto;
 use App\Dto\v1\Employee\UpdateDto;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\v1\Employee\AddRequest;
 use App\Http\Requests\v1\Employee\CreateRequest;
 use App\Http\Requests\v1\Employee\UpdateRequest;
 use Illuminate\Http\JsonResponse;
@@ -69,4 +72,5 @@ class EmployeeController extends Controller
     {
         return $action($id);
     }
+
 }
