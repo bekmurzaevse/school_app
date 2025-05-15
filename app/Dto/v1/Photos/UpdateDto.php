@@ -20,7 +20,6 @@ readonly class UpdateDto
         return new self(
             photo: $request->file('photo'),
             title: $request->get('title'),
-            // path: $request->get('path'),
             albumId: $request->get(key: 'album_id'),
             description: $request->get('description'),
         );

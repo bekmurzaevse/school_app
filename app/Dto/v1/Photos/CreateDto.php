@@ -10,7 +10,6 @@ readonly class CreateDto
     public function __construct(
         public array $photos,
         public string $title,
-        // public string $path,
         public ?int $albumId,
         public ?array $description,
     ) {
@@ -26,7 +25,6 @@ readonly class CreateDto
         return new self(
             photos: $request->file('photos'),
             title: $request->get('title'),
-            // path: $request->get('path'),
             albumId: $request->get(key: 'album_id'),
             description: $request->get('description'),
         );
