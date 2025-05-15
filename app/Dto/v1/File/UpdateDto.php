@@ -9,7 +9,7 @@ readonly class UpdateDto
     public function __construct(
         public array $name,
         public ?array $description,
-        public string $path,
+        public ?string $path,
         public int $eventId,
         public UploadedFile $file,
     ) {}
@@ -29,6 +29,4 @@ readonly class UpdateDto
             file: $request->file('file')
         );
     }
-    
-        
 }
