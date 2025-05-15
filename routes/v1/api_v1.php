@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\MainController;
 use App\Http\Controllers\v1\AlbumController;
 use App\Http\Controllers\v1\PhotoController;
 use App\Http\Controllers\v1\DocumentController;
@@ -59,7 +60,7 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::put('update/{id}', [EmployeeController::class, 'update']);
         Route::delete('delete/{id}', [EmployeeController::class, 'delete']);
 
-        Route::post('congratulation', [EmployeeController::class, 'congratulation']);
+        // Route::post('congratulation', [EmployeeController::class, 'congratulation']);
     });
     Route::prefix('news')->group(function () {
             Route::post('create', [NewsController::class, 'create']);
@@ -125,15 +126,11 @@ Route::middleware('auth:sanctum')->group(function () {
 // Route::
 
 /**
- * User
+ *  Birth date
  */
-Route::get('/', function () {
-    $today = Carbon::now();
-    $users = Employee::whereMonth('birth_date', $today->month)
-             ->whereDay('birth_date', $today->day)
-             ->get();
-    return ['text'=>"Tuwilg'an ku'n iyelerin bu'gingi tuwilg'an ku'nleri menen qutliqlaymiz!!!", 'list' => $users];
-});
+Route::get('/', [MainController::class, 'index']);
+Route::post('congratulation', [MainController::class, 'congratulation']);
+Route::get('list', [MainController::class, 'list']);
 
 Route::prefix('schools')->group(function () {
     Route::get('/{id}', [SchoolController::class, 'show']);///User
