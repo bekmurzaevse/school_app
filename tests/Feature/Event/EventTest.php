@@ -122,7 +122,7 @@ class EventTest extends TestCase
     {
         $this->seed();
 
-        $user = User::first();
+        $user = User::find(1)->first();
         $this->actingAs($user);
 
         $event = Event::inRandomOrder()->first();
@@ -170,7 +170,7 @@ class EventTest extends TestCase
     {
         $this->seed();
 
-        $user = User::first();
+        $user = User::find(1)->first();
         $this->actingAs($user);
 
         $eventId = Event::inRandomOrder()->first()->id;

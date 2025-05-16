@@ -23,7 +23,7 @@ class FileTest extends TestCase
     {
         $this->seed();
 
-        $user = User::first();
+        $user = User::find(1)->first();
         $this->actingAs($user);
 
         $response = $this->getJson('api/v1/files');
@@ -106,7 +106,7 @@ class FileTest extends TestCase
 
         $file = UploadedFile::fake()->create('school.pdf', 100);
 
-        $user = User::first();
+        $user = User::find(1)->first();
         $this->actingAs($user);
 
         $data = [
@@ -147,7 +147,7 @@ class FileTest extends TestCase
 
         Storage::fake('public');
 
-        $user = User::first();
+        $user = User::find(1)->first();
         $this->actingAs($user);
 
         $oldFile = UploadedFile::fake()->create('oldfile.pdf', 100);
@@ -193,7 +193,7 @@ class FileTest extends TestCase
 
         Storage::fake('public');
 
-        $user = User::first();
+        $user = User::find(1)->first();
         $this->actingAs($user);
 
         $uploadedFile = UploadedFile::fake()->create('test.pdf', 100, 'application/pdf');
