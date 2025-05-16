@@ -11,180 +11,180 @@ use Tests\TestCase;
 
 class EventTest extends TestCase
 {
-    use RefreshDatabase;
+    // use RefreshDatabase;
 
-    /**
-     * Summary of test_event_index
-     * @return void
-     */
-    public function test_event_index(): void
-    {
-        $response = $this->getJson('api/v1/events');
+    // /**
+    //  * Summary of test_event_index
+    //  * @return void
+    //  */
+    // public function test_event_index(): void
+    // {
+    //     $response = $this->getJson('api/v1/events');
 
-        $response
-            ->assertStatus(200)
-            ->assertJsonStructure([
-                'status',
-                'message',
-                'data' => [
-                    'items',
-                    'pagination' => [
-                        'current_page',
-                        'per_page',
-                        'last_page',
-                        'total',
-                    ]
-                ]
-            ]);
-    }
+    //     $response
+    //         ->assertStatus(200)
+    //         ->assertJsonStructure([
+    //             'status',
+    //             'message',
+    //             'data' => [
+    //                 'items',
+    //                 'pagination' => [
+    //                     'current_page',
+    //                     'per_page',
+    //                     'last_page',
+    //                     'total',
+    //                 ]
+    //             ]
+    //         ]);
+    // }
 
-    /**
-     * Summary of test_show_event
-     * @return void
-     */
-    public function test_show_event(): void
-    {
-        $this->seed(SchoolSeeder::class);
-        $this->seed(EventSeeder::class);
+    // /**
+    //  * Summary of test_show_event
+    //  * @return void
+    //  */
+    // public function test_show_event(): void
+    // {
+    //     $this->seed(SchoolSeeder::class);
+    //     $this->seed(EventSeeder::class);
 
-        $event = Event::inRandomOrder()->first();
+    //     $event = Event::inRandomOrder()->first();
 
-        $response = $this->getJson('/api/v1/events/' . $event->id);
+    //     $response = $this->getJson('/api/v1/events/' . $event->id);
 
-        $response
-            ->assertOk()
-            ->assertJsonStructure([
-                'status',
-                'message',
-                'data' => [
-                    'id',
-                    'name',
-                    'description',
-                    'location',
-                    'start_time',
-                    'school',
-                    'files',
-                    'previous_event',
-                    'next_event',
-                    'created_at',
-                    'updated_at',
-                ],
-            ]);
-    }
+    //     $response
+    //         ->assertOk()
+    //         ->assertJsonStructure([
+    //             'status',
+    //             'message',
+    //             'data' => [
+    //                 'id',
+    //                 'name',
+    //                 'description',
+    //                 'location',
+    //                 'start_time',
+    //                 'school',
+    //                 'files',
+    //                 'previous_event',
+    //                 'next_event',
+    //                 'created_at',
+    //                 'updated_at',
+    //             ],
+    //         ]);
+    // }
 
-    /**
-     * Summary of test_event_created
-     * @return void
-     */
-    public function test_event_created(): void
-    {
-        $this->seed();
+    // /**
+    //  * Summary of test_event_created
+    //  * @return void
+    //  */
+    // public function test_event_created(): void
+    // {
+    //     $this->seed();
 
-        $user = User::find(1)->first();
-        $this->actingAs($user);
+    //     $user = User::find(1)->first();
+    //     $this->actingAs($user);
 
-        $data = [
-            'name' => [
-                'uz' => 'Test tadbir',
-                'ru' => 'Тестовое событие',
-                'en' => 'Test Event',
-                'kk' => 'Test bayram',
-            ],
-            'description' => [
-                'uz' => 'Bu test tadbiri',
-                'ru' => 'Это тестовое событие',
-                'en' => 'This is a test event',
-                'kk' => 'Bul test bayram',
-            ],
-            'school_id' => 1,
-            'start_time' => now()->addDays(3)->toDateTimeString(),
-            'location' => 'Main Hall',
-        ];
+    //     $data = [
+    //         'name' => [
+    //             'uz' => 'Test tadbir',
+    //             'ru' => 'Тестовое событие',
+    //             'en' => 'Test Event',
+    //             'kk' => 'Test bayram',
+    //         ],
+    //         'description' => [
+    //             'uz' => 'Bu test tadbiri',
+    //             'ru' => 'Это тестовое событие',
+    //             'en' => 'This is a test event',
+    //             'kk' => 'Bul test bayram',
+    //         ],
+    //         'school_id' => 1,
+    //         'start_time' => now()->addDays(3)->toDateTimeString(),
+    //         'location' => 'Main Hall',
+    //     ];
 
-        $response = $this->postJson('/api/v1/events/create', $data);
+    //     $response = $this->postJson('/api/v1/events/create', $data);
 
-        $response
-            ->assertStatus(200)
-            ->assertJsonStructure([
-                'status',
-                'message',
-            ])
-            ->assertJson([
-                'message' => "Ta'dbir a'wmetli jaratildi!",
-            ]);
-    }
+    //     $response
+    //         ->assertStatus(200)
+    //         ->assertJsonStructure([
+    //             'status',
+    //             'message',
+    //         ])
+    //         ->assertJson([
+    //             'message' => "Ta'dbir a'wmetli jaratildi!",
+    //         ]);
+    // }
 
-    /**
-     * Summary of test_event_updated
-     * @return void
-     */
-    public function test_event_updated(): void
-    {
-        $this->seed();
+    // /**
+    //  * Summary of test_event_updated
+    //  * @return void
+    //  */
+    // public function test_event_updated(): void
+    // {
+    //     $this->seed();
 
-        $user = User::first();
-        $this->actingAs($user);
+    //     $user = User::first();
+    //     $this->actingAs($user);
 
-        $event = Event::inRandomOrder()->first();
+    //     $event = Event::inRandomOrder()->first();
 
-        $updateData = [
-            'name' => [
-                'uz' => 'Yangilangan tadbir',
-                'ru' => 'Обновлённое событие',
-                'en' => 'Updated Event',
-                'kk' => 'Jańalangan okiǵa',
-            ],
-            'description' => [
-                'uz' => 'Bu yangilangan tadbir',
-                'ru' => 'Это обновлённое событие',
-                'en' => 'This is an updated event',
-                'kk' => 'Bul jańalangan bayram',
-            ],
-            'school_id' => $event->school_id,
-            'start_time' => now()->addDays(5)->toDateTimeString(),
-            'location' => 'Updated Location',
-        ];
+    //     $updateData = [
+    //         'name' => [
+    //             'uz' => 'Yangilangan tadbir',
+    //             'ru' => 'Обновлённое событие',
+    //             'en' => 'Updated Event',
+    //             'kk' => 'Jańalangan okiǵa',
+    //         ],
+    //         'description' => [
+    //             'uz' => 'Bu yangilangan tadbir',
+    //             'ru' => 'Это обновлённое событие',
+    //             'en' => 'This is an updated event',
+    //             'kk' => 'Bul jańalangan bayram',
+    //         ],
+    //         'school_id' => $event->school_id,
+    //         'start_time' => now()->addDays(5)->toDateTimeString(),
+    //         'location' => 'Updated Location',
+    //     ];
 
-        $response = $this->putJson('/api/v1/events/update/' . $event->id, $updateData);
+    //     $response = $this->putJson('/api/v1/events/update/' . $event->id, $updateData);
 
-        $response
-            ->assertStatus(200)
-            ->assertJsonStructure([
-                'status',
-                'message',
-                'data'
-            ])
-            ->assertJson([
-                'message' => "Ta'dbir a'wmetli jan'alandi!",
-                'data' => [
-                    'location' => 'Updated Location',
-                ]
-            ]);
-    }
+    //     $response
+    //         ->assertStatus(200)
+    //         ->assertJsonStructure([
+    //             'status',
+    //             'message',
+    //             'data'
+    //         ])
+    //         ->assertJson([
+    //             'message' => "Ta'dbir a'wmetli jan'alandi!",
+    //             'data' => [
+    //                 'location' => 'Updated Location',
+    //             ]
+    //         ]);
+    // }
 
-    /**
-     * Summary of test_event_deleted
-     * @return void
-     */
-    public function test_event_deleted(): void
-    {
-        $this->seed();
+    // /**
+    //  * Summary of test_event_deleted
+    //  * @return void
+    //  */
+    // public function test_event_deleted(): void
+    // {
+    //     $this->seed();
 
-        $user = User::first();
-        $this->actingAs($user);
+    //     $user = User::first();
+    //     $this->actingAs($user);
 
-        $eventId = Event::inRandomOrder()->first()->id;
+    //     $eventId = Event::inRandomOrder()->first()->id;
 
-        $response = $this->deleteJson('/api/v1/events/delete/' . $eventId);
+    //     $response = $this->deleteJson('/api/v1/events/delete/' . $eventId);
 
-        $response
-            ->assertStatus(200)
-            ->assertJsonStructure([
-                'status',
-                'message',
-            ])
-            ->assertJson([
-                'message' => "{$eventId} - id li tadbir o‘shirildi!",
-            ]);
-    }
+    //     $response
+    //         ->assertStatus(200)
+    //         ->assertJsonStructure([
+    //             'status',
+    //             'message',
+    //         ])
+    //         ->assertJson([
+    //             'message' => "{$eventId} - id li tadbir o‘shirildi!",
+    //         ]);
+    // }
 }

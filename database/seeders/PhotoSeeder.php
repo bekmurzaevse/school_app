@@ -2,11 +2,9 @@
 
 namespace Database\Seeders;
 
-use App\Models\Album;
 use App\Models\Photo;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use Faker\Factory as Faker;
+use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
@@ -17,24 +15,16 @@ class PhotoSeeder extends Seeder
      */
     public function run(): void
     {
-        $faker = Faker::create();
-
-        // Soxta rasm URL manzili
-        $fakeImageUrl = 'https://picsum.photos/800/600';
-
-        // Tasodifiy fayl nomini yaratish
-        $fakeFileName = $faker->word . Str::random(4) . '.jpg';
-
-        // Rasmni yuklash (faylni URL orqali yuklash)
-        $imageContents = file_get_contents($fakeImageUrl);
-        $destinationPath = 'photos/' . $fakeFileName;
-
-        // Faylni saqlash
-        Storage::disk('public')->put($destinationPath, $imageContents);
+        $name = "school" . Str::random(4) . ".jpg";
+        $file = UploadedFile::fake()->create($name, 1024, 'application/pdf');
+        $originalFilename = $file->getClientOriginalName();
+        $fileName = pathinfo($originalFilename, PATHINFO_FILENAME);
+        $fileName = $fileName . '_' . Str::random(10) . '_' . now()->format('Y-m-d-H:i:s') . '.' . $file->extension();
+        $path = Storage::disk('public')->putFileAs('photos', $file, $fileName);
 
         Photo::create([
             'title' => "title",
-            'path' => $destinationPath,
+            'path' => $path,
             // 'album_id' => Album::inRandomOrder()->id,
             'album_id' => 1,
             'description' => [
@@ -46,22 +36,16 @@ class PhotoSeeder extends Seeder
 
         ]);
 
-        // Soxta rasm URL manzili
-        $fakeImageUrl = 'https://picsum.photos/800/600';
-
-        // Tasodifiy fayl nomini yaratish
-        $fakeFileName = $faker->word . Str::random(4) . '.jpg';
-
-        // Rasmni yuklash (faylni URL orqali yuklash)
-        $imageContents = file_get_contents($fakeImageUrl);
-        $destinationPath = 'photos/' . $fakeFileName;
-
-        // Faylni saqlash
-        Storage::disk('public')->put($destinationPath, $imageContents);
+        $name = "school" . Str::random(4) . ".jpg";
+        $file = UploadedFile::fake()->create($name, 1024, 'application/pdf');
+        $originalFilename = $file->getClientOriginalName();
+        $fileName = pathinfo($originalFilename, PATHINFO_FILENAME);
+        $fileName = $fileName . '_' . Str::random(10) . '_' . now()->format('Y-m-d-H:i:s') . '.' . $file->extension();
+        $path = Storage::disk('public')->putFileAs('photos', $file, $fileName);
 
         Photo::create([
             'title' => "title",
-            'path' => $destinationPath,
+            'path' => $path,
             // 'album_id' => Album::inRandomOrder()->id,
             'album_id' => 1,
             'description' => [
@@ -73,22 +57,16 @@ class PhotoSeeder extends Seeder
 
         ]);
 
-        // Soxta rasm URL manzili
-        $fakeImageUrl = 'https://picsum.photos/800/600';
-
-        // Tasodifiy fayl nomini yaratish
-        $fakeFileName = $faker->word . Str::random(4) . '.jpg';
-
-        // Rasmni yuklash (faylni URL orqali yuklash)
-        $imageContents = file_get_contents($fakeImageUrl);
-        $destinationPath = 'photos/' . $fakeFileName;
-
-        // Faylni saqlash
-        Storage::disk('public')->put($destinationPath, $imageContents);
+        $name = "school" . Str::random(4) . ".jpg";
+        $file = UploadedFile::fake()->create($name, 1024, 'application/pdf');
+        $originalFilename = $file->getClientOriginalName();
+        $fileName = pathinfo($originalFilename, PATHINFO_FILENAME);
+        $fileName = $fileName . '_' . Str::random(10) . '_' . now()->format('Y-m-d-H:i:s') . '.' . $file->extension();
+        $path = Storage::disk('public')->putFileAs('photos', $file, $fileName);
 
         Photo::create([
             'title' => "title",
-            'path' => $destinationPath,
+            'path' => $path,
             // 'album_id' => Album::inRandomOrder()->id,
             'album_id' => 1,
             'description' => [

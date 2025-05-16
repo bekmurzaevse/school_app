@@ -4,48 +4,18 @@ namespace Tests\Feature;
 
 use App\Models\School;
 use App\Models\User;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Str;
 use Tests\TestCase;
 
 class SchoolTest extends TestCase
 {
-    // use RefreshDatabase;
+    use RefreshDatabase;
 
-    /**
-     * Summary of test_school_can_get_all
-     * @return void
-     */
-    public function test_school_can_get_all()
+    public function setUp(): void
     {
-        $user = User::find(1);
-        $this->actingAs($user);
-
-        $response = $this->getJson("/api/v1/schools");
-
-        $response
-            ->assertStatus(200)
-            ->assertJsonStructure([
-                     'status',
-                     'message',
-                     'data' => [
-                         'items' => [
-                             [
-                                 'id',
-                                 'name',
-                                 'history',
-                                 'phone',
-                                 'location',
-                                 'description',
-                             ]
-                         ],
-                         'pagination' => [
-                             'current_page',
-                             'per_page',
-                             'last_page',
-                             'total'
-                         ]
-                     ]
-                 ]);
+        parent::setUp();
+        $this->seed();
     }
 
     /**
@@ -54,7 +24,7 @@ class SchoolTest extends TestCase
      */
     public function test_school_can_create(): void
     {
-        $user = User::find(1);
+        $user = User::find(1)->first();
         $this->actingAs($user);
 
         $phone = fake()->numerify('############');
@@ -111,12 +81,49 @@ class SchoolTest extends TestCase
     }
 
     /**
+     * Summary of test_school_can_get_all
+     * @return void
+     */
+    public function test_school_can_get_all()
+    {
+        $user = User::find(1)->first();
+        $this->actingAs($user);
+
+        $response = $this->getJson("/api/v1/schools");
+
+        $response
+            ->assertStatus(200)
+            ->assertJsonStructure([
+                     'status',
+                     'message',
+                     'data' => [
+                         'items' => [
+                             [
+                                 'id',
+                                 'name',
+                                 'history',
+                                 'phone',
+                                 'location',
+                                 'description',
+                             ]
+                         ],
+                         'pagination' => [
+                             'current_page',
+                             'per_page',
+                             'last_page',
+                             'total'
+                         ]
+                     ]
+                 ]);
+    }
+
+    /**
      * Summary of test_school_can_update
      * @return void
      */
     public function test_school_can_update(): void
     {
-        $user = User::find(1);
+        $user = User::find(1)->first();
         $this->actingAs($user);
 
         $school = School::inRandomOrder()->first();
@@ -186,10 +193,10 @@ class SchoolTest extends TestCase
      */
     public function test_school_can_delete(): void
     {
-        $user = User::find(1);
+        $user = User::find(1)->first();
         $this->actingAs($user);
 
-        $school = School::latest()->first();
+        $school = School::factory()->create();
 
         $response = $this->deleteJson("/api/v1/schools/delete/" . $school->id);
         $response
