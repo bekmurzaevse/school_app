@@ -65,9 +65,6 @@ class DocumentTest extends TestCase
      */
     public function test_documents_can_show(): void
     {
-        $user = User::find(1)->first();
-        $this->actingAs($user);
-
         $document = Document::inRandomOrder()->first();
         $response = $this->getJson('/api/v1/documents/show/' . $document->id);
 
