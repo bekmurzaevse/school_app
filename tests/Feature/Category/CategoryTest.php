@@ -81,7 +81,7 @@ class CategoryTest extends TestCase
     {
         $this->seed();
 
-        $user = User::first();
+        $user = User::find(1)->first();
         $this->actingAs($user);
 
         $data = [
@@ -118,7 +118,7 @@ class CategoryTest extends TestCase
     {
         $this->seed();
 
-        $user = User::first();
+        $user = User::find(1)->first();
         $this->actingAs($user);
 
         $category = Category::inRandomOrder()->first();
@@ -156,7 +156,7 @@ class CategoryTest extends TestCase
     {
         $this->seed();
 
-        $user = User::first();
+        $user = User::find(1)->first();
         $this->actingAs($user);
 
         $categoryId = Category::inRandomOrder()->first()->id;
