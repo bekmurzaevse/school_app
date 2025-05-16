@@ -11,163 +11,163 @@ use Tests\TestCase;
 
 class CategoryTest extends TestCase
 {
-    // use RefreshDatabase;
+    use RefreshDatabase;
 
-    // /**
-    //  * Summary of setUp
-    //  * @return void
-    //  */
-    // public function setUp(): void
-    // {
-    //     parent::setUp();
-    //     $this->seed(CategorySeeder::class);
-    // }
+    /**
+     * Summary of setUp
+     * @return void
+     */
+    public function setUp(): void
+    {
+        parent::setUp();
+        $this->seed(CategorySeeder::class);
+    }
 
-    // /**
-    //  * Summary of test_category_index
-    //  * @return void
-    //  */
-    // public function test_category_index(): void
-    // {
-    //     Category::factory()->count(5)->create();
+    /**
+     * Summary of test_category_index
+     * @return void
+     */
+    public function test_category_index(): void
+    {
+        Category::factory()->count(5)->create();
 
-    //     $response = $this->getJson('api/v1/categories');
+        $response = $this->getJson('api/v1/categories');
 
-    //     $response
-    //         ->assertStatus(200)
-    //         ->assertJsonStructure([
-    //             'status',
-    //             'message',
-    //             'data' => [
-    //                 'items',
-    //                 'pagination' => [
-    //                     'current_page',
-    //                     'per_page',
-    //                     'last_page',
-    //                     'total',
-    //                 ]
-    //             ]
-    //         ]);
-    // }
+        $response
+            ->assertStatus(200)
+            ->assertJsonStructure([
+                'status',
+                'message',
+                'data' => [
+                    'items',
+                    'pagination' => [
+                        'current_page',
+                        'per_page',
+                        'last_page',
+                        'total',
+                    ]
+                ]
+            ]);
+    }
 
-    // /**
-    //  * Summary of test_category_show
-    //  * @return void
-    //  */
-    // public function test_category_show()
-    // {
-    //     $this->seed(CategorySeeder::class);
+    /**
+     * Summary of test_category_show
+     * @return void
+     */
+    public function test_category_show()
+    {
+        $this->seed(CategorySeeder::class);
 
-    //     $response = $this->getJson('api/v1/categories/1');
+        $response = $this->getJson('api/v1/categories/1');
 
-    //     $response
-    //         ->assertStatus(200)
-    //         ->assertJsonStructure([
-    //             'status',
-    //             'message',
-    //             'data' => [
-    //                 'id',
-    //                 'name',
-    //                 'description'
-    //             ]
-    //         ]);
-    // }
+        $response
+            ->assertStatus(200)
+            ->assertJsonStructure([
+                'status',
+                'message',
+                'data' => [
+                    'id',
+                    'name',
+                    'description'
+                ]
+            ]);
+    }
 
-    // /**
-    //  * Summary of test_category_create
-    //  * @return void
-    //  */
-    // public function test_category_create()
-    // {
-    //     $this->seed();
+    /**
+     * Summary of test_category_create
+     * @return void
+     */
+    public function test_category_create()
+    {
+        $this->seed();
 
-    //     $user = User::first();
-    //     $this->actingAs($user);
+        $user = User::find(1)->first();
+        $this->actingAs($user);
 
-    //     $data = [
-    //         'name' => [
-    //             'en' => 'Library',
-    //             'ru' => 'Библиотека',
-    //             'uz' => 'Kutubxona',
-    //             'kk' => 'Kitapxana',
-    //         ],
-    //         'description' => [
-    //             'en' => 'Electronic and traditional library services, list of available books.',
-    //             'ru' => 'Электронные и традиционные библиотечные услуги, список доступных книг.',
-    //             'uz' => "Elektron va an'anaviy kutubxona xizmatlari, mavjud kitoblar ro‘yxati.",
-    //             'kk' => "Elektron ha'm kıtapxana xizmeti, bar bolg'an kıtaplar dizimi.",
-    //         ],
-    //     ];
+        $data = [
+            'name' => [
+                'en' => 'Library',
+                'ru' => 'Библиотека',
+                'uz' => 'Kutubxona',
+                'kk' => 'Kitapxana',
+            ],
+            'description' => [
+                'en' => 'Electronic and traditional library services, list of available books.',
+                'ru' => 'Электронные и традиционные библиотечные услуги, список доступных книг.',
+                'uz' => "Elektron va an'anaviy kutubxona xizmatlari, mavjud kitoblar ro‘yxati.",
+                'kk' => "Elektron ha'm kıtapxana xizmeti, bar bolg'an kıtaplar dizimi.",
+            ],
+        ];
 
-    //     $response = $this->postJson('api/v1/categories/create', $data);
+        $response = $this->postJson('api/v1/categories/create', $data);
 
-    //     $response
-    //         ->assertStatus(200)
-    //         ->assertJsonStructure([
-    //             'status',
-    //             'message',
-    //         ])
-    //         ->assertJson(['message' => "Kategoriya jaratildi!"]);
-    // }
+        $response
+            ->assertStatus(200)
+            ->assertJsonStructure([
+                'status',
+                'message',
+            ])
+            ->assertJson(['message' => "Kategoriya jaratildi!"]);
+    }
 
-    // /**
-    //  * Summary of test_category_update
-    //  * @return void
-    //  */
-    // public function test_category_update()
-    // {
-    //     $this->seed();
+    /**
+     * Summary of test_category_update
+     * @return void
+     */
+    public function test_category_update()
+    {
+        $this->seed();
 
-    //     $user = User::first();
-    //     $this->actingAs($user);
+        $user = User::find(1)->first();
+        $this->actingAs($user);
 
-    //     $category = Category::inRandomOrder()->first();
+        $category = Category::inRandomOrder()->first();
 
-    //     $updatedData = [
-    //         'name' => [
-    //             'en' => 'New Library',
-    //             'ru' => 'Новая библиотека',
-    //             'uz' => 'Yangi kutubxona',
-    //             'kk' => 'Jana kıtapxana',
-    //         ],
-    //         'description' => [
-    //             'en' => 'Updated description.',
-    //             'ru' => 'Обновленное описание.',
-    //             'uz' => 'Yangilangan tavsif.',
-    //             'kk' => 'Jañartılğan tusindirme.',
-    //         ],
-    //     ];
+        $updatedData = [
+            'name' => [
+                'en' => 'New Library',
+                'ru' => 'Новая библиотека',
+                'uz' => 'Yangi kutubxona',
+                'kk' => 'Jana kıtapxana',
+            ],
+            'description' => [
+                'en' => 'Updated description.',
+                'ru' => 'Обновленное описание.',
+                'uz' => 'Yangilangan tavsif.',
+                'kk' => 'Jañartılğan tusindirme.',
+            ],
+        ];
 
-    //     $response = $this->putJson("api/v1/categories/update/{$category->id}", $updatedData);
+        $response = $this->putJson("api/v1/categories/update/{$category->id}", $updatedData);
 
-    //     $response
-    //         ->assertStatus(200)
-    //         ->assertJson([
-    //             'message' => 'Kategoriya jan\'alandi!',
-    //             'status' => true,
-    //         ]);
-    // }
+        $response
+            ->assertStatus(200)
+            ->assertJson([
+                'message' => 'Kategoriya jan\'alandi!',
+                'status' => true,
+            ]);
+    }
+    
+    /**
+     * Summary of test_category_delete
+     * @return void
+     */
+    public function test_category_delete()
+    {
+        $this->seed();
 
-    // /**
-    //  * Summary of test_category_delete
-    //  * @return void
-    //  */
-    // public function test_category_delete()
-    // {
-    //     $this->seed();
+        $user = User::find(1)->first();
+        $this->actingAs($user);
 
-    //     $user = User::first();
-    //     $this->actingAs($user);
+        $categoryId = Category::inRandomOrder()->first()->id;
 
-    //     $categoryId = Category::inRandomOrder()->first()->id;
+        $response = $this->deleteJson("api/v1/categories/delete/" .  $categoryId);
 
-    //     $response = $this->deleteJson("api/v1/categories/delete/" .  $categoryId);
-
-    //     $response
-    //         ->assertStatus(200)
-    //         ->assertJson([
-    //             'message' => "{$categoryId} - id li kategoriya o'shirildi!",
-    //             'status' => true,
-    //         ]);
-    // }
+        $response
+            ->assertStatus(200)
+            ->assertJson([
+                'message' => "{$categoryId} - id li kategoriya o'shirildi!",
+                'status' => true,
+            ]);
+    }
 }
