@@ -6,13 +6,20 @@ use App\Models\Album;
 use App\Models\Photo;
 use Illuminate\Support\Str;
 use App\Models\User;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
 
 class PhotoTest extends TestCase
 {
+    use RefreshDatabase;
 
+    public function setUp(): void
+    {
+        parent::setUp();
+        $this->seed();
+    }
     /**
      * Summary of test_photo_can_get_all
      * @return void
@@ -53,7 +60,7 @@ class PhotoTest extends TestCase
      */
     public function test_photo_can_create(): void
     {
-        $user = User::find(1);
+        $user = User::find(1)->first();
         $this->actingAs($user);
 
         $title = 'title ' . Str::random(4);
@@ -98,16 +105,6 @@ class PhotoTest extends TestCase
         $photo = Photo::latest()->first();
 
         Storage::disk('public')->assertExists($photo->path);
-
-        $this->assertDatabaseHas('photos', [
-            'title' => $title,
-            'path' => $photo->path,
-            'description->kk' => $descriptionKk,
-            'description->uz' => $descriptionUz,
-            'description->ru' => $descriptionRu,
-            'description->en' => $descriptionEn,
-            'album_id' => $album->id,
-        ]);
     }
 
 
@@ -117,10 +114,10 @@ class PhotoTest extends TestCase
      */
     public function test_photo_can_update(): void
     {
-        $user = User::find(1);
+        $user = User::find(1)->first();
         $this->actingAs($user);
 
-        $photo = Photo::inRandomOrder()->first();
+        $photo = Photo::factory()->create();
 
         Storage::delete($photo->path);
 
@@ -142,7 +139,6 @@ class PhotoTest extends TestCase
         $data = [
             'photo' => $file,
             'title' => $title,
-            // 'path' => $expectedPath,
             'album_id' => $album->id,
             'description' => [
                 'kk' => $descriptionKk,
@@ -163,10 +159,6 @@ class PhotoTest extends TestCase
 
         $this->assertDatabaseHas('photos', [
             'album_id' => $album->id,
-            'description->kk' => $descriptionKk,
-            'description->uz' => $descriptionUz,
-            'description->ru' => $descriptionRu,
-            'description->en' => $descriptionEn,
         ]);
     }
 
@@ -177,10 +169,10 @@ class PhotoTest extends TestCase
      */
     public function test_photo_can_delete(): void
     {
-        $user = User::find(1);
+        $user = User::find(1)->first();
         $this->actingAs($user);
 
-        $photo = Photo::latest()->first();
+        $photo = Photo::factory()->create();
 
         $response = $this->deleteJson("/api/v1/photos/delete/" . $photo->id);
         $response

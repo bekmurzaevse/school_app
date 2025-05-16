@@ -5,11 +5,20 @@ namespace Tests\Feature;
 use App\Models\Album;
 use App\Models\School;
 use App\Models\User;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Str;
 use Tests\TestCase;
 
 class AlbumTest extends TestCase
 {
+    use RefreshDatabase;
+
+    public function setUp(): void
+    {
+        parent::setUp();
+        $this->seed();
+    }
+
     /**
      * Summary of test_album_can_get_all
      * @return void
@@ -48,7 +57,7 @@ class AlbumTest extends TestCase
      */
     public function test_album_can_create(): void
     {
-        $user = User::find(1);
+        $user = User::find(1)->first();
         $this->actingAs($user);
 
         $titleKk = 'position kk ' . Str::random(4);
@@ -107,7 +116,7 @@ class AlbumTest extends TestCase
      */
     public function test_album_can_update(): void
     {
-        $user = User::find(1);
+        $user = User::find(1)->first();
         $this->actingAs($user);
 
         $titleKk = 'position kk ' . Str::random(4);
@@ -167,10 +176,10 @@ class AlbumTest extends TestCase
      */
     public function test_album_can_delete(): void
     {
-        $user = User::find(1);
+        $user = User::find(1)->first();
         $this->actingAs($user);
 
-        $album = Album::latest()->first();
+        $album = Album::factory()->create();
 
         $response = $this->deleteJson("/api/v1/albums/delete/" . $album->id);
         $response

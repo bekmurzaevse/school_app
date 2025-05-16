@@ -5,11 +5,19 @@ namespace Tests\Feature;
 use App\Models\Position;
 use App\Models\School;
 use App\Models\User;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Str;
 use Tests\TestCase;
 
 class PositionTest extends TestCase
 {
+    use RefreshDatabase;
+
+    public function setUp(): void
+    {
+        parent::setUp();
+        $this->seed();
+    }
 
     /**
      * Summary of test_position_can_get_all
@@ -50,7 +58,7 @@ class PositionTest extends TestCase
      */
     public function test_position_can_create(): void
     {
-        $user = User::find(1);
+        $user = User::find(1)->first();
         $this->actingAs($user);
 
         $nameKk = 'position kk ' . Str::random(4);
@@ -109,7 +117,7 @@ class PositionTest extends TestCase
      */
     public function test_position_can_update(): void
     {
-        $user = User::find(1);
+        $user = User::find(1)->first();
         $this->actingAs($user);
 
         $nameKk = 'position kk ' . Str::random(4);
@@ -168,10 +176,10 @@ class PositionTest extends TestCase
      */
     public function test_position_can_delete(): void
     {
-        $user = User::find(1);
+        $user = User::find(1)->first();
         $this->actingAs($user);
 
-        $position = Position::latest()->first();
+        $position = Position::factory()->create();
 
         $response = $this->deleteJson("/api/v1/positions/delete/" . $position->id);
         $response
@@ -192,7 +200,7 @@ class PositionTest extends TestCase
      */
     public function test_show_position(): void
     {
-        $user = User::find(1);
+        $user = User::first();
         $this->actingAs($user);
 
         $position = Position::inRandomOrder()->first();
