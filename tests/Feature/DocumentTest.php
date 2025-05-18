@@ -6,6 +6,7 @@ use App\Models\Document;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\App;
 use Tests\TestCase;
 
 class DocumentTest extends TestCase
@@ -188,6 +189,8 @@ class DocumentTest extends TestCase
      */
     public function test_documents_can_download()
     {
+        App::setLocale('en');
+
         $document = Document::find(1)->first();
 
         $response = $this->get("/api/v1/documents/download/" . $document->id);
