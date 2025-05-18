@@ -105,6 +105,11 @@ class PhotoTest extends TestCase
         $photo = Photo::latest()->first();
 
         Storage::disk('public')->assertExists($photo->path);
+
+        $this->assertDatabaseHas('photos', [
+            'title' => $title,
+            'album_id' => $album->id,
+        ]);
     }
 
 
@@ -129,6 +134,7 @@ class PhotoTest extends TestCase
         $descriptionEn = 'description en';
 
         $album = Album::inRandomOrder()->first();
+        // $album = Album::factory()->create();
 
         $fileName = 'photo' . Str::random(6) . '_' . now()->format('Y-m-d-H-i-s') . '.jpg';
         $file = UploadedFile::fake()->image($fileName);
@@ -157,9 +163,10 @@ class PhotoTest extends TestCase
                 'message',
             ]);
 
-        $this->assertDatabaseHas('photos', [
-            'album_id' => $album->id,
-        ]);
+            $this->assertDatabaseHas('photos', [
+                'id' => $photo->id,
+                'album_id' => $album->id,
+            ]);
     }
 
 

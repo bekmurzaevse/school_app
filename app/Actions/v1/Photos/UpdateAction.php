@@ -41,7 +41,7 @@ class UpdateAction
             $photoModel->update([
                 'title' => $dto->title,
                 'path' => $savedPath,
-                'school_id' => $dto->albumId,
+                'album_id' => $dto->albumId,
                 'description' => $dto->description,
             ]);
 
