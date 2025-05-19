@@ -73,9 +73,9 @@ class FileTest extends TestCase
             'path' => $savedPath
         ];
 
-        $file = File::inRandomOrder()->first();
+        $fileId = File::inRandomOrder()->first()->id;
 
-        $response = $this->getJson("/api/v1/files/" . $file->id);
+        $response = $this->getJson("/api/v1/files/" . $fileId);
 
         $response->assertStatus(200)
             ->assertJsonStructure([
