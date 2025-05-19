@@ -147,7 +147,7 @@ class CategoryTest extends TestCase
                 'status' => true,
             ]);
     }
-    
+
     /**
      * Summary of test_category_delete
      * @return void
@@ -159,15 +159,20 @@ class CategoryTest extends TestCase
         $user = User::find(1)->first();
         $this->actingAs($user);
 
-        $categoryId = Category::inRandomOrder()->first()->id;
+        $category = Category::has('documents')->inRandomOrder()->first();
 
-        $response = $this->deleteJson("api/v1/categories/delete/" .  $categoryId);
+        if ($category && $category->documents()->exists()) {
+            $category->documents()->delete();
+        }
+
+        $response = $this->deleteJson("api/v1/categories/delete/" . $category->id);
 
         $response
             ->assertStatus(200)
             ->assertJson([
-                'message' => "{$categoryId} - id li kategoriya o'shirildi!",
+                'message' => "{$category->id} - id li kategoriya o'shirildi!",
                 'status' => true,
             ]);
     }
+
 }

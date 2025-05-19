@@ -16,7 +16,7 @@ return new class extends Migration
             $table->json('name');
             $table->json('description')->nullable();
             $table->foreignId('school_id')->constrained('schools')->restrictOnDelete()->cascadeOnUpdate();
-            $table->foreignId('category_id')->constrained('categories')->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreignId('category_id')->constrained('categories')->restrictOnDelete()->cascadeOnUpdate();
             $table->string('path');
             $table->timestamps();
         });

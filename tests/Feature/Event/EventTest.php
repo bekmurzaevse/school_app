@@ -167,24 +167,29 @@ class EventTest extends TestCase
      * @return void
      */
     public function test_event_can_deleted(): void
-    {
-        $this->seed();
+{
+    $this->seed();
 
-        $user = User::find(1)->first();
-        $this->actingAs($user);
+    $user = User::find(1)->first();
+    $this->actingAs($user);
 
-        $eventId = Event::inRandomOrder()->first()->id;
+    $event = Event::has('files')->inRandomOrder()->first();
 
-        $response = $this->deleteJson('/api/v1/events/delete/' . $eventId);
-
-        $response
-            ->assertStatus(200)
-            ->assertJsonStructure([
-                'status',
-                'message',
-            ])
-            ->assertJson([
-                'message' => "{$eventId} - id li tadbir o‘shirildi!",
-            ]);
+    if ($event && $event->files()->exists()) {
+        $event->files()->delete();
     }
+
+    $response = $this->deleteJson('/api/v1/events/delete/' . $event->id);
+
+    $response
+        ->assertStatus(200)
+        ->assertJsonStructure([
+            'status',
+            'message',
+        ])
+        ->assertJson([
+            'message' => "{$event->id} - id li tadbir o‘shirildi!",
+        ]);
+}
+
 }
