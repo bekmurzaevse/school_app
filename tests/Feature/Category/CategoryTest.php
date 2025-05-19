@@ -27,7 +27,7 @@ class CategoryTest extends TestCase
      * Summary of test_category_index
      * @return void
      */
-    public function test_category_index(): void
+    public function test_category_can_get_all(): void
     {
         Category::factory()->count(5)->create();
 
@@ -77,7 +77,7 @@ class CategoryTest extends TestCase
      * Summary of test_category_create
      * @return void
      */
-    public function test_category_create()
+    public function test_category_can_create()
     {
         $this->seed();
 
@@ -114,7 +114,7 @@ class CategoryTest extends TestCase
      * Summary of test_category_update
      * @return void
      */
-    public function test_category_update()
+    public function test_category_can_update()
     {
         $this->seed();
 
@@ -152,7 +152,7 @@ class CategoryTest extends TestCase
      * Summary of test_category_delete
      * @return void
      */
-    public function test_category_delete()
+    public function test_category_can_delete()
     {
         $this->seed();
 

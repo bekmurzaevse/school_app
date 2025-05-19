@@ -19,7 +19,7 @@ class FileTest extends TestCase
      * Summary of test_file_index
      * @return void
      */
-    public function test_file_index(): void
+    public function test_file_can_get_all(): void
     {
         $this->seed();
 
@@ -98,7 +98,7 @@ class FileTest extends TestCase
      * Summary of test_file_upload
      * @return void
      */
-    public function test_file_upload(): void
+    public function test_file_can_upload(): void
     {
         $this->seed();
 
@@ -141,7 +141,7 @@ class FileTest extends TestCase
      * Summary of test_file_update
      * @return void
      */
-    public function test_file_update(): void
+    public function test_file_can_update(): void
     {
         $this->seed();
 
@@ -187,7 +187,7 @@ class FileTest extends TestCase
      * Summary of test_deletes_file
      * @return void
      */
-    public function test_deletes_file()
+    public function test_file_can_delete()
     {
         $this->seed();
 
