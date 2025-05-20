@@ -33,7 +33,7 @@ class AlbumController extends Controller
         required: true,
         description: "Albom jaratiw ushin mag'liwmatlar",
         content: new OA\JsonContent(
-            required: ["title", "school_id", "description"],
+            required: ["title", "school_id"],
             properties: [
                 new OA\Property(property: "school_id", type: "int", example: 1),
                 new OA\Property(
