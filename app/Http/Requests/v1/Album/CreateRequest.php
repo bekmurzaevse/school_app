@@ -28,11 +28,11 @@ class CreateRequest extends FormRequest
             'title.ru' => 'required|string',
             'title.en' => 'required|string',
             'school_id' => 'required|integer|exists:schools,id',
-            'description' => 'required|array',
-            'description.kk' => 'required|string',
-            'description.uz' => 'required|string',
-            'description.ru' => 'required|string',
-            'description.en' => 'required|string',
+            'description' => 'nullable|array',
+            'description.kk' => 'nullable|string',
+            'description.uz' => 'nullable|string',
+            'description.ru' => 'nullable|string',
+            'description.en' => 'nullable|string',
         ];
     }
 }
