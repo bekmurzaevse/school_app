@@ -143,7 +143,7 @@ class EventController extends Controller
             ]
         )
     )]
-    #[OA\Response(response: 200, description: 'Ta\'dbir a\'wmetli jan\'alandi!')]
+    #[OA\Response(response: 200, description: 'Ta\'dbir a\'wmetli jan\'alandi')]
     #[OA\Response(response: 404, description: 'ID li ta\'dbir tabilmadi!')]
     #[OA\Response(response: 422, description: 'Validation error')]
     public function update()
