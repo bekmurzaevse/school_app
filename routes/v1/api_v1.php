@@ -44,8 +44,10 @@ Route::middleware(['auth:sanctum', 'ability:access-token'])->group(function () {
  * Admin
  */
 Route::middleware('auth:sanctum')->group(function () {
-
     Route::middleware( 'role:admin')->group(function () {
+        Route::post('congratulation', [MainController::class, 'congratulation']);
+        Route::get('list', [MainController::class, 'list']);
+
         Route::prefix('schools')->group(function () {
             Route::get('/', [SchoolController::class, 'index']);
             Route::post('/create', [SchoolController::class, 'create']);
@@ -119,50 +121,48 @@ Route::middleware('auth:sanctum')->group(function () {
 });
 
 /**
- *  Birth date
+ *  Index page
  */
 Route::get('/', [MainController::class, 'index']);
-Route::post('congratulation', [MainController::class, 'congratulation']);
-Route::get('list', [MainController::class, 'list']);
 
 Route::prefix('schools')->group(function () {
-    Route::get('/{id}', [SchoolController::class, 'show']);///User
+    Route::get('/{id}', [SchoolController::class, 'show']);
 });
 Route::prefix('employees')->group(function () {
-    Route::get('/', [EmployeeController::class, 'index']);//User
+    Route::get('/', [EmployeeController::class, 'index']);
 });
 Route::prefix('news')->group(function () {
-    Route::get('/', [NewsController::class, 'index']); //User
-    Route::get('/{id}', [NewsController::class, 'show']);//User
+    Route::get('/', [NewsController::class, 'index']);
+    Route::get('/{id}', [NewsController::class, 'show']);
 });
 Route::prefix('tags')->group(function () {
 
 });
 Route::prefix('positions')->group(function () {
-    Route::get('/', [PositionController::class, 'index']);//User
+    Route::get('/', [PositionController::class, 'index']);
 });
 Route::prefix('albums')->group(function () {
-    Route::get('/', [AlbumController::class, 'index']);//User
-    Route::get('/{id}', [AlbumController::class, 'show']);//User
+    Route::get('/', [AlbumController::class, 'index']);
+    Route::get('/{id}', [AlbumController::class, 'show']);
 });
 Route::prefix('photos')->group(function () {
-    Route::get('/', [PhotoController::class, 'index']);//User
-    Route::get('/{id}', [PhotoController::class, 'show']);//User
+    Route::get('/', [PhotoController::class, 'index']);
+    Route::get('/{id}', [PhotoController::class, 'show']);
 });
 Route::prefix('documents')->group(function () {
-    Route::get('/', [DocumentController::class, 'index']);//User
-    Route::get('show/{id}', [DocumentController::class, 'show']);//User
-    Route::get('download/{id}', [DocumentController::class, 'download']);//User
+    Route::get('/', [DocumentController::class, 'index']);
+    Route::get('show/{id}', [DocumentController::class, 'show']);
+    Route::get('download/{id}', [DocumentController::class, 'download']);
 });
 Route::prefix('categories')->group(function () {
-    Route::get('/', [CategoryController::class, 'index']);//User
-    Route::get('/{id}', [CategoryController::class, 'show']);//User
+    Route::get('/', [CategoryController::class, 'index']);
+    Route::get('/{id}', [CategoryController::class, 'show']);
 });
 Route::prefix('events')->group(function () {
-    Route::get('/', [EventController::class, 'index']);//User
-    Route::get('/{id}', [EventController::class, 'show']);//User
+    Route::get('/', [EventController::class, 'index']);
+    Route::get('/{id}', [EventController::class, 'show']);
 });
 Route::prefix('files')->group(function () {
-    Route::get('/', [FileController::class, 'index']);//User
-    Route::get('/{id}', [FileController::class, 'show']);//User
+    Route::get('/', [FileController::class, 'index']);
+    Route::get('/{id}', [FileController::class, 'show']);
 });
