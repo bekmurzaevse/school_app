@@ -24,7 +24,8 @@ class TargetSeeder extends Seeder
                 'en' => 'Our goal is to reduce waste and promote green energy.',
                 'uz' => 'Bizning maqsad chiqindilarni kamaytirish va yashil energiyani targ‘ib qilish.',
                 'ru' => 'Наша цель — сократить отходы и продвигать зеленую энергию.'
-            ]
+            ],
+            'school_id' => 1,
         ]);
 
         Target::create([
@@ -39,7 +40,8 @@ class TargetSeeder extends Seeder
                 'uz' => 'Biz hammaga ochiq ta\'limga e’tibor qaratamiz.',
                 'ru' => 'Мы сосредотачиваемся на доступном образовании для всех.',
                 'kk' => 'Biz ha\'mmemiz ashiq bilimlendiriwge itibar qaratamiz.',
-            ]
+            ],
+            'school_id' => 1,
         ]);
     }
 }

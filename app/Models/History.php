@@ -21,4 +21,10 @@ class History extends Model
             'updated_at' => 'datetime',
         ];
     }
+
+    public function school()
+    {
+        return $this->belongsTo(School::class);
+    }
+
 }
