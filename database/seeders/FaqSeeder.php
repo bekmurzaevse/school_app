@@ -14,6 +14,7 @@ class FaqSeeder extends Seeder
     public function run(): void
     {
         Faq::create([
+            'school_id' => 1,
             'question' => [
                 'en' => 'How do I enroll my child?',
                 'uz' => 'Farzandimni qanday ro‘yxatdan o‘tkazaman?',
@@ -29,6 +30,7 @@ class FaqSeeder extends Seeder
         ]);
 
         Faq::create([
+            'school_id' => 1,
             'question' => [
                 'en' => 'What documents are required?',
                 'uz' => 'Qanday hujjatlar kerak?',

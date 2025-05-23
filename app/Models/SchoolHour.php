@@ -6,13 +6,13 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\Translatable\HasTranslations;
 
-class Faq extends Model
+class SchoolHour extends Model
 {
     use HasFactory, HasTranslations;
 
-    protected $fillable = ['school_id', 'question', 'answer'];
+    public $translatable = ['title', 'workday', 'holiday'];
 
-    public $translatable = ['question', 'answer'];
+    protected $fillable = ['school_id', 'title', 'workday', 'holiday'];
 
     protected function casts(): array
     {

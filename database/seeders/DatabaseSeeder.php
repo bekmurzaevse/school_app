@@ -30,7 +30,8 @@ class DatabaseSeeder extends Seeder
             NewsTagSeeder::class,
             HistorySeeder::class,
             TargetSeeder::class,
-            FaqSeeder::class
+            FaqSeeder::class,
+            SchoolHourSeeder::class,
         ]);
 
     }
