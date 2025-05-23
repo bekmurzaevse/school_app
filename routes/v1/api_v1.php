@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\MainController;
 use App\Http\Controllers\v1\AlbumController;
+use App\Http\Controllers\v1\FaqController;
 use App\Http\Controllers\v1\PhotoController;
 use App\Http\Controllers\v1\DocumentController;
 use App\Http\Controllers\v1\CategoryController;
@@ -54,13 +55,13 @@ Route::middleware('auth:sanctum')->group(function () {
             Route::put('/update/{id}', [SchoolController::class, 'update']);
             Route::delete('/delete/{id}', [SchoolController::class, 'delete']);
         });
-    Route::prefix('employees')->group(function () {
-        Route::get('/{id}', [EmployeeController::class, 'show']);
-        Route::post('create', [EmployeeController::class, 'create']);
-        Route::put('update/{id}', [EmployeeController::class, 'update']);
-        Route::delete('delete/{id}', [EmployeeController::class, 'delete']);
-    });
-    Route::prefix('news')->group(function () {
+        Route::prefix('employees')->group(function () {
+            Route::get('/{id}', [EmployeeController::class, 'show']);
+            Route::post('create', [EmployeeController::class, 'create']);
+            Route::put('update/{id}', [EmployeeController::class, 'update']);
+            Route::delete('delete/{id}', [EmployeeController::class, 'delete']);
+        });
+        Route::prefix('news')->group(function () {
             Route::post('create', [NewsController::class, 'create']);
             Route::put('update/{id}', [NewsController::class, 'update']);
             Route::delete('delete/{id}', [NewsController::class, 'delete']);
@@ -116,6 +117,12 @@ Route::middleware('auth:sanctum')->group(function () {
             Route::put('/update/{id}', [UserController::class, 'update']);
             Route::delete('/delete/{id}', [UserController::class, 'delete']);
         });
+
+        Route::prefix('faqs')->group(function () {
+            Route::post('/create', [FaqController::class, 'create']);
+            Route::put('/update/{id}', [FaqController::class, 'update']);
+            Route::delete('/delete/{id}', [FaqController::class, 'delete']);
+        });
     });
 
 });
@@ -165,4 +172,9 @@ Route::prefix('events')->group(function () {
 Route::prefix('files')->group(function () {
     Route::get('/', [FileController::class, 'index']);
     Route::get('/{id}', [FileController::class, 'show']);
+});
+
+Route::prefix('faqs')->group(function () {
+    Route::get('/', [FaqController::class, 'index']);
+    Route::get('/{id}', [FaqController::class, 'show']);
 });
