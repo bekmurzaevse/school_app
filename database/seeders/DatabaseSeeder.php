@@ -27,7 +27,10 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             NewsSeeder::class,
             TagSeeder::class,
-            NewsTagSeeder::class
+            NewsTagSeeder::class,
+            ClubSeeder::class,
+            RuleSeeder::class,
+            ValueSeeder::class,
         ]);
 
     }
