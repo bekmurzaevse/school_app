@@ -31,6 +31,9 @@ class DatabaseSeeder extends Seeder
             ClubSeeder::class,
             RuleSeeder::class,
             ValueSeeder::class,
+            HistorySeeder::class,
+            TargetSeeder::class,
+            FaqSeeder::class
         ]);
 
     }
