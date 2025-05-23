@@ -28,6 +28,9 @@ class DatabaseSeeder extends Seeder
             NewsSeeder::class,
             TagSeeder::class,
             NewsTagSeeder::class,
+            ClubSeeder::class,
+            RuleSeeder::class,
+            ValueSeeder::class,
             HistorySeeder::class,
             TargetSeeder::class,
             FaqSeeder::class
