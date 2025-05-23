@@ -19,7 +19,8 @@ class HistorySeeder extends Seeder
                 'uz' => 'Birinchi ekologik tashabbus boshlangan yil.',
                 'ru' => 'Запущена первая экологичная кампания.',
                 'kk' => 'Birinshi ekologiyalıq baslama baslanǵan jıl.'
-            ]
+            ],
+            'school_id' => 1,
         ]);
     }
 }
