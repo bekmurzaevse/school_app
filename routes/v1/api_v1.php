@@ -13,6 +13,7 @@ use App\Http\Controllers\v1\PositionController;
 use App\Http\Controllers\v1\NewsController;
 use App\Http\Controllers\v1\SchoolController;
 use App\Http\Controllers\v1\EmployeeController;
+use App\Http\Controllers\v1\SchoolHourController;
 use App\Http\Controllers\v1\TagController;
 use App\Http\Controllers\v1\TargetController;
 use App\Http\Controllers\v1\UserController;
@@ -136,6 +137,11 @@ Route::middleware('auth:sanctum')->group(function () {
             Route::post('/create', [HistoryController::class, 'create']);
             Route::put('/update/{id}', [HistoryController::class, 'update']);
             Route::delete('/delete/{id}', [HistoryController::class, 'delete']);
+          
+        Route::prefix('school-hours')->group(function () {
+            Route::post('/create', [SchoolHourController::class, 'create']);
+            Route::put('/update/{id}', [SchoolHourController::class, 'update']);
+            Route::delete('/delete/{id}', [SchoolHourController::class, 'delete']);
         });
     });
 
@@ -201,4 +207,8 @@ Route::prefix('targets')->group(function () {
 Route::prefix('histories')->group(function () {
     Route::get('/', [HistoryController::class, 'index']);
     Route::get('/{id}', [HistoryController::class, 'show']);
+
+Route::prefix('school-hours')->group(function () {
+    Route::get('/', [SchoolHourController::class, 'index']);
+    Route::get('/{id}', [SchoolHourController::class, 'show']);
 });
