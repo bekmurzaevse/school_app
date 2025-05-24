@@ -12,7 +12,7 @@ class Target extends Model
 
     public $translatable = ['name', 'description'];
 
-    protected $fillable = ['name', 'description'];
+    protected $fillable = ['name', 'description', 'school_id'];
 
     protected function casts(): array
     {

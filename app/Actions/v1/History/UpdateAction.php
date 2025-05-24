@@ -1,0 +1,42 @@
+<?php
+
+namespace App\Actions\v1\History;
+
+use App\Dto\v1\History\UpdateDto;
+use App\Exceptions\ApiResponseException;
+use App\Http\Resources\v1\History\HistoryResource;
+use App\Models\History;
+use App\Traits\ResponseTrait;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Http\JsonResponse;
+
+class UpdateAction
+{
+    use ResponseTrait;
+
+    /**
+     * Summary of __invoke
+     * @param int $id
+     * @param \App\Dto\v1\History\UpdateDto $dto
+     * @throws \App\Exceptions\ApiResponseException
+     * @return JsonResponse
+     */
+    public function __invoke(int $id, UpdateDto $dto): JsonResponse
+    {
+        try {
+            $history = History::findOrFail($id);
+            $history->update([
+                'school_id' => $dto->schoolId,
+                'year' => $dto->year,
+                'text' => $dto->text
+            ]);
+
+            return static::toResponse(
+                message: "History updated!",
+                data: new HistoryResource($history)
+            );
+        } catch (ModelNotFoundException $ex) {
+            throw new ApiResponseException("$id - History not found!", 404);
+        }
+    }
+}
