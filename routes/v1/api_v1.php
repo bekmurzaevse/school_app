@@ -12,6 +12,7 @@ use App\Http\Controllers\v1\PositionController;
 use App\Http\Controllers\v1\NewsController;
 use App\Http\Controllers\v1\SchoolController;
 use App\Http\Controllers\v1\EmployeeController;
+use App\Http\Controllers\v1\SchoolHourController;
 use App\Http\Controllers\v1\TagController;
 use App\Http\Controllers\v1\UserController;
 use Illuminate\Support\Facades\Route;
@@ -123,6 +124,12 @@ Route::middleware('auth:sanctum')->group(function () {
             Route::put('/update/{id}', [FaqController::class, 'update']);
             Route::delete('/delete/{id}', [FaqController::class, 'delete']);
         });
+
+        Route::prefix('school-hours')->group(function () {
+            Route::post('/create', [SchoolHourController::class, 'create']);
+            Route::put('/update/{id}', [SchoolHourController::class, 'update']);
+            Route::delete('/delete/{id}', [SchoolHourController::class, 'delete']);
+        });
     });
 
 });
@@ -177,4 +184,9 @@ Route::prefix('files')->group(function () {
 Route::prefix('faqs')->group(function () {
     Route::get('/', [FaqController::class, 'index']);
     Route::get('/{id}', [FaqController::class, 'show']);
+});
+
+Route::prefix('school-hours')->group(function () {
+    Route::get('/', [SchoolHourController::class, 'index']);
+    Route::get('/{id}', [SchoolHourController::class, 'show']);
 });
