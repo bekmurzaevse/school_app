@@ -12,7 +12,7 @@ class History extends Model
 
     public $translatable = ['text'];
 
-    protected $fillable = ['year', 'text'];
+    protected $fillable = ['year', 'text', 'school_id'];
 
     protected function casts(): array
     {
