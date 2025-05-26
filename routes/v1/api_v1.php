@@ -140,12 +140,12 @@ Route::middleware('auth:sanctum')->group(function () {
             Route::post('/create', [HistoryController::class, 'create']);
             Route::put('/update/{id}', [HistoryController::class, 'update']);
             Route::delete('/delete/{id}', [HistoryController::class, 'delete']);
+        });
 
-            Route::prefix('school-hours')->group(function () {
-                Route::post('/create', [SchoolHourController::class, 'create']);
-                Route::put('/update/{id}', [SchoolHourController::class, 'update']);
-                Route::delete('/delete/{id}', [SchoolHourController::class, 'delete']);
-            });
+        Route::prefix('school-hours')->group(function () {
+            Route::post('/create', [SchoolHourController::class, 'create']);
+            Route::put('/update/{id}', [SchoolHourController::class, 'update']);
+            Route::delete('/delete/{id}', [SchoolHourController::class, 'delete']);
         });
 
         Route::prefix('rules')->group(function () {

@@ -206,7 +206,7 @@ class SchoolTest extends TestCase
                 'message',
             ]);
 
-        $this->assertDatabaseMissing('schools', [
+        $this->assertSoftDeleted('schools', [
             'id' => $school->id,
         ]);
     }

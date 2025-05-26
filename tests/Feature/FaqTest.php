@@ -187,7 +187,7 @@ class FaqTest extends TestCase
                 'message',
             ]);
 
-        $this->assertDatabaseMissing('faqs', [
+        $this->assertSoftDeleted('faqs', [
             'id' => $faq->id,
         ]);
     }

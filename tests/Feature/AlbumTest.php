@@ -179,7 +179,7 @@ class AlbumTest extends TestCase
         $user = User::find(1)->first();
         $this->actingAs($user);
 
-        $album = Album::factory()->create();
+        $album = Album::inRandomOrder()->first();
 
         $response = $this->deleteJson("/api/v1/albums/delete/" . $album->id);
         $response
@@ -189,7 +189,7 @@ class AlbumTest extends TestCase
                 'message',
             ]);
 
-        $this->assertDatabaseMissing('albums', [
+        $this->assertSoftDeleted('albums', [
             'id' => $album->id,
         ]);
     }

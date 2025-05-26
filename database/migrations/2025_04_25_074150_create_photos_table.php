@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('path');
             $table->foreignId('album_id')->nullable()->default(null)->constrained('albums')->restrictOnDelete()->cascadeOnUpdate();
             $table->json('description')->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
     }
