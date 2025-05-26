@@ -18,6 +18,7 @@ use App\Http\Controllers\v1\SchoolHourController;
 use App\Http\Controllers\v1\TagController;
 use App\Http\Controllers\v1\TargetController;
 use App\Http\Controllers\v1\UserController;
+use App\Http\Controllers\v1\ValueController;
 use Illuminate\Support\Facades\Route;
 
 Route::pattern('id', '\d+');
@@ -151,15 +152,21 @@ Route::middleware('auth:sanctum')->group(function () {
             Route::put('update/{id}', [RuleController::class, 'update']);
             Route::delete('delete/{id}', [RuleController::class, 'delete']);
         });
+
+        Route::prefix('values')->group(function () {
+            Route::post('create', [ValueController::class, 'create']);
+            Route::put('update/{id}', [ValueController::class, 'update']);
+            Route::delete('delete/{id}', [ValueController::class, 'delete']);
+        });
     });
 });
 
 /**
  *  Index page
  */
-Route::prefix('rules')->group(function () {
-    Route::get('/', [RuleController::class, 'index']);
-    Route::get('/{id}', [RuleController::class, 'show']);
+Route::prefix('values')->group(function () {
+    Route::get('/', [ValueController::class, 'index']);
+    Route::get('/{id}', [ValueController::class, 'show']);
 });
 
 Route::get('/', [MainController::class, 'index']);
