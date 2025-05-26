@@ -11,6 +11,7 @@ use App\Http\Controllers\v1\EventController;
 use App\Http\Controllers\v1\FileController;
 use App\Http\Controllers\v1\PositionController;
 use App\Http\Controllers\v1\NewsController;
+use App\Http\Controllers\v1\RuleController;
 use App\Http\Controllers\v1\SchoolController;
 use App\Http\Controllers\v1\EmployeeController;
 use App\Http\Controllers\v1\SchoolHourController;
@@ -144,12 +145,23 @@ Route::middleware('auth:sanctum')->group(function () {
                 Route::delete('/delete/{id}', [SchoolHourController::class, 'delete']);
             });
         });
+
+        Route::prefix('rules')->group(function () {
+            Route::post('create', [RuleController::class, 'create']);
+            Route::put('update/{id}', [RuleController::class, 'update']);
+            Route::delete('delete/{id}', [RuleController::class, 'delete']);
+        });
     });
 });
 
 /**
  *  Index page
  */
+Route::prefix('rules')->group(function () {
+    Route::get('/', [RuleController::class, 'index']);
+    Route::get('/{id}', [RuleController::class, 'show']);
+});
+
 Route::get('/', [MainController::class, 'index']);
 
 Route::prefix('schools')->group(function () {
