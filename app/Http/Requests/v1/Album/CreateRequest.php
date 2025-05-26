@@ -11,7 +11,7 @@ class CreateRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return true;
+        return auth()->check();
     }
 
     /**
@@ -33,6 +33,23 @@ class CreateRequest extends FormRequest
             'description.uz' => 'nullable|string',
             'description.ru' => 'nullable|string',
             'description.en' => 'nullable|string',
+        ];
+    }
+
+    public function messages(): array
+    {
+        return [
+            'title.required' => "title polya ma'jbu'riy",
+            'title.kk.required' => "KK title polya ma'jbu'riy",
+            'title.uz.required' => "UZ title polya ma'jbu'riy",
+            'title.ru.required' => "RU title polya ma'jbu'riy",
+            'title.en.required' => "EN title polya ma'jbu'riy",
+            'title.kk.unique' => "Bunday title.kk bazada bar!",
+            'title.uz.unique' => "Bunday title.uz bazada bar!",
+            'title.ru.unique' => "Bunday title.ru bazada bar!",
+            'title.en.unique' => "Bunday title.en bazada bar!",
+            'school_id.required' => "school_id polya ma'jbu'riy",
+            'school_id.exists' => "Bunday school_id bazada tabilmadi",
         ];
     }
 }

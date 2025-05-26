@@ -11,7 +11,7 @@ class CreateRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return true;
+        return auth()->check();
     }
 
     /**
@@ -28,7 +28,10 @@ class CreateRequest extends FormRequest
             'name.ru' => 'required|string',
             'name.en' => 'required|string',
             'history' => 'required|array',
-            'history.kk' => 'required|string',
+            'history.kk' => 'required|string|unique:schools,history->kk',
+            'history.uz' => 'required|string|unique:schools,history->uz',
+            'history.ru' => 'required|string|unique:schools,history->ru',
+            'history.en' => 'required|string|unique:schools,history->en',
             'phone' => 'required|string|unique:schools,phone',
             'location' => 'required|string',
             'description' => 'nullable|array',
@@ -36,6 +39,29 @@ class CreateRequest extends FormRequest
             'description.uz' => 'nullable|string',
             'description.ru' => 'nullable|string',
             'description.en' => 'nullable|string',
+        ];
+    }
+
+    public function messages(): array
+    {
+        return [
+            'location.required' => "location polya ma'jbu'riy",
+            'phone.required' => "phone polya ma'jbu'riy",
+            'phone.unique' => "Bunday phone bazada bar!",
+            'name.required' => "name polya ma'jbu'riy",
+            'name.kk.required' => "KK name polya ma'jbu'riy",
+            'name.uz.required' => "UZ name polya ma'jbu'riy",
+            'name.ru.required' => "RU name polya ma'jbu'riy",
+            'name.en.required' => "EN name polya ma'jbu'riy",
+            'name.kk.unique' => "Bunday name.kk bazada bar!",
+            'name.uz.unique' => "Bunday name.uz bazada bar!",
+            'name.ru.unique' => "Bunday name.ru bazada bar!",
+            'name.en.unique' => "Bunday name.en bazada bar!",
+            'history.required' => "history polya ma'jbu'riy",
+            'history.kk.required' => "KK history polya ma'jbu'riy",
+            'history.uz.required' => "UZ history polya ma'jbu'riy",
+            'history.ru.required' => "RU history polya ma'jbu'riy",
+            'history.en.required' => "EN history polya ma'jbu'riy",
         ];
     }
 }
