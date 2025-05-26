@@ -48,7 +48,7 @@ Route::middleware(['auth:sanctum', 'ability:access-token'])->group(function () {
  * Admin
  */
 Route::middleware('auth:sanctum')->group(function () {
-    Route::middleware( 'role:admin')->group(function () {
+    Route::middleware('role:admin')->group(function () {
         Route::post('congratulation', [MainController::class, 'congratulation']);
         Route::get('list', [MainController::class, 'list']);
 
@@ -127,24 +127,24 @@ Route::middleware('auth:sanctum')->group(function () {
             Route::delete('/delete/{id}', [FaqController::class, 'delete']);
         });
 
-        Route::prefix('targets')->group( function (){
+        Route::prefix('targets')->group(function () {
             Route::post('/create', [TargetController::class, 'create']);
             Route::put('/update/{id}', [TargetController::class, 'update']);
             Route::delete('/delete/{id}', [TargetController::class, 'delete']);
         });
 
-        Route::prefix('histories')->group( function (){
+        Route::prefix('histories')->group(function () {
             Route::post('/create', [HistoryController::class, 'create']);
             Route::put('/update/{id}', [HistoryController::class, 'update']);
             Route::delete('/delete/{id}', [HistoryController::class, 'delete']);
-          
-        Route::prefix('school-hours')->group(function () {
-            Route::post('/create', [SchoolHourController::class, 'create']);
-            Route::put('/update/{id}', [SchoolHourController::class, 'update']);
-            Route::delete('/delete/{id}', [SchoolHourController::class, 'delete']);
+
+            Route::prefix('school-hours')->group(function () {
+                Route::post('/create', [SchoolHourController::class, 'create']);
+                Route::put('/update/{id}', [SchoolHourController::class, 'update']);
+                Route::delete('/delete/{id}', [SchoolHourController::class, 'delete']);
+            });
         });
     });
-
 });
 
 /**
@@ -207,7 +207,7 @@ Route::prefix('targets')->group(function () {
 Route::prefix('histories')->group(function () {
     Route::get('/', [HistoryController::class, 'index']);
     Route::get('/{id}', [HistoryController::class, 'show']);
-
+});
 Route::prefix('school-hours')->group(function () {
     Route::get('/', [SchoolHourController::class, 'index']);
     Route::get('/{id}', [SchoolHourController::class, 'show']);
