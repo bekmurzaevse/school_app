@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\MainController;
 use App\Http\Controllers\v1\AlbumController;
+use App\Http\Controllers\v1\ClubController;
 use App\Http\Controllers\v1\FaqController;
 use App\Http\Controllers\v1\HistoryController;
 use App\Http\Controllers\v1\PhotoController;
@@ -11,12 +12,14 @@ use App\Http\Controllers\v1\EventController;
 use App\Http\Controllers\v1\FileController;
 use App\Http\Controllers\v1\PositionController;
 use App\Http\Controllers\v1\NewsController;
+use App\Http\Controllers\v1\RuleController;
 use App\Http\Controllers\v1\SchoolController;
 use App\Http\Controllers\v1\EmployeeController;
 use App\Http\Controllers\v1\SchoolHourController;
 use App\Http\Controllers\v1\TagController;
 use App\Http\Controllers\v1\TargetController;
 use App\Http\Controllers\v1\UserController;
+use App\Http\Controllers\v1\ValueController;
 use Illuminate\Support\Facades\Route;
 
 Route::pattern('id', '\d+');
@@ -144,12 +147,45 @@ Route::middleware('auth:sanctum')->group(function () {
                 Route::delete('/delete/{id}', [SchoolHourController::class, 'delete']);
             });
         });
+
+        Route::prefix('rules')->group(function () {
+            Route::post('create', [RuleController::class, 'create']);
+            Route::put('update/{id}', [RuleController::class, 'update']);
+            Route::delete('delete/{id}', [RuleController::class, 'delete']);
+        });
+
+        Route::prefix('values')->group(function () {
+            Route::post('create', [ValueController::class, 'create']);
+            Route::put('update/{id}', [ValueController::class, 'update']);
+            Route::delete('delete/{id}', [ValueController::class, 'delete']);
+        });
+
+        Route::prefix('clubs')->group(function () {
+            Route::post('create', [ClubController::class, 'create']);
+            Route::put('update/{id}', [ClubController::class, 'update']);
+            Route::delete('delete/{id}', [ClubController::class, 'delete']);
+        });
     });
 });
 
 /**
  *  Index page
  */
+Route::prefix('rules')->group(function () {
+    Route::get('/', [RuleController::class, 'index']);
+    Route::get('/{id}', [RuleController::class, 'show']);
+});
+
+Route::prefix('values')->group(function () {
+    Route::get('/', [ValueController::class, 'index']);
+    Route::get('/{id}', [ValueController::class, 'show']);
+});
+
+Route::prefix('clubs')->group(function () {
+    Route::get('/', [ClubController::class, 'index']);
+    Route::get('/{id}', [ClubController::class, 'show']);
+});
+
 Route::get('/', [MainController::class, 'index']);
 
 Route::prefix('schools')->group(function () {
