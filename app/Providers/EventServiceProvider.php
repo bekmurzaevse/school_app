@@ -20,5 +20,7 @@ class EventServiceProvider extends ServiceProvider
         \App\Models\Event::observe(\App\Observers\EventObserver::class);
         \App\Models\Faq::observe(\App\Observers\FaqObserver::class);
         \App\Models\SchoolHour::observe(\App\Observers\SchoolHourObserver::class);
+        \App\Models\Target::observe(\App\Observers\TargetObserver::class);
+        \App\Models\History::observe(\App\Observers\HistoryObserver::class);
     }
 }
