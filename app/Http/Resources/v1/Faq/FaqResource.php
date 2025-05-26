@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources\v1\Faq;
 
+use App\Http\Resources\v1\School\SchoolResource;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -16,9 +17,11 @@ class FaqResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'school' => $this->school,
+            'school' => new SchoolResource($this->school),
             'question' => $this->question,
             'answer' => $this->answer,
+            'created_at' => $this->created_at->format('Y-m-d H:i:s'),
+            'updated_at' => $this->updated_at->format('Y-m-d H:i:s'),
         ];
     }
 }

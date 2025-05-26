@@ -17,6 +17,7 @@ return new class extends Migration
             $table->foreignId('school_id')->constrained()->restrictOnDelete()->cascadeOnUpdate();
             $table->json('workday');
             $table->json('holiday');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

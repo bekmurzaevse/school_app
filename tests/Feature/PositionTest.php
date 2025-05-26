@@ -179,7 +179,8 @@ class PositionTest extends TestCase
         $user = User::find(1)->first();
         $this->actingAs($user);
 
-        $position = Position::factory()->create();
+        // $position = Position::factory()->create();
+        $position = Position::inRandomOrder()->first();
 
         $response = $this->deleteJson("/api/v1/positions/delete/" . $position->id);
         $response
@@ -189,7 +190,7 @@ class PositionTest extends TestCase
                 'message',
             ]);
 
-        $this->assertDatabaseMissing('positions', [
+        $this->assertSoftDeleted('positions', [
             'id' => $position->id,
         ]);
     }

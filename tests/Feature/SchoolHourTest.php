@@ -218,7 +218,7 @@ class SchoolHourTest extends TestCase
                 'message',
             ]);
 
-        $this->assertDatabaseMissing('school_hours', [
+        $this->assertSoftDeleted('school_hours', [
             'id' => $schoolHour->id,
         ]);
     }

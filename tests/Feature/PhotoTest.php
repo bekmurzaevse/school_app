@@ -189,9 +189,12 @@ class PhotoTest extends TestCase
                 'message',
             ]);
 
-        $this->assertDatabaseMissing('albums', [
+        $this->assertSoftDeleted('photos', [
             'id' => $photo->id,
         ]);
+        // $this->assertDatabaseMissing('albums', [
+        //     'id' => $photo->id,
+        // ]);
     }
 
 
