@@ -19,13 +19,13 @@ class IndexAction
     public function __invoke(): JsonResponse
     {
         $key = 'rules:' . app()->getLocale() . ':' . md5(request()->fullUrl());
-        $employees = Cache::remember($key, now()->addDay(), function () {
+        $rules = Cache::remember($key, now()->addDay(), function () {
             return Rule::with(['school'])->paginate(10);
         });
 
         return static::toResponse(
             message: 'Successfully received',
-            data: new RuleCollection($employees)
+            data: new RuleCollection($rules)
         );
     }
 }

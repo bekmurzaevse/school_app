@@ -22,10 +22,10 @@ readonly class CreateDto
     public static function from(CreateRequest $request): self
     {
         return new self(
-            name: $request->input('name'),
-            schoolId: $request->input('school_id'),
-            photoId: $request->input('school_id'),
-            text: $request->input('text')
+            name: $request->name,
+            schoolId: $request->school_id,
+            photoId: $request->photo_id,
+            text: $request->text
         );
     }
 }

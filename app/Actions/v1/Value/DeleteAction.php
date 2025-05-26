@@ -21,8 +21,8 @@ class DeleteAction
     public function __invoke(int $id): JsonResponse
     {
         try {
-            $rule = Value::findOrFail($id);
-            $rule->delete();
+            $value = Value::findOrFail($id);
+            $value->delete();
 
             return static::toResponse(
                 message: 'Value Deleted',

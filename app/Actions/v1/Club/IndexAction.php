@@ -20,7 +20,7 @@ class IndexAction
     {
         $key = 'clubs:' . app()->getLocale() . ':' . md5(request()->fullUrl());
         $clubs = Cache::remember($key, now()->addDay(), function () {
-            return Club::with(['school'])->paginate(10);
+            return Club::with(['school', 'photo'])->paginate(10);
         });
 
         return static::toResponse(
