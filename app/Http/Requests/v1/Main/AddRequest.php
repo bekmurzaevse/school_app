@@ -11,7 +11,7 @@ class AddRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return true;
+        return auth()->check();
     }
 
     /**
@@ -24,6 +24,15 @@ class AddRequest extends FormRequest
         return [
             'text' => 'required|string',
             'employee_id' => 'required|integer|exists:employees,id',
+        ];
+    }
+
+    public function messages(): array
+    {
+        return [
+            'text.required' => "text polya ma'jbu'riy",
+            'employee_id.required' => "employee_id polya ma'jbu'riy",
+            'employee_id.exists' => "Bunday employee_id bazada tabilmadi",
         ];
     }
 }

@@ -3,7 +3,6 @@
 namespace App\Http\Requests\v1\Position;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Rule;
 
 class CreateRequest extends FormRequest
 {
@@ -12,7 +11,7 @@ class CreateRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return true;
+        return auth()->check();
     }
 
     /**
@@ -24,11 +23,10 @@ class CreateRequest extends FormRequest
     {
         return [
             'name' => 'required|array',
-            // 'name.kk' => ['required', 'string', Rule::unique('positions', 'name->kk')],
             'name.kk' => 'required|string|unique:positions,name->kk',
-            'name.uz' => 'required|string',
-            'name.ru' => 'required|string',
-            'name.en' => 'required|string',
+            'name.uz' => 'required|string|unique:positions,name->uz',
+            'name.ru' => 'required|string|unique:positions,name->ru',
+            'name.en' => 'required|string|unique:positions,name->en',
             'school_id' => 'required|integer|exists:schools,id',
             'description' => 'nullable|array',
             'description.kk' => 'nullable|string',
@@ -38,23 +36,21 @@ class CreateRequest extends FormRequest
         ];
     }
 
-    // TODO xabarlardi toliq jaziw
     public function messages(): array
     {
         return [
-            'name.kk.unique' => "Bunday name.kk bazada bar!",
+            'name.required' => "name polya ma'jbu'riy",
             'name.kk.required' => "KK name polya ma'jbu'riy",
-            // 'name.uz.required' => "UZ name polya ma'jbu'riy",
-            // 'name.ru.required' => "RU name polya ma'jbu'riy",
-            // 'name.en.required' => "EN name polya ma'jbu'riy",
-            // 'history.kk.required' => "KK history polya ma'jbu'riy",
-            // 'history.uz.required' => "UZ history polya ma'jbu'riy",
-            // 'history.ru.required' => "RU history polya ma'jbu'riy",
-            // 'history.en.required' => "EN history polya ma'jbu'riy",
-            // 'description.kk.required' => "KK description history polya ma'jbu'riy",
-            // 'description.uz.required' => "UZ description history polya ma'jbu'riy",
-            // 'description.ru.required' => "RU description history polya ma'jbu'riy",
-            // 'description.en.required' => "EN description history polya ma'jbu'riy",
+            'name.uz.required' => "UZ name polya ma'jbu'riy",
+            'name.ru.required' => "RU name polya ma'jbu'riy",
+            'name.en.required' => "EN name polya ma'jbu'riy",
+            'name.kk.unique' => "Bunday name.kk bazada bar!",
+            'name.uz.unique' => "Bunday name.uz bazada bar!",
+            'name.ru.unique' => "Bunday name.ru bazada bar!",
+            'name.en.unique' => "Bunday name.en bazada bar!",
+            'school_id.required' => "school_id polya ma'jbu'riy",
+            'school_id.exists' => "Bunday school_id bazada tabilmadi",
         ];
     }
+
 }
