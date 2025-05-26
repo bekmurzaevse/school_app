@@ -20,7 +20,7 @@ class UpdateAction
             $rule = Rule::with(['school'])->findOrFail($id);
             $rule->update([
                 'title' => $dto->title,
-                'text' => $dto->title,
+                'text' => $dto->text,
                 'school_id' => $dto->schoolId,
             ]);
 
