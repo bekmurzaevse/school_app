@@ -12,7 +12,7 @@ class UpdateRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return true;
+        return auth()->check();
     }
 
     /**
@@ -47,21 +47,27 @@ class UpdateRequest extends FormRequest
         ];
     }
 
-    // public function messages(): array
-    // {
-    //     return [
-    //         'name.kk.required' => "KK name polya ma'jbu'riy",
-    //         'name.uz.required' => "UZ name polya ma'jbu'riy",
-    //         'name.ru.required' => "RU name polya ma'jbu'riy",
-    //         'name.en.required' => "EN name polya ma'jbu'riy",
-    //         'history.kk.required' => "KK history polya ma'jbu'riy",
-    //         'history.uz.required' => "UZ history polya ma'jbu'riy",
-    //         'history.ru.required' => "RU history polya ma'jbu'riy",
-    //         'history.en.required' => "EN history polya ma'jbu'riy",
-    //         'description.kk.required' => "KK description history polya ma'jbu'riy",
-    //         'description.uz.required' => "UZ description history polya ma'jbu'riy",
-    //         'description.ru.required' => "RU description history polya ma'jbu'riy",
-    //         'description.en.required' => "EN description history polya ma'jbu'riy",
-    //     ];
-    // }
+    public function messages(): array
+    {
+        return [
+            'location.required' => "location polya ma'jbu'riy",
+            'phone.required' => "phone polya ma'jbu'riy",
+            'phone.unique' => "Bunday phone bazada bar!",
+            'name.required' => "name polya ma'jbu'riy",
+            'name.kk.required' => "KK name polya ma'jbu'riy",
+            'name.uz.required' => "UZ name polya ma'jbu'riy",
+            'name.ru.required' => "RU name polya ma'jbu'riy",
+            'name.en.required' => "EN name polya ma'jbu'riy",
+            'name.kk.unique' => "Bunday name.kk bazada bar!",
+            'name.uz.unique' => "Bunday name.uz bazada bar!",
+            'name.ru.unique' => "Bunday name.ru bazada bar!",
+            'name.en.unique' => "Bunday name.en bazada bar!",
+            'history.required' => "history polya ma'jbu'riy",
+            'history.kk.required' => "KK history polya ma'jbu'riy",
+            'history.uz.required' => "UZ history polya ma'jbu'riy",
+            'history.ru.required' => "RU history polya ma'jbu'riy",
+            'history.en.required' => "EN history polya ma'jbu'riy",
+        ];
+    }
+
 }

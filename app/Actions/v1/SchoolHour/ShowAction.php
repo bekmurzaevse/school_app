@@ -25,7 +25,7 @@ class ShowAction
         try {
             $key = 'school-hours:show:' . app()->getLocale() . ':' . md5(request()->fullUrl());
             $schoolHour = Cache::remember($key, now()->addDay(), function () use ($id) {
-                return SchoolHour::findOrFail($id);
+                return SchoolHour::with('school')->findOrFail($id);
             });
 
             return static::toResponse(

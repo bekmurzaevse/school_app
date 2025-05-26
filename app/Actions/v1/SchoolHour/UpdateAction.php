@@ -24,7 +24,7 @@ class UpdateAction
     public function __invoke(int $id, UpdateDto $dto): JsonResponse
     {
         try {
-            $schoolHour = SchoolHour::findOrFail($id);
+            $schoolHour = SchoolHour::with('school')->findOrFail($id);
             $schoolHour->update([
                 'school_id' => $dto->schoolId,
                 'title' => $dto->title,

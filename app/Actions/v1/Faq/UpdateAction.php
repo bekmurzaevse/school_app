@@ -17,7 +17,7 @@ class UpdateAction
     public function __invoke(int $id, UpdateDto $dto): JsonResponse
     {
         try {
-            $faq = Faq::findOrFail($id);
+            $faq = Faq::with('school')->findOrFail($id);
             $faq->update([
                 'school_id' => $dto->schoolId,
                 'question' => $dto->question,
