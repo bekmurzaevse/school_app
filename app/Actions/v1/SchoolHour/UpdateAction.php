@@ -26,7 +26,6 @@ class UpdateAction
         try {
             $schoolHour = SchoolHour::with('school')->findOrFail($id);
             $schoolHour->update([
-                'school_id' => $dto->schoolId,
                 'title' => $dto->title,
                 'workday' => $dto->workday,
                 'holiday' => $dto->holiday

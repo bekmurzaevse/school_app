@@ -16,7 +16,6 @@ use Illuminate\Http\JsonResponse;
 
 class PositionController extends Controller
 {
-    // TODO Mektep id
     /**
      * Summary of index
      * @param \App\Actions\v1\Positions\IndexAction $action

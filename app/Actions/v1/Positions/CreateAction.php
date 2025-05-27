@@ -1,9 +1,10 @@
-<?php 
+<?php
 
 namespace App\Actions\v1\Positions;
 
 use App\Dto\v1\Positions\CreateDto;
 use App\Models\Position;
+use App\Models\School;
 use App\Traits\ResponseTrait;
 use Illuminate\Http\JsonResponse;
 
@@ -19,8 +20,8 @@ class CreateAction
     public function __invoke(CreateDto $dto): JsonResponse
     {
         $data = [
+            'school_id' => School::first()->id,
             'name' => $dto->name,
-            'school_id' => $dto->schoolId,
             'description' => $dto->description
         ];
         Position::create($data);

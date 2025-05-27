@@ -7,7 +7,6 @@ use OpenApi\Attributes as OA;
 
 class PositionController extends Controller
 {
-    // TODO Mektep id
     #[OA\Get(
         path: '/api/v1/positions',
         description: "Ha'mme lawazimlar",

@@ -27,7 +27,6 @@ class UpdateAction
             $album = Album::with('school')->findOrFail($id);
             $album->update([
                 'title' => $dto->title,
-                'school_id' => $dto->schoolId,
                 'description' => $dto->description
             ]);
 

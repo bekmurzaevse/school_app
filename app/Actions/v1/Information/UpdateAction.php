@@ -26,7 +26,6 @@ class UpdateAction
         try {
             $information = Information::with('school')->findOrFail($id);
             $information->update([
-                'school_id' => $dto->schoolId,
                 'title' => $dto->title,
                 'count' => $dto->count,
                 'description' => $dto->description

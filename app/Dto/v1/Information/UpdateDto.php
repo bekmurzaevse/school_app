@@ -10,7 +10,6 @@ readonly class UpdateDto
         public int $count,
         public array $title,
         public ?array $description,
-        public int $schoolId,
     ) {}
 
     /**
@@ -23,7 +22,6 @@ readonly class UpdateDto
         return new self(
             count: $request->get('count'),
             title: $request->get('title'),
-            schoolId: $request->get('school_id'),
             description: $request->get('description'),
         );
     }
