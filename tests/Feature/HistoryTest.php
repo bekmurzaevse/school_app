@@ -19,6 +19,10 @@ class HistoryTest extends TestCase
         $this->seed();
     }
 
+    /**
+     * Summary of test_history_can_get_all
+     * @return void
+     */
     public function test_history_can_get_all(): void
     {
         $response = $this->getJson('api/v1/histories');
@@ -40,6 +44,10 @@ class HistoryTest extends TestCase
             ]);
     }
 
+    /**
+     * Summary of test_history_can_show
+     * @return void
+     */
     public function test_history_can_show(): void
     {
         $history = History::inRandomOrder()->first();
@@ -55,6 +63,10 @@ class HistoryTest extends TestCase
             ]);
     }
 
+    /**
+     * Summary of test_history_can_create
+     * @return void
+     */
     public function test_history_can_create(): void
     {
         $user = User::find(1)->first();
@@ -83,6 +95,10 @@ class HistoryTest extends TestCase
             ]);
     }
 
+    /**
+     * Summary of test_history_can_update
+     * @return void
+     */
     public function test_history_can_update(): void
     {
         $user = User::find(1)->first();
@@ -111,6 +127,10 @@ class HistoryTest extends TestCase
             ]);
     }
 
+    /**
+     * Summary of test_history_can_delete
+     * @return void
+     */
     public function test_history_can_delete(): void
     {
         $user = User::find(1)->first();

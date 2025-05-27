@@ -24,7 +24,7 @@ class UpdateAction
     public function __invoke(int $id, UpdateDto $dto): JsonResponse
     {
         try {
-            $target = Target::findOrFail($id);
+            $target = Target::with('school')->findOrFail($id);
             $target->update([
                 'school_id' => $dto->schoolId,
                 'name' => $dto->name,

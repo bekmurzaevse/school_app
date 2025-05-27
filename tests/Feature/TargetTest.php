@@ -18,6 +18,10 @@ class TargetTest extends TestCase
         $this->seed(); 
     }
 
+    /**
+     * Summary of test_target_can_get_all
+     * @return void
+     */
     public function test_target_can_get_all(): void
     {
 
@@ -40,6 +44,10 @@ class TargetTest extends TestCase
             ]);
     }
 
+    /**
+     * Summary of test_target_can_show
+     * @return void
+     */
     public function test_target_can_show()
     {
         $target = Target::inRandomOrder()->first();
@@ -54,6 +62,10 @@ class TargetTest extends TestCase
             ]);
     }
 
+    /**
+     * Summary of test_target_can_create
+     * @return void
+     */
     public function test_target_can_create()
     {
 
@@ -89,6 +101,10 @@ class TargetTest extends TestCase
             ->assertJson(['message' => 'Target created!']);
     }
 
+    /**
+     * Summary of test_target_can_update
+     * @return void
+     */
     public function test_target_can_update()
     {
 
@@ -124,6 +140,10 @@ class TargetTest extends TestCase
             ]);
     }
 
+    /**
+     * Summary of test_target_can_delete
+     * @return void
+     */
     public function test_target_can_delete()
     {
         $user = User::find(1)->first();

@@ -16,6 +16,7 @@ return new class extends Migration
             $table->integer('year');
             $table->json('text');
             $table->foreignId('school_id')->constrained('schools')->restrictOnDelete()->cascadeOnUpdate();
+            $table->softDeletes();
             $table->timestamps();
         });
     }
