@@ -3,6 +3,7 @@
 namespace App\Actions\v1\SchoolHour;
 
 use App\Dto\v1\SchoolHour\CreateDto;
+use App\Models\School;
 use App\Models\SchoolHour;
 use App\Traits\ResponseTrait;
 use Illuminate\Http\JsonResponse;
@@ -19,7 +20,7 @@ class CreateAction
     public function __invoke(CreateDto $dto): JsonResponse
     {
         $data = [
-            'school_id' => $dto->schoolId,
+            'school_id' => School::first()->id,
             'title' => $dto->title,
             'workday' => $dto->workday,
             'holiday' => $dto->holiday,

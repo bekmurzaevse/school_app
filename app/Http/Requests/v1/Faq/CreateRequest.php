@@ -22,17 +22,16 @@ class CreateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'school_id' => 'required|integer|exists:schools,id',
             'question' => 'required|array',
-            'question.kk' => 'required|string',
-            'question.uz' => 'required|string',
-            'question.ru' => 'required|string',
-            'question.en' => 'required|string',
+            'question.kk' => 'required|string|unique:faqs,question->kk',
+            'question.uz' => 'required|string|unique:faqs,question->uz',
+            'question.ru' => 'required|string|unique:faqs,question->ru',
+            'question.en' => 'required|string|unique:faqs,question->en',
             'answer' => 'required|array',
-            'answer.kk' => 'required|string',
-            'answer.uz' => 'required|string',
-            'answer.ru' => 'required|string',
-            'answer.en' => 'required|string',
+            'answer.kk' => 'required|string|unique:faqs,answer->kk',
+            'answer.uz' => 'required|string|unique:faqs,answer->uz',
+            'answer.ru' => 'required|string|unique:faqs,answer->ru',
+            'answer.en' => 'required|string|unique:faqs,answer->en',
         ];
     }
 
@@ -48,8 +47,6 @@ class CreateRequest extends FormRequest
             'question.uz.unique' => "Bunday question.uz bazada bar!",
             'question.ru.unique' => "Bunday question.ru bazada bar!",
             'question.en.unique' => "Bunday question.en bazada bar!",
-            'school_id.required' => "school_id polya ma'jbu'riy",
-            'school_id.exists' => "Bunday school_id bazada tabilmadi",
             'answer.required' => "answer polya ma'jbu'riy",
             'answer.kk.required' => "KK answer polya ma'jbu'riy",
             'answer.uz.required' => "UZ answer polya ma'jbu'riy",

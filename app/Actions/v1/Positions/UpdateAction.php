@@ -27,7 +27,6 @@ class UpdateAction
             $position = Position::with('school')->findOrFail($id);
             $position->update([
                 'name' => $dto->name,
-                'school_id' => $dto->schoolId,
                 'description' => $dto->description
             ]);
 

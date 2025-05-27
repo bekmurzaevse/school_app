@@ -19,7 +19,6 @@ class UpdateAction
         try {
             $faq = Faq::with('school')->findOrFail($id);
             $faq->update([
-                'school_id' => $dto->schoolId,
                 'question' => $dto->question,
                 'answer' => $dto->answer
             ]);
