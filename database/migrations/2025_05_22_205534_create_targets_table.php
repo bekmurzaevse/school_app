@@ -16,6 +16,7 @@ return new class extends Migration
             $table->json('name');
             $table->json('description');
             $table->foreignId('school_id')->constrained('schools')->restrictOnDelete()->cascadeOnUpdate();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

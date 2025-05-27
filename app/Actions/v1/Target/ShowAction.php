@@ -25,7 +25,7 @@ class ShowAction
         try {
             $key = 'targets:show:' . app()->getLocale() . ':' . md5(request()->fullUrl());
             $target = Cache::remember($key, now()->addDay(), function () use ($id) {
-                return Target::findOrFail($id);
+                return Target::with('school')->findOrFail($id);
             });
 
             return static::toResponse(
