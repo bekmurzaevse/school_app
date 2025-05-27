@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Faq;
+use App\Models\School;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -14,7 +15,7 @@ class FaqSeeder extends Seeder
     public function run(): void
     {
         Faq::create([
-            'school_id' => 1,
+            'school_id' => School::inRandomOrder()->first()->id,
             'question' => [
                 'en' => 'How do I enroll my child?',
                 'uz' => 'Farzandimni qanday ro‘yxatdan o‘tkazaman?',
@@ -30,7 +31,7 @@ class FaqSeeder extends Seeder
         ]);
 
         Faq::create([
-            'school_id' => 1,
+            'school_id' => School::inRandomOrder()->first()->id,
             'question' => [
                 'en' => 'What documents are required?',
                 'uz' => 'Qanday hujjatlar kerak?',

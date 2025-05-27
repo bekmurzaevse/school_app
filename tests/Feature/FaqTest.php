@@ -60,15 +60,15 @@ class FaqTest extends TestCase
         $user = User::find(1)->first();
         $this->actingAs($user);
 
-        $questionKk = 'question kk ' . Str::random(4);
-        $questionUz = 'question uz ' . Str::random(4);
-        $questionRu = 'question ru ' . Str::random(4);
-        $questionEn = 'question en ' . Str::random(4);
+        $questionKk = 'question kk';
+        $questionUz = 'question uz';
+        $questionRu = 'question ru';
+        $questionEn = 'question en';
 
-        $answerKk = 'answer kk' . Str::random(4);
-        $answerUz = 'answer uz' . Str::random(4);
-        $answerRu = 'answer ru' . Str::random(4);
-        $answerEn = 'answer en' . Str::random(4);
+        $answerKk = 'answer kk';
+        $answerUz = 'answer uz';
+        $answerRu = 'answer ru';
+        $answerEn = 'answer en';
 
         $school = School::inRandomOrder()->first();
         $data = [
@@ -101,7 +101,6 @@ class FaqTest extends TestCase
             'question->uz' => $questionUz,
             'question->ru' => $questionRu,
             'question->en' => $questionEn,
-            'school_id' => $school->id,
             'answer->kk' => $answerKk,
             'answer->uz' => $answerUz,
             'answer->ru' => $answerRu,

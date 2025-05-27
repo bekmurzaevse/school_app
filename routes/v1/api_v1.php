@@ -15,6 +15,7 @@ use App\Http\Controllers\v1\NewsController;
 use App\Http\Controllers\v1\RuleController;
 use App\Http\Controllers\v1\SchoolController;
 use App\Http\Controllers\v1\EmployeeController;
+use App\Http\Controllers\v1\InformationController;
 use App\Http\Controllers\v1\SchoolHourController;
 use App\Http\Controllers\v1\TagController;
 use App\Http\Controllers\v1\TargetController;
@@ -165,6 +166,12 @@ Route::middleware('auth:sanctum')->group(function () {
             Route::put('update/{id}', [ClubController::class, 'update']);
             Route::delete('delete/{id}', [ClubController::class, 'delete']);
         });
+
+        Route::prefix('informations')->group(function () {
+            Route::post('/create', [InformationController::class, 'create']);
+            Route::put('/update/{id}', [InformationController::class, 'update']);
+            Route::delete('/delete/{id}', [InformationController::class, 'delete']);
+        });
     });
 });
 
@@ -247,4 +254,8 @@ Route::prefix('histories')->group(function () {
 Route::prefix('school-hours')->group(function () {
     Route::get('/', [SchoolHourController::class, 'index']);
     Route::get('/{id}', [SchoolHourController::class, 'show']);
+});
+Route::prefix('informations')->group(function () {
+    Route::get('/', [InformationController::class, 'index']);
+    Route::get('/{id}', [InformationController::class, 'show']);
 });

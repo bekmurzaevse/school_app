@@ -18,13 +18,13 @@ class ShowAction
     {
         try {
             $key = 'faqs:show:' . app()->getLocale() . ':' . md5(request()->fullUrl());
-            $category = Cache::remember($key, now()->addDay(), function () use ($id) {
+            $faq = Cache::remember($key, now()->addDay(), function () use ($id) {
                 return Faq::with('school')->findOrFail($id);
             });
 
             return static::toResponse(
                 message: "$id - FAQ",
-                data: new FaqResource($category)
+                data: new FaqResource($faq)
             );
         } catch (ModelNotFoundException $ex) {
             throw new ApiResponseException("$id - FAQ not found", 404);
