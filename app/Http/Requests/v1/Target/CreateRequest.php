@@ -28,10 +28,10 @@ class CreateRequest extends FormRequest
             'name.ru' => 'required|string|unique:targets,name->ru',
             'name.en' => 'required|string|unique:targets,name->en',
             'description' => 'required|array',
-            'description.kk' => 'required|string|unique:targets,description->kk',
-            'description.uz' => 'required|string|unique:targets,description->uz',
-            'description.ru' => 'required|string|unique:targets,description->ru',
-            'description.en' => 'required|string|unique:targets,description->en',
+            'description.kk' => 'required|string',
+            'description.uz' => 'required|string',
+            'description.ru' => 'required|string',
+            'description.en' => 'required|string',
         ];
     }
 
@@ -53,10 +53,6 @@ class CreateRequest extends FormRequest
             'description.uz.required' => "UZ description polya ma'jbu'riy",
             'description.ru.required' => "RU description polya ma'jbu'riy",
             'description.en.required' => "EN description polya ma'jbu'riy",
-            'description.kk.unique' => "Bunday description.kk bazada bar!",
-            'description.uz.unique' => "Bunday description.uz bazada bar!",
-            'description.ru.unique' => "Bunday description.ru bazada bar!",
-            'description.en.unique' => "Bunday description.en bazada bar!",
         ];
     }
 }

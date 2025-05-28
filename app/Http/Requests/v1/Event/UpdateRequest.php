@@ -23,15 +23,15 @@ class UpdateRequest extends FormRequest
     {
         return [
             'name' => 'required|array',
-            'name.kk' => 'required|string|unique:events,name->kk',
-            'name.uz' => 'required|string|unique:events,name->uz',
-            'name.ru' => 'required|string|unique:events,name->ru',
-            'name.en' => 'required|string|unique:events,name->en',
+            'name.kk' => 'required|string|unique:events,name->kk,',
+            'name.uz' => 'required|string|unique:events,name->uz,',
+            'name.ru' => 'required|string|unique:events,name->ru,',
+            'name.en' => 'required|string|unique:events,name->en,',
             'description' => 'required|array',
-            'description.kk' => 'required|string|unique:events,description->kk',
-            'description.uz' => 'required|string|unique:events,description->uz',
-            'description.ru' => 'required|string|unique:events,description->ru',
-            'description.en' => 'required|string|unique:events,description->en',
+            'description.kk' => 'required|string',
+            'description.uz' => 'required|string',
+            'description.ru' => 'required|string',
+            'description.en' => 'required|string',
             'start_time' => 'required|date_format:Y-m-d H:i:s',
             'location' => 'required|string',
         ];
