@@ -71,7 +71,6 @@ class PositionTest extends TestCase
         $descriptionRu = 'description ru';
         $descriptionEn = 'description en';
 
-        $school = School::inRandomOrder()->first();
         $data = [
             'name' => [
                 'kk' => $nameKk,
@@ -79,7 +78,6 @@ class PositionTest extends TestCase
                 'ru' => $nameRu,
                 'en' => $nameEn,
             ],
-            'school_id' => $school->id,
             'description' => [
                 'kk' => $descriptionKk,
                 'uz' => $descriptionUz,
@@ -102,7 +100,6 @@ class PositionTest extends TestCase
             'name->uz' => $nameUz,
             'name->ru' => $nameRu,
             'name->en' => $nameEn,
-            'school_id' => $school->id,
             'description->kk' => $descriptionKk,
             'description->uz' => $descriptionUz,
             'description->ru' => $descriptionRu,
@@ -130,7 +127,6 @@ class PositionTest extends TestCase
         $descriptionRu = 'description ru';
         $descriptionEn = 'description en';
 
-        $school = School::inRandomOrder()->first();
         $position = Position::inRandomOrder()->first();
         $data = [
             'name' => [
@@ -139,7 +135,6 @@ class PositionTest extends TestCase
                 'ru' => $nameRu,
                 'en' => $nameEn,
             ],
-            'school_id' => $school->id,
             'description' => [
                 'kk' => $descriptionKk,
                 'uz' => $descriptionUz,
@@ -162,7 +157,6 @@ class PositionTest extends TestCase
             'name->uz' => $nameUz,
             'name->ru' => $nameRu,
             'name->en' => $nameEn,
-            'school_id' => $school->id,
             'description->kk' => $descriptionKk,
             'description->uz' => $descriptionUz,
             'description->ru' => $descriptionRu,
@@ -179,7 +173,6 @@ class PositionTest extends TestCase
         $user = User::find(1)->first();
         $this->actingAs($user);
 
-        // $position = Position::factory()->create();
         $position = Position::inRandomOrder()->first();
 
         $response = $this->deleteJson("/api/v1/positions/delete/" . $position->id);

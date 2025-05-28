@@ -70,7 +70,6 @@ class AlbumTest extends TestCase
         $descriptionRu = 'description ru';
         $descriptionEn = 'description en';
 
-        $school = School::inRandomOrder()->first();
         $data = [
             'title' => [
                 'kk' => $titleKk,
@@ -78,7 +77,6 @@ class AlbumTest extends TestCase
                 'ru' => $titleRu,
                 'en' => $titleEn,
             ],
-            'school_id' => $school->id,
             'description' => [
                 'kk' => $descriptionKk,
                 'uz' => $descriptionUz,
@@ -101,7 +99,6 @@ class AlbumTest extends TestCase
             'title->uz' => $titleUz,
             'title->ru' => $titleRu,
             'title->en' => $titleEn,
-            'school_id' => $school->id,
             'description->kk' => $descriptionKk,
             'description->uz' => $descriptionUz,
             'description->ru' => $descriptionRu,
@@ -129,7 +126,6 @@ class AlbumTest extends TestCase
         $descriptionRu = 'description ru';
         $descriptionEn = 'description en';
 
-        $school = School::inRandomOrder()->first();
         $album = Album::inRandomOrder()->first();
         $data = [
             'title' => [
@@ -138,7 +134,6 @@ class AlbumTest extends TestCase
                 'ru' => $titleRu,
                 'en' => $titleEn,
             ],
-            'school_id' => $school->id,
             'description' => [
                 'kk' => $descriptionKk,
                 'uz' => $descriptionUz,
@@ -161,7 +156,6 @@ class AlbumTest extends TestCase
             'title->uz' => $titleUz,
             'title->ru' => $titleRu,
             'title->en' => $titleEn,
-            'school_id' => $school->id,
             'description->kk' => $descriptionKk,
             'description->uz' => $descriptionUz,
             'description->ru' => $descriptionRu,
