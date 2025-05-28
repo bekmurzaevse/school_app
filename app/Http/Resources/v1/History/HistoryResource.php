@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources\v1\History;
 
+use App\Http\Resources\v1\School\SchoolResource;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -11,7 +12,7 @@ class HistoryResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'school' => $this->school,
+            'school' => new SchoolResource($this->school),
             'year' => $this->year,
             'text' => $this->text,
             'created_at' => $this->created_at->format('Y-m-d H:i:s'),

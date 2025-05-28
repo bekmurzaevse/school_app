@@ -23,11 +23,10 @@ class UpdateRequest extends FormRequest
     {
         return [
             'title' => 'required|array',
-            'title.kk' => 'required|string',
-            'title.uz' => 'required|string',
-            'title.ru' => 'required|string',
-            'title.en' => 'required|string',
-            'school_id' => 'required|integer|exists:schools,id',
+            'title.kk' => 'required|string|unique:albums,title->kk',
+            'title.uz' => 'required|string|unique:albums,title->uz',
+            'title.ru' => 'required|string|unique:albums,title->ru',
+            'title.en' => 'required|string|unique:albums,title->en',
             'description' => 'nullable|array',
             'description.kk' => 'nullable|string',
             'description.uz' => 'nullable|string',
@@ -48,8 +47,6 @@ class UpdateRequest extends FormRequest
             'title.uz.unique' => "Bunday title.uz bazada bar!",
             'title.ru.unique' => "Bunday title.ru bazada bar!",
             'title.en.unique' => "Bunday title.en bazada bar!",
-            'school_id.required' => "school_id polya ma'jbu'riy",
-            'school_id.exists' => "Bunday school_id bazada tabilmadi",
         ];
     }
 }

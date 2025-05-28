@@ -25,7 +25,7 @@ class ShowAction
         try {
             $key = 'histories:show:' . app()->getLocale() . ':' . md5(request()->fullUrl());
             $history = Cache::remember($key, now()->addDay(), function () use ($id) {
-                return History::findOrFail($id);
+                return History::with('school')->findOrFail($id);
             });
 
             return static::toResponse(

@@ -11,7 +11,7 @@ class UpdateRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return true;
+        return auth()->check();
     }
 
     /**
@@ -35,6 +35,35 @@ class UpdateRequest extends FormRequest
             'description.en' => 'required|string',
             'start_time' => 'required|date_format:Y-m-d H:i:s',
             'location' => 'required|string',
+        ];
+    }
+
+    public function messages(): array
+    {
+        return [
+            'name.required' => "name polya ma'jbu'riy.",
+            'name.array' => "name maydani array boliwi kerek.",
+            'name.kk.required' => "Kk ati ma'jbu'riy.",
+            'name.uz.required' => "Uzb ati ma'jbu'riy.",
+            'name.ru.required' => "Ru ati ma'jbu'riy.",
+            'name.en.required' => "En ati ma'jbu'riy.",
+
+            'school_id.required' => "school_id ma'jbu'riy.",
+            'school_id.integer' => "school_id pu'tin san boliwi kerek.",
+            'school_id.exists' => "school_id bazada tabilmadi.",
+
+            'description.required' => "description maydani ma'jbu'riy.",
+            'description.array' => "description maydani array boliwi kerek.",
+            'description.kk.required' => "Kk description ma'jbu'riy.",
+            'description.uz.required' => "Uzb description ma'jbu'riy.",
+            'description.ru.required' => "Ru description ma'jbu'riy.",
+            'description.en.required' => "En description ma'jbu'riy.",
+
+            'start_time.required' => "Baslaniw waqti ma'jbu'riy.",
+            'start_time.date_format' => "start_time formati qa'te. Duris format: Y-m-d H:i:s",
+
+            'location.required' => "Ma'nzil (location) ma'jbu'riy.",
+            'location.string' => "Ma'nzil (location) string boliwi kerek.",
         ];
     }
 }

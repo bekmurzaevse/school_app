@@ -22,12 +22,11 @@ class CreateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'school_id' => 'required|integer|exists:schools,id',
             'title' => 'required|array',
-            'title.kk' => 'required|string',
-            'title.uz' => 'required|string',
-            'title.ru' => 'required|string',
-            'title.en' => 'required|string',
+            'title.kk' => 'required|string|unique:school_hours,title->kk',
+            'title.uz' => 'required|string|unique:school_hours,title->uz',
+            'title.ru' => 'required|string|unique:school_hours,title->ru',
+            'title.en' => 'required|string|unique:school_hours,title->en',
             'workday' => 'required|array',
             'workday.kk' => 'required|string',
             'workday.uz' => 'required|string',
@@ -58,21 +57,11 @@ class CreateRequest extends FormRequest
             'workday.uz.required' => "UZ workday polya ma'jbu'riy",
             'workday.ru.required' => "RU workday polya ma'jbu'riy",
             'workday.en.required' => "EN workday polya ma'jbu'riy",
-            'workday.kk.unique' => "Bunday workday.kk bazada bar!",
-            'workday.uz.unique' => "Bunday workday.uz bazada bar!",
-            'workday.ru.unique' => "Bunday workday.ru bazada bar!",
-            'workday.en.unique' => "Bunday workday.en bazada bar!",
             'holiday.required' => "holiday polya ma'jbu'riy",
             'holiday.kk.required' => "KK holiday polya ma'jbu'riy",
             'holiday.uz.required' => "UZ holiday polya ma'jbu'riy",
             'holiday.ru.required' => "RU holiday polya ma'jbu'riy",
             'holiday.en.required' => "EN holiday polya ma'jbu'riy",
-            'holiday.kk.unique' => "Bunday holiday.kk bazada bar!",
-            'holiday.uz.unique' => "Bunday holiday.uz bazada bar!",
-            'holiday.ru.unique' => "Bunday holiday.ru bazada bar!",
-            'holiday.en.unique' => "Bunday holiday.en bazada bar!",
-            'school_id.required' => "school_id polya ma'jbu'riy",
-            'school_id.exists' => "Bunday school_id bazada tabilmadi",
         ];
     }
 }

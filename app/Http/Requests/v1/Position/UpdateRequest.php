@@ -22,7 +22,6 @@ class UpdateRequest extends FormRequest
             'name.uz' => 'required|string|unique:positions,name->uz',
             'name.ru' => 'required|string|unique:positions,name->ru',
             'name.en' => 'required|string|unique:positions,name->en',
-            'school_id' => 'required|integer|exists:schools,id',
             'description' => 'nullable|array',
             'description.kk' => 'nullable|string',
             'description.uz' => 'nullable|string',
@@ -43,8 +42,6 @@ class UpdateRequest extends FormRequest
             'name.uz.unique' => "Bunday name.uz bazada bar!",
             'name.ru.unique' => "Bunday name.ru bazada bar!",
             'name.en.unique' => "Bunday name.en bazada bar!",
-            'school_id.required' => "school_id polya ma'jbu'riy",
-            'school_id.exists' => "Bunday school_id bazada tabilmadi",
         ];
     }
 

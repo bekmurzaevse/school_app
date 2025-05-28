@@ -24,7 +24,7 @@ class UpdateAction
     public function __invoke(int $id, UpdateDto $dto): JsonResponse
     {
         try {
-            $history = History::findOrFail($id);
+            $history = History::with('school')->findOrFail($id);
             $history->update([
                 'school_id' => $dto->schoolId,
                 'year' => $dto->year,

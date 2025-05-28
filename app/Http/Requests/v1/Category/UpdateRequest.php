@@ -11,7 +11,7 @@ class UpdateRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return true;
+        return auth()->check();
     }
 
     /**
@@ -32,6 +32,24 @@ class UpdateRequest extends FormRequest
             'description.uz' => 'nullable|string',
             'description.ru' => 'nullable|string',
             'description.kk' => 'nullable|string',
+        ];
+    }
+    
+    public function messages(): array
+    {
+        return [
+            'name.required' => "name polya ma'jbu'riy",
+            'name.array' => "name maydani array boliwi kerek.",
+            'name.en.required' => "En at ma'jbu'riy.",
+            'name.uz.required' => "Uzb at ma'jbu'riy.",
+            'name.ru.required' => "Ru at ma'jbu'riy.",
+            'name.kk.required' => "Qq at ma'jbu'riy.",
+
+            'description.array' => "description maydani array boliwi kerek.",
+            'description.en.string' => "En description polya string boliwi kerek.",
+            'description.uz.string' => "Uzb description polya string boliwi kerek.",
+            'description.ru.string' => "Ru description polya string boliwi kerek.",
+            'description.kk.string' => "Kk description polya string boliwi kerek.",
         ];
     }
 }
