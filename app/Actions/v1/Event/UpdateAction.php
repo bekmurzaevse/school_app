@@ -28,7 +28,6 @@ class UpdateAction
             $event->update([
                 'name' => $dto->name,
                 'description' => $dto->description,
-                'school_id' => $dto->schoolId,
                 'start_time' => $dto->startTime,
                 'location' => $dto->location,
             ]);

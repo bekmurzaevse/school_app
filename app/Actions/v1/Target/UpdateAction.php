@@ -26,7 +26,6 @@ class UpdateAction
         try {
             $target = Target::with('school')->findOrFail($id);
             $target->update([
-                'school_id' => $dto->schoolId,
                 'name' => $dto->name,
                 'description' => $dto->description
             ]);

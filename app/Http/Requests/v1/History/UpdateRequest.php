@@ -24,11 +24,10 @@ class UpdateRequest extends FormRequest
         return [
             'year' => 'required|integer',
             'text' => 'required|array',
-            'text.kk' => 'required|string',
-            'text.uz' => 'required|string',
-            'text.ru' => 'required|string',
-            'text.en' => 'required|string',
-            'school_id' => 'required|integer|exists:schools,id',
+            'text.kk' => 'required|string|unique:histories,text->kk,',
+            'text.uz' => 'required|string|unique:histories,text->uz,',
+            'text.ru' => 'required|string|unique:histories,text->ru,',
+            'text.en' => 'required|string|unique:histories,text->en,',
         ];
     }
 
@@ -47,9 +46,6 @@ class UpdateRequest extends FormRequest
             'text.uz.unique' => "Bunday text.uz bazada bar!",
             'text.ru.unique' => "Bunday text.ru bazada bar!",
             'text.en.unique' => "Bunday text.en bazada bar!",
-
-            'school_id.required' => "school_id polya ma'jbu'riy",
-            'school_id.exists' => "Bunday school_id bazada tabilmadi",
         ];
     }
 }

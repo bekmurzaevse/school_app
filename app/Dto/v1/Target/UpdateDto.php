@@ -9,7 +9,6 @@ readonly class UpdateDto
     public function __construct(
         public array $name,
         public array $description,
-        public int $schoolId,
     ) {}
 
     /**
@@ -22,7 +21,6 @@ readonly class UpdateDto
         return new self(
             name: $request->get('name'),
             description: $request->get('description'),
-            schoolId: $request->get('school_id'),
         );
     }
 }

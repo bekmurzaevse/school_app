@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\School;
 use App\Models\Target;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -25,7 +26,7 @@ class TargetSeeder extends Seeder
                 'uz' => 'Bizning maqsad chiqindilarni kamaytirish va yashil energiyani targ‘ib qilish.',
                 'ru' => 'Наша цель — сократить отходы и продвигать зеленую энергию.'
             ],
-            'school_id' => 1,
+            'school_id' => School::inRandomOrder()->first()->id,
         ]);
 
         Target::create([
@@ -41,7 +42,7 @@ class TargetSeeder extends Seeder
                 'ru' => 'Мы сосредотачиваемся на доступном образовании для всех.',
                 'kk' => 'Biz ha\'mmemiz ashiq bilimlendiriwge itibar qaratamiz.',
             ],
-            'school_id' => 1,
+            'school_id' => School::inRandomOrder()->first()->id,
         ]);
     }
 }
