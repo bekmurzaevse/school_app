@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\History;
+use App\Models\School;
 use Illuminate\Database\Seeder;
 
 class HistorySeeder extends Seeder
@@ -20,7 +21,7 @@ class HistorySeeder extends Seeder
                 'ru' => 'Запущена первая экологичная кампания.',
                 'kk' => 'Birinshi ekologiyalıq baslama baslanǵan jıl.'
             ],
-            'school_id' => 1,
+            'school_id' => School::inRandomOrder()->first()->id,
         ]);
     }
 }

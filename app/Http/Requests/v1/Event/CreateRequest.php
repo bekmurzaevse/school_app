@@ -23,11 +23,10 @@ class CreateRequest extends FormRequest
     {
         return [
             'name' => 'required|array',
-            'name.kk' => 'required|string',
-            'name.uz' => 'required|string',
-            'name.ru' => 'required|string',
-            'name.en' => 'required|string',
-            'school_id' => 'required|integer|exists:schools,id',
+            'name.kk' => 'required|string|unique:events,name->kk,',
+            'name.uz' => 'required|string|unique:events,name->uz,',
+            'name.ru' => 'required|string|unique:events,name->ru,',
+            'name.en' => 'required|string|unique:events,name->en,',
             'description' => 'required|array',
             'description.kk' => 'required|string',
             'description.uz' => 'required|string',
@@ -47,10 +46,6 @@ class CreateRequest extends FormRequest
             'name.uz.required' => "Uzb ati ma'jbu'riy.",
             'name.ru.required' => "Ru ati ma'jbu'riy.",
             'name.en.required' => "En ati ma'jbu'riy.",
-
-            'school_id.required' => "school_id ma'jbu'riy.",
-            'school_id.integer' => "school_id pu'tin san boliwi kerek.",
-            'school_id.exists' => "school_id bazada tabilmadi.",
 
             'description.required' => "description maydani ma'jbu'riy.",
             'description.array' => "description maydani array boliwi kerek.",
