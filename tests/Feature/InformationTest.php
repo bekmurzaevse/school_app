@@ -64,7 +64,6 @@ class InformationTest extends TestCase
         $descriptionRu = 'description ru' . Str::random(4);
         $descriptionEn = 'description en' . Str::random(4);
 
-        $school = School::inRandomOrder()->first();
         $data = [
             'title' => [
                 'kk' => $titleKk,
@@ -73,7 +72,6 @@ class InformationTest extends TestCase
                 'en' => $titleEn,
             ],
             'count' => rand(50, 200),
-            'school_id' => $school->id,
             'description' => [
                 'kk' => $descriptionKk,
                 'uz' => $descriptionUz,
@@ -96,7 +94,6 @@ class InformationTest extends TestCase
             'title->uz' => $titleUz,
             'title->ru' => $titleRu,
             'title->en' => $titleEn,
-            'school_id' => $school->id,
             'description->kk' => $descriptionKk,
             'description->uz' => $descriptionUz,
             'description->ru' => $descriptionRu,
@@ -119,7 +116,6 @@ class InformationTest extends TestCase
         $descriptionRu = 'description ru' . Str::random(4);
         $descriptionEn = 'description en' . Str::random(4);
 
-        $school = School::inRandomOrder()->first();
         $information = Information::inRandomOrder()->first();
         $data = [
             'title' => [
@@ -129,7 +125,6 @@ class InformationTest extends TestCase
                 'en' => $titleEn,
             ],
             'count' => rand(20, 200),
-            'school_id' => $school->id,
             'description' => [
                 'kk' => $descriptionKk,
                 'uz' => $descriptionUz,
@@ -152,7 +147,6 @@ class InformationTest extends TestCase
             'title->uz' => $titleUz,
             'title->ru' => $titleRu,
             'title->en' => $titleEn,
-            'school_id' => $school->id,
             'description->kk' => $descriptionKk,
             'description->uz' => $descriptionUz,
             'description->ru' => $descriptionRu,

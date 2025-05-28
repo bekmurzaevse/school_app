@@ -76,7 +76,6 @@ class SchoolHourTest extends TestCase
         $holidayRu = 'holiday ru'  . Str::random(4);
         $holidayEn = 'holiday en'  . Str::random(4);
 
-        $school = School::inRandomOrder()->first();
         $data = [
             'title' => [
                 'kk' => $titleKk,
@@ -84,7 +83,6 @@ class SchoolHourTest extends TestCase
                 'ru' => $titleRu,
                 'en' => $titleEn,
             ],
-            'school_id' => $school->id,
             'workday' => [
                 'kk' => $workdayKk,
                 'uz' => $workdayUz,
@@ -113,7 +111,6 @@ class SchoolHourTest extends TestCase
             'title->uz' => $titleUz,
             'title->ru' => $titleRu,
             'title->en' => $titleEn,
-            'school_id' => $school->id,
             'workday->kk' => $workdayKk,
             'workday->uz' => $workdayUz,
             'workday->ru' => $workdayRu,
@@ -149,7 +146,6 @@ class SchoolHourTest extends TestCase
         $holidayRu = 'holiday ru' . Str::random(4);
         $holidayEn = 'holiday en' . Str::random(4);
 
-        $school = School::inRandomOrder()->first();
         $schoolHour = SchoolHour::inRandomOrder()->first();
         $data = [
             'title' => [
@@ -158,7 +154,6 @@ class SchoolHourTest extends TestCase
                 'ru' => $titleRu,
                 'en' => $titleEn,
             ],
-            'school_id' => $school->id,
             'workday' => [
                 'kk' => $workdayKk,
                 'uz' => $workdayUz,
@@ -187,7 +182,6 @@ class SchoolHourTest extends TestCase
             'title->uz' => $titleUz,
             'title->ru' => $titleRu,
             'title->en' => $titleEn,
-            'school_id' => $school->id,
             'workday->kk' => $workdayKk,
             'workday->uz' => $workdayUz,
             'workday->ru' => $workdayRu,

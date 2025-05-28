@@ -70,7 +70,6 @@ class FaqTest extends TestCase
         $answerRu = 'answer ru';
         $answerEn = 'answer en';
 
-        $school = School::inRandomOrder()->first();
         $data = [
             'question' => [
                 'kk' => $questionKk,
@@ -78,7 +77,6 @@ class FaqTest extends TestCase
                 'ru' => $questionRu,
                 'en' => $questionEn,
             ],
-            'school_id' => $school->id,
             'answer' => [
                 'kk' => $answerKk,
                 'uz' => $answerUz,
@@ -127,7 +125,6 @@ class FaqTest extends TestCase
         $answerRu = 'answer ru' . Str::random(4);
         $answerEn = 'answer en' . Str::random(4);
 
-        $school = School::inRandomOrder()->first();
         $faq = Faq::inRandomOrder()->first();
         $data = [
             'question' => [
@@ -136,7 +133,6 @@ class FaqTest extends TestCase
                 'ru' => $questionRu,
                 'en' => $questionEn,
             ],
-            'school_id' => $school->id,
             'answer' => [
                 'kk' => $answerKk,
                 'uz' => $answerUz,
@@ -159,7 +155,6 @@ class FaqTest extends TestCase
             'question->uz' => $questionUz,
             'question->ru' => $questionRu,
             'question->en' => $questionEn,
-            'school_id' => $school->id,
             'answer->kk' => $answerKk,
             'answer->uz' => $answerUz,
             'answer->ru' => $answerRu,
