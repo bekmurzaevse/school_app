@@ -26,7 +26,6 @@ class UpdateAction
         try {
             $history = History::with('school')->findOrFail($id);
             $history->update([
-                'school_id' => $dto->schoolId,
                 'year' => $dto->year,
                 'text' => $dto->text
             ]);

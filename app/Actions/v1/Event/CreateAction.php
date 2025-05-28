@@ -4,6 +4,7 @@ namespace App\Actions\v1\Event;
 
 use App\Dto\v1\Event\CreateDto;
 use App\Models\Event;
+use App\Models\School;
 use App\Traits\ResponseTrait;
 use Illuminate\Http\JsonResponse;
 
@@ -21,7 +22,7 @@ class CreateAction
         Event::create([
             'name' => $dto->name,
             'description' => $dto->description,
-            'school_id' => $dto->schoolId,
+            'school_id' => School::first()->id,
             'start_time' => $dto->startTime,
             'location' => $dto->location,
         ]);

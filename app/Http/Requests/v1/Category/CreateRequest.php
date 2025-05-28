@@ -23,10 +23,10 @@ class CreateRequest extends FormRequest
     {
         return [
             'name' => 'required|array',
-            'name.en' => 'required|string',
-            'name.uz' => 'required|string',
-            'name.ru' => 'required|string',
-            'name.kk' => 'required|string',
+            'name.en' => 'required|string|unique:categories,name->en',
+            'name.uz' => 'required|string|unique:categories,name->uz',
+            'name.ru' => 'required|string|unique:categories,name->ru',
+            'name.kk' => 'required|string|unique:categories,name->kk',
             'description' => 'nullable|array',
             'description.en' => 'nullable|string',
             'description.uz' => 'nullable|string',

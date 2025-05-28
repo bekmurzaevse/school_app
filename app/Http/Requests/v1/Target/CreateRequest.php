@@ -23,16 +23,15 @@ class CreateRequest extends FormRequest
     {
         return [
             'name' => 'required|array',
-            'name.kk' => 'required|string',
-            'name.uz' => 'required|string',
-            'name.ru' => 'required|string',
-            'name.en' => 'required|string',
+            'name.kk' => 'required|string|unique:targets,name->kk',
+            'name.uz' => 'required|string|unique:targets,name->uz',
+            'name.ru' => 'required|string|unique:targets,name->ru',
+            'name.en' => 'required|string|unique:targets,name->en',
             'description' => 'required|array',
             'description.kk' => 'required|string',
             'description.uz' => 'required|string',
             'description.ru' => 'required|string',
             'description.en' => 'required|string',
-            'school_id' => 'required|integer|exists:schools,id',
         ];
     }
 
@@ -54,13 +53,6 @@ class CreateRequest extends FormRequest
             'description.uz.required' => "UZ description polya ma'jbu'riy",
             'description.ru.required' => "RU description polya ma'jbu'riy",
             'description.en.required' => "EN description polya ma'jbu'riy",
-            'description.kk.unique' => "Bunday description.kk bazada bar!",
-            'description.uz.unique' => "Bunday description.uz bazada bar!",
-            'description.ru.unique' => "Bunday description.ru bazada bar!",
-            'description.en.unique' => "Bunday description.en bazada bar!",
-
-            'school_id.required' => "school_id polya ma'jbu'riy",
-            'school_id.exists' => "Bunday school_id bazada tabilmadi",
         ];
     }
 }
