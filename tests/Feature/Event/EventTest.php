@@ -96,7 +96,6 @@ class EventTest extends TestCase
                 'en' => 'This is a test event',
                 'kk' => 'Bul test bayram',
             ],
-            'school_id' => 1,
             'start_time' => now()->addDays(3)->toDateTimeString(),
             'location' => 'Main Hall',
         ];
@@ -140,7 +139,6 @@ class EventTest extends TestCase
                 'en' => 'This is an updated event',
                 'kk' => 'Bul jańalangan bayram',
             ],
-            'school_id' => $event->school_id,
             'start_time' => now()->addDays(5)->toDateTimeString(),
             'location' => 'Updated Location',
         ];

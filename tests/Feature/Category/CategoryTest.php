@@ -86,10 +86,10 @@ class CategoryTest extends TestCase
 
         $data = [
             'name' => [
-                'en' => 'Library',
-                'ru' => 'Библиотека',
-                'uz' => 'Kutubxona',
-                'kk' => 'Kitapxana',
+                'en' => 'Library test',
+                'ru' => 'Библиотека test',
+                'uz' => 'Kutubxona test',
+                'kk' => 'Kitapxana test',
             ],
             'description' => [
                 'en' => 'Electronic and traditional library services, list of available books.',
