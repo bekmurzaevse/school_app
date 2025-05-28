@@ -70,12 +70,10 @@ class HistoryTest extends TestCase
     public function test_history_can_create(): void
     {
         $user = User::find(1)->first();
-        $school = School::inRandomOrder()->first();
 
         $this->actingAs($user);
 
         $data = [
-            'school_id' => $school->id,
             'year' => 2025,
             'text' => [
                 'en' => 'Plan for 2025',
@@ -107,7 +105,6 @@ class HistoryTest extends TestCase
         $history = History::inRandomOrder()->first();
 
         $updatedData = [
-            'school_id' => $history->school_id,
             'year' => 2026,
             'text' => [
                 'en' => 'Updated plan',

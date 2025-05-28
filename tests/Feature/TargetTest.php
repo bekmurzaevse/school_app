@@ -70,12 +70,10 @@ class TargetTest extends TestCase
     {
 
         $user = User::find(1)->first();
-        $school = School::inRandomOrder()->first();
 
         $this->actingAs($user);
 
         $data = [
-            'school_id' => $school->id,
             'name' => [
                 'en' => 'Yearly Target',
                 'ru' => 'Годовая цель',
@@ -111,11 +109,9 @@ class TargetTest extends TestCase
         $user = User::find(1)->first();
         $this->actingAs($user);
 
-        $school = School::inRandomOrder()->first();
         $target = Target::inRandomOrder()->first();
 
         $updatedData = [
-            'school_id' => $school->id,
             'name' => [
                 'en' => 'Updated Target',
                 'ru' => 'Обновлённая цель',
