@@ -15,8 +15,8 @@ class CreateAction
     {
         $data = [
             'title' => $dto->title,
-            'school_id' => $dto->schoolId,
             'text' => $dto->text,
+            'school_id' => 1,
         ];
 
         Rule::create($data);

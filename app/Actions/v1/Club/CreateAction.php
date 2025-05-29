@@ -15,9 +15,9 @@ class CreateAction
     {
         $data = [
             'name' => $dto->name,
-            'school_id' => $dto->schoolId,
             'text' => $dto->text,
             'schedule' => $dto->schedule,
+            'school_id' => 1,
             'photo_id' => $dto->photoId,
         ];
 

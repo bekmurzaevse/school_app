@@ -101,7 +101,6 @@ class ValueTest extends TestCase
                 'uz' => 'text uz rule test',
                 'kk' => 'text kk rule test',
             ],
-            'school_id' => 1,
             'photo_id' => 1,
         ];
 
@@ -150,7 +149,6 @@ class ValueTest extends TestCase
                 'uz' => 'updated text uz rule test',
                 'kk' => 'updated text kk rule test',
             ],
-            'school_id' => 1,
             'photo_id' => 1,
         ];
 

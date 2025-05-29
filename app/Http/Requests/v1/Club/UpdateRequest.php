@@ -27,7 +27,6 @@ class UpdateRequest extends FormRequest
             'name.uz' => 'required|string',
             'name.ru' => 'required|string',
             'name.en' => 'required|string',
-            'school_id' => 'required|numeric|exists:schools,id',
             'text' => 'required|array',
             'text.kk' => 'required|string',
             'text.uz' => 'required|string',
@@ -38,7 +37,7 @@ class UpdateRequest extends FormRequest
             'schedule.uz' => 'required|string',
             'schedule.ru' => 'required|string',
             'schedule.en' => 'required|string',
-            'photo_id' => 'required|numeric|exists:photos,id',
+            'photo_id' => 'required|integer|exists:photos,id',
         ];
     }
 }

@@ -8,7 +8,6 @@ readonly class CreateDto
 {
     public function __construct(
         public array $title,
-        public int $schoolId,
         public array $text
     ) {
     }
@@ -22,7 +21,6 @@ readonly class CreateDto
     {
         return new self(
             title: $request->title,
-            schoolId: $request->school_id,
             text: $request->text,
         );
     }

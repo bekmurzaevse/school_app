@@ -106,7 +106,6 @@ class DocumentTest extends TestCase
                 'uz' => 'Maktabning yillik hisobotida maktabning yutuqlari va faoliyati haqida ma\'lumot berilgan.',
                 'kk' => "Mekteptin' jıllıq esabatında mekteptin' jetiskenlikleri ha'm iskerligi haqqında mag'lıwmat berilgen",
             ],
-            'school_id' => 1,
             'category_id' => 1,
             'file' => $file
         ];
@@ -142,7 +141,6 @@ class DocumentTest extends TestCase
                 'uz' => 'Maktabning yillik hisobotida maktabning yutuqlari va faoliyati haqida ma\'lumot berilgan. update',
                 'kk' => "Mekteptin' jıllıq esabatında mekteptin' jetiskenlikleri ha'm iskerligi haqqında mag'lıwmat berilgen update",
             ],
-            'school_id' => 1,
             'category_id' => 2,
             'file' => $file
         ];

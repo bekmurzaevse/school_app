@@ -37,10 +37,10 @@ class UpdateRequest extends FormRequest
             'content.uz' => 'required|string',
             'content.ru' => 'required|string',
             'content.en' => 'required|string',
-            'author_id' => 'required|numeric|exists:users,id',
-            'cover_image' => 'required|numeric|exists:photos,id',
+            'author_id' => 'required|integer|exists:users,id',
+            'cover_image' => 'required|integer|exists:photos,id',
             'tags' => 'nullable|array',
-            'tags.*' => 'required|numeric|exists:tags,id'
+            'tags.*' => 'required|integer|exists:tags,id'
         ];
     }
 }

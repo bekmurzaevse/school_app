@@ -29,9 +29,9 @@ class CreateRequest extends FormRequest
             'full_name.ru' => 'required|string',
             'full_name.en' => 'required|string',
             'phone' => 'required|string',
-            'photo_id' => 'required|numeric|exists:photos,id',
+            'photo_id' => 'required|integer|exists:photos,id',
             'email' => 'required|email',
-            'position_id' => 'required|numeric|exists:positions,id',
+            'position_id' => 'required|integer|exists:positions,id',
             'birth_date' => 'required|date_format:Y-m-d|before:today'
         ];
     }

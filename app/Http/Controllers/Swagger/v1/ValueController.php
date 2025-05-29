@@ -36,7 +36,7 @@ class ValueController extends Controller
         required: true,
         description: "Value creation data",
         content: new OA\JsonContent(
-            required: ["name", "text", "school_id", "photo_id"],
+            required: ["name", "text", "photo_id"],
             properties: [
                 new OA\Property(
                     property: "name",
@@ -60,7 +60,6 @@ class ValueController extends Controller
                         new OA\Property(property: "en", type: "string", example: "text en create"),
                     ]
                 ),
-                new OA\Property(property: "school_id", type: "int", example: "1"),
                 new OA\Property(property: "photo_id", type: "int", example: "1"),
             ]
         ),
@@ -83,7 +82,7 @@ class ValueController extends Controller
         required: true,
         description: "Value update data",
         content: new OA\JsonContent(
-            required: ["name", "text", "school_id", "photo_id"],
+            required: ["name", "text", "photo_id"],
             properties: [
                 new OA\Property(
                     property: "name",
@@ -107,7 +106,6 @@ class ValueController extends Controller
                         new OA\Property(property: "en", type: "string", example: "text en update"),
                     ]
                 ),
-                new OA\Property(property: "school_id", type: "int", example: "1"),
                 new OA\Property(property: "photo_id", type: "int", example: "1"),
             ]
         ),

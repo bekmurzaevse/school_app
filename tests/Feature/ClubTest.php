@@ -97,7 +97,6 @@ class ClubTest extends TestCase
                 'uz' => 'name uz rule test',
                 'kk' => 'name kk rule test',
             ],
-            'school_id' => 1,
             'text' => [
                 'en' => 'text en rule test',
                 'ru' => 'text ru rule test',
@@ -156,7 +155,6 @@ class ClubTest extends TestCase
                 'uz' => 'updated name uz rule test',
                 'kk' => 'updated name kk rule test',
             ],
-            'school_id' => 1,
             'text' => [
                 'en' => 'updated text en rule test',
                 'ru' => 'updated text ru rule test',

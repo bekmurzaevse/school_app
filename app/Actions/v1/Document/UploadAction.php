@@ -24,9 +24,9 @@ class UploadAction
 
         $data = [
             'name' => $dto->name,
-            'school_id' => $dto->schoolId,
             'category_id' => $dto->categoryId,
             'description' => $dto->description,
+            'school_id' => 1,
             'path' => $savedPath
         ];
 

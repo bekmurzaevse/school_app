@@ -15,9 +15,9 @@ class CreateAction
     {
         $data = [
             'name' => $dto->name,
-            'school_id' => $dto->schoolId,
             'photo_id' => $dto->photoId,
             'text' => $dto->text,
+            'school_id' => 1, 
         ];
 
         Value::create($data);

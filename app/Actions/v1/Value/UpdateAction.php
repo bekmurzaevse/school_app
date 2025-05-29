@@ -21,7 +21,6 @@ class UpdateAction
             $value->update([
                 'name' => $dto->name,
                 'text' => $dto->text,
-                'school_id' => $dto->schoolId,
                 'photo_id' => $dto->photoId,
             ]);
 
