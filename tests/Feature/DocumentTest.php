@@ -116,6 +116,18 @@ class DocumentTest extends TestCase
             'status' => 200,
             'message' => 'Document created',
         ]);
+
+        $this->assertDatabaseHas('documents', [
+            'name->en' => 'School Annual Report',
+            'name->ru' => 'Ежегодный отчет школы',
+            'name->uz' => 'Maktabning yillik hisobot',
+            'name->kk' => "Mekteptin' jıllıq esabatı",
+            'description->en' => 'Annual report detailing the school achievements and activities.',
+            'description->ru' => 'Ежегодный отчет, в котором подробно описаны достижения и мероприятия школы.',
+            'description->uz' => 'Maktabning yillik hisobotida maktabning yutuqlari va faoliyati haqida ma\'lumot berilgan.',
+            'description->kk' => "Mekteptin' jıllıq esabatında mekteptin' jetiskenlikleri ha'm iskerligi haqqında mag'lıwmat berilgen",
+            'category_id' => 1,
+        ]);
     }
 
     /**
@@ -161,6 +173,19 @@ class DocumentTest extends TestCase
                     'download_url',
                 ]
             ]);
+            
+        $this->assertDatabaseHas('documents', [
+            'id' => $documentId,
+            'name->en' => 'School Annual Report update',
+            'name->ru' => 'Ежегодный отчет школы update',
+            'name->uz' => 'Maktabning yillik hisobot update',
+            'name->kk' => "Mekteptin' jıllıq esabatı update",
+            'description->en' => 'Annual report detailing the school achievements and activities. update',
+            'description->ru' => 'Ежегодный отчет, в котором подробно описаны достижения и мероприятия школы. update',
+            'description->uz' => 'Maktabning yillik hisobotida maktabning yutuqlari va faoliyati haqida ma\'lumot berilgan. update',
+            'description->kk' => "Mekteptin' jıllıq esabatında mekteptin' jetiskenlikleri ha'm iskerligi haqqında mag'lıwmat berilgen update",
+            'category_id' => 2,
+        ]);
     }
 
     /**

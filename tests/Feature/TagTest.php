@@ -105,6 +105,17 @@ class TagTest extends TestCase
             'status' => 200,
             'message' => 'Tag created',
         ]);
+
+        $this->assertDatabaseHas('tags', [
+            'name->en' => 'Climate Change',
+            'name->ru' => 'Изменение климата',
+            'name->uz' => 'Iqlim o\'zgarishi',
+            'name->kk' => 'Íqlım ózgeriwi',
+            'description->en' => 'News and analysis about the impacts and studies of climate change.',
+            'description->ru' => 'Новости и аналитика о воздействии и исследованиях изменения климата.',
+            'description->uz' => 'Iqlim o\'zgarishining ta\'siri va tadqiqotlari haqida yangiliklar va tahlillar.',
+            'description->kk' => 'Íqlım ózgeriwiniń tásiri hám izertlewleri haqqında jańalıqlar hám analizler.',
+        ]);
     }
 
     /**
@@ -145,6 +156,18 @@ class TagTest extends TestCase
                     'updated_at',
                 ]
             ]);
+
+        $this->assertDatabaseHas('tags', [
+            'id' => $tagId,
+            'name->en' => 'Russian Science',
+            'name->ru' => 'Российская наука',
+            'name->uz' => 'Rossiya fani',
+            'name->kk' => 'Rossiya páni',
+            'description->en' => 'Updates and discoveries from the Russian scientific community.',
+            'description->ru' => 'Новости и открытия от российского научного сообщества.',
+            'description->uz' => 'Rossiya ilmiy hamjamiyatidan yangiliklar va kashfiyotlar.',
+            'description->kk' => 'Rossiya ilimiy jámiyetshiliginen jańalıqlar hám jańa ashılıwlar.',
+        ]);
     }
 
     /**
