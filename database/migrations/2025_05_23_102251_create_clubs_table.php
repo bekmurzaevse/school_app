@@ -18,6 +18,7 @@ return new class extends Migration
             $table->json('text');
             $table->json('schedule');
             $table->foreignId('photo_id')->constrained('photos')->cascadeOnUpdate()->restrictOnDelete();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

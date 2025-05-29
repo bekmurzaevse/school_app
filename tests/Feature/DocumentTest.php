@@ -179,6 +179,10 @@ class DocumentTest extends TestCase
                 'status' => 200,
                 'message' => 'Document Deleted',
             ]);
+
+        $this->assertSoftDeleted('documents', [
+            'id' => $documentId,
+        ]);
     }
 
     /**

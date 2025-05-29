@@ -205,12 +205,8 @@ class ValueTest extends TestCase
                 'message' => 'Value Deleted',
             ]);
 
-        $this->assertDatabaseMissing('values', [
+        $this->assertSoftDeleted('values', [
             'id' => $valueId,
         ]);
-
-        // $this->assertSoftDeleted('values', [
-        //     'id' => $valueId,
-        // ]);
     }
 }

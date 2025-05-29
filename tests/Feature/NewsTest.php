@@ -194,5 +194,9 @@ class NewsTest extends TestCase
                 'status' => 200,
                 'message' => 'News Deleted',
             ]);
+
+        $this->assertSoftDeleted('news', [
+            'id' => $newsId,
+        ]);
     }
 }

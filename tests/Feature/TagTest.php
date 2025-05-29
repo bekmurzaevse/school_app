@@ -163,5 +163,9 @@ class TagTest extends TestCase
                 'status' => 200,
                 'message' => 'Tag Deleted',
             ]);
+
+        $this->assertSoftDeleted('tags', [
+            'id' => $tagId,
+        ]);
     }
 }

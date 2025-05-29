@@ -198,12 +198,8 @@ class RuleTest extends TestCase
                 'message' => 'Rule Deleted',
             ]);
 
-        $this->assertDatabaseMissing('rules', [
+        $this->assertSoftDeleted('rules', [
             'id' => $ruleId,
         ]);
-
-        // $this->assertSoftDeleted('rules', [
-        //     'id' => $ruleId,
-        // ]);
     }
 }

@@ -227,12 +227,8 @@ class ClubTest extends TestCase
                 'message' => 'Club Deleted',
             ]);
 
-        $this->assertDatabaseMissing('clubs', [
+        $this->assertSoftDeleted('clubs', [
             'id' => $clubId,
         ]);
-
-        // $this->assertSoftDeleted('clubs', [
-        //     'id' => $clubId,
-        // ]);
     }
 }
