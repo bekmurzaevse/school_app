@@ -20,7 +20,6 @@ class UpdateAction
             $club = Club::with(['school', 'photo'])->findOrFail($id);
             $club->update([
                 'name' => $dto->name,
-                'school_id' => $dto->schoolId,
                 'text' => $dto->text,
                 'schedule' => $dto->schedule,
                 'photo_id' => $dto->photoId,

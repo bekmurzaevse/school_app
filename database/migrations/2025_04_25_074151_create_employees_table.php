@@ -18,6 +18,7 @@ return new class extends Migration {
             $table->string('email')->unique();
             $table->foreignId('position_id')->constrained('positions')->cascadeOnUpdate()->restrictOnDelete();
             $table->date('birth_date');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

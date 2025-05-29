@@ -182,5 +182,9 @@ class EmployeeTest extends TestCase
                 'status' => 200,
                 'message' => 'Employee Deleted',
             ]);
+
+        $this->assertSoftDeleted('employees', [
+            'id' => $employeeId,
+        ]);
     }
 }

@@ -18,6 +18,7 @@ return new class extends Migration
             $table->foreignId('school_id')->constrained('schools')->restrictOnDelete()->cascadeOnUpdate();
             $table->foreignId('category_id')->constrained('categories')->restrictOnDelete()->cascadeOnUpdate();
             $table->string('path');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

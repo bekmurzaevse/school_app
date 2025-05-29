@@ -32,7 +32,6 @@ class CreateRequest extends FormRequest
             'text.uz' => 'required|string',
             'text.ru' => 'required|string',
             'text.en' => 'required|string',
-            'school_id' => 'required|numeric|exists:schools,id',
             'photo_id' => 'required|numeric|exists:photos,id',
         ];
     }

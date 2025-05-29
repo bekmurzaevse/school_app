@@ -4,6 +4,7 @@ namespace App\Actions\v1\Document;
 
 use App\Dto\v1\Document\UploadDto;
 use App\Models\Document;
+use App\Models\School;
 use App\Traits\ResponseTrait;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
@@ -24,9 +25,9 @@ class UploadAction
 
         $data = [
             'name' => $dto->name,
-            'school_id' => $dto->schoolId,
             'category_id' => $dto->categoryId,
             'description' => $dto->description,
+            'school_id' => School::first()->id,
             'path' => $savedPath
         ];
 

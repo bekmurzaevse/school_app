@@ -9,7 +9,6 @@ readonly class UpdateDto
     public function __construct(
         public array $title,
         public array $text,
-        public int $schoolId,
     ) {
     }
 
@@ -22,7 +21,6 @@ readonly class UpdateDto
     {
         return new self(
             title: $request->title,
-            schoolId: $request->school_id,
             text: $request->text,
         );
     }

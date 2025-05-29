@@ -4,6 +4,7 @@ namespace App\Actions\v1\Club;
 
 use App\Dto\v1\Club\CreateDto;
 use App\Models\Club;
+use App\Models\School;
 use App\Traits\ResponseTrait;
 use Illuminate\Http\JsonResponse;
 
@@ -15,9 +16,9 @@ class CreateAction
     {
         $data = [
             'name' => $dto->name,
-            'school_id' => $dto->schoolId,
             'text' => $dto->text,
             'schedule' => $dto->schedule,
+            'school_id' => School::first()->id,
             'photo_id' => $dto->photoId,
         ];
 

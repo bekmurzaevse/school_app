@@ -36,7 +36,7 @@ class RuleController extends Controller
         required: true,
         description: "Rule creation data",
         content: new OA\JsonContent(
-            required: ["title", "text", "school_id"],
+            required: ["title", "text"],
             properties: [
                 new OA\Property(
                     property: "title",
@@ -60,7 +60,6 @@ class RuleController extends Controller
                         new OA\Property(property: "en", type: "string", example: "text en create"),
                     ]
                 ),
-                new OA\Property(property: "school_id", type: "int", example: "1"),
             ]
         ),
     )]
@@ -82,7 +81,7 @@ class RuleController extends Controller
         required: true,
         description: "Rule update data",
         content: new OA\JsonContent(
-            required: ["title", "text", "school_id"],
+            required: ["title", "text"],
             properties: [
                 new OA\Property(
                     property: "title",
@@ -106,7 +105,6 @@ class RuleController extends Controller
                         new OA\Property(property: "en", type: "string", example: "text en update"),
                     ]
                 ),
-                new OA\Property(property: "school_id", type: "int", example: "1"),
             ]
         ),
     )]

@@ -120,6 +120,23 @@ class NewsTest extends TestCase
             'status' => 200,
             'message' => 'News created',
         ]);
+
+        $this->assertDatabaseHas('news', [
+            'title->en' => $data['title']['en'],
+            'title->ru' => $data['title']['ru'],
+            'title->uz' => $data['title']['uz'],
+            'title->kk' => $data['title']['kk'],
+            'short_content->en' => $data['short_content']['en'],
+            'short_content->ru' => $data['short_content']['ru'],
+            'short_content->uz' => $data['short_content']['uz'],
+            'short_content->kk' => $data['short_content']['kk'],
+            'content->ru' => $data['content']['ru'],
+            'content->uz' => $data['content']['uz'],
+            'content->kk' => $data['content']['kk'],
+            'content->en' => $data['content']['en'],
+            'author_id' => $data['author_id'],
+            'cover_image' => $data['cover_image']
+        ]);
     }
 
     /**
@@ -173,6 +190,24 @@ class NewsTest extends TestCase
                     'tags',
                 ]
             ]);
+
+        $this->assertDatabaseHas('news', [
+            'id' => $newsId,
+            'title->en' => $data['title']['en'],
+            'title->ru' => $data['title']['ru'],
+            'title->uz' => $data['title']['uz'],
+            'title->kk' => $data['title']['kk'],
+            'short_content->en' => $data['short_content']['en'],
+            'short_content->ru' => $data['short_content']['ru'],
+            'short_content->uz' => $data['short_content']['uz'],
+            'short_content->kk' => $data['short_content']['kk'],
+            'content->ru' => $data['content']['ru'],
+            'content->uz' => $data['content']['uz'],
+            'content->kk' => $data['content']['kk'],
+            'content->en' => $data['content']['en'],
+            'author_id' => $data['author_id'],
+            'cover_image' => $data['cover_image']
+        ]);
     }
 
     /**
@@ -194,5 +229,9 @@ class NewsTest extends TestCase
                 'status' => 200,
                 'message' => 'News Deleted',
             ]);
+
+        $this->assertSoftDeleted('news', [
+            'id' => $newsId,
+        ]);
     }
 }

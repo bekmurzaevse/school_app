@@ -36,7 +36,7 @@ class ClubController extends Controller
         required: true,
         description: "Club creation data",
         content: new OA\JsonContent(
-            required: ["name", "school_id", "text", "schedule", "photo_id"],
+            required: ["name", "text", "schedule", "photo_id"],
             properties: [
                 new OA\Property(
                     property: "name",
@@ -49,7 +49,6 @@ class ClubController extends Controller
                         new OA\Property(property: "en", type: "string", example: "name en"),
                     ]
                 ),
-                new OA\Property(property: "school_id", type: "int", example: "1"),
                 new OA\Property(
                     property: "text",
                     type: "object",
@@ -94,7 +93,7 @@ class ClubController extends Controller
         required: true,
         description: "Club update data",
         content: new OA\JsonContent(
-            required: ["name", "school_id", "text", "schedule", "photo_id"],
+            required: ["name", "text", "schedule", "photo_id"],
             properties: [
                 new OA\Property(
                     property: "name",
@@ -107,7 +106,6 @@ class ClubController extends Controller
                         new OA\Property(property: "en", type: "string", example: "name en update"),
                     ]
                 ),
-                new OA\Property(property: "school_id", type: "int", example: "1"),
                 new OA\Property(
                     property: "text",
                     type: "object",

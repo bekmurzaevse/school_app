@@ -99,7 +99,6 @@ class RuleTest extends TestCase
                 'uz' => 'text uz rule test',
                 'kk' => 'text kk rule test',
             ],
-            'school_id' => 1,
         ];
 
         $response = $this->postJson('/api/v1/rules/create', $data);
@@ -146,7 +145,6 @@ class RuleTest extends TestCase
                 'uz' => 'updated text uz rule test',
                 'kk' => 'updated text kk rule test',
             ],
-            'school_id' => 1,
         ];
 
         $response = $this->putJson('/api/v1/rules/update/' . $ruleId, $data);
@@ -200,12 +198,8 @@ class RuleTest extends TestCase
                 'message' => 'Rule Deleted',
             ]);
 
-        $this->assertDatabaseMissing('rules', [
+        $this->assertSoftDeleted('rules', [
             'id' => $ruleId,
         ]);
-
-        // $this->assertSoftDeleted('rules', [
-        //     'id' => $ruleId,
-        // ]);
     }
 }

@@ -21,7 +21,6 @@ class UpdateAction
             $rule->update([
                 'title' => $dto->title,
                 'text' => $dto->text,
-                'school_id' => $dto->schoolId,
             ]);
 
             return static::toResponse(
