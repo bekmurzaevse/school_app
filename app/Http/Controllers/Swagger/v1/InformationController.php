@@ -48,9 +48,8 @@ class InformationController extends Controller
         required: true,
         description: "Information jaratiw ushin mag'liwmatlar",
         content: new OA\JsonContent(
-            required: ["title", "school_id", "count", "description"],
+            required: ["title", "count", "description"],
             properties: [
-                new OA\Property(property: "school_id", type: "int", example: 1),
                 new OA\Property(property: "count", type: "int", example: 1),
                 new OA\Property(
                     property: "title",
@@ -93,9 +92,8 @@ class InformationController extends Controller
         requestBody: new OA\RequestBody(
             required: true,
             content: new OA\JsonContent(
-                required: ["title", "school_id", "count", "description"],
+                required: ["title", "count", "description"],
                 properties: [
-                    new OA\Property(property: "school_id", type: "int", example: 1),
                     new OA\Property(property: "count", type: "int", example: 1),
                     new OA\Property(
                         property: "title",

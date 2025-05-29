@@ -55,4 +55,44 @@ class School extends Model
         return $this->hasMany(Album::class);
     }
 
+    public function faqs(): HasMany
+    {
+        return $this->hasMany(Faq::class);
+    }
+
+    public function schoolHours(): HasMany
+    {
+        return $this->hasMany(SchoolHour::class);
+    }
+
+    public function targets(): HasMany
+    {
+        return $this->hasMany(Target::class);
+    }
+
+    public function histories(): HasMany
+    {
+        return $this->hasMany(History::class);
+    }
+
+    public function values(): HasMany
+    {
+        return $this->hasMany(Value::class);
+    }
+
+    public function rules(): HasMany
+    {
+        return $this->hasMany(Rule::class);
+    }
+
+    public function clubs(): HasMany
+    {
+        return $this->hasMany(Club::class);
+    }
+
+    public function informations(): HasMany
+    {
+        return $this->hasMany(Information::class);
+    }
+
 }
