@@ -48,9 +48,8 @@ class FaqController extends Controller
         required: true,
         description: "FAQ jaratiw ushin mag'liwmatlar",
         content: new OA\JsonContent(
-            required: ["question", "school_id", "answer"],
+            required: ["question", "answer"],
             properties: [
-                new OA\Property(property: "school_id", type: "int", example: 1),
                 new OA\Property(
                     property: "question",
                     type: "object",
@@ -92,9 +91,8 @@ class FaqController extends Controller
         requestBody: new OA\RequestBody(
             required: true,
             content: new OA\JsonContent(
-                required: ["question", "school_id", "answer"],
+                required: ["question", "answer"],
                 properties: [
-                    new OA\Property(property: "school_id", type: "int", example: 1),
                     new OA\Property(
                         property: "question",
                         type: "object",

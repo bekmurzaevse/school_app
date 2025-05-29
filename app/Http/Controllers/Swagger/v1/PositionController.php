@@ -32,9 +32,8 @@ class PositionController extends Controller
         required: true,
         description: "Lawazim jaratiw ushin mag'liwmatlar",
         content: new OA\JsonContent(
-            required: ["name", "school_id"],
+            required: ["name"],
             properties: [
-                new OA\Property(property: "school_id", type: "int", example: 1),
                 new OA\Property(
                     property: "name",
                     type: "object",
@@ -96,9 +95,8 @@ class PositionController extends Controller
         requestBody: new OA\RequestBody(
             required: true,
             content: new OA\JsonContent(
-                required: ["name", "school_id"],
+                required: ["name"],
                 properties: [
-                    new OA\Property(property: "school_id", type: "int", example: 1),
                     new OA\Property(
                         property: "name",
                         type: "object",

@@ -48,9 +48,8 @@ class SchoolHourController extends Controller
         required: true,
         description: "SchoolHour jaratiw ushin mag'liwmatlar",
         content: new OA\JsonContent(
-            required: ["title", "school_id", "workday", "holiday"],
+            required: ["title", "workday", "holiday"],
             properties: [
-                new OA\Property(property: "school_id", type: "int", example: 1),
                 new OA\Property(
                     property: "title",
                     type: "object",
@@ -103,9 +102,8 @@ class SchoolHourController extends Controller
         requestBody: new OA\RequestBody(
             required: true,
             content: new OA\JsonContent(
-                required: ["title", "school_id", "workday", "holiday"],
+                required: ["title", "workday", "holiday"],
                 properties: [
-                    new OA\Property(property: "school_id", type: "int", example: 1),
                     new OA\Property(
                         property: "title",
                         type: "object",

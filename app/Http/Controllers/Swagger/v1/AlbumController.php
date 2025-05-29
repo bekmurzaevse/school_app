@@ -33,9 +33,8 @@ class AlbumController extends Controller
         required: true,
         description: "Albom jaratiw ushin mag'liwmatlar",
         content: new OA\JsonContent(
-            required: ["title", "school_id"],
+            required: ["title"],
             properties: [
-                new OA\Property(property: "school_id", type: "int", example: 1),
                 new OA\Property(
                     property: "title",
                     type: "object",
@@ -92,9 +91,8 @@ class AlbumController extends Controller
         requestBody: new OA\RequestBody(
             required: true,
             content: new OA\JsonContent(
-                required: ["title", "school_id", "description"],
+                required: ["title", "description"],
                 properties: [
-                    new OA\Property(property: "school_id", type: "int", example: 1),
                     new OA\Property(
                         property: "title",
                         type: "object",
