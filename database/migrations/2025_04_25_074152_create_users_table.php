@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('phone')->unique();
             $table->foreignId('school_id')->constrained('schools', 'id')->cascadeOnUpdate()->restrictOnDelete();
             $table->date('birth_date');
+            $table->softDeletes();
             $table->timestamps();
         });
     }
