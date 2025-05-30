@@ -58,9 +58,8 @@ class TargetController extends Controller
         required: true,
         description: 'Target jaratiw ushin mag\'liwmatlar',
         content: new OA\JsonContent(
-            required: ['school_id', 'name', 'description'],
+            required: ['name', 'description'],
             properties: [
-                new OA\Property(property: 'school_id', type: 'integer', example: 1),
                 new OA\Property(
                     property: 'name',
                     type: 'object',
@@ -127,9 +126,8 @@ class TargetController extends Controller
             required: true,
             description: "Targetdi jan'alaw ushin mag'liwmatlar",
             content: new OA\JsonContent(
-                required: ["name", "school_id", "description"],
+                required: ["name", "description"],
                 properties: [
-                    new OA\Property(property: "school_id", type: "int", example: 1),
                     new OA\Property(
                         property: "name",
                         type: "object",

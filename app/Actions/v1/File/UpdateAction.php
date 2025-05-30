@@ -36,11 +36,12 @@ class UpdateAction
             }
 
             $originalName = $uploadedFile->getClientOriginalName();
+
             $newFileName = pathinfo($originalName, PATHINFO_FILENAME);
+
             $newFileName = $newFileName . '_' . Str::random(10) . '_' . now()->format('Y-m-d-H-i-s') . '.' . $uploadedFile->extension();
 
             $newPath = Storage::disk('public')->putFileAs('files', $uploadedFile, $newFileName);
-            
 
             $file->update([
                 'name' => $dto->name,
@@ -53,6 +54,7 @@ class UpdateAction
                 message: 'File Updated',
                 data: new FileResource($file)
             );
+
         } catch (ModelNotFoundException $ex) {
             throw new ApiResponseException('File Not Found', 404);
         }

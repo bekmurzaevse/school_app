@@ -20,6 +20,7 @@ class FileController extends Controller
     {
         //      
     }
+
     #[OA\Post(
         path: '/api/v1/files/upload',
         summary: "Fayl ju'klew",
@@ -39,15 +40,15 @@ class FileController extends Controller
                     new OA\Property(property: "name[kk]", type: "string", example: "Fayl ati KK"),
                     new OA\Property(property: "name[uz]", type: "string", example: "Fayl nomi UZ"),
                     new OA\Property(property: "name[ru]", type: "string", example: "Название файла RU"),
-                    new OA\Property( property: "name[en]", type: "string", example: "File name EN"),
-    
+                    new OA\Property(property: "name[en]", type: "string", example: "File name EN"),
+
                     new OA\Property(property: "description[kk]", type: "string", example: "Description KK"),
                     new OA\Property(property: "description[uz]", type: "string", example: "Tavsif UZ"),
                     new OA\Property(property: "description[ru]", type: "string", example: "Описание RU"),
                     new OA\Property(property: "description[en]", type: "string", example: "Description EN"),
-    
+
                     new OA\Property(property: "event_id", type: "integer", example: 5, description: "Event ID "),
-    
+
                     new OA\Property(property: "file", type: "string", format: "binary", description: "Ju'klenetug'in fayl (pdf, docx, jpg, png)"),
                 ]
             )
@@ -74,61 +75,67 @@ class FileController extends Controller
         example: 1
     )]
     #[OA\Response(response: 200, description: "Fayl a'wmetli alindi")]
-    #[OA\Response( response: 404, description: "Fayl tabilmadi")]
+    #[OA\Response(response: 404, description: "Fayl tabilmadi")]
     public function show()
     {
         //
     }
 
-    #[OA\Put(
-        path: '/api/v1/files/update/{id}',
-        summary: "Fayldi jan'alaw",
-        description: "Bul fayldi jan'alaw ushin endpoint",
-        tags: ["File"],
-        security: [['sanctum' => []]]
-    )]
-    #[OA\Parameter(
-        name: "id",
-        in: "path",
-        required: true,
-        description: "Ju'kleniw kerek bolg'an fayldin' ID si",
-        example: 1
-    )]
+    #[OA\Post(path: "/api/v1/files/update/{id}", summary: "Faylni janalaw", tags: ["File"], security: [["sanctum" => []]])]
     #[OA\RequestBody(
         required: true,
-        description: "Fayl jan'alaw ushin kerekli mag'liwmatlar",
         content: new OA\MediaType(
             mediaType: "multipart/form-data",
             schema: new OA\Schema(
-                type: "object",
-                required: ["name", "file", "event_id"],
+                required: ["name[kk]", "name[uz]", "name[ru]", "name[en]", "event_id", "description[kk]", "description[uz]", "description[ru]", "description[en]", "file"],
                 properties: [
                     new OA\Property(property: "name[kk]", type: "string", example: "Fayl ati KK"),
                     new OA\Property(property: "name[uz]", type: "string", example: "Fayl nomi UZ"),
                     new OA\Property(property: "name[ru]", type: "string", example: "Название файла RU"),
-                    new OA\Property( property: "name[en]", type: "string", example: "File name EN"),
-    
+                    new OA\Property(property: "name[en]", type: "string", example: "File name EN"),
+                    new OA\Property(property: "event_id", type: "integer", example: 5, description: "Event ID"),
                     new OA\Property(property: "description[kk]", type: "string", example: "Description KK"),
                     new OA\Property(property: "description[uz]", type: "string", example: "Tavsif UZ"),
                     new OA\Property(property: "description[ru]", type: "string", example: "Описание RU"),
                     new OA\Property(property: "description[en]", type: "string", example: "Description EN"),
-    
-                    new OA\Property(property: "event_id", type: "integer", example: 5, description: "Event ID "),
-    
                     new OA\Property(property: "file", type: "string", format: "binary", description: "Ju'klenetug'in fayl (pdf, docx, jpg, png)"),
+                    new OA\Property(property: "_method", type: "string", enum: ["PUT"], example: "PUT", nullable: false, ),
                 ]
-            )
+            ),
         )
     )]
-    #[OA\Response(response: 200, description: "Fayl a'wmetli jan'alandi")]
-    #[OA\Response(response: 401, description: "Avtorizatsiya kerek")]
+    #[OA\Parameter(name: "id", in: "path", required: true, description: "Fayl ID si arqali jan'alaw", example: 3)]
+    #[OA\Response(response: 200, description: "Fayl a'wmetli janalandi")]
     #[OA\Response(response: 404, description: "Fayl tabilmadi")]
     #[OA\Response(response: 422, description: "Validation error")]
+    #[OA\Response(response: 500, description: "Ishki server qate")]
     public function update()
     {
         //
     }
 
+    #[OA\Delete(
+        path: "/api/v1/files/delete/{id}",
+        summary: "Fayldı óshiriw",
+        description: "Berilgen ID boyınsha fayldı óshiredi",
+        operationId: "deleteFile",
+        tags: ["File"],
+        security: [['sanctum' => []]],
+        parameters: [
+            new OA\Parameter(
+                name: "id",
+                in: "path",
+                required: true,
+                description: "Óshiriletuǵın fayl IDsi",
+                schema: new OA\Schema(type: "integer")
+            )
+        ],
+        responses: [
+            new OA\Response(response: 200, description: "Fayl a'wmetli o'shirildi"),
+            new OA\Response(response: 401, description: "Avtorizatsiya kerek"),
+            new OA\Response(response: 404, description: "Fayl tabilmadi")
+        ]
+    )]
     public function delete()
     {
         //

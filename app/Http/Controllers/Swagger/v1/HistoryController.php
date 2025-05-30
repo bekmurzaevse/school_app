@@ -46,9 +46,8 @@ class HistoryController extends Controller
         required: true,
         description: "History jaratiw ushin mag'liwmatlar",
         content: new OA\JsonContent(
-            required: ["year", "school_id", "text"],
+            required: ["year", "text"],
             properties: [
-                new OA\Property(property: "school_id", type: "integer", example: 1),
                 new OA\Property(property: "year", type: "integer", example: 2024),
                 new OA\Property(
                     property: "text",
@@ -79,9 +78,8 @@ class HistoryController extends Controller
         requestBody: new OA\RequestBody(
             required: true,
             content: new OA\JsonContent(
-                required: ["year", "school_id", "text"],
+                required: ["year", "text" ],
                 properties: [
-                    new OA\Property(property: "school_id", type: "integer", example: 1),
                     new OA\Property(property: "year", type: "integer", example: 2025),
                     new OA\Property(
                         property: "text",
