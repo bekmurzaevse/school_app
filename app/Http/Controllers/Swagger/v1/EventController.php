@@ -32,7 +32,7 @@ class EventController extends Controller
         required: true,
         description: 'Ta\'dbir jaratiw ushin mag\'liwmatlar',
         content: new OA\JsonContent(
-            required: ['name', 'school_id', 'start_time', 'location', 'description'],
+            required: ['name', 'start_time', 'location', 'description'],
             properties: [
                 new OA\Property(
                     property: 'name',
@@ -56,7 +56,6 @@ class EventController extends Controller
                         new OA\Property(property: 'en', type: 'string', example: 'en description'),
                     ]
                 ),
-                new OA\Property(property: 'school_id', type: 'integer', example: 1),
                 new OA\Property(property: 'start_time', type: 'string', format: 'date-time', example: '2025-05-20 14:00:00'),
                 new OA\Property(property: 'location', type: 'string', example: '1-mektep sport zali'),
             ]
@@ -113,7 +112,7 @@ class EventController extends Controller
         required: true,
         description: 'Jan\'alaw ushin ta\'dbir mag\'liwmatlari',
         content: new OA\JsonContent(
-            required: ['name', 'school_id', 'start_time', 'location', 'description'],
+            required: ['name', 'start_time', 'location', 'description'],
             properties: [
                 new OA\Property(
                     property: 'name',
@@ -137,7 +136,6 @@ class EventController extends Controller
                         new OA\Property(property: 'en', type: 'string', example: 'en description'),
                     ]
                 ),
-                new OA\Property(property: 'school_id', type: 'integer', example: 2),
                 new OA\Property(property: 'start_time', type: 'string', format: 'date-time', example: '2025-06-01 10:30:00'),
                 new OA\Property(property: 'location', type: 'string', example: '2-mektep sport zali'),
             ]
