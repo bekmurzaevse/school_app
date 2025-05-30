@@ -19,7 +19,7 @@ class RuleResource extends JsonResource
             'id' => $this->id,
             'title' => $this->title,
             'text' => $this->text,
-            'school_id' => new SchoolResource($this->school),
+            'school' => new SchoolResource($this->school),
             'created_at' => $this->created_at->format('Y-m-d H:i:s'),
             'updated_at' => $this->updated_at->format('Y-m-d H:i:s'),
         ];
