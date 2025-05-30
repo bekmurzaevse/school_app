@@ -34,4 +34,20 @@ class CreateRequest extends FormRequest
             'description.en' => 'required|string',
         ];
     }
+
+    public function messages(): array
+    {
+        return [
+            'title.required' => 'title atları ma\'jbu\'riy.',
+            'title.kk.required' => 'Qaraqalpaqsha tilinde title atı ma\'jbu\'riy.',
+            'title.uz.required' => 'O\'zbek tilinde title atı ma\'jbu\'riy.',
+            'title.ru.required' => 'Rus tilinde title atı ma\'jbu\'riy.',
+            'title.en.required' => 'Inglis tilinde title atı ma\'jbu\'riy.',
+            'description.required' => 'description atları ma\'jbu\'riy.',
+            'description.kk.required' => 'Qaraqalpaqsha tilinde description atı ma\'jbu\'riy.',
+            'description.uz.required' => 'O\'zbek tilinde description atı ma\'jbu\'riy.',
+            'description.ru.required' => 'Rus tilinde description atı ma\'jbu\'riy.',
+            'description.en.required' => 'Inglis tilinde description atı ma\'jbu\'riy.',
+        ];
+    }
 }

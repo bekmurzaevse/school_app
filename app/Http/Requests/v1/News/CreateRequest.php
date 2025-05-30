@@ -43,4 +43,35 @@ class CreateRequest extends FormRequest
             'tags.*' => 'required|integer|exists:tags,id'
         ];
     }
+
+    public function messages(): array
+    {
+        return [
+            'title.required' => 'title atları ma\'jbu\'riy.',
+            'title.kk.required' => 'Qaraqalpaqsha tilinde title atı ma\'jbu\'riy.',
+            'title.uz.required' => 'O\'zbek tilinde title atı ma\'jbu\'riy.',
+            'title.ru.required' => 'Rus tilinde title atı ma\'jbu\'riy.',
+            'title.en.required' => 'Inglis tilinde title atı ma\'jbu\'riy.',
+            'short_content.required' => 'short_content atları ma\'jbu\'riy.',
+            'short_content.kk.required' => 'Qaraqalpaqsha tilinde short_content atı ma\'jbu\'riy.',
+            'short_content.uz.required' => 'O\'zbek tilinde short_content atı ma\'jbu\'riy.',
+            'short_content.ru.required' => 'Rus tilinde short_content atı ma\'jbu\'riy.',
+            'short_content.en.required' => 'Inglis tilinde short_content atı ma\'jbu\'riy.',
+            'content.required' => 'content atları ma\'jbu\'riy.',
+            'content.kk.required' => 'Qaraqalpaqsha tilinde content atı ma\'jbu\'riy.',
+            'content.uz.required' => 'O\'zbek tilinde content atı ma\'jbu\'riy.',
+            'content.ru.required' => 'Rus tilinde content atı ma\'jbu\'riy.',
+            'content.en.required' => 'Inglis tilinde short_content atı ma\'jbu\'riy.',
+            'author_id.required' => 'Avtor ID ma\'jbu\'riy.',
+            'author_id.exists' => 'Avtor ID users kestesinde bar bolıwı kerek.',
+            'author_id.integer' => 'Avtor ID san bolıwı kerek.',
+            'cover_image.required' => 'Foto ID ma\'jbu\'riy.',
+            'cover_image.integer' => 'Foto ID san bolıwı kerek.',
+            'cover_image.exists' => 'Foto ID photos kestesinde bar bolıwı kerek.',
+            'tags.array' => 'Tags ma\'jbu\'riy bolıwı kerek.',
+            'tags.*.required' => 'Tag ID ma\'jbu\'riy.',
+            'tags.*.integer' => 'Tag ID san bolıwı kerek.',
+            'tags.*.exists' => 'Tag ID tags kestesinde bar bolıwı kerek.',
+        ];
+    }
 }
