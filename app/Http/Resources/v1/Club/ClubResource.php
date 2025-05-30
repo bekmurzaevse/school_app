@@ -2,6 +2,8 @@
 
 namespace App\Http\Resources\v1\Club;
 
+use App\Http\Resources\v1\Photo\PhotoResource;
+use App\Http\Resources\v1\School\SchoolResource;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -17,10 +19,10 @@ class ClubResource extends JsonResource
         return [
             'id' => $this->id,
             'name' => $this->name,
-            'school_id' => $this->school_id,
+            'school_id' => new SchoolResource($this->school),
             'text' => $this->text,
             'schedule' => $this->schedule,
-            'photo_id' => $this->photo_id,
+            'photo_id' => new PhotoResource($this->photo),
             'created_at' => $this->created_at->format('Y-m-d H:i:s'),
             'updated_at' => $this->updated_at->format('Y-m-d H:i:s'),
         ];
