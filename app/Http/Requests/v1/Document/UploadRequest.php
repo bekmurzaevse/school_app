@@ -36,4 +36,26 @@ class UploadRequest extends FormRequest
             'file' => 'required|file|mimes:pdf,docx'
         ];
     }
+
+    public function messages(): array
+    {
+        return [
+            'name.required' => 'Document atları ma\'jbu\'riy.',
+            'name.kk.required' => 'Qaraqalpaqsha tilinde Document atı ma\'jbu\'riy.',
+            'name.uz.required' => 'O\'zbek tilinde Document atı ma\'jbu\'riy.',
+            'name.ru.required' => 'Rus tilinde Document atı ma\'jbu\'riy.',
+            'name.en.required' => 'Inglis tilinde Document atı ma\'jbu\'riy.',
+            'category_id.required' => 'Kategorya ID ma\'jbu\'riy.',
+            'category_id.exists' => 'Kategorya ID categories kestesinde bar bolıwı kerek.',
+            'category_id.integer' => 'Kategorya ID san bolıwı kerek.',
+            'description.required' => 'Táriyplew ma\'jbu\'riy..',
+            'description.kk.required' => 'Qaraqalpaqsha tilinde táriyplew ma\'jbu\'riy.',
+            'description.uz.required' => 'O\'zbek tilinde táriyplew ma\'jbu\'riy.',
+            'description.ru.required' => 'Rus tilinde táriyplew ma\'jbu\'riy.',
+            'description.en.required' => 'Inglis tilinde táriyplew ma\'jbu\'riy.',
+            'file.required' => 'Fayl ma\'jbu\'riy.',
+            'file.file' => 'Fayl bolıwı kerek.',
+            'file.mimes' => 'Fayl formati pdf, docx bolıwı kerek.',
+        ];
+    }
 }

@@ -10,11 +10,12 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
 use Spatie\Translatable\HasTranslations;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class User extends Authenticatable
 {
     
-    use HasFactory, Notifiable, HasRoles, HasTranslations, HasApiTokens;
+    use HasFactory, Notifiable, HasRoles, HasTranslations, HasApiTokens, SoftDeletes;
 
     /**
      * Summary of translatable

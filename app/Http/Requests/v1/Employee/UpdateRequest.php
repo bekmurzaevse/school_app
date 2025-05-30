@@ -39,4 +39,29 @@ class UpdateRequest extends FormRequest
             'birth_date' => 'required|date|before:today'
         ];
     }
+
+    public function messages(): array
+    {
+        return [
+            'full_name.required' => 'Jumısshı atları ma\'jbu\'riy.',
+            'full_name.kk.required' => 'Qaraqalpaqsha tilinde Jumısshı atı ma\'jbu\'riy.',
+            'full_name.uz.required' => 'O\'zbek tilinde Jumısshı atı ma\'jbu\'riy.',
+            'full_name.ru.required' => 'Rus tilinde Jumısshı atı ma\'jbu\'riy.',
+            'full_name.en.required' => 'Inglis tilinde Jumısshı atı ma\'jbu\'riy.',
+            'phone.required' => 'Telefon nomeri ma\'jbu\'riy.',
+            'phone.string' => 'Telefon nomeri tekst bolıwı kerek.',
+            'phone.unique' => 'Bu telefon nomeri jumısshılar kestesinde tákirarlanbas bolıwı kerek.',
+            'photo_id.required' => 'Foto ID ma\'jbu\'riy.',
+            'photo_id.exists' => 'Foto ID photos kestesinde bar bolıwı kerek.',
+            'photo_id.integer' => 'Foto ID san bolıwı kerek.',
+            'email.required' => 'Email ma\'jbu\'riy.',
+            'email.email' => 'Email formatı qate.',
+            'position_id.required' => 'Lauazım ID ma\'jbu\'riy.',
+            'position_id.integer' => 'Lauazım ID san bolıwı kerek.',
+            'position_id.exists' => 'Lauazım ID positions kestesinde bar bolıwı kerek.',
+            'birth_date.required' => 'Túwılğan kún ma\'jbu\'riy.',
+            'birth_date.date' => 'Túwılğan kún formatı qate.',
+            'birth_date.before' => 'Túwılğan kún bügünnen alda bolıwı kerek.',
+        ];
+    }
 }
