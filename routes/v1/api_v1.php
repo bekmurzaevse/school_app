@@ -20,6 +20,7 @@ use App\Http\Controllers\v1\SchoolHourController;
 use App\Http\Controllers\v1\TagController;
 use App\Http\Controllers\v1\TargetController;
 use App\Http\Controllers\v1\UserController;
+use App\Http\Controllers\v1\VacancyController;
 use App\Http\Controllers\v1\ValueController;
 use Illuminate\Support\Facades\Route;
 
@@ -258,4 +259,12 @@ Route::prefix('school-hours')->group(function () {
 Route::prefix('informations')->group(function () {
     Route::get('/', [InformationController::class, 'index']);
     Route::get('/{id}', [InformationController::class, 'show']);
+});
+
+Route::prefix('vacancies')->group(function () {
+    Route::get('/', [VacancyController::class, 'index']);
+    Route::get('/{id}', [VacancyController::class, 'show']);
+    Route::post('/create', [VacancyController::class, 'create']);
+    Route::put('/update/{id}', [VacancyController::class, 'update']);
+    Route::delete('/delete/{id}', [VacancyController::class, 'delete']);
 });
