@@ -36,6 +36,7 @@ class DatabaseSeeder extends Seeder
             FaqSeeder::class,
             SchoolHourSeeder::class,
             InformationSeeder::class,
+            VacancySeeder::class,
         ]);
 
     }
