@@ -162,12 +162,10 @@ class CategoryController extends Controller
                 ],
             )
         ),
-        responses: [
-            new OA\Response(response: 200, description: 'Kategoriya janalandi'),
-            new OA\Response(response: 401, description: 'Ruqsat joq'),
-            new OA\Response(response: 404, description: 'Kategoriya tabilmadi'),
-        ]
     )]
+    #[OA\Response(response: 200, description: 'Kategoriya janalandi')]
+    #[OA\Response(response: 401, description: 'Ruqsat joq')]
+    #[OA\Response(response: 404, description: 'Kategoriya tabilmadi')]
     public function update()
     {
         //
@@ -188,12 +186,10 @@ class CategoryController extends Controller
                 schema: new OA\Schema(type: 'integer', example: 1)
             )
         ],
-        responses: [
-            new OA\Response(response: 200, description: 'Kategoriya o\'shirildi'),
-            new OA\Response(response: 401, description: 'Ruqsat joq'),
-            new OA\Response(response: 404, description: 'Kategoriya tabilmadi'),
-        ]
     )]
+    #[OA\Response(response: 200, description: 'Kategoriya o\'shirildi')]
+    #[OA\Response(response: 401, description: 'Ruqsat joq')]
+    #[OA\Response(response: 404, description: 'Kategoriya tabilmadi')]
     public function delete()
     {
         //

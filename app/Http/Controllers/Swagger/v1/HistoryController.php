@@ -78,7 +78,7 @@ class HistoryController extends Controller
         requestBody: new OA\RequestBody(
             required: true,
             content: new OA\JsonContent(
-                required: ["year", "text" ],
+                required: ["year", "text"],
                 properties: [
                     new OA\Property(property: "year", type: "integer", example: 2025),
                     new OA\Property(
@@ -94,13 +94,11 @@ class HistoryController extends Controller
                     ),
                 ]
             )
-        ),
-        responses: [
-            new OA\Response(response: 200, description: "History updated!"),
-            new OA\Response(response: 401, description: "Not allowed"),
-            new OA\Response(response: 404, description: "History not found!")
-        ]
+        )
     )]
+    #[OA\Response(response: 200, description: "History updated!")]
+    #[OA\Response(response: 401, description: "Not allowed")]
+    #[OA\Response(response: 404, description: "History not found!")]
     #[OA\Parameter(
         name: "id",
         in: "path",
@@ -121,12 +119,11 @@ class HistoryController extends Controller
         parameters: [
             new OA\Parameter(name: "id", in: "path", required: true, schema: new OA\Schema(type: "integer"))
         ],
-        responses: [
-            new OA\Response(response: 200, description: "History deleted!"),
-            new OA\Response(response: 401, description: "Not allowed"),
-            new OA\Response(response: 404, description: "History not found!"),
-        ]
     )]
+    #[OA\Response(response: 200, description: "History deleted!")]
+    #[OA\Response(response: 401, description: "Not allowed")]
+    #[OA\Response(response: 404, description: "History not found!")]
+
     public function delete()
     {
         //
