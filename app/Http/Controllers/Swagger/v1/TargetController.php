@@ -153,12 +153,10 @@ class TargetController extends Controller
                 ]
             )
         ),
-        responses: [
-            new OA\Response(response: 200, description: "Target jan'alandi"),
-            new OA\Response(response: 401, description: "Ruqsat joq"),
-            new OA\Response(response: 404, description: "Target tabilmadi"),
-        ]
     )]
+    #[OA\Response(response: 200, description: "Target jan'alandi")]
+    #[OA\Response(response: 401, description: "Ruqsat joq")]
+    #[OA\Response(response: 404, description: "Target tabilmadi")]
     #[OA\Parameter(
         name: "id",
         in: "path",
@@ -187,12 +185,10 @@ class TargetController extends Controller
                 schema: new OA\Schema(type: 'integer', example: 1)
             )
         ],
-        responses: [
-            new OA\Response(response: 200, description: 'Target deleted!'),
-            new OA\Response(response: 401, description: 'Ruqsat joq'),
-            new OA\Response(response: 404, description: 'Target not found'),
-        ]
     )]
+    #[OA\Response(response: 200, description: 'Target deleted!')]
+    #[OA\Response(response: 401, description: 'Ruqsat joq')]
+    #[OA\Response(response: 404, description: 'Target not found')]
     public function delete()
     {
         //
