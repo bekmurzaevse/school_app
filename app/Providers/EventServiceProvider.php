@@ -22,5 +22,6 @@ class EventServiceProvider extends ServiceProvider
         \App\Models\SchoolHour::observe(\App\Observers\SchoolHourObserver::class);
         \App\Models\Target::observe(\App\Observers\TargetObserver::class);
         \App\Models\History::observe(\App\Observers\HistoryObserver::class);
+        \App\Models\Vacancy::observe(\App\Observers\VacancyObserver::class);
     }
 }
