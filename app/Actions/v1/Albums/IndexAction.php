@@ -20,7 +20,7 @@ class IndexAction
     {
         $key = 'albums:' . app()->getLocale() . ':' . md5(request()->fullUrl());
         $albums = Cache::remember($key, now()->addDay(), function () {
-            return Album::with('school')->paginate(10);
+            return Album::with(['school', 'photos'])->paginate(10);
         });
 
         return static::toResponse(

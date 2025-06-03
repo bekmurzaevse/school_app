@@ -19,7 +19,7 @@ class CreateAction
      */
     public function __invoke(CreateDto $dto): JsonResponse
     {
-        $uploadedFiles = FileUploadHelper::files($dto->photos);
+        $uploadedFiles = FileUploadHelper::files($dto->photos, 'photo');
 
         array_map(function ($path) use ($dto){
             $data = [

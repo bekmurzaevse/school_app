@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace App\Actions\v1\Albums;
 
@@ -25,13 +25,13 @@ class ShowAction
         try{
             $key = 'albums:show:' . app()->getLocale() . ':' . md5(request()->fullUrl());
             $album = Cache::remember($key, now()->addDay(), function () use ($id) {
-                return Album::with('school')->findOrFail($id);
+                return Album::with(['school', 'photos'])->findOrFail($id);
             });
 
             return static::toResponse(
                 message: "$id - id li albom",
                 data: new AlbumResource($album)
-            );   
+            );
         } catch(ModelNotFoundException $ex){
             throw new ApiResponseException("$id - id li albom tabilmadi", 404);
         }
