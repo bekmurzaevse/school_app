@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('type');
             $table->unsignedBigInteger('size')->nullable();
             $table->morphs('attachable');
-            $table->text('description')->nullable;
+            $table->text('description')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

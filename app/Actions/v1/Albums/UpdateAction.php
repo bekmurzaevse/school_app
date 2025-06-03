@@ -24,7 +24,7 @@ class UpdateAction
     public function __invoke(int $id, UpdateDto $dto): JsonResponse
     {
         try {
-            $album = Album::with('school')->findOrFail($id);
+            $album = Album::with(['school', 'photos'])->findOrFail($id);
             $album->update([
                 'title' => $dto->title,
                 'description' => $dto->description

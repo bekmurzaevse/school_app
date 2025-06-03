@@ -7,8 +7,9 @@ use App\Http\Requests\v1\Album\UpdateRequest;
 readonly class UpdateDto
 {
     public function __construct(
-        public array $title,
+        public ?array $title,
         public ?array $description,
+        public ?array $photos,
     ) {
     }
 
@@ -18,6 +19,7 @@ readonly class UpdateDto
         return new self(
             title: $request->get('title'),
             description: $request->get('description'),
+            photos: $request->file('photos'),
         );
     }
 }

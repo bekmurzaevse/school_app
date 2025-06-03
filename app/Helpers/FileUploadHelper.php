@@ -16,7 +16,7 @@ class FileUploadHelper
      * @throws \App\Exceptions\ApiResponseException
      * @return array
      */
-    public static function files(array $files): array
+    public static function files(array $files, string $type): array
     {
         $uploadedFiles = [];
 
@@ -25,7 +25,7 @@ class FileUploadHelper
                 throw new ApiResponseException("Ju'klengen fayl tipi duris emes", 400);
             }
 
-            $uploadedFiles[] = self::file($file);
+            $uploadedFiles[] = self::file($file, $type);
         }
 
         return array_filter($uploadedFiles);
@@ -37,7 +37,7 @@ class FileUploadHelper
      * @param string $path
      * @return array|array{extension: string, name: string, path: bool|string, size: bool|int}
      */
-    public static function file(UploadedFile $file): bool|string
+    public static function file(UploadedFile $file, string $type): bool|string
     {
         $originalFilename = $file->getClientOriginalName();
         $fileName = pathinfo($originalFilename, PATHINFO_FILENAME);
