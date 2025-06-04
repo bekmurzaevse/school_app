@@ -36,8 +36,8 @@ class ValueTest extends TestCase
                             'id',
                             'name',
                             'text',
-                            'school_id',
-                            'photo_id',
+                            'school',
+                            'photo',
                             'created_at',
                             'updated_at',
                         ]
@@ -71,8 +71,8 @@ class ValueTest extends TestCase
                     'id',
                     'name',
                     'text',
-                    'school_id',
-                    'photo_id',
+                    'school',
+                    'photo',
                     'created_at',
                     'updated_at',
                 ]
@@ -163,8 +163,8 @@ class ValueTest extends TestCase
                     'id',
                     'name',
                     'text',
-                    'school_id',
-                    'photo_id',
+                    'school',
+                    'photo',
                     'created_at',
                     'updated_at',
                 ]

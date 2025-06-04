@@ -12,7 +12,6 @@ readonly class CreateDto
         public string $password,
         public ?array $description,
         public string $phone,
-        public int $schoolId,
         public string $birthDate,
     ) {
     }
@@ -25,7 +24,6 @@ readonly class CreateDto
             password: $request->get('password'),
             description: $request->get('description'),
             phone: $request->get('phone'),
-            schoolId: $request->get('school_id'),
             birthDate: $request->get('birth_date'),
         );
     }

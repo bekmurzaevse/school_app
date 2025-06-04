@@ -31,22 +31,6 @@ class UserController extends Controller
         //
     }
 
-    #[OA\Get(
-        path: '/api/v1/auth/me',
-        tags: ["User"],
-        summary: "Profile user",
-        security: [['sanctum' => []]]
-    )]
-    #[OA\Response(response: 200, description: 'User profile data')]
-    #[OA\Response(response: 401, description: 'Unauthenticated')]
-    #[OA\Response(response: 404, description: "User not found")]
-    #[OA\Response(response: 500, description: 'Internal server error')]
-    public function profile()
-    {
-        //
-    }
-
-
     #[OA\Post(
         path: '/api/v1/auth/logout',
         tags: ["User"],
@@ -113,7 +97,6 @@ class UserController extends Controller
                         new OA\Property(property: "en", type: "string", example: "en description"),
                     ]
                 ),
-                new OA\Property(property: "school_id", type: "integer", example: 1),
                 new OA\Property(property: "birth_date", type: "string", example: "2025-05-07"), 
             ]
         )
