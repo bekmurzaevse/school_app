@@ -32,7 +32,7 @@ class UpdateAction
                 'description' => $dto->description,
                 'phone' => $dto->phone,
                 'school_id' => $dto->schoolId,
-                'birthDate' => $dto->birthDate,
+                'birth_date' => $dto->birthDate,
             ]);
 
             return static::toResponse(

@@ -35,7 +35,6 @@ class CreateRequest extends FormRequest
             'description.ru' => 'nullable|string',
             'description.en' => 'nullable|string',
             'phone' => 'required|string|min:12|unique:users,phone',
-            'school_id' => 'required|integer|exists:schools,id',
             'birth_date' => 'required|date_format:Y-m-d|before:today',
         ];
     }

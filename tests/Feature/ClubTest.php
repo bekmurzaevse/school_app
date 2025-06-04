@@ -35,10 +35,10 @@ class ClubTest extends TestCase
                         [
                             'id',
                             'name',
-                            'school_id',
+                            'school',
                             'text',
                             'schedule',
-                            'photo_id',
+                            'photo',
                             'created_at',
                             'updated_at',
                         ]
@@ -71,10 +71,10 @@ class ClubTest extends TestCase
                 'data' => [
                     'id',
                     'name',
-                    'school_id',
+                    'school',
                     'text',
                     'schedule',
-                    'photo_id',
+                    'photo',
                     'created_at',
                     'updated_at',
                 ]
@@ -180,10 +180,10 @@ class ClubTest extends TestCase
                 'data' => [
                     'id',
                     'name',
-                    'school_id',
+                    'school',
                     'text',
                     'schedule',
-                    'photo_id',
+                    'photo',
                     'created_at',
                     'updated_at',
                 ]

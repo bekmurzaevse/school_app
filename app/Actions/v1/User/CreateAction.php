@@ -3,6 +3,7 @@
 namespace App\Actions\v1\User;
 
 use App\Dto\v1\User\CreateDto;
+use App\Models\School;
 use App\Models\User;
 use App\Traits\ResponseTrait;
 use Illuminate\Http\JsonResponse;
@@ -13,14 +14,13 @@ class CreateAction
 
     public function __invoke(CreateDto $dto): JsonResponse
     {
-
         $data = [
             'full_name' => $dto->fullName,
             'username' => $dto->username,
             'password' => $dto->password,
             'phone' => $dto->phone,
+            'school_id' => School::find(1)->id,
             'description' => $dto->description,
-            'school_id' => $dto->schoolId,
             'birth_date' => $dto->birthDate,
         ];
 

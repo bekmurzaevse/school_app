@@ -41,11 +41,10 @@ Route::prefix('auth')->middleware('guest:sanctum')->group(function () {
 });
 
 /**
- * User Profile and Logout
+ * User Logout
  */
 Route::middleware(['auth:sanctum', 'ability:access-token'])->group(function () {
     Route::prefix('auth')->group(function () {
-        Route::get('me', [UserController::class, 'profile']);
         Route::post('logout', [UserController::class, 'logout']);
     });
 });
