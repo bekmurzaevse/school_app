@@ -33,16 +33,6 @@ class UserController extends Controller
     }
 
     /**
-     * Summary of profile
-     * @param \App\Actions\v1\User\ProfileAction $action
-     * @return JsonResponse
-     */
-    public function profile(ProfileAction $action): JsonResponse
-    {
-        return $action();
-    }
-
-    /**
      * Summary of logout
      * @param \App\Actions\v1\User\LogoutAction $action
      * @return JsonResponse
@@ -51,9 +41,6 @@ class UserController extends Controller
     {
         return $action();
     }
-
-//TODO: Implement other methods like updateProfile, deleteAccount, etc.
-    //Admin - CRUD for User
 
     /**
      * Summary of index

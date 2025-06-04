@@ -36,7 +36,7 @@ class RuleTest extends TestCase
                             'id',
                             'title',
                             'text',
-                            'school_id',
+                            'school',
                             'created_at',
                             'updated_at',
                         ]
@@ -70,7 +70,7 @@ class RuleTest extends TestCase
                     'id',
                     'title',
                     'text',
-                    'school_id',
+                    'school',
                     'created_at',
                     'updated_at',
                 ]
@@ -158,7 +158,7 @@ class RuleTest extends TestCase
                     'id',
                     'title',
                     'text',
-                    'school_id',
+                    'school',
                     'created_at',
                     'updated_at',
                 ]
