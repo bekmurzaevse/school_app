@@ -1,0 +1,58 @@
+<?php
+
+namespace App\Actions\v1\Schedule;
+
+use App\Dto\v1\Schedule\UpdateDto;
+use App\Exceptions\ApiResponseException;
+use App\Models\Attachment;
+use App\Traits\ResponseTrait;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
+
+class UpdateAction
+{
+    use ResponseTrait;
+
+    public function __invoke(int $id, UpdateDto $dto): JsonResponse
+    {
+        try {
+            $attachment = Attachment::findOrFail($id);
+
+            if ($attachment->type !== 'schedule') {
+                throw new ApiResponseException('Tek schedule turindegi attachment janalaniwi mumkin', 403);
+            }
+
+            $updateData = [
+                'file' => $dto->file,
+                'description' => $dto->description,
+            ];
+
+            if ($dto->file) {
+                if ($attachment->path && Storage::disk('public')->exists($attachment->path)) {
+                    Storage::disk('public')->delete($attachment->path);
+                }
+
+                $originalFilename = $dto->file->getClientOriginalName();
+                $fileName = pathinfo($originalFilename, PATHINFO_FILENAME);
+                $fileName = $fileName . '_' . Str::random(10) . '_' . now()->format('Y-m-d-H-i-s') . '.' . $dto->file->extension();
+
+                $savedPath = Storage::disk('public')->putFileAs('attachments', $dto->file, $fileName);
+
+                $updateData['path'] = $savedPath;
+                $updateData['size'] = $dto->file->getSize();
+            }
+
+            $attachment->update($updateData);
+
+            return static::toResponse(
+                message: 'Schedule awmetli janalandi',
+                data: $attachment
+            );
+
+        } catch (ModelNotFoundException) {
+            throw new ApiResponseException('Schedule tabilmadi', 404);
+        }
+    }
+
+}

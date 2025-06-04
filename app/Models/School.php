@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\Translatable\HasTranslations;
 
@@ -93,6 +94,11 @@ class School extends Model
     public function informations(): HasMany
     {
         return $this->hasMany(Information::class);
+    }
+
+    public function schedules(): MorphMany
+    {
+        return $this->morphMany(Attachment::class, 'attachable')->where('type', 'schedule');
     }
 
 }

@@ -1,0 +1,40 @@
+<?php
+
+namespace App\Actions\v1\Schedule;
+
+use App\Exceptions\ApiResponseException;
+use App\Http\Resources\v1\Schedule\ScheduleResource;
+use App\Models\Attachment;
+use App\Traits\ResponseTrait;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Storage;
+
+class ShowAction
+{
+    use ResponseTrait;
+
+    /**
+     * Summary of __invoke
+     * @param int $id
+     * @throws \App\Exceptions\ApiResponseException
+     * @return JsonResponse
+     */
+    public function __invoke(int $id): JsonResponse
+    {
+        $key = 'schedule:show:' . app()->getLocale() . ':' . md5(request()->fullUrl());
+
+        $schedule = Cache::remember($key, now()->addDay(), function () use ($id) {
+            return Attachment::find($id);
+        });
+
+        if (!$schedule || ($schedule->path && !Storage::disk('public')->exists($schedule->path))) {
+            throw new ApiResponseException('Schedule Not Found', 404);
+        }
+
+        return static::toResponse(
+            message: 'Successfully received',
+            data: new ScheduleResource($schedule),
+        );
+    }
+}
