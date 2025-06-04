@@ -183,7 +183,7 @@ Route::middleware('auth:sanctum')->group(function () {
 
         Route::prefix('schedules')->group(function () {
             Route::post('/create', [ScheduleController::class, 'create']);
-            // Route::put('/update/{id}', [ScheduleController::class, 'update']);
+            Route::put('/update/{id}', [ScheduleController::class, 'update']);
             Route::delete('/delete/{id}', [ScheduleController::class, 'delete']);
         });
     });
@@ -281,5 +281,4 @@ Route::prefix('schedules')->group(function () {
     Route::get('/', [ScheduleController::class, 'index']);
     Route::get('/{id}', [ScheduleController::class, 'show']);
     Route::get('/download/{id}', [ScheduleController::class, 'download']);
-    Route::put('/update/{id}', [ScheduleController::class, 'update']);
 });
