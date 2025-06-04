@@ -18,6 +18,7 @@ class AlbumResource extends JsonResource
         return [
             'id' => $this->id,
             'title' => $this->title,
+            'photos' => $this->photos,
             'school' => new SchoolResource($this->school),
             'description' => $this->description,
             'created_at' => $this->created_at->format('Y-m-d H:i:s'),

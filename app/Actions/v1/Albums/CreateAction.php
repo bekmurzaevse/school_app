@@ -3,6 +3,7 @@
 namespace App\Actions\v1\Albums;
 
 use App\Dto\v1\Albums\CreateDto;
+use App\Helpers\FileUploadHelper;
 use App\Models\Album;
 use App\Models\School;
 use App\Traits\ResponseTrait;
@@ -25,7 +26,17 @@ class CreateAction
             'description' => $dto->description,
         ];
 
-        Album::create($data);
+        $album = Album::create($data);
+
+        foreach ($dto->photos as $photo) {
+            $path = FileUploadHelper::file($photo, 'photo');
+            $album->photos()->create([
+                'name' => $photo->getClientOriginalName(),
+                'path' => $path,
+                'type' => "photo",
+                'size' => $photo->getSize(),
+            ]);
+        }
 
         return static::toResponse(
             message: "Albom jaratildi!"

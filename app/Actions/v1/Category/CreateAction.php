@@ -22,7 +22,7 @@ class CreateAction
             'name' => $dto->name,
             'description' => $dto->description,
         ];
-
+        
         Category::create($data);
 
         return static::toResponse(

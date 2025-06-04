@@ -9,6 +9,7 @@ readonly class CreateDto
     public function __construct(
         public array $title,
         public ?array $description,
+        public ?array $photos,
     ) {
     }
 
@@ -22,6 +23,7 @@ readonly class CreateDto
         return new self(
             title: $request->get('title'),
             description: $request->get('description'),
+            photos: $request->file('photos'),
         );
     }
 }

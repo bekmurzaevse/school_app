@@ -32,6 +32,8 @@ class CreateRequest extends FormRequest
             'description.uz' => 'nullable|string',
             'description.ru' => 'nullable|string',
             'description.en' => 'nullable|string',
+            'photos' => 'required|array|max:10',
+            'photos.*' => 'required|image|mimes:jpeg,png,jpg|max:2048',
         ];
     }
 

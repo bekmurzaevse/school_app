@@ -120,22 +120,18 @@ class FileController extends Controller
         description: "Berilgen ID boyınsha fayldı óshiredi",
         operationId: "deleteFile",
         tags: ["File"],
-        security: [['sanctum' => []]],
-        parameters: [
-            new OA\Parameter(
-                name: "id",
-                in: "path",
-                required: true,
-                description: "Óshiriletuǵın fayl IDsi",
-                schema: new OA\Schema(type: "integer")
-            )
-        ],
-        responses: [
-            new OA\Response(response: 200, description: "Fayl a'wmetli o'shirildi"),
-            new OA\Response(response: 401, description: "Avtorizatsiya kerek"),
-            new OA\Response(response: 404, description: "Fayl tabilmadi")
-        ]
+        security: [["sanctum" => []]]
     )]
+    #[OA\Parameter(
+        name: "id",
+        in: "path",
+        required: true,
+        description: "Óshiriletuǵın fayl IDsi",
+        schema: new OA\Schema(type: "integer")
+    )]
+    #[OA\Response(response: 200, description: "Fayl a'wmetli o'shirildi")]
+    #[OA\Response(response: 401, description: "Avtorizatsiya kerek")]
+    #[OA\Response(response: 404, description: "Fayl tabilmadi")]
     public function delete()
     {
         //

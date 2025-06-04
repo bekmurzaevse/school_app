@@ -172,6 +172,12 @@ Route::middleware('auth:sanctum')->group(function () {
             Route::put('/update/{id}', [InformationController::class, 'update']);
             Route::delete('/delete/{id}', [InformationController::class, 'delete']);
         });
+
+        Route::prefix('vacancies')->group(function () {
+            Route::post('/create', [VacancyController::class, 'create']);
+            Route::put('/update/{id}', [VacancyController::class, 'update']);
+            Route::delete('/delete/{id}', [VacancyController::class, 'delete']);
+        });
     });
 });
 
@@ -259,11 +265,7 @@ Route::prefix('informations')->group(function () {
     Route::get('/', [InformationController::class, 'index']);
     Route::get('/{id}', [InformationController::class, 'show']);
 });
-
 Route::prefix('vacancies')->group(function () {
     Route::get('/', [VacancyController::class, 'index']);
     Route::get('/{id}', [VacancyController::class, 'show']);
-    Route::post('/create', [VacancyController::class, 'create']);
-    Route::put('/update/{id}', [VacancyController::class, 'update']);
-    Route::delete('/delete/{id}', [VacancyController::class, 'delete']);
 });
