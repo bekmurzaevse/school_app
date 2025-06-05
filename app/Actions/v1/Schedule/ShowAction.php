@@ -26,7 +26,7 @@ class ShowAction
 
         $schedule = Cache::remember($key, now()->addDay(), function () use ($id) {
             $school = School::first();
-            return $school->schedules()->where('id', $id)->first();
+            return $school->schedules()->findOrFail($id);
         });
 
         if (!$schedule || ($schedule->path && !Storage::disk('public')->exists($schedule->path))) {

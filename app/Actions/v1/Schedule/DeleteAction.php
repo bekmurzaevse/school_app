@@ -15,7 +15,7 @@ class DeleteAction
     public function __invoke(int $id): JsonResponse
     {
         $school = School::first();
-        $attachment = $school->schedules()->find($id);
+        $attachment = $school->schedules()->findOrFail($id);
 
         if (!$attachment) {
             throw new ApiResponseException('Attachment topilmadi', 404);
