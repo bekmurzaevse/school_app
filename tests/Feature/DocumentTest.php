@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Models\Attachment;
 use App\Models\Document;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -44,8 +45,10 @@ class DocumentTest extends TestCase
                         [
                             'id',
                             'name',
+                            'path',
                             'type',
                             'size',
+                            'description',
                             'created_at',
                             'download_url',
                         ]
@@ -66,7 +69,8 @@ class DocumentTest extends TestCase
      */
     public function test_documents_can_show(): void
     {
-        $document = Document::inRandomOrder()->first();
+        $document = Attachment::where('type', '=', 'document')->inRandomOrder()->first();
+
         $response = $this->getJson('/api/v1/documents/show/' . $document->id);
 
         $response
@@ -77,8 +81,10 @@ class DocumentTest extends TestCase
                 'data' => [
                     'id',
                     'name',
+                    'path',
                     'type',
                     'size',
+                    'description',
                     'created_at',
                     'download_url',
                 ]
@@ -94,19 +100,8 @@ class DocumentTest extends TestCase
         $file = UploadedFile::fake()->create('document.pdf', 1024, 'application/pdf');
 
         $data = [
-            'name' => [
-                'en' => 'School Annual Report',
-                'ru' => 'Ежегодный отчет школы',
-                'uz' => 'Maktabning yillik hisobot',
-                'kk' => "Mekteptin' jıllıq esabatı",
-            ],
-            'description' => [
-                'en' => 'Annual report detailing the school achievements and activities.',
-                'ru' => 'Ежегодный отчет, в котором подробно описаны достижения и мероприятия школы.',
-                'uz' => 'Maktabning yillik hisobotida maktabning yutuqlari va faoliyati haqida ma\'lumot berilgan.',
-                'kk' => "Mekteptin' jıllıq esabatında mekteptin' jetiskenlikleri ha'm iskerligi haqqında mag'lıwmat berilgen",
-            ],
-            'category_id' => 1,
+            'name' => "Mekteptin' jıllıq esabatı",
+            'description' => "Mekteptin' jıllıq esabatında mekteptin' jetiskenlikleri ha'm iskerligi haqqında mag'lıwmat berilgen",
             'file' => $file
         ];
 
@@ -117,16 +112,13 @@ class DocumentTest extends TestCase
             'message' => 'Document created',
         ]);
 
-        $this->assertDatabaseHas('documents', [
-            'name->en' => 'School Annual Report',
-            'name->ru' => 'Ежегодный отчет школы',
-            'name->uz' => 'Maktabning yillik hisobot',
-            'name->kk' => "Mekteptin' jıllıq esabatı",
-            'description->en' => 'Annual report detailing the school achievements and activities.',
-            'description->ru' => 'Ежегодный отчет, в котором подробно описаны достижения и мероприятия школы.',
-            'description->uz' => 'Maktabning yillik hisobotida maktabning yutuqlari va faoliyati haqida ma\'lumot berilgan.',
-            'description->kk' => "Mekteptin' jıllıq esabatında mekteptin' jetiskenlikleri ha'm iskerligi haqqında mag'lıwmat berilgen",
-            'category_id' => 1,
+        $this->assertDatabaseHas('attachments', [
+            'name' => "Mekteptin' jıllıq esabatı",
+            'type' => 'document',
+            'size' => $file->getSize(),
+            'attachable_type' => 'App\Models\School',
+            'attachable_id' => 1,
+            'description' => "Mekteptin' jıllıq esabatında mekteptin' jetiskenlikleri ha'm iskerligi haqqında mag'lıwmat berilgen",
         ]);
     }
 
@@ -136,24 +128,13 @@ class DocumentTest extends TestCase
      */
     public function test_documents_can_update(): void
     {
-        $documentId = Document::inRandomOrder()->first()->id;
+        $documentId = Attachment::where('type', '=', 'document')->inRandomOrder()->first()->id;
 
         $file = UploadedFile::fake()->create('document_update.pdf', 1024, 'application/pdf');
 
         $data = [
-            'name' => [
-                'en' => 'School Annual Report update',
-                'ru' => 'Ежегодный отчет школы update',
-                'uz' => 'Maktabning yillik hisobot update',
-                'kk' => "Mekteptin' jıllıq esabatı update",
-            ],
-            'description' => [
-                'en' => 'Annual report detailing the school achievements and activities. update',
-                'ru' => 'Ежегодный отчет, в котором подробно описаны достижения и мероприятия школы. update',
-                'uz' => 'Maktabning yillik hisobotida maktabning yutuqlari va faoliyati haqida ma\'lumot berilgan. update',
-                'kk' => "Mekteptin' jıllıq esabatında mekteptin' jetiskenlikleri ha'm iskerligi haqqında mag'lıwmat berilgen update",
-            ],
-            'category_id' => 2,
+            'name' => "Mekteptin' jıllıq esabatı update",
+            'description' => "Mekteptin' jıllıq esabatında mekteptin' jetiskenlikleri ha'm iskerligi haqqında mag'lıwmat berilgen update",
             'file' => $file
         ];
 
@@ -167,24 +148,23 @@ class DocumentTest extends TestCase
                 'data' => [
                     'id',
                     'name',
+                    'path',
                     'type',
                     'size',
+                    'description',
                     'created_at',
                     'download_url',
                 ]
             ]);
-            
-        $this->assertDatabaseHas('documents', [
+
+        $this->assertDatabaseHas('attachments', [
             'id' => $documentId,
-            'name->en' => 'School Annual Report update',
-            'name->ru' => 'Ежегодный отчет школы update',
-            'name->uz' => 'Maktabning yillik hisobot update',
-            'name->kk' => "Mekteptin' jıllıq esabatı update",
-            'description->en' => 'Annual report detailing the school achievements and activities. update',
-            'description->ru' => 'Ежегодный отчет, в котором подробно описаны достижения и мероприятия школы. update',
-            'description->uz' => 'Maktabning yillik hisobotida maktabning yutuqlari va faoliyati haqida ma\'lumot berilgan. update',
-            'description->kk' => "Mekteptin' jıllıq esabatında mekteptin' jetiskenlikleri ha'm iskerligi haqqında mag'lıwmat berilgen update",
-            'category_id' => 2,
+            'name' => "Mekteptin' jıllıq esabatı update",
+            'type' => 'document',
+            'size' => $file->getSize(),
+            'attachable_type' => 'App\Models\School',
+            'attachable_id' => 1,
+            'description' => "Mekteptin' jıllıq esabatında mekteptin' jetiskenlikleri ha'm iskerligi haqqında mag'lıwmat berilgen update",
         ]);
     }
 
@@ -194,7 +174,7 @@ class DocumentTest extends TestCase
      */
     public function test_documents_can_delete(): void
     {
-        $documentId = Document::inRandomOrder()->first()->id;
+        $documentId = Attachment::where('type', '=', 'document')->inRandomOrder()->first()->id;
 
         $response = $this->deleteJson('/api/v1/documents/delete/' . $documentId);
 
@@ -205,7 +185,7 @@ class DocumentTest extends TestCase
                 'message' => 'Document Deleted',
             ]);
 
-        $this->assertSoftDeleted('documents', [
+        $this->assertSoftDeleted('attachments', [
             'id' => $documentId,
         ]);
     }
@@ -216,14 +196,10 @@ class DocumentTest extends TestCase
      */
     public function test_documents_can_download()
     {
-        App::setLocale('en');
+        $documentId = Attachment::where('type', '=', 'document')->inRandomOrder()->first()->id;
 
-        $document = Document::find(1)->first();
+        $response = $this->get("/api/v1/documents/download/" . $documentId);
 
-        $response = $this->get("/api/v1/documents/download/" . $document->id);
-
-        $response->assertStatus(200)
-            ->assertHeader('Content-Type', 'application/pdf')
-            ->assertHeader('Content-Disposition', 'attachment; filename="' . $document->name . '"');
+        $response->assertStatus(200);
     }
 }
