@@ -3,7 +3,7 @@
 namespace App\Actions\v1\Document;
 
 use App\Http\Resources\v1\Document\DocumentCollection;
-use App\Models\Document;
+use App\Models\Attachment;
 use App\Traits\ResponseTrait;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Cache;
@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Cache;
 class IndexAction
 {
     use ResponseTrait;
-    
+
     /**
      * Summary of __invoke
      * @return JsonResponse
@@ -20,7 +20,7 @@ class IndexAction
     {
         $key = 'documents:' . app()->getLocale() . ':' . md5(request()->fullUrl());
         $docs = Cache::remember($key, now()->addDay(), function () {
-            return Document::with(['school', 'category'])->paginate(10);
+            return Attachment::where('type', 'document')->paginate(10);
         });
 
         return static::toResponse(

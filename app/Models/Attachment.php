@@ -14,6 +14,8 @@ class Attachment extends Model
         'name',
         'path',
         'type',//photo,document,schedule
+        'attachable_type',
+        'attachable_id',
         'size',
         'description',
     ];

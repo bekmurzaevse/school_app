@@ -20,8 +20,10 @@ class DocumentResource extends JsonResource
         return [
             'id' => $this->id,
             'name' => $this->name,
-            'type' => $fileExists ? Storage::disk('public')->mimeType($this->path) : null,
+            'path' => $fileExists ? Storage::disk('public')->mimeType($this->path) : null,
+            'type' => $this->type,
             'size' => $fileExists ? round(Storage::disk('public')->size($this->path) / 1024, 2) . " KB" : null,
+            'description' => $this->description,
             'created_at' => $this->created_at,
             'download_url' => $fileExists ? url('/api/v1/documents/download/' . $this->id) : null,
         ];
