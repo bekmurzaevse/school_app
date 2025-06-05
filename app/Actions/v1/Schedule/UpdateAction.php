@@ -4,7 +4,7 @@ namespace App\Actions\v1\Schedule;
 
 use App\Dto\v1\Schedule\UpdateDto;
 use App\Exceptions\ApiResponseException;
-use App\Models\Attachment;
+use App\Models\School;
 use App\Traits\ResponseTrait;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Storage;
@@ -17,7 +17,9 @@ class UpdateAction
     public function __invoke(int $id, UpdateDto $dto): JsonResponse
     {
         try {
-            $attachment = Attachment::findOrFail($id);
+
+            $school = School::first();
+            $attachment = $school->schedules()->findOrFail($id);
 
             if ($attachment->type !== 'schedule') {
                 throw new ApiResponseException('Tek schedule turindegi attachment janalaniwi mumkin', 403);

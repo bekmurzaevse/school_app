@@ -3,7 +3,7 @@
 namespace App\Actions\v1\Schedule;
 
 use App\Exceptions\ApiResponseException;
-use App\Models\Attachment;
+use App\Models\School;
 use App\Traits\ResponseTrait;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Storage;
@@ -14,7 +14,8 @@ class DeleteAction
 
     public function __invoke(int $id): JsonResponse
     {
-        $attachment = Attachment::find($id);
+        $school = School::first();
+        $attachment = $school->schedules()->find($id);
 
         if (!$attachment) {
             throw new ApiResponseException('Attachment topilmadi', 404);

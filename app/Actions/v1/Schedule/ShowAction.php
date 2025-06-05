@@ -4,7 +4,7 @@ namespace App\Actions\v1\Schedule;
 
 use App\Exceptions\ApiResponseException;
 use App\Http\Resources\v1\Schedule\ScheduleResource;
-use App\Models\Attachment;
+use App\Models\School;
 use App\Traits\ResponseTrait;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Cache;
@@ -25,7 +25,8 @@ class ShowAction
         $key = 'schedule:show:' . app()->getLocale() . ':' . md5(request()->fullUrl());
 
         $schedule = Cache::remember($key, now()->addDay(), function () use ($id) {
-            return Attachment::find($id);
+            $school = School::first();
+            return $school->schedules()->where('id', $id)->first();
         });
 
         if (!$schedule || ($schedule->path && !Storage::disk('public')->exists($schedule->path))) {

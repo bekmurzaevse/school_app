@@ -3,7 +3,7 @@
 namespace App\Actions\v1\Schedule;
 
 use App\Exceptions\ApiResponseException;
-use App\Models\Attachment;
+use App\Models\School;
 use App\Traits\ResponseTrait;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Facades\Storage;
@@ -22,7 +22,8 @@ class DownloadAction
     public function __invoke(int $id): StreamedResponse
     {
         try {
-            $schedule = Attachment::findOrFail($id);
+            $school = School::first();
+            $schedule = $school->schedules()->findOrFail($id);
 
             $filePath = $schedule->path;
 
