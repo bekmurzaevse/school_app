@@ -14,6 +14,11 @@ class IndexAction
 {
     use ResponseTrait;
 
+    /**
+     * Summary of __invoke
+     * @param \Illuminate\Http\Request $request
+     * @return JsonResponse
+     */
     public function __invoke(Request $request): JsonResponse
     {
         $key = 'schedules:' . app()->getLocale() . ':' . md5($request->fullUrl());
