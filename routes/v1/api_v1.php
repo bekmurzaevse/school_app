@@ -13,6 +13,7 @@ use App\Http\Controllers\v1\FileController;
 use App\Http\Controllers\v1\PositionController;
 use App\Http\Controllers\v1\NewsController;
 use App\Http\Controllers\v1\RuleController;
+use App\Http\Controllers\v1\ScheduleController;
 use App\Http\Controllers\v1\SchoolController;
 use App\Http\Controllers\v1\EmployeeController;
 use App\Http\Controllers\v1\InformationController;
@@ -178,6 +179,12 @@ Route::middleware('auth:sanctum')->group(function () {
             Route::put('/update/{id}', [VacancyController::class, 'update']);
             Route::delete('/delete/{id}', [VacancyController::class, 'delete']);
         });
+
+        Route::prefix('schedules')->group(function () {
+            Route::post('/create', [ScheduleController::class, 'create']);
+            Route::put('/update/{id}', [ScheduleController::class, 'update']);
+            Route::delete('/delete/{id}', [ScheduleController::class, 'delete']);
+        });
     });
 });
 
@@ -268,4 +275,9 @@ Route::prefix('informations')->group(function () {
 Route::prefix('vacancies')->group(function () {
     Route::get('/', [VacancyController::class, 'index']);
     Route::get('/{id}', [VacancyController::class, 'show']);
+});
+Route::prefix('schedules')->group(function () {
+    Route::get('/', [ScheduleController::class, 'index']);
+    Route::get('/{id}', [ScheduleController::class, 'show']);
+    Route::get('/download/{id}', [ScheduleController::class, 'download']);
 });

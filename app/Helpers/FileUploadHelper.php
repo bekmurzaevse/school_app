@@ -43,7 +43,7 @@ class FileUploadHelper
         $fileName = pathinfo($originalFilename, PATHINFO_FILENAME);
         $fileName = $fileName . '_' . Str::random(10) . '_' . now()->format('Y-m-d-H:i:s') . '.' . $file->extension();
 
-        $savedPath = Storage::disk('public')->putFileAs('photos', $file, $fileName);
+        $savedPath = Storage::disk('public')->putFileAs($type, $file, $fileName);
 
         return $savedPath;
     }
