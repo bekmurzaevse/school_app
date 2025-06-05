@@ -6,6 +6,7 @@ use App\Exceptions\ApiResponseException;
 use App\Http\Resources\v1\Document\DocumentResource;
 use App\Models\Attachment;
 use App\Traits\ResponseTrait;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Storage;
@@ -22,21 +23,25 @@ class ShowAction
      */
     public function __invoke(int $id): JsonResponse
     {
-        $key = 'document:show:' . app()->getLocale() . ':' . md5(request()->fullUrl());
+        try {
+            $key = 'document:show:' . app()->getLocale() . ':' . md5(request()->fullUrl());
 
-        $doc = Cache::remember($key, now()->addDay(), function () use ($id) {
-            return Attachment::where('type', 'document')
-                ->where('id', $id)
-                ->firstOrFail();
-        });
+            $doc = Cache::remember($key, now()->addDay(), function () use ($id) {
+                return Attachment::where('type', 'document')
+                    ->where('id', $id)
+                    ->firstOrFail();
+            });
 
-        if (!$doc || !Storage::disk('public')->exists($doc->path)) {
+            if (!$doc || !Storage::disk('public')->exists($doc->path)) {
+                throw new ApiResponseException('Document Not Found', 404);
+            }
+
+            return static::toResponse(
+                message: 'Successfully received',
+                data: new DocumentResource($doc)
+            );
+        } catch (ModelNotFoundException $ex) {
             throw new ApiResponseException('Document Not Found', 404);
         }
-
-        return static::toResponse(
-            message: 'Successfully received',
-            data: new DocumentResource($doc)
-        );
     }
 }
