@@ -4,7 +4,7 @@ namespace App\Actions\v1\Document;
 
 use App\Exceptions\ApiResponseException;
 use App\Http\Resources\v1\Document\DocumentResource;
-use App\Models\Attachment;
+use App\Models\School;
 use App\Traits\ResponseTrait;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\JsonResponse;
@@ -27,7 +27,8 @@ class ShowAction
             $key = 'document:show:' . app()->getLocale() . ':' . md5(request()->fullUrl());
 
             $doc = Cache::remember($key, now()->addDay(), function () use ($id) {
-                return Attachment::where('type', 'document')
+                return School::firstOrFail()
+                    ->documents()
                     ->where('id', $id)
                     ->firstOrFail();
             });

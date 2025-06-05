@@ -3,7 +3,6 @@
 namespace App\Actions\v1\Document;
 
 use App\Dto\v1\Document\UploadDto;
-use App\Models\Attachment;
 use App\Models\School;
 use App\Traits\ResponseTrait;
 use Illuminate\Support\Facades\Storage;
@@ -23,17 +22,13 @@ class UploadAction
 
         $savedPath = Storage::disk('public')->putFileAs('documents', $file, $fileName);
 
-        $data = [
+        School::firstOrFail()->documents()->create([
             'name' => $dto->name,
             'path' => $savedPath,
             'type' => 'document',
             'size' => $file->getSize(),
-            'attachable_type' => School::class,
-            'attachable_id' => School::first()->id,
             'description' => $dto->description,
-        ];
-
-        Attachment::create($data);
+        ]);
 
         return static::toResponse(
             message: 'Document created'

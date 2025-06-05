@@ -3,7 +3,7 @@
 namespace App\Actions\v1\Document;
 
 use App\Exceptions\ApiResponseException;
-use App\Models\Attachment;
+use App\Models\School;
 use App\Traits\ResponseTrait;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Facades\Storage;
@@ -22,8 +22,9 @@ class DownloadAction
     public function __invoke(int $id): StreamedResponse
     {
         try {
-            $document = Attachment::where('id', $id)
-                ->where('type', 'document')
+            $document = School::firstOrFail()
+                ->documents()
+                ->where('id', $id)
                 ->firstOrFail();
 
             $filePath = $document->path;

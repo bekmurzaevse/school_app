@@ -3,7 +3,7 @@
 namespace App\Actions\v1\Document;
 
 use App\Exceptions\ApiResponseException;
-use App\Models\Attachment;
+use App\Models\School;
 use App\Traits\ResponseTrait;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\JsonResponse;
@@ -22,8 +22,9 @@ class DeleteAction
     public function __invoke(int $id): JsonResponse
     {
         try {
-            $doc = Attachment::where('id', $id)
-                ->where('type', 'document')
+            $doc = School::firstOrFail()
+                ->documents()
+                ->where('id', $id)
                 ->firstOrFail();
 
             $filePath = $doc->path;
