@@ -36,10 +36,10 @@ class School extends Model
         return $this->hasMany(Event::class);
     }
 
-    public function documents(): HasMany
-    {
-        return $this->hasMany(Document::class);
-    }
+    // public function documents(): HasMany
+    // {
+    //     return $this->hasMany(Document::class);
+    // }
 
     public function users(): HasMany
     {
@@ -96,6 +96,10 @@ class School extends Model
         return $this->hasMany(Information::class);
     }
 
+    public function documents(): MorphMany
+    {
+        return $this->morphMany(Attachment::class, 'attachable')->where('type', 'document');
+    }
     public function schedules(): MorphMany
     {
         return $this->morphMany(Attachment::class, 'attachable')->where('type', 'schedule');

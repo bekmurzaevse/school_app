@@ -31,17 +31,10 @@ class DocumentController extends Controller
         content: new OA\MediaType(
             mediaType: "multipart/form-data",
             schema: new OA\Schema(
-                required: ["name[kk]", "name[uz]", "name[ru]", "name[en]", "category_id", "description[kk]", "description[uz]", "description[ru]", "description[en]", "file"],
+                required: ["name", "description", "file"],
                 properties: [
-                    new OA\Property(property: "name[kk]", type: "string", example: "name kk"),
-                    new OA\Property(property: "name[uz]", type: "string", example: "name uz"),
-                    new OA\Property(property: "name[ru]", type: "string", example: "name ru"),
-                    new OA\Property(property: "name[en]", type: "string", example: "name en"),
-                    new OA\Property(property: "description[kk]", type: "string", example: "description kk"),
-                    new OA\Property(property: "description[uz]", type: "string", example: "description uz"),
-                    new OA\Property(property: "description[ru]", type: "string", example: "description ru"),
-                    new OA\Property(property: "description[en]", type: "string", example: "description en"),
-                    new OA\Property(property: "category_id", type: "integer", example: 1),
+                    new OA\Property(property: "name", type: "string", example: "name kk"),
+                    new OA\Property(property: "description", type: "string", example: "description kk"),
                     new OA\Property(property: "file", type: "string", format: "binary"),
                 ]
             ),
@@ -72,17 +65,10 @@ class DocumentController extends Controller
         content: new OA\MediaType(
             mediaType: "multipart/form-data",
             schema: new OA\Schema(
-                required: ["name[kk]", "name[uz]", "name[ru]", "name[en]", "category_id", "description[kk]", "description[uz]", "description[ru]", "description[en]", "file", "_method"],
+                required: ["name", "description", "file", "_method"],
                 properties: [
-                    new OA\Property(property: "name[kk]", type: "string", example: "name kk"),
-                    new OA\Property(property: "name[uz]", type: "string", example: "name uz"),
-                    new OA\Property(property: "name[ru]", type: "string", example: "name ru"),
-                    new OA\Property(property: "name[en]", type: "string", example: "name en"),
-                    new OA\Property(property: "description[kk]", type: "string", example: "description kk"),
-                    new OA\Property(property: "description[uz]", type: "string", example: "description uz"),
-                    new OA\Property(property: "description[ru]", type: "string", example: "description ru"),
-                    new OA\Property(property: "description[en]", type: "string", example: "description en"),
-                    new OA\Property(property: "category_id", type: "integer", example: 1),
+                    new OA\Property(property: "name", type: "string", example: "name kk"),
+                    new OA\Property(property: "description", type: "string", example: "description kk"),
                     new OA\Property(property: "file", type: "string", format: "binary"),
                     new OA\Property(property: "_method", type: "string", enum: ["PUT"], example: "PUT", nullable: false),
                 ]

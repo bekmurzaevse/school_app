@@ -3,7 +3,7 @@
 namespace App\Actions\v1\Document;
 
 use App\Exceptions\ApiResponseException;
-use App\Models\Document;
+use App\Models\School;
 use App\Traits\ResponseTrait;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\JsonResponse;
@@ -22,7 +22,11 @@ class DeleteAction
     public function __invoke(int $id): JsonResponse
     {
         try {
-            $doc = Document::findOrFail($id);
+            $doc = School::firstOrFail()
+                ->documents()
+                ->where('id', $id)
+                ->firstOrFail();
+
             $filePath = $doc->path;
 
             if (Storage::disk('public')->exists($filePath)) {
@@ -30,7 +34,7 @@ class DeleteAction
             }
 
             $doc->delete();
-            
+
             return static::toResponse(
                 message: 'Document Deleted',
             );

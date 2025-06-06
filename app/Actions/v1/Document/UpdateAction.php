@@ -5,7 +5,7 @@ namespace App\Actions\v1\Document;
 use App\Dto\v1\Document\UpdateDto;
 use App\Exceptions\ApiResponseException;
 use App\Http\Resources\v1\Document\DocumentResource;
-use App\Models\Document;
+use App\Models\School;
 use App\Traits\ResponseTrait;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\JsonResponse;
@@ -26,7 +26,10 @@ class UpdateAction
     public function __invoke(int $id, UpdateDto $dto): JsonResponse
     {
         try {
-            $doc = Document::findOrFail($id);
+            $doc = School::firstOrFail()
+                ->documents()
+                ->where('id', $id)
+                ->firstOrFail();
 
             $file = $dto->file;
             $filePath = $doc->path;
@@ -41,12 +44,15 @@ class UpdateAction
 
             $savedPath = Storage::disk('public')->putFileAs('documents', $file, $fileName);
 
-            $doc->update([
-                'name' => $dto->name,
-                'category_id' => $dto->categoryId,
-                'description' => $dto->description,
-                'path' => $savedPath
-            ]);
+            School::firstOrFail()->documents()->where('id', $id)->update(
+                [
+                    'name' => $dto->name,
+                    'path' => $savedPath,
+                    'type' => 'document',
+                    'size' => $file->getSize(),
+                    'description' => $dto->description,
+                ]
+            );
 
             return static::toResponse(
                 message: 'Document Updated',
