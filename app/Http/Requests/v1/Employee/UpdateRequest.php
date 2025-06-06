@@ -33,7 +33,7 @@ class UpdateRequest extends FormRequest
                 'string',
                 Rule::unique('employees', 'phone')->ignore($this->route('id'))
             ],
-            'photo_id' => 'required|integer|exists:photos,id',
+            'photo' => 'required|image|mimes:jpeg,png,jpg|max:2048',
             'email' => 'required|email',
             'position_id' => 'required|integer|exists:positions,id',
             'birth_date' => 'required|date|before:today'

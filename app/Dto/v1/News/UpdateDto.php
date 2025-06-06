@@ -3,6 +3,7 @@
 namespace App\Dto\v1\News;
 
 use App\Http\Requests\v1\News\UpdateRequest;
+use Illuminate\Http\UploadedFile;
 
 readonly class UpdateDto
 {
@@ -10,8 +11,7 @@ readonly class UpdateDto
         public array $title,
         public array $shortContent,
         public array $content,
-        public int $authorId,
-        public int $coverImage,
+        public UploadedFile $coverImage,
         public ?array $tags
     ) {
     }
@@ -27,8 +27,7 @@ readonly class UpdateDto
             title: $request->get('title'),
             shortContent: $request->get('short_content'),
             content: $request->get('content'),
-            authorId: $request->get('author_id'),
-            coverImage: $request->get('cover_image'),
+            coverImage: $request->file('cover_image'),
             tags: $request->get('tags')
         );
     }

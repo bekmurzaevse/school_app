@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\MorphOne;
 use Spatie\Translatable\HasTranslations;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -23,7 +24,6 @@ class Value extends Model
     protected $fillable = [
         'name',
         'school_id',
-        'photo_id',
         'text',
     ];
 
@@ -43,10 +43,10 @@ class Value extends Model
 
     /**
      * Summary of photo
-     * @return BelongsTo<Photo, Value>
+     * @return MorphOne<Attachment, Value>
      */
-    public function photo(): BelongsTo
+    public function photo(): MorphOne
     {
-        return $this->belongsTo(Photo::class, 'photo_id', 'id');
+        return $this->morphOne(Attachment::class, 'attachable');
     }
 }

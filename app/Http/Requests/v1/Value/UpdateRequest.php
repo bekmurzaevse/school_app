@@ -11,7 +11,7 @@ class UpdateRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return true;
+        return auth()->check();
     }
 
     /**
@@ -32,7 +32,7 @@ class UpdateRequest extends FormRequest
             'text.uz' => 'required|string',
             'text.ru' => 'required|string',
             'text.en' => 'required|string',
-            'photo_id' => 'required|numeric|exists:photos,id',
+            'photo' => 'required|image|mimes:jpeg,png,jpg|max:2048',
         ];
     }
 
@@ -52,6 +52,8 @@ class UpdateRequest extends FormRequest
             'photo_id.required' => 'Foto ID ma\'jbu\'riy.',
             'photo_id.exists' => 'Foto ID photos kestesinde bar bolıwı kerek.',
             'photo_id.integer' => 'Foto ID san bolıwı kerek.',
+            'photo.image' => 'foto tipindegi mag\'liwmat beriliwi kerek',
+            'photo.max' => 'foto nin\' razmeri 2 mb tan aspawi kerek'
         ];
     }
 }

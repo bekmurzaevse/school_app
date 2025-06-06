@@ -5,7 +5,6 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\Translatable\HasTranslations;
@@ -29,16 +28,19 @@ class Album extends Model
         ];
     }
 
+    /**
+     * Summary of school
+     * @return BelongsTo<School, Album>
+     */
     public function school(): BelongsTo
     {
         return $this->belongsTo(School::class);
     }
 
-    // public function photos(): HasMany
-    // {
-    //     return $this->hasMany(Photo::class);
-    // }
-
+    /**
+     * Summary of photos
+     * @return MorphMany<Attachment, Album>
+     */
     public function photos(): MorphMany
     {
         return $this->morphMany(Attachment::class, 'attachable')->where('type', 'photo');

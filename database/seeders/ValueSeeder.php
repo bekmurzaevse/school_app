@@ -20,7 +20,6 @@ class ValueSeeder extends Seeder
                 'kk' => '1 name kk',
             ],
             'school_id' => 1,
-            'photo_id' => 1,
             'text' => [
                 'en' => '1 text en',
                 'ru' => '1 text ru',
@@ -37,7 +36,6 @@ class ValueSeeder extends Seeder
                 'kk' => '2 name kk',
             ],
             'school_id' => 1,
-            'photo_id' => 2,
             'text' => [
                 'en' => '2 text en',
                 'ru' => '2 text ru',

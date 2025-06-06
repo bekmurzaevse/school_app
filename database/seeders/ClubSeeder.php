@@ -32,7 +32,6 @@ class ClubSeeder extends Seeder
                 'uz' => '1 schedule uz',
                 'kk' => '1 schedule kk',
             ],
-            'photo_id' => 1,
         ]);
 
         Club::create([
@@ -55,7 +54,6 @@ class ClubSeeder extends Seeder
                 'uz' => '2 schedule uz',
                 'kk' => '2 schedule kk',
             ],
-            'photo_id' => 1,
         ]);
     }
 }

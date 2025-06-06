@@ -41,7 +41,7 @@ class UpdateAction
                         continue;
                     }
 
-                    $path = FileUploadHelper::file($photo, 'photo');
+                    $path = FileUploadHelper::file($photo, 'photos');
 
                     $album->photos()->create([
                         'name' => $originalName,

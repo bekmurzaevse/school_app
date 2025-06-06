@@ -22,6 +22,7 @@ class DeleteAction
     {
         try {
             $news = News::findOrFail($id);
+            $news->coverImage()->delete();
             $news->delete();
 
             return static::toResponse(

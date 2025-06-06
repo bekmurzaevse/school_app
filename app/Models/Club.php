@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\MorphOne;
 use Spatie\Translatable\HasTranslations;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -26,7 +27,6 @@ class Club extends Model
         'school_id',
         'text',
         'schedule',
-        'photo_id',
     ];
 
     protected $casts = [
@@ -45,10 +45,11 @@ class Club extends Model
 
     /**
      * Summary of photo
-     * @return BelongsTo<Photo, Club>
+     * @return MorphOne<Attachment, Club>
      */
-    public function photo(): BelongsTo
+    public function photo(): MorphOne
     {
-        return $this->belongsTo(Photo::class);
+        return $this->morphOne(Attachment::class, 'attachable');
     }
+
 }

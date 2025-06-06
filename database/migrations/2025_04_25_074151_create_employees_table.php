@@ -14,10 +14,10 @@ return new class extends Migration {
             $table->id();
             $table->json('full_name');
             $table->string('phone')->unique();
-            $table->foreignId('photo_id')->constrained('photos')->cascadeOnUpdate()->restrictOnDelete();
             $table->string('email')->unique();
             $table->foreignId('position_id')->constrained('positions')->cascadeOnUpdate()->restrictOnDelete();
             $table->date('birth_date');
+            $table->json('description')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

@@ -17,7 +17,6 @@ return new class extends Migration
             $table->json('short_content');
             $table->json('content');
             $table->foreignId('author_id')->constrained('users')->cascadeOnUpdate()->restrictOnDelete();
-            $table->foreignId('cover_image')->constrained('photos')->cascadeOnUpdate()->restrictOnDelete();
             $table->softDeletes();
             $table->timestamps();
         });

@@ -22,6 +22,7 @@ class DeleteAction
     {
         try {
             $club = Club::findOrFail($id);
+            $club->photo()->delete();
             $club->delete();
 
             return static::toResponse(

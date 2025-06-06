@@ -37,7 +37,7 @@ class CreateRequest extends FormRequest
             'schedule.uz' => 'required|string',
             'schedule.ru' => 'required|string',
             'schedule.en' => 'required|string',
-            'photo_id' => 'required|integer|exists:photos,id',
+            'photo' => 'required|image|mimes:jpeg,png,jpg|max:2048',
         ];
     }
 
@@ -59,9 +59,7 @@ class CreateRequest extends FormRequest
             'schedule.uz.required' => 'O\'zbek tilinde Grafik ma\'jbu\'riy.',
             'schedule.ru.required' => 'Rus tilinde Grafik ma\'jbu\'riy.',
             'schedule.en.required' => 'Inglis tilinde Grafik ma\'jbu\'riy.',
-            'photo_id.required' => 'Foto ID ma\'jbu\'riy.',
-            'photo_id.exists' => 'Foto ID photos kestesinde bar bolıwı kerek.',
-            'photo_id.integer' => 'Foto ID san bolıwı kerek.',
+            'photos.required' => "Photo polya ma'jbu'riy",
         ];
     }
 }

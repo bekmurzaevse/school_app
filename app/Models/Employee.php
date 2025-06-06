@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\MorphOne;
 use Spatie\Translatable\HasTranslations;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -11,14 +12,14 @@ class Employee extends Model
 {
     use HasTranslations, SoftDeletes;
 
-    public $translatable = ['full_name'];
+    public $translatable = ['full_name', 'description'];
     protected $fillable = [
         'full_name',
         'phone',
-        'photo_id',
         'email',
         'position_id',
-        'birth_date'
+        'birth_date',
+        'description',
     ];
 
     protected function casts(): array
@@ -30,13 +31,21 @@ class Employee extends Model
         ];
     }
 
+    /**
+     * Summary of position
+     * @return BelongsTo<Position, Employee>
+     */
     public function position(): BelongsTo
     {
         return $this->belongsTo(Position::class);
     }
 
-    public function photo(): BelongsTo
+    /**
+     * Summary of photo
+     * @return MorphOne<Attachment, Employee>
+     */
+    public function photo(): MorphOne
     {
-        return $this->belongsTo(Photo::class);
+        return $this->morphOne(Attachment::class, 'attachable');
     }
 }
