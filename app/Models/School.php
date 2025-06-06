@@ -100,4 +100,9 @@ class School extends Model
     {
         return $this->morphMany(Attachment::class, 'attachable')->where('type', 'document');
     }
+    public function schedules(): MorphMany
+    {
+        return $this->morphMany(Attachment::class, 'attachable')->where('type', 'schedule');
+    }
+
 }
