@@ -22,6 +22,7 @@ class DeleteAction
     {
         try {
             $employee = Employee::findOrFail($id);
+            $employee->photo()->delete();
             $employee->delete();
 
             return static::toResponse(

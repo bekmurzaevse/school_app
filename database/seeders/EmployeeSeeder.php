@@ -20,12 +20,17 @@ class EmployeeSeeder extends Seeder
                 'kk' => 'Djon Smit',
             ],
             'phone' => '+998911234567',
-            'photo_id' => 1,
             'email' => 'johnsmith@gmail.com',
             'position_id' => 1,
-            'birth_date' => '1985-12-20'
+            'birth_date' => '1985-12-20',
+            'description' => [
+                'en' => 'en test description',
+                'ru' => 'ru test description',
+                'uz' => 'uz test description',
+                'kk' => 'kk test description',
+            ],
         ]);
-    
+
         Employee::create([
             'full_name' => [
                 'en' => 'Michael Brown',
@@ -34,10 +39,15 @@ class EmployeeSeeder extends Seeder
                 'kk' => 'Maykl Braun',
             ],
             'phone' => '+998911234568',
-            'photo_id' => 1,
             'email' => 'michaelbrown@gmail.com',
             'position_id' => 1,
-            'birth_date' => '1992-08-27'
+            'birth_date' => '1992-08-27',
+            'description' => [
+                'en' => 'en test description',
+                'ru' => 'ru test description',
+                'uz' => 'uz test description',
+                'kk' => 'kk test description',
+            ],
         ]);
 
         Employee::create([
@@ -48,10 +58,15 @@ class EmployeeSeeder extends Seeder
                 'kk' => 'Aleksey Kuznetsov',
             ],
             'phone' => '+998911234561',
-            'photo_id' => 1,
             'email' => 'alexeykuznetsov@gmail.com',
             'position_id' => 1,
-            'birth_date' => '1994-12-31'
+            'birth_date' => '1994-12-31',
+            'description' => [
+                'en' => 'en test description',
+                'ru' => 'ru test description',
+                'uz' => 'uz test description',
+                'kk' => 'kk test description',
+            ],
         ]);
 
         Employee::create([
@@ -62,10 +77,15 @@ class EmployeeSeeder extends Seeder
                 'kk' => 'Javlon Karimov',
             ],
             'phone' => '+998911234569',
-            'photo_id' => 3,
             'email' => 'javlonлarimov@gmail.com',
             'position_id' => 3,
-            'birth_date' => '1997-06-12'
+            'birth_date' => '1997-06-12',
+            'description' => [
+                'en' => 'en test description',
+                'ru' => 'ru test description',
+                'uz' => 'uz test description',
+                'kk' => 'kk test description',
+            ],
         ]);
 
         Employee::create([
@@ -76,10 +96,15 @@ class EmployeeSeeder extends Seeder
                 'kk' => 'Erjan Nurbekov',
             ],
             'phone' => '+998911234562',
-            'photo_id' => 2,
             'email' => 'erjannurbekov@gmail.com',
             'position_id' => 2,
-            'birth_date' => '1993-08-03'
+            'birth_date' => '1993-08-03',
+            'description' => [
+                'en' => 'en test description',
+                'ru' => 'ru test description',
+                'uz' => 'uz test description',
+                'kk' => 'kk test description',
+            ],
         ]);
     }
 }

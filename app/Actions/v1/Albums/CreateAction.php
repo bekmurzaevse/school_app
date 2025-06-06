@@ -29,7 +29,7 @@ class CreateAction
         $album = Album::create($data);
 
         foreach ($dto->photos as $photo) {
-            $path = FileUploadHelper::file($photo, 'photo');
+            $path = FileUploadHelper::file($photo, 'photos');
             $album->photos()->create([
                 'name' => $photo->getClientOriginalName(),
                 'path' => $path,

@@ -11,7 +11,7 @@ class CreateRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return true;
+        return auth()->check();
     }
 
     /**
@@ -37,8 +37,7 @@ class CreateRequest extends FormRequest
             'content.uz' => 'required|string',
             'content.ru' => 'required|string',
             'content.en' => 'required|string',
-            'author_id' => 'required|integer|exists:users,id',
-            'cover_image' => 'required|integer|exists:photos,id',
+            'cover_image' => 'required|image|mimes:jpeg,png,jpg|max:2048',
             'tags' => 'nullable|array',
             'tags.*' => 'required|integer|exists:tags,id'
         ];
@@ -62,12 +61,8 @@ class CreateRequest extends FormRequest
             'content.uz.required' => 'O\'zbek tilinde content atı ma\'jbu\'riy.',
             'content.ru.required' => 'Rus tilinde content atı ma\'jbu\'riy.',
             'content.en.required' => 'Inglis tilinde short_content atı ma\'jbu\'riy.',
-            'author_id.required' => 'Avtor ID ma\'jbu\'riy.',
-            'author_id.exists' => 'Avtor ID users kestesinde bar bolıwı kerek.',
-            'author_id.integer' => 'Avtor ID san bolıwı kerek.',
-            'cover_image.required' => 'Foto ID ma\'jbu\'riy.',
-            'cover_image.integer' => 'Foto ID san bolıwı kerek.',
-            'cover_image.exists' => 'Foto ID photos kestesinde bar bolıwı kerek.',
+            'cover_image.image' => 'foto tipindegi mag\'liwmat beriliwi kerek',
+            'cover_image.max' => 'foto nin\' razmeri 2 mb tan aspawi kerek',
             'tags.array' => 'Tags ma\'jbu\'riy bolıwı kerek.',
             'tags.*.required' => 'Tag ID ma\'jbu\'riy.',
             'tags.*.integer' => 'Tag ID san bolıwı kerek.',

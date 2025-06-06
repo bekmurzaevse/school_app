@@ -12,7 +12,7 @@ class CreateRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return true;
+        return auth()->check();
     }
 
     /**
@@ -29,10 +29,15 @@ class CreateRequest extends FormRequest
             'full_name.ru' => 'required|string',
             'full_name.en' => 'required|string',
             'phone' => 'required|string',
-            'photo_id' => 'required|integer|exists:photos,id',
             'email' => 'required|email',
             'position_id' => 'required|integer|exists:positions,id',
-            'birth_date' => 'required|date_format:Y-m-d|before:today'
+            'birth_date' => 'required|date_format:Y-m-d|before:today',
+            'photo' => 'required|image|mimes:jpeg,png,jpg|max:2048',
+            'description' => 'nullable|array',
+            'description.kk' => 'nullable|string',
+            'description.uz' => 'nullable|string',
+            'description.ru' => 'nullable|string',
+            'description.en' => 'nullable|string',
         ];
     }
 
@@ -47,9 +52,6 @@ class CreateRequest extends FormRequest
             'phone.required' => 'Telefon nomeri ma\'jbu\'riy.',
             'phone.string' => 'Telefon nomeri tekst bolıwı kerek.',
             'phone.unique' => 'Bu telefon nomeri jumısshılar kestesinde tákirarlanbas bolıwı kerek.',
-            'photo_id.required' => 'Foto ID ma\'jbu\'riy.',
-            'photo_id.exists' => 'Foto ID photos kestesinde bar bolıwı kerek.',
-            'photo_id.integer' => 'Foto ID san bolıwı kerek.',
             'email.required' => 'Email ma\'jbu\'riy.',
             'email.email' => 'Email formatı qate.',
             'position_id.required' => 'Lauazım ID ma\'jbu\'riy.',
@@ -58,6 +60,8 @@ class CreateRequest extends FormRequest
             'birth_date.required' => 'Túwılğan kún ma\'jbu\'riy.',
             'birth_date.date' => 'Túwılğan kún formatı qate.',
             'birth_date.before' => 'Túwılğan kún bügünnen alda bolıwı kerek.',
+            'photo.image' => 'foto tipindegi mag\'liwmat beriliwi kerek',
+            'photo.max' => 'foto nin\' razmeri 2 mb tan aspawi kerek'
         ];
     }
 }

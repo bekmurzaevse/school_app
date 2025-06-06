@@ -3,12 +3,13 @@
 namespace App\Dto\v1\Value;
 
 use App\Http\Requests\v1\Value\CreateRequest;
+use Illuminate\Http\UploadedFile;
 
 readonly class CreateDto
 {
     public function __construct(
         public array $name,
-        public int $photoId,
+        public UploadedFile $photo,
         public array $text
     ) {
     }
@@ -22,7 +23,7 @@ readonly class CreateDto
     {
         return new self(
             name: $request->name,
-            photoId: $request->photo_id,
+            photo: $request->photo,
             text: $request->text
         );
     }

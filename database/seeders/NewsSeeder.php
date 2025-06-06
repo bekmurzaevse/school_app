@@ -33,7 +33,6 @@ class NewsSeeder extends Seeder
                 'kk' => 'Aybek Muratovning \'Aral sadosi\' dep atalǵan jańa kompleksi jaqtı súwretler hám quramalı háykeller arqalı ekologiyalıq ózgerisler hám mádeniy turaqlılıq temaların úyrenedi. Kórgezbe onıń kem ushraytuǵın kórkem qarawları hám region tariyxı hám landshaftı menen tereń baylanıslılıǵın kórsetip beredi. Keliwshiler dástúriy naǵıslardı zamanagóy texnikaler menen uyqaslastırǵan kúshli vizual gúrrińni basdan keshirimleri múmkin. Kórgezbe kelesi aynıń aqırıǵa shekem dawam etedi.',
             ],
             'author_id' => 1,
-            'cover_image' => 1
         ]);
 
         News::create([
@@ -56,7 +55,6 @@ class NewsSeeder extends Seeder
                 'kk' => 'Rossiyalıq ilimpazlar Arktika regionin tereńrek túsiniwge qaratılǵan \'Sever-2025\' atlı jańa aldıńǵı izertlew stanciyasın islep shıǵarayotganliklarini járiyaladılar. Zamanagóy texnologiyalar menen úskenelestirilgen stanciya ıqlım ózgeriwi tásirin, máńgi tońlıqlardıń eriwin hám Arktika bioxilma-xilligini uzaq múddetli monıtorıń qılıwdı ańsatlastıradı. Joybar Rossiyanıń bul zárúrli hám tez ózgeriwshen ortalıqta ilimiy izertlewlerge óziniń jaqlaytuǵinliǵin aytıp otedi. Qurılıs 2025-jıldıń aqırına shekem juwmaqlanıwı kútilip atır.',
             ],
             'author_id' => 1,
-            'cover_image' => 2
         ]);
 
         News::create([
@@ -79,7 +77,6 @@ class NewsSeeder extends Seeder
                 'kk' => 'Angliya húkimeti óziniń ambitsiyali ıqlımlıq maqsetlerine erisiw maqsetinde qayta tikleniwshi energiya tarawına kóp milliard funt sterling muǵdarında investitsiya kirgiziwge wáde berdi. Aqshalar teńiz samal fermaların, iri quyash elektr stanciyaların rawajlandırıwǵa hám innovciyalıq energiya saqlaw sheshimlerin izertlewge joo\'neltirildi. Bas ministr Rishi Sunakning atap ótiwishe, bul investitsiyalar Ullı Britaniyaǵa tekǵana nol emissiyaga erisiwge járdem beredi, bálki mińlaǵan \'jasıl\' jumıs orınların jaratadı hám energiya qawipsizligin asıradı. Bir neshe joybarlar qashannan berli joybarlaw basqıshında, qurılıs kelesi finans jılında baslanıwı kútilip atır.',
             ],
             'author_id' => 2,
-            'cover_image' => 3
         ]);
 
         News::create([
@@ -102,7 +99,6 @@ class NewsSeeder extends Seeder
                 'kk' => 'Ózbekstan húkimeti xalıq arasında cifrlı sawatlılıqtı asırıw boyınsha keń qamtılǵan milliy programmanı járiyaladı. \'Hámme ushın cifrlı keleshek\' dep atalǵan baslama mámleket boylap biypul oqıw kursları hám resurslarini usınıs etedi, bunda kompyuterdiń tiykarǵı kónlikpeleri, internetten paydalanıw, onlayn qawipsizlik hám cifrlı baylanıs sıyaqlı jónelislerge itibar qaratıladı. Prezident Shavkat Mirziyoyev mámlekettiń ekonomikalıq rawajlanıwı hám zamanagóy dúnyada puqaralarina múmkinshiliklerin keńeytiw ushın cifrlı sawatlılıqtıń zárúrligini aytıp ótdi. Programma tálim mákemeleri hám texnologiya kompaniyaları menen sheriklikte ámelge asıriladı hám kelesi bes jıl ishinde millionlap Ózbekstanlıqlardı qamtıp alıw maqset etilgen.',
             ],
             'author_id' => 2,
-            'cover_image' => 3
         ]);
     }
 }

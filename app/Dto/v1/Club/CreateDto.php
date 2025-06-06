@@ -3,6 +3,7 @@
 namespace App\Dto\v1\Club;
 
 use App\Http\Requests\v1\Club\CreateRequest;
+use Illuminate\Http\UploadedFile;
 
 readonly class CreateDto
 {
@@ -10,7 +11,7 @@ readonly class CreateDto
         public array $name,
         public array $text,
         public array $schedule,
-        public int $photoId,
+        public UploadedFile $photo,
     ) {
     }
 
@@ -25,7 +26,7 @@ readonly class CreateDto
             name: $request->name,
             text: $request->text,
             schedule: $request->schedule,
-            photoId: $request->photo_id
+            photo: $request->photo
         );
     }
 }

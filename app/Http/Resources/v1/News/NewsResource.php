@@ -23,7 +23,7 @@ class NewsResource extends JsonResource
             'short_content' => $this->short_content,
             'content' => $this->content,
             'author' => new UserResource($this->author),
-            'cover_image' => new PhotoResource($this->coverImage),
+            'cover_image' => $this->coverImage,
             'tags' => TagResource::collection($this->tags)
         ];
     }

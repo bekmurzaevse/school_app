@@ -3,16 +3,18 @@
 namespace App\Dto\v1\Employee;
 
 use App\Http\Requests\v1\Employee\UpdateRequest;
+use Illuminate\Http\UploadedFile;
 
 readonly class UpdateDto
 {
     public function __construct(
         public array $fullName,
         public string $phone,
-        public int $photoId,
         public string $email,
         public int $positionId,
         public string $birthDate,
+        public UploadedFile $photo,
+        public ?array $description,
     ) {
     }
 
@@ -26,10 +28,11 @@ readonly class UpdateDto
         return new self(
             fullName: $request->get('full_name'),
             phone: $request->get('phone'),
-            photoId: $request->get('photo_id'),
+            photo: $request->file('photo'),
             email: $request->get('email'),
             positionId: $request->get('position_id'),
-            birthDate: $request->get('birth_date')
+            birthDate: $request->get('birth_date'),
+            description: $request->get('description'),
         );
     }
 }

@@ -49,6 +49,7 @@ class CreateRequest extends FormRequest
             'title.uz.unique' => "Bunday title.uz bazada bar!",
             'title.ru.unique' => "Bunday title.ru bazada bar!",
             'title.en.unique' => "Bunday title.en bazada bar!",
+            'photos.*.max' => "Photo nin' razmeri 2 mb tan aspawi kerek",
         ];
     }
 }
