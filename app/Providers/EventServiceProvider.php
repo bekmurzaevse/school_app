@@ -23,5 +23,13 @@ class EventServiceProvider extends ServiceProvider
         \App\Models\Target::observe(\App\Observers\TargetObserver::class);
         \App\Models\History::observe(\App\Observers\HistoryObserver::class);
         \App\Models\Vacancy::observe(\App\Observers\VacancyObserver::class);
+        \App\Models\Employee::observe(\App\Observers\EmployeeObserver::class);
+        \App\Models\News::observe(\App\Observers\NewsObserver::class);
+        \App\Models\Tag::observe(\App\Observers\TagObserver::class);
+        \App\Models\Attachment::observe(\App\Observers\DocumentObserver::class);
+        \App\Models\User::observe(\App\Observers\UserObserver::class);
+        \App\Models\Rule::observe(\App\Observers\RuleObserver::class);
+        \App\Models\Value::observe(\App\Observers\ValueObserver::class);
+        \App\Models\Club::observe(\App\Observers\ClubObserver::class);
     }
 }

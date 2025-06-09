@@ -18,7 +18,7 @@ class IndexAction
      */
     public function __invoke(): JsonResponse
     {
-        $key = 'tag:' . app()->getLocale() . ':' . md5(request()->fullUrl());
+        $key = 'tags:' . app()->getLocale() . ':' . md5(request()->fullUrl());
         $tag = Cache::remember($key, now()->addDay(), function () {
             return Tag::paginate(10);
         });
