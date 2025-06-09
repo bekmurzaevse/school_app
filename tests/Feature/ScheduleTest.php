@@ -24,7 +24,6 @@ class ScheduleTest extends TestCase
 
     public function test_schedule_can_get_all(): void
     {
-        
         $response = $this->getJson('/api/v1/schedules');
 
         $response
@@ -68,6 +67,69 @@ class ScheduleTest extends TestCase
             ]);
     }
 
+    public function test_schedule_can_create(): void
+    {
+
+        $file = UploadedFile::fake()->create('schedule.pdf', 1000, 'application/pdf');
+
+        $data = [
+            'description' => "Mekteptin' sabaq kestesi",
+            'file' => $file
+        ];
+
+        $response = $this->postJson('/api/v1/schedules/create', $data);
+
+        $response->assertStatus(200)->assertExactJson([
+            'status' => 200,
+            'message' => 'Schedule created',
+        ]);
+
+        $this->assertDatabaseHas('attachments', [
+            'name' => $file->getClientOriginalName(),
+            'type' => 'schedule',
+            'description' => $data['description'],
+        ]);
+    }
+
+    public function test_schedule_can_update(): void
+    {
+        $school = School::first();
+        $schedule = $school->schedules()->where('type', 'schedule')->first();
+
+        $file = UploadedFile::fake()->create('schedule_update.pdf', 1024, 'application/pdf');
+
+        $data = [
+            'file' => $file,
+            'description' => "Mekteptin' sabaq kestesi - updated",
+        ];
+
+        $response = $this->putJson('/api/v1/schedules/update/' . $schedule->id, $data);
+
+        $response
+            ->assertStatus(200)
+            ->assertJsonStructure([
+                'status',
+                'message',
+                'data' => [
+                    'id',
+                    'name',
+                    'path',
+                    'type',
+                    'size',
+                    'description',
+                    'created_at',
+                ]
+            ]);
+
+        $this->assertDatabaseHas('attachments', [
+            'id' => $schedule->id,
+            'type' => 'schedule',
+            'size' => $file->getSize(),
+            'attachable_type' => School::class,
+            'attachable_id' => $school->id,
+            'description' => "Mekteptin' sabaq kestesi - updated",
+        ]);
+    }
 
     public function test_schedule_can_download()
     {
