@@ -7,7 +7,6 @@ use App\Actions\v1\User\DeleteAction;
 use App\Actions\v1\User\IndexAction;
 use App\Actions\v1\User\LoginAction;
 use App\Actions\v1\User\LogoutAction;
-use App\Actions\v1\User\ProfileAction;
 use App\Actions\v1\User\ShowAction;
 use App\Actions\v1\User\UpdateAction;
 use App\Dto\v1\User\CreateDto;
