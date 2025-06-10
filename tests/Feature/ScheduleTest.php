@@ -45,7 +45,8 @@ class ScheduleTest extends TestCase
 
     public function test_schedule_can_show(): void
     {
-        $schedule = Attachment::where('type', '=', 'schedule')->inRandomOrder()->first();
+        $school = School::first();
+        $schedule = $school->schedules()->inRandomOrder()->first();
 
         $response = $this->getJson('/api/v1/schedules/' . $schedule->id);
 
@@ -94,7 +95,7 @@ class ScheduleTest extends TestCase
     public function test_schedule_can_update(): void
     {
         $school = School::first();
-        $schedule = $school->schedules()->where('type', 'schedule')->first();
+        $schedule = $school->schedules()->first();
 
         $file = UploadedFile::fake()->create('schedule_update.pdf', 1024, 'application/pdf');
 
@@ -134,7 +135,8 @@ class ScheduleTest extends TestCase
     public function test_schedule_can_download()
     {
 
-        $scheduleId = Attachment::where('type', 'schedule')->inRandomOrder()->first()->id;
+        $school = School::first();
+        $scheduleId = $school->schedules()->first()->id;
 
         $response = $this->get("/api/v1/schedules/download/" . $scheduleId);
 
@@ -143,10 +145,10 @@ class ScheduleTest extends TestCase
 
     public function test_schedule_can_delete(): void
     {
+        $school = School::first();
+        $scheduleId = $school->schedules()->first()->id;
 
-        $schedule = Attachment::where('type', 'schedule')->first();
-
-        $response = $this->deleteJson('/api/v1/schedules/delete/' . $schedule->id);
+        $response = $this->deleteJson('/api/v1/schedules/delete/' . $scheduleId);
 
         $response
             ->assertStatus(200)
