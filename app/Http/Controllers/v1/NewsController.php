@@ -8,9 +8,11 @@ use App\Actions\v1\News\IndexAction;
 use App\Actions\v1\News\ShowAction;
 use App\Actions\v1\News\UpdateAction;
 use App\Dto\v1\News\CreateDto;
+use App\Dto\v1\News\IndexDto;
 use App\Dto\v1\News\UpdateDto;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\v1\News\CreateRequest;
+use App\Http\Requests\v1\News\IndexRequest;
 use App\Http\Requests\v1\News\UpdateRequest;
 use Illuminate\Http\JsonResponse;
 
@@ -18,12 +20,13 @@ class NewsController extends Controller
 {
     /**
      * Summary of index
+     * @param \App\Http\Requests\v1\News\IndexRequest $request
      * @param \App\Actions\v1\News\IndexAction $action
      * @return JsonResponse
      */
-    public function index(IndexAction $action): JsonResponse
+    public function index(IndexRequest $request, IndexAction $action): JsonResponse
     {
-        return $action();
+        return $action(IndexDto::from($request));
     }
 
     /**

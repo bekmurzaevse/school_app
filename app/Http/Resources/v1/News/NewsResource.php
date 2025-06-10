@@ -24,7 +24,9 @@ class NewsResource extends JsonResource
             'content' => $this->content,
             'author' => new UserResource($this->author),
             'cover_image' => $this->coverImage,
-            'tags' => TagResource::collection($this->tags)
+            'tags' => TagResource::collection($this->tags),
+            'created_at' => $this->created_at->format('Y-m-d H:i:s'),
+            'updated_at' => $this->updated_at->format('Y-m-d H:i:s'),
         ];
     }
 }

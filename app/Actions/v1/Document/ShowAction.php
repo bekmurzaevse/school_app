@@ -24,7 +24,7 @@ class ShowAction
     public function __invoke(int $id): JsonResponse
     {
         try {
-            $key = 'document:show:' . app()->getLocale() . ':' . md5(request()->fullUrl());
+            $key = 'documents:show:' . app()->getLocale() . ':' . md5(request()->fullUrl());
 
             $doc = Cache::remember($key, now()->addDay(), function () use ($id) {
                 return School::firstOrFail()

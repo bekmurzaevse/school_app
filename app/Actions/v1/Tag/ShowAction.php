@@ -23,7 +23,7 @@ class ShowAction
     public function __invoke(int $id): JsonResponse
     {
         try {
-            $key = 'tag:show:' . app()->getLocale() . ':' . md5(request()->fullUrl());
+            $key = 'tags:show:' . app()->getLocale() . ':' . md5(request()->fullUrl());
             $tag = Cache::remember($key, now()->addDay(), function () use ($id) {
                 return Tag::findOrFail($id);
             });

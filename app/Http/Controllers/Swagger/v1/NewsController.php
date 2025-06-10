@@ -8,6 +8,35 @@ use OpenApi\Attributes as OA;
 class NewsController extends Controller
 {
     #[OA\Get(path: '/api/v1/news', tags: ["News"], summary: "Retrieve all news", )]
+    #[OA\Parameter(name: "page", in: "query", required: false, description: "Page", schema: new OA\Schema(type: "string"))]
+    #[OA\Parameter(name: "per_page", in: "query", required: false, description: "Per page", schema: new OA\Schema(type: "string"))]
+    #[OA\Parameter(
+        name: "sort_by",
+        in: "query",
+        required: false,
+        description: "Sort by",
+        schema: new OA\Schema(
+            type: "string",
+            enum: ["id", "created_at", "updated_at"],
+        )
+    )]
+    #[OA\Parameter(
+        name: "sort_order",
+        in: "query",
+        required: false,
+        description: "Sort order",
+        schema: new OA\Schema(
+            type: "string",
+            enum: ["asc", "desc"],
+        )
+    )]
+    #[OA\Parameter(name: "from_date", in: "query", required: false, description: "From date y-m-d", schema: new OA\Schema(type: "string", format: "date-time"))]
+    #[OA\Parameter(name: "to_date", in: "query", required: false, description: "To date y-m-d", schema: new OA\Schema(type: "string", format: "date-time"))]
+    #[OA\Parameter(name: "tags[]", in: "query", required: false, description: "Tags", schema: new OA\Schema(
+        type: "array",
+        items: new OA\Items(type: "integer"),
+    ))]
+    #[OA\Parameter(name: "search", in: "query", required: false, description: "Search", schema: new OA\Schema(type: "string", example: "Angliya"))]
     #[OA\Response(response: 200, description: 'News collection with pagination')]
     #[OA\Response(response: 401, description: 'Unauthenticated')]
     #[OA\Response(response: 404, description: 'News not found')]
