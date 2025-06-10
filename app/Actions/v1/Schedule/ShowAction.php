@@ -27,11 +27,14 @@ class ShowAction
             $key = 'schedules:show:' . app()->getLocale() . ':' . md5(request()->fullUrl());
 
             $schedule = Cache::remember($key, now()->addDay(), function () use ($id) {
-                $school = School::first();
-                return $school->schedules()->findOrFail($id);
+                return School::firstOrFail()
+                    ->schedules()
+                    ->where('id', $id)
+                    ->firstOrFail();
             });
 
-            if ($schedule->path && !Storage::disk('public')->exists($schedule->path)) {
+            // 
+            if (!$schedule || !Storage::disk('public')->exists($schedule->path)) {
                 throw new ApiResponseException('Schedule Not Found', 404);
             }
 

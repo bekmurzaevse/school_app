@@ -37,6 +37,7 @@ class DatabaseSeeder extends Seeder
             SchoolHourSeeder::class,
             InformationSeeder::class,
             VacancySeeder::class,
+            ScheduleSeeder::class,
         ]);
 
     }

@@ -8,18 +8,26 @@ use Illuminate\Support\Facades\Storage;
 
 class ScheduleResource extends JsonResource
 {
+
+    /**
+     * Transform the resource into an array.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return array
+     */
     public function toArray(Request $request): array
     {
-        $exists = $this->path && Storage::disk('public')->exists($this->path);
+        $fileExists = Storage::disk('public')->exists($this->path);
 
         return [
             'id' => $this->id,
             'name' => $this->name,
+            'path' => $fileExists ? Storage::disk('public')->mimeType($this->path) : null,
+            'type' => $this->type,
+            'size' => $fileExists ? round(Storage::disk('public')->size($this->path) / 1024, 2) . " KB" : null,
             'description' => $this->description,
-            'size' => $exists ? round(Storage::disk('public')->size($this->path) / 1024, 2) . ' KB' : null,
-            'mime_type' => $exists ? Storage::disk('public')->mimeType($this->path) : null,
-            'download_url' => $exists ? url('/api/v1/schedules/download/' . $this->id) : null,
             'created_at' => $this->created_at,
+            'download_url' => $fileExists ? url('/api/v1/schedules/download/' . $this->id) : null,
         ];
     }
 }
