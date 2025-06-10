@@ -34,46 +34,37 @@ class ClubController extends Controller
     )]
     #[OA\RequestBody(
         required: true,
-        description: "Club creation data",
-        content: new OA\JsonContent(
-            required: ["name", "text", "schedule", "photo_id"],
-            properties: [
-                new OA\Property(
-                    property: "name",
-                    type: "object",
-                    required: ["kk", "uz", "ru", "en"],
-                    properties: [
-                        new OA\Property(property: "kk", type: "string", example: "name kk"),
-                        new OA\Property(property: "uz", type: "string", example: "name uz"),
-                        new OA\Property(property: "ru", type: "string", example: "name ru"),
-                        new OA\Property(property: "en", type: "string", example: "name en"),
-                    ]
-                ),
-                new OA\Property(
-                    property: "text",
-                    type: "object",
-                    required: ["kk", "uz", "ru", "en"],
-                    properties: [
-                        new OA\Property(property: "kk", type: "string", example: "text kk"),
-                        new OA\Property(property: "uz", type: "string", example: "text uz"),
-                        new OA\Property(property: "ru", type: "string", example: "text ru"),
-                        new OA\Property(property: "en", type: "string", example: "text en"),
-                    ]
-                ),
-                new OA\Property(
-                    property: "schedule",
-                    type: "object",
-                    required: ["kk", "uz", "ru", "en"],
-                    properties: [
-                        new OA\Property(property: "kk", type: "string", example: "schedule kk"),
-                        new OA\Property(property: "uz", type: "string", example: "schedule uz"),
-                        new OA\Property(property: "ru", type: "string", example: "schedule ru"),
-                        new OA\Property(property: "en", type: "string", example: "schedule en"),
-                    ]
-                ),
-                new OA\Property(property: "photo_id", type: "int", example: "1"),
-            ]
-        ),
+        content: new OA\MediaType(
+            mediaType: "multipart/form-data",
+            schema: new OA\Schema(
+                required: [
+                    "name[uz]", "name[ru]", "name[kk]", "name[en]",
+                    "text[uz]", "text[ru]", "text[kk]", "text[en]",
+                    "schedule[uz]", "schedule[ru]", "schedule[kk]", "schedule[en]",
+                    "photo"
+                ],
+                properties: [
+                    new OA\Property(property: "name[kk]", type: "string", example: "name kk"),
+                    new OA\Property(property: "name[uz]", type: "string", example: "name uz"),
+                    new OA\Property(property: "name[ru]", type: "string", example: "name ru"),
+                    new OA\Property(property: "name[en]", type: "string", example: "name en"),
+                    new OA\Property(property: "text[kk]", type: "string", example: "text kk"),
+                    new OA\Property(property: "text[uz]", type: "string", example: "text uz"),
+                    new OA\Property(property: "text[ru]", type: "string", example: "text ru"),
+                    new OA\Property(property: "text[en]", type: "string", example: "text en"),
+                    new OA\Property(property: "schedule[kk]", type: "string", example: "schedule[kk] kk"),
+                    new OA\Property(property: "schedule[uz]", type: "string", example: "schedule[uz] kk"),
+                    new OA\Property(property: "schedule[ru]", type: "string", example: "schedule[ru] kk"),
+                    new OA\Property(property: "schedule[en]", type: "string", example: "schedule[en] kk"),
+
+                    new OA\Property(
+                        property: "photo",
+                        type: "string",
+                        format: "binary"
+                    )
+                ]
+            ),
+        )
     )]
     #[OA\Response(response: 200, description: 'Club created successfully')]
     #[OA\Response(response: 422, description: 'Validation error')]
@@ -83,7 +74,7 @@ class ClubController extends Controller
         //
     }
 
-    #[OA\Put(
+    #[OA\Post(
         path: '/api/v1/clubs/update/{id}',
         tags: ["Club"],
         summary: "Create club",
@@ -91,46 +82,38 @@ class ClubController extends Controller
     )]
     #[OA\RequestBody(
         required: true,
-        description: "Club update data",
-        content: new OA\JsonContent(
-            required: ["name", "text", "schedule", "photo_id"],
-            properties: [
-                new OA\Property(
-                    property: "name",
-                    type: "object",
-                    required: ["kk", "uz", "ru", "en"],
-                    properties: [
-                        new OA\Property(property: "kk", type: "string", example: "name kk update"),
-                        new OA\Property(property: "uz", type: "string", example: "name uz update"),
-                        new OA\Property(property: "ru", type: "string", example: "name ru update"),
-                        new OA\Property(property: "en", type: "string", example: "name en update"),
-                    ]
-                ),
-                new OA\Property(
-                    property: "text",
-                    type: "object",
-                    required: ["kk", "uz", "ru", "en"],
-                    properties: [
-                        new OA\Property(property: "kk", type: "string", example: "text kk update"),
-                        new OA\Property(property: "uz", type: "string", example: "text uz update"),
-                        new OA\Property(property: "ru", type: "string", example: "text ru update"),
-                        new OA\Property(property: "en", type: "string", example: "text en update"),
-                    ]
-                ),
-                new OA\Property(
-                    property: "schedule",
-                    type: "object",
-                    required: ["kk", "uz", "ru", "en"],
-                    properties: [
-                        new OA\Property(property: "kk", type: "string", example: "schedule kk update"),
-                        new OA\Property(property: "uz", type: "string", example: "schedule uz update"),
-                        new OA\Property(property: "ru", type: "string", example: "schedule ru update"),
-                        new OA\Property(property: "en", type: "string", example: "schedule en update"),
-                    ]
-                ),
-                new OA\Property(property: "photo_id", type: "int", example: "1"),
-            ]
-        ),
+        content: new OA\MediaType(
+            mediaType: "multipart/form-data",
+            schema: new OA\Schema(
+                required: [
+                    "name[kk]", "name[uz]", "name[ru]", "name[en]",
+                    "text[kk]", "text[uz]", "text[ru]", "text[en]",
+                    "schedule[kk]", "schedule[uz]", "schedule[ru]", "schedule[en]",
+                    "photo"
+                ],
+                properties: [
+                    new OA\Property(property: "name[kk]", type: "string", example: "name kk new"),
+                    new OA\Property(property: "name[uz]", type: "string", example: "name uz new"),
+                    new OA\Property(property: "name[ru]", type: "string", example: "name ru new"),
+                    new OA\Property(property: "name[en]", type: "string", example: "name en new"),
+                    new OA\Property(property: "text[kk]", type: "string", example: "text kk new"),
+                    new OA\Property(property: "text[uz]", type: "string", example: "text uz new"),
+                    new OA\Property(property: "text[ru]", type: "string", example: "text ru new"),
+                    new OA\Property(property: "text[en]", type: "string", example: "text en new"),
+                    new OA\Property(property: "schedule[kk]", type: "string", example: "schedule[kk] kk new"),
+                    new OA\Property(property: "schedule[uz]", type: "string", example: "schedule[uz] kk new"),
+                    new OA\Property(property: "schedule[ru]", type: "string", example: "schedule[ru] kk new"),
+                    new OA\Property(property: "schedule[en]", type: "string", example: "schedule[en] kk new"),
+                    new OA\Property(property: "_method", type: "string", enum: ["PUT"], example: "PUT", nullable: false),
+
+                    new OA\Property(
+                        property: "photo",
+                        type: "string",
+                        format: "binary"
+                    )
+                ]
+            ),
+        )
     )]
     #[OA\Response(response: 200, description: 'Club updated successfully')]
     #[OA\Response(response: 422, description: 'Validation error')]

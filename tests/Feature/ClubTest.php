@@ -2,9 +2,12 @@
 
 namespace Tests\Feature;
 
+use App\Helpers\FileUploadHelper;
 use App\Models\Club;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\Storage;
 use Tests\TestCase;
 
 class ClubTest extends TestCase
@@ -90,6 +93,9 @@ class ClubTest extends TestCase
         $user = User::find(1)->first();
         $this->actingAs($user);
 
+        $photo = UploadedFile::fake()->image('club.jpg');
+        $path = FileUploadHelper::file($photo, 'photos');
+
         $data = [
             'name' => [
                 'en' => 'name en rule test',
@@ -109,10 +115,18 @@ class ClubTest extends TestCase
                 'uz' => 'schedule uz rule test',
                 'kk' => 'schedule kk rule test',
             ],
-            'photo_id' => 1,
+            'photo' => $photo,
         ];
 
         $response = $this->postJson('/api/v1/clubs/create', $data);
+
+        $club = Club::latest()->first();
+        $club->photo()->create([
+            'name' => $photo->getClientOriginalName(),
+            'path' => $path,
+            'type' => "photo",
+            'size' => $photo->getSize(),
+        ]);
 
         $response->assertStatus(200)->assertExactJson([
             'status' => 200,
@@ -133,7 +147,6 @@ class ClubTest extends TestCase
             'schedule->ru' => 'schedule ru rule test',
             'schedule->uz' => 'schedule uz rule test',
             'schedule->kk' => 'schedule kk rule test',
-            'photo_id' => 1,
         ]);
     }
 
@@ -146,7 +159,10 @@ class ClubTest extends TestCase
         $user = User::find(1)->first();
         $this->actingAs($user);
 
-        $clubId = Club::inRandomOrder()->first()->id;
+        $club = Club::inRandomOrder()->first();
+
+        $photo = UploadedFile::fake()->image('club.jpg');
+        $path = FileUploadHelper::file($photo, 'photos');
 
         $data = [
             'name' => [
@@ -167,10 +183,21 @@ class ClubTest extends TestCase
                 'uz' => 'updated schedule uz rule test',
                 'kk' => 'updated schedule kk rule test',
             ],
-            'photo_id' => 1,
+            'photo' => $photo,
         ];
 
-        $response = $this->putJson('/api/v1/clubs/update/' . $clubId, $data);
+        if (Storage::disk('public')->exists($club->photo->path)) {
+            Storage::disk('public')->delete($club->photo->path);
+        }
+
+        $response = $this->putJson('/api/v1/clubs/update/' . $club->id, $data);
+
+        $club->photo()->create([
+            'name' => $photo->getClientOriginalName(),
+            'path' => $path,
+            'type' => "photo",
+            'size' => $photo->getSize(),
+        ]);
 
         $response
             ->assertStatus(200)
@@ -203,7 +230,6 @@ class ClubTest extends TestCase
             'schedule->ru' => 'updated schedule ru rule test',
             'schedule->uz' => 'updated schedule uz rule test',
             'schedule->kk' => 'updated schedule kk rule test',
-            'photo_id' => 1,
         ]);
     }
 
@@ -216,9 +242,15 @@ class ClubTest extends TestCase
         $user = User::find(1)->first();
         $this->actingAs($user);
 
-        $clubId = Club::inRandomOrder()->first()->id;
+        $club = Club::inRandomOrder()->first();
 
-        $response = $this->deleteJson('/api/v1/clubs/delete/' . $clubId);
+        if (Storage::disk('public')->exists($club->photo->path)) {
+            Storage::disk('public')->delete($club->photo->path);
+        }
+
+        $club->photo()->delete();
+
+        $response = $this->deleteJson('/api/v1/clubs/delete/' . $club->id);
 
         $response
             ->assertStatus(200)
@@ -228,7 +260,7 @@ class ClubTest extends TestCase
             ]);
 
         $this->assertSoftDeleted('clubs', [
-            'id' => $clubId,
+            'id' => $club->id,
         ]);
     }
 }

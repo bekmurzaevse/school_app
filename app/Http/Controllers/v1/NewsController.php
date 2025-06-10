@@ -15,6 +15,7 @@ use App\Http\Requests\v1\News\CreateRequest;
 use App\Http\Requests\v1\News\IndexRequest;
 use App\Http\Requests\v1\News\UpdateRequest;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Facades\Log;
 
 class NewsController extends Controller
 {
@@ -48,6 +49,7 @@ class NewsController extends Controller
      */
     public function create(CreateRequest $request, CreateAction $action): JsonResponse
     {
+        Log::alert($request->all());
         return $action(CreateDto::from($request));
     }
 

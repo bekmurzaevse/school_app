@@ -2,8 +2,10 @@
 
 namespace Database\Seeders;
 
+use App\Helpers\FileUploadHelper;
 use Illuminate\Database\Seeder;
 use App\Models\Club;
+use Illuminate\Http\UploadedFile;
 
 class ClubSeeder extends Seeder
 {
@@ -12,7 +14,7 @@ class ClubSeeder extends Seeder
      */
     public function run(): void
     {
-        Club::create([
+        $club1 = Club::create([
             'name' => [
                 'en' => '1 name en',
                 'ru' => '1 name ru',
@@ -34,7 +36,17 @@ class ClubSeeder extends Seeder
             ],
         ]);
 
-        Club::create([
+        $photo = UploadedFile::fake()->image('test.jpg');
+        $path = FileUploadHelper::file($photo, 'photos');
+
+        $club1->photo()->create([
+            'name' => $photo->getClientOriginalName(),
+            'path' => $path,
+            'type' => "photo",
+            'size' => $photo->getSize(),
+        ]);
+
+        $club2 = Club::create([
             'name' => [
                 'en' => '2 name en',
                 'ru' => '2 name ru',
@@ -54,6 +66,16 @@ class ClubSeeder extends Seeder
                 'uz' => '2 schedule uz',
                 'kk' => '2 schedule kk',
             ],
+        ]);
+
+        $photo = UploadedFile::fake()->image('test2.jpg');
+        $path = FileUploadHelper::file($photo, 'photos');
+
+        $club2->photo()->create([
+            'name' => $photo->getClientOriginalName(),
+            'path' => $path,
+            'type' => "photo",
+            'size' => $photo->getSize(),
         ]);
     }
 }

@@ -11,7 +11,7 @@ class CreateRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return true;
+        return auth()->check();
     }
 
     /**
@@ -59,7 +59,7 @@ class CreateRequest extends FormRequest
             'schedule.uz.required' => 'O\'zbek tilinde Grafik ma\'jbu\'riy.',
             'schedule.ru.required' => 'Rus tilinde Grafik ma\'jbu\'riy.',
             'schedule.en.required' => 'Inglis tilinde Grafik ma\'jbu\'riy.',
-            'photos.required' => "Photo polya ma'jbu'riy",
+            'photo.required' => "Photo polya ma'jbu'riy",
         ];
     }
 }

@@ -13,7 +13,7 @@ class EmployeeController extends Controller
     #[OA\Response(response: 404, description: 'Employees not found')]
     public function index()
     {
-        //      
+        //
     }
 
     #[OA\Get(path: '/api/v1/employees/{id}', tags: ["Employee"], summary: "Employee by id", security: [['sanctum' => []]])]
@@ -34,28 +34,33 @@ class EmployeeController extends Controller
     )]
     #[OA\RequestBody(
         required: true,
-        description: "Employee creation data",
-        content: new OA\JsonContent(
-            required: ["full_name", "phone", "photo_id", "email", "position_id", "birth_date"],
-            properties: [
-                new OA\Property(
-                    property: "full_name",
-                    type: "object",
-                    required: ["kk", "uz", "ru", "en"],
-                    properties: [
-                        new OA\Property(property: "kk", type: "string", example: "Anvar Qodirov"),
-                        new OA\Property(property: "uz", type: "string", example: "Anvar Qodirov"),
-                        new OA\Property(property: "ru", type: "string", example: "Анвар Кадыров"),
-                        new OA\Property(property: "en", type: "string", example: "Anvar Qodirov"),
-                    ]
-                ),
-                new OA\Property(property: "phone", type: "string", example: "+998911234511"),
-                new OA\Property(property: "photo_id", type: "int", example: 1),
-                new OA\Property(property: "email", type: "string", example: "anvarqodirov@gmail.com"),
-                new OA\Property(property: "position_id", type: "int", example: 1),
-                new OA\Property(property: "birth_date", type: "string", example: "1994-07-24"),
-            ]
-        ),
+        content: new OA\MediaType(
+            mediaType: "multipart/form-data",
+            schema: new OA\Schema(
+                required: [
+                    "full_name[uz]", "full_name[ru]", "full_name[kk]", "full_name[en]", "phone"],
+                properties: [
+                    new OA\Property(property: "full_name[kk]", type: "string", example: "full_name kk"),
+                    new OA\Property(property: "full_name[uz]", type: "string", example: "full_name uz"),
+                    new OA\Property(property: "full_name[ru]", type: "string", example: "full_name ru"),
+                    new OA\Property(property: "full_name[en]", type: "string", example: "full_name en"),
+                    new OA\Property(property: "phone", type: "string", example: "998971234567"),
+                    new OA\Property(property: "email", type: "string", example: "bill@gmail.com"),
+                    new OA\Property(property: "position_id", type: "integer", example: 1),
+                    new OA\Property(property: "birth_date", type: "string", example: "1994-01-01"),
+                    new OA\Property(property: "description[kk]", type: "string", example: "description kk"),
+                    new OA\Property(property: "description[uz]", type: "string", example: "description uz"),
+                    new OA\Property(property: "description[ru]", type: "string", example: "description ru"),
+                    new OA\Property(property: "description[en]", type: "string", example: "description en"),
+
+                    new OA\Property(
+                        property: "photo",
+                        type: "string",
+                        format: "binary"
+                    )
+                ]
+            ),
+        )
     )]
     #[OA\Response(response: 200, description: 'Employee created successfully')]
     #[OA\Response(response: 401, description: 'Not allowed')]
@@ -64,7 +69,7 @@ class EmployeeController extends Controller
         //
     }
 
-    #[OA\Put(
+    #[OA\Post(
         path: '/api/v1/employees/update/{id}',
         tags: ["Employee"],
         summary: "Update employee",
@@ -72,28 +77,34 @@ class EmployeeController extends Controller
     )]
     #[OA\RequestBody(
         required: true,
-        description: "Employee update data",
-        content: new OA\JsonContent(
-            required: ["full_name", "phone", "photo_id", "email", "position_id", "birth_date"],
-            properties: [
-                new OA\Property(
-                    property: "full_name",
-                    type: "object",
-                    required: ["kk", "uz", "ru", "en"],
-                    properties: [
-                        new OA\Property(property: "kk", type: "string", example: "Anvar Qodirov"),
-                        new OA\Property(property: "uz", type: "string", example: "Anvar Qodirov"),
-                        new OA\Property(property: "ru", type: "string", example: "Анвар Кадыров"),
-                        new OA\Property(property: "en", type: "string", example: "Anvar Qodirov"),
-                    ]
-                ),
-                new OA\Property(property: "phone", type: "string", example: "+998911234511"),
-                new OA\Property(property: "photo_id", type: "int", example: 1),
-                new OA\Property(property: "email", type: "string", example: "anvarqodirov@gmail.com"),
-                new OA\Property(property: "position_id", type: "int", example: 1),
-                new OA\Property(property: "birth_date", type: "string", example: "1994-07-24"),
-            ]
-        ),
+        content: new OA\MediaType(
+            mediaType: "multipart/form-data",
+            schema: new OA\Schema(
+                required: [
+                    "full_name[uz]", "full_name[ru]", "full_name[kk]", "full_name[en]", "phone"],
+                properties: [
+                    new OA\Property(property: "full_name[kk]", type: "string", example: "full_name kk"),
+                    new OA\Property(property: "full_name[uz]", type: "string", example: "full_name uz"),
+                    new OA\Property(property: "full_name[ru]", type: "string", example: "full_name ru"),
+                    new OA\Property(property: "full_name[en]", type: "string", example: "full_name en"),
+                    new OA\Property(property: "phone", type: "string", example: "998971234567"),
+                    new OA\Property(property: "email", type: "string", example: "bill@gmail.com"),
+                    new OA\Property(property: "position_id", type: "integer", example: 1),
+                    new OA\Property(property: "birth_date", type: "string", example: "1994-01-01"),
+                    new OA\Property(property: "description[kk]", type: "string", example: "description kk"),
+                    new OA\Property(property: "description[uz]", type: "string", example: "description uz"),
+                    new OA\Property(property: "description[ru]", type: "string", example: "description ru"),
+                    new OA\Property(property: "description[en]", type: "string", example: "description en"),
+                    new OA\Property(property: "_method", type: "string", enum: ["PUT"], example: "PUT", nullable: false),
+
+                    new OA\Property(
+                        property: "photo",
+                        type: "string",
+                        format: "binary"
+                    )
+                ]
+            ),
+        )
     )]
     #[OA\Response(response: 200, description: 'Employee updated successfully')]
     #[OA\Response(response: 401, description: 'Not allowed')]

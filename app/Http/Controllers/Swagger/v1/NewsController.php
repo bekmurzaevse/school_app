@@ -42,7 +42,7 @@ class NewsController extends Controller
     #[OA\Response(response: 404, description: 'News not found')]
     public function index()
     {
-        //      
+        //
     }
 
     #[OA\Get(path: '/api/v1/news/{id}', tags: ["News"], summary: "News by id")]
@@ -63,48 +63,42 @@ class NewsController extends Controller
     )]
     #[OA\RequestBody(
         required: true,
-        description: "News creation data",
-        content: new OA\JsonContent(
-            required: ["title", "author_id", "short_content", "content"],
-            properties: [
-                new OA\Property(property: "author_id", type: "int", example: 1),
-                new OA\Property(property: "cover_image", type: "int", example: 1),
-                new OA\Property(
-                    property: "title",
-                    type: "object",
-                    required: ["kk", "uz", "ru", "en"],
-                    properties: [
-                        new OA\Property(property: "kk", type: "string", example: "kk title"),
-                        new OA\Property(property: "uz", type: "string", example: "uz title"),
-                        new OA\Property(property: "ru", type: "string", example: "ru title"),
-                        new OA\Property(property: "en", type: "string", example: "en title"),
-                    ]
-                ),
-                new OA\Property(
-                    property: "short_content",
-                    type: "object",
-                    required: ["kk", "uz", "ru", "en"],
-                    properties: [
-                        new OA\Property(property: "kk", type: "string", example: "kk short_content"),
-                        new OA\Property(property: "uz", type: "string", example: "uz short_content"),
-                        new OA\Property(property: "ru", type: "string", example: "ru short_content"),
-                        new OA\Property(property: "en", type: "string", example: "en short_content"),
-                    ]
-                ),
-                new OA\Property(
-                    property: "content",
-                    type: "object",
-                    required: ["kk", "uz", "ru", "en"],
-                    properties: [
-                        new OA\Property(property: "kk", type: "string", example: "kk content"),
-                        new OA\Property(property: "uz", type: "string", example: "uz content"),
-                        new OA\Property(property: "ru", type: "string", example: "ru content"),
-                        new OA\Property(property: "en", type: "string", example: "en content"),
-                    ]
-                ),
-                new OA\Property(property: "tags[]", type: "array", items: new OA\Items(type: "integer"), example: []),
-            ]
-        ),
+        content: new OA\MediaType(
+            mediaType: "multipart/form-data",
+            schema: new OA\Schema(
+                required: [
+                    "title[uz]", "title[ru]", "title[kk]", "title[en]",
+                    "short_content[uz]", "short_content[ru]", "short_content[kk]", "short_content[en]",
+                    "content[uz]", "content[ru]", "content[kk]", "content[en]",
+                    "cover_image", "tags"
+                ],
+                properties: [
+                    new OA\Property(property: "title[kk]", type: "string", example: "title kk"),
+                    new OA\Property(property: "title[uz]", type: "string", example: "title uz"),
+                    new OA\Property(property: "title[ru]", type: "string", example: "title ru"),
+                    new OA\Property(property: "title[en]", type: "string", example: "title en"),
+                    new OA\Property(property: "short_content[kk]", type: "string", example: "short_content kk"),
+                    new OA\Property(property: "short_content[uz]", type: "string", example: "short_content uz"),
+                    new OA\Property(property: "short_content[ru]", type: "string", example: "short_content ru"),
+                    new OA\Property(property: "short_content[en]", type: "string", example: "short_content en"),
+                    new OA\Property(property: "content[kk]", type: "string", example: "content[kk] kk"),
+                    new OA\Property(property: "content[uz]", type: "string", example: "content[uz] kk"),
+                    new OA\Property(property: "content[ru]", type: "string", example: "content[ru] kk"),
+                    new OA\Property(property: "content[en]", type: "string", example: "content[en] kk"),
+                    new OA\Property(
+                        property: "tags",
+                        type: "array",
+                        items: new OA\Items(type: "integer"),
+                        description: "Tags id lar array ko'rinishida bo'lishi kerak",
+                    ),
+                    new OA\Property(
+                        property: "cover_image",
+                        type: "string",
+                        format: "binary"
+                    )
+                ]
+            )
+        )
     )]
     #[OA\Response(response: 200, description: 'News created successfully')]
     #[OA\Response(response: 401, description: 'Not allowed')]
@@ -113,7 +107,7 @@ class NewsController extends Controller
         //
     }
 
-    #[OA\Put(
+    #[OA\Post(
         path: '/api/v1/news/update/{id}',
         tags: ["News"],
         summary: "Update news",
@@ -121,48 +115,43 @@ class NewsController extends Controller
     )]
     #[OA\RequestBody(
         required: true,
-        description: "News update data",
-        content: new OA\JsonContent(
-            required: ["title", "author_id", "short_content", "content"],
-            properties: [
-                new OA\Property(property: "author_id", type: "int", example: 1),
-                new OA\Property(property: "cover_image", type: "int", example: 1),
-                new OA\Property(
-                    property: "title",
-                    type: "object",
-                    required: ["kk", "uz", "ru", "en"],
-                    properties: [
-                        new OA\Property(property: "kk", type: "string", example: "kk title"),
-                        new OA\Property(property: "uz", type: "string", example: "uz title"),
-                        new OA\Property(property: "ru", type: "string", example: "ru title"),
-                        new OA\Property(property: "en", type: "string", example: "en title"),
-                    ]
-                ),
-                new OA\Property(
-                    property: "short_content",
-                    type: "object",
-                    required: ["kk", "uz", "ru", "en"],
-                    properties: [
-                        new OA\Property(property: "kk", type: "string", example: "kk short_content"),
-                        new OA\Property(property: "uz", type: "string", example: "uz short_content"),
-                        new OA\Property(property: "ru", type: "string", example: "ru short_content"),
-                        new OA\Property(property: "en", type: "string", example: "en short_content"),
-                    ]
-                ),
-                new OA\Property(
-                    property: "content",
-                    type: "object",
-                    required: ["kk", "uz", "ru", "en"],
-                    properties: [
-                        new OA\Property(property: "kk", type: "string", example: "kk content"),
-                        new OA\Property(property: "uz", type: "string", example: "uz content"),
-                        new OA\Property(property: "ru", type: "string", example: "ru content"),
-                        new OA\Property(property: "en", type: "string", example: "en content"),
-                    ]
-                ),
-                new OA\Property(property: "tags[]", type: "array", items: new OA\Items(type: "integer"), example: []),
-            ]
-        ),
+        content: new OA\MediaType(
+            mediaType: "multipart/form-data",
+            schema: new OA\Schema(
+                required: [
+                    "title[uz]", "title[ru]", "title[kk]", "title[en]",
+                    "short_content[uz]", "short_content[ru]", "short_content[kk]", "short_content[en]",
+                    "content[uz]", "content[ru]", "content[kk]", "content[en]",
+                    "cover_image", "tags"
+                ],
+                properties: [
+                    new OA\Property(property: "title[kk]", type: "string", example: "title kk"),
+                    new OA\Property(property: "title[uz]", type: "string", example: "title uz"),
+                    new OA\Property(property: "title[ru]", type: "string", example: "title ru"),
+                    new OA\Property(property: "title[en]", type: "string", example: "title en"),
+                    new OA\Property(property: "short_content[kk]", type: "string", example: "short_content kk"),
+                    new OA\Property(property: "short_content[uz]", type: "string", example: "short_content uz"),
+                    new OA\Property(property: "short_content[ru]", type: "string", example: "short_content ru"),
+                    new OA\Property(property: "short_content[en]", type: "string", example: "short_content en"),
+                    new OA\Property(property: "content[kk]", type: "string", example: "content[kk] kk"),
+                    new OA\Property(property: "content[uz]", type: "string", example: "content[uz] kk"),
+                    new OA\Property(property: "content[ru]", type: "string", example: "content[ru] kk"),
+                    new OA\Property(property: "content[en]", type: "string", example: "content[en] kk"),
+                    new OA\Property(property: "_method", type: "string", enum: ["PUT"], example: "PUT", nullable: false),
+                    new OA\Property(
+                        property: "tags",
+                        type: "array",
+                        items: new OA\Items(type: "integer"),
+                        description: "Tags id lar array ko'rinishida bo'lishi kerak",
+                    ),
+                    new OA\Property(
+                        property: "cover_image",
+                        type: "string",
+                        format: "binary"
+                    )
+                ]
+            )
+        )
     )]
     #[OA\Response(response: 200, description: 'News updated successfully')]
     #[OA\Response(response: 401, description: 'Not allowed')]

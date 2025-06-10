@@ -2,10 +2,13 @@
 
 namespace Tests\Feature;
 
+use App\Helpers\FileUploadHelper;
 use App\Models\Album;
 use App\Models\School;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Tests\TestCase;
 
@@ -70,6 +73,11 @@ class AlbumTest extends TestCase
         $descriptionRu = 'description ru';
         $descriptionEn = 'description en';
 
+        $photo = UploadedFile::fake()->image('album.jpg');
+        $photo2 = UploadedFile::fake()->image('album2.jpg');
+        $path = FileUploadHelper::file($photo, 'photos');
+        $path2 = FileUploadHelper::file($photo, 'photos');
+
         $data = [
             'title' => [
                 'kk' => $titleKk,
@@ -83,9 +91,24 @@ class AlbumTest extends TestCase
                 'ru' => $descriptionRu,
                 'en' => $descriptionEn,
             ],
+            'photos' => [$photo, $photo2],
         ];
 
         $response = $this->postJson("/api/v1/albums/create", $data);
+
+        $album = Album::latest()->first();
+        $album->photos()->create([
+            'name' => $photo->getClientOriginalName(),
+            'path' => $path,
+            'type' => "photo",
+            'size' => $photo->getSize(),
+        ]);
+        $album->photos()->create([
+            'name' => $photo2->getClientOriginalName(),
+            'path' => $path,
+            'type' => "photo",
+            'size' => $photo2->getSize(),
+        ]);
 
         $response
             ->assertStatus(200)
@@ -126,6 +149,8 @@ class AlbumTest extends TestCase
         $descriptionRu = 'description ru';
         $descriptionEn = 'description en';
 
+        $photo = UploadedFile::fake()->image('albumNew.jpg');
+
         $album = Album::inRandomOrder()->first();
         $data = [
             'title' => [
@@ -140,9 +165,26 @@ class AlbumTest extends TestCase
                 'ru' => $descriptionRu,
                 'en' => $descriptionEn,
             ],
+            'photos' => [$photo]
         ];
 
+         foreach ($album->photos as $photo) {
+            if (Storage::disk('public')->exists($photo->path)) {
+                Storage::disk('public')->delete($photo->path);
+            }
+        }
+
         $response = $this->putJson("/api/v1/albums/update/" . $album->id, $data);
+
+        foreach ($album->photos as $photo) {
+            $path = FileUploadHelper::file($photo, 'photos');
+            $album->photos()->create([
+                'name' => $photo->getClientOriginalName(),
+                'path' => $path,
+                'type' => "photo",
+                'size' => $photo->getSize(),
+            ]);
+        }
 
         $response
             ->assertStatus(200)

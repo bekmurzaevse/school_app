@@ -44,9 +44,9 @@ class UpdateAction
                     $path = FileUploadHelper::file($photo, 'photos');
 
                     $album->photos()->create([
-                        'name' => $originalName,
+                        'name' => $photo->getClientOriginalName(),
                         'path' => $path,
-                        'type' => 'photo',
+                        'type' => "photo",
                         'size' => $photo->getSize(),
                     ]);
                 }
