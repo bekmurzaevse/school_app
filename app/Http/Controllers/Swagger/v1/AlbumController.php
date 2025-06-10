@@ -31,33 +31,31 @@ class AlbumController extends Controller
     )]
     #[OA\RequestBody(
         required: true,
-        description: "Albom jaratiw ushin mag'liwmatlar",
-        content: new OA\JsonContent(
-            required: ["title"],
-            properties: [
-                new OA\Property(
-                    property: "title",
-                    type: "object",
-                    required: ["kk", "uz", "ru", "en"],
-                    properties: [
-                        new OA\Property(property: "kk", type: "string", example: "kk text"),
-                        new OA\Property(property: "uz", type: "string", example: "uz text"),
-                        new OA\Property(property: "ru", type: "string", example: "ru text"),
-                        new OA\Property(property: "en", type: "string", example: "en text"),
-                    ]
-                ),
-                new OA\Property(
-                    property: "description",
-                    type: "object",
-                    required: ["kk", "uz", "ru", "en"],
-                    properties: [
-                        new OA\Property(property: "kk", type: "string", example: "kk description"),
-                        new OA\Property(property: "uz", type: "string", example: "uz description"),
-                        new OA\Property(property: "ru", type: "string", example: "ru description"),
-                        new OA\Property(property: "en", type: "string", example: "en description"),
-                    ]
-                ),
-            ]
+        content: new OA\MediaType(
+            mediaType: "multipart/form-data",
+            schema: new OA\Schema(
+                required: [
+                    "title[uz]", "title[ru]", "title[kk]", "title[en]", "photos[]"
+                ],
+                properties: [
+                    new OA\Property(property: "title[kk]", type: "string", example: "title kk"),
+                    new OA\Property(property: "title[uz]", type: "string", example: "title uz"),
+                    new OA\Property(property: "title[ru]", type: "string", example: "title ru"),
+                    new OA\Property(property: "title[en]", type: "string", example: "title en"),
+                    new OA\Property(property: "description[kk]", type: "string", example: "description kk"),
+                    new OA\Property(property: "description[uz]", type: "string", example: "description uz"),
+                    new OA\Property(property: "description[ru]", type: "string", example: "description ru"),
+                    new OA\Property(property: "description[en]", type: "string", example: "description en"),
+
+                    new OA\Property(
+                        property: "photos[]",
+                        type: "array",
+                        items: new OA\Items(type: "string", format:"binary"),
+                        description: "Tags id lar array ko'rinishida bo'lishi kerak",
+                    ),
+
+                ]
+            ),
         )
     )]
     #[OA\Response(response: 200, description: 'Albom jaratildi')]
@@ -83,54 +81,39 @@ class AlbumController extends Controller
         //
     }
 
-    #[OA\Put(
-        path: "/api/v1/albums/update/{id}",
-        summary: "Albom di jan'alaw",
+    #[OA\Post(
+        path: '/api/v1/albums/update/{id}',
         tags: ["Album"],
-        security: [["sanctum" => []]],
-        requestBody: new OA\RequestBody(
-            required: true,
-            content: new OA\JsonContent(
-                required: ["title", "description"],
-                properties: [
-                    new OA\Property(
-                        property: "title",
-                        type: "object",
-                        required: ["kk", "uz", "ru", "en"],
-                        properties: [
-                            new OA\Property(property: "kk", type: "string", example: "kk text"),
-                            new OA\Property(property: "uz", type: "string", example: "uz text"),
-                            new OA\Property(property: "ru", type: "string", example: "ru text"),
-                            new OA\Property(property: "en", type: "string", example: "en text"),
-                        ]
-                    ),
-                    new OA\Property(
-                        property: "description",
-                        type: "object",
-                        required: ["kk", "uz", "ru", "en"],
-                        properties: [
-                            new OA\Property(property: "kk", type: "string", example: "kk description"),
-                            new OA\Property(property: "uz", type: "string", example: "uz description"),
-                            new OA\Property(property: "ru", type: "string", example: "ru description"),
-                            new OA\Property(property: "en", type: "string", example: "en description"),
-                        ]
-                    ),
-                ]
-            )
-        ),
-        responses: [
-            new OA\Response(response: 200, description: "Albom jan'alandi"),
-            new OA\Response(response: 401, description: "Not allowed"),
-            new OA\Response(response: 404, description: "Albom tabilmadi")
-        ]
+        summary: "Update album",
+        security: [['sanctum' => []]]
     )]
-    #[OA\Parameter(
-        name: "id",
-        in: "path",
+    #[OA\RequestBody(
         required: true,
-        description: "id arqali Albom di jan'law",
-        example: 1
+        content: new OA\MediaType(
+            mediaType: "multipart/form-data",
+            schema: new OA\Schema(
+                required: [
+                    "title[uz]", "title[ru]", "title[kk]", "title[en]", "photos[]"],
+                properties: [
+                    new OA\Property(property: "title[kk]", type: "string", example: "title kk"),
+                    new OA\Property(property: "title[uz]", type: "string", example: "title uz"),
+                    new OA\Property(property: "title[ru]", type: "string", example: "title ru"),
+                    new OA\Property(property: "title[en]", type: "string", example: "title en"),
+                    new OA\Property(property: "_method", type: "string", enum: ["PUT"], example: "PUT", nullable: false),
+
+                    new OA\Property(
+                        property: "photos[]",
+                        type: "array",
+                        items: new OA\Items(type: "string", format:"binary"),
+                    )
+                ]
+            ),
+        )
     )]
+    #[OA\Response(response: 200, description: 'Employee updated successfully')]
+    #[OA\Response(response: 401, description: 'Not allowed')]
+    #[OA\Response(response: 404, description: 'Employee not found')]
+    #[OA\Parameter(name: "id", in: "path", required: true, description: "Employee id", example: 1)]
     public function update()
     {
         //

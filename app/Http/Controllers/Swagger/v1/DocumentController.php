@@ -13,7 +13,7 @@ class DocumentController extends Controller
     #[OA\Response(response: 404, description: "Documents not found")]
     public function index()
     {
-        //      
+        //
     }
 
     #[OA\Get(path: '/api/v1/documents/show/{id}', tags: ["Document"], summary: "Document by id", security: [['sanctum' => []]])]

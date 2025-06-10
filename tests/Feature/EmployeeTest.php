@@ -2,9 +2,13 @@
 
 namespace Tests\Feature;
 
+use App\Helpers\FileUploadHelper;
 use App\Models\Employee;
+use App\Models\Position;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\Storage;
 use Tests\TestCase;
 
 class EmployeeTest extends TestCase
@@ -95,6 +99,9 @@ class EmployeeTest extends TestCase
         $user = User::find(1)->first();
         $this->actingAs($user);
 
+        $photo = UploadedFile::fake()->image('newEmployee.jpg');
+        $path = FileUploadHelper::file($photo, 'photos');
+
         $data = [
             'full_name' => [
                 'en' => 'John Smith',
@@ -103,13 +110,21 @@ class EmployeeTest extends TestCase
                 'kk' => 'Djon Smit',
             ],
             'phone' => '+998911234512',
-            'photo_id' => 1,
+            'photo' => $photo,
             'email' => 'johnsmith1@gmail.com',
-            'position_id' => 1,
+            'position_id' => Position::inRandomOrder()->first()->id,
             'birth_date' => '1985-12-20'
         ];
 
         $response = $this->postJson('/api/v1/employees/create', $data);
+
+        $employee = Employee::latest()->first();
+        $employee->photo()->create([
+            'name' => $photo->getClientOriginalName(),
+            'path' => $path,
+            'type' => "photo",
+            'size' => $photo->getSize(),
+        ]);
 
         $response->assertStatus(200)->assertExactJson([
             'status' => 200,
@@ -126,23 +141,37 @@ class EmployeeTest extends TestCase
         $user = User::find(1)->first();
         $this->actingAs($user);
 
-        $employeeId = Employee::inRandomOrder()->first()->id;
+        $employee = Employee::inRandomOrder()->first();
+
+        $photo = UploadedFile::fake()->image('club.jpg');
+        $path = FileUploadHelper::file($photo, 'photos');
 
         $data = [
             'full_name' => [
-                'en' => 'John Smith updated',
-                'ru' => 'Джон Смит updated',
-                'uz' => 'Djon Smit updated',
-                'kk' => 'Djon Smit updated',
+                'en' => 'John Smith updated new',
+                'ru' => 'Джон Смит updated new',
+                'uz' => 'Djon Smit updated new',
+                'kk' => 'Djon Smit updated new',
             ],
-            'phone' => '+998911231111',
-            'photo_id' => 2,
-            'email' => 'johnsmit11hw@gmail.com',
-            'position_id' => 1,
-            'birth_date' => '1985-12-20'
+            'phone' => '+998911231222',
+            'photo' => $photo,
+            'email' => 'johnsmit11hw2@gmail.com',
+            'position_id' => Position::inRandomOrder()->first()->id,
+            'birth_date' => '2000-01-01'
         ];
 
-        $response = $this->putJson('/api/v1/employees/update/' . $employeeId, $data);
+        if (Storage::disk('public')->exists($employee->photo->path)) {
+            Storage::disk('public')->delete($employee->photo->path);
+        }
+
+        $response = $this->putJson('/api/v1/employees/update/' . $employee->id, $data);
+
+        $employee->photo()->create([
+            'name' => $photo->getClientOriginalName(),
+            'path' => $path,
+            'type' => "photo",
+            'size' => $photo->getSize(),
+        ]);
 
         $response
             ->assertStatus(200)

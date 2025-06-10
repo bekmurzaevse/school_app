@@ -34,35 +34,32 @@ class ValueController extends Controller
     )]
     #[OA\RequestBody(
         required: true,
-        description: "Value creation data",
-        content: new OA\JsonContent(
-            required: ["name", "text", "photo_id"],
-            properties: [
-                new OA\Property(
-                    property: "name",
-                    type: "object",
-                    required: ["kk", "uz", "ru", "en"],
-                    properties: [
-                        new OA\Property(property: "kk", type: "string", example: "name kk create"),
-                        new OA\Property(property: "uz", type: "string", example: "name uz create"),
-                        new OA\Property(property: "ru", type: "string", example: "name ru create"),
-                        new OA\Property(property: "en", type: "string", example: "name en create"),
-                    ]
-                ),
-                new OA\Property(
-                    property: "text",
-                    type: "object",
-                    required: ["kk", "uz", "ru", "en"],
-                    properties: [
-                        new OA\Property(property: "kk", type: "string", example: "text kk create"),
-                        new OA\Property(property: "uz", type: "string", example: "text uz create"),
-                        new OA\Property(property: "ru", type: "string", example: "text ru create"),
-                        new OA\Property(property: "en", type: "string", example: "text en create"),
-                    ]
-                ),
-                new OA\Property(property: "photo_id", type: "int", example: "1"),
-            ]
-        ),
+        content: new OA\MediaType(
+            mediaType: "multipart/form-data",
+            schema: new OA\Schema(
+                required: [
+                    "name[uz]", "name[ru]", "name[kk]", "name[en]",
+                    "text[uz]", "text[ru]", "text[kk]", "text[en]",
+                    "photo"
+                ],
+                properties: [
+                    new OA\Property(property: "name[kk]", type: "string", example: "name kk"),
+                    new OA\Property(property: "name[uz]", type: "string", example: "name uz"),
+                    new OA\Property(property: "name[ru]", type: "string", example: "name ru"),
+                    new OA\Property(property: "name[en]", type: "string", example: "name en"),
+                    new OA\Property(property: "text[kk]", type: "string", example: "text kk"),
+                    new OA\Property(property: "text[uz]", type: "string", example: "text uz"),
+                    new OA\Property(property: "text[ru]", type: "string", example: "text ru"),
+                    new OA\Property(property: "text[en]", type: "string", example: "text en"),
+
+                    new OA\Property(
+                        property: "photo",
+                        type: "string",
+                        format: "binary"
+                    )
+                ]
+            ),
+        )
     )]
     #[OA\Response(response: 200, description: 'Value created successfully')]
     #[OA\Response(response: 422, description: 'Validation error')]
@@ -72,7 +69,7 @@ class ValueController extends Controller
         //
     }
 
-    #[OA\Put(
+    #[OA\Post(
         path: '/api/v1/values/update/{id}',
         tags: ["Value"],
         summary: "Update value",
@@ -80,35 +77,33 @@ class ValueController extends Controller
     )]
     #[OA\RequestBody(
         required: true,
-        description: "Value update data",
-        content: new OA\JsonContent(
-            required: ["name", "text", "photo_id"],
-            properties: [
-                new OA\Property(
-                    property: "name",
-                    type: "object",
-                    required: ["kk", "uz", "ru", "en"],
-                    properties: [
-                        new OA\Property(property: "kk", type: "string", example: "name kk update"),
-                        new OA\Property(property: "uz", type: "string", example: "name uz update"),
-                        new OA\Property(property: "ru", type: "string", example: "name ru update"),
-                        new OA\Property(property: "en", type: "string", example: "name en update"),
-                    ]
-                ),
-                new OA\Property(
-                    property: "text",
-                    type: "object",
-                    required: ["kk", "uz", "ru", "en"],
-                    properties: [
-                        new OA\Property(property: "kk", type: "string", example: "text kk update"),
-                        new OA\Property(property: "uz", type: "string", example: "text uz update"),
-                        new OA\Property(property: "ru", type: "string", example: "text ru update"),
-                        new OA\Property(property: "en", type: "string", example: "text en update"),
-                    ]
-                ),
-                new OA\Property(property: "photo_id", type: "int", example: "1"),
-            ]
-        ),
+        content: new OA\MediaType(
+            mediaType: "multipart/form-data",
+            schema: new OA\Schema(
+                required: [
+                    "name[uz]", "name[ru]", "name[kk]", "name[en]",
+                    "text[uz]", "text[ru]", "text[kk]", "text[en]",
+                    "photo"
+                ],
+                properties: [
+                    new OA\Property(property: "name[kk]", type: "string", example: "name kk"),
+                    new OA\Property(property: "name[uz]", type: "string", example: "name uz"),
+                    new OA\Property(property: "name[ru]", type: "string", example: "name ru"),
+                    new OA\Property(property: "name[en]", type: "string", example: "name en"),
+                    new OA\Property(property: "text[kk]", type: "string", example: "text kk"),
+                    new OA\Property(property: "text[uz]", type: "string", example: "text uz"),
+                    new OA\Property(property: "text[ru]", type: "string", example: "text ru"),
+                    new OA\Property(property: "text[en]", type: "string", example: "text en"),
+                    new OA\Property(property: "_method", type: "string", enum: ["PUT"], example: "PUT", nullable: false),
+
+                    new OA\Property(
+                        property: "photo",
+                        type: "string",
+                        format: "binary"
+                    )
+                ]
+            ),
+        )
     )]
     #[OA\Response(response: 200, description: 'Value created successfully')]
     #[OA\Response(response: 422, description: 'Validation error')]

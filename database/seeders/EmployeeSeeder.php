@@ -2,8 +2,10 @@
 
 namespace Database\Seeders;
 
+use App\Helpers\FileUploadHelper;
 use Illuminate\Database\Seeder;
 use App\Models\Employee;
+use Illuminate\Http\UploadedFile;
 
 class EmployeeSeeder extends Seeder
 {
@@ -12,7 +14,7 @@ class EmployeeSeeder extends Seeder
      */
     public function run(): void
     {
-        Employee::create([
+        $employee1 = Employee::create([
             'full_name' => [
                 'en' => 'John Smith',
                 'ru' => 'Джон Смит',
@@ -31,7 +33,17 @@ class EmployeeSeeder extends Seeder
             ],
         ]);
 
-        Employee::create([
+        $photo = UploadedFile::fake()->image('employee1.jpg');
+        $path = FileUploadHelper::file($photo, 'photos');
+
+        $employee1->photo()->create([
+            'name' => $photo->getClientOriginalName(),
+            'path' => $path,
+            'type' => "photo",
+            'size' => $photo->getSize(),
+        ]);
+
+        $employee2 = Employee::create([
             'full_name' => [
                 'en' => 'Michael Brown',
                 'ru' => 'Майкл Браун',
@@ -50,7 +62,17 @@ class EmployeeSeeder extends Seeder
             ],
         ]);
 
-        Employee::create([
+        $photo = UploadedFile::fake()->image('employee2.jpg');
+        $path = FileUploadHelper::file($photo, 'photos');
+
+        $employee2->photo()->create([
+            'name' => $photo->getClientOriginalName(),
+            'path' => $path,
+            'type' => "photo",
+            'size' => $photo->getSize(),
+        ]);
+
+        $employee3 = Employee::create([
             'full_name' => [
                 'en' => 'Alexey Kuznetsov',
                 'ru' => 'Алексей Кузнецов',
@@ -69,7 +91,17 @@ class EmployeeSeeder extends Seeder
             ],
         ]);
 
-        Employee::create([
+        $photo = UploadedFile::fake()->image('employee3.jpg');
+        $path = FileUploadHelper::file($photo, 'photos');
+
+        $employee3->photo()->create([
+            'name' => $photo->getClientOriginalName(),
+            'path' => $path,
+            'type' => "photo",
+            'size' => $photo->getSize(),
+        ]);
+
+        $employee4 = Employee::create([
             'full_name' => [
                 'en' => 'Javlon Karimov',
                 'ru' => 'Джавлон Каримов',
@@ -88,7 +120,17 @@ class EmployeeSeeder extends Seeder
             ],
         ]);
 
-        Employee::create([
+        $photo = UploadedFile::fake()->image('employee4.jpg');
+        $path = FileUploadHelper::file($photo, 'photos');
+
+        $employee4->photo()->create([
+            'name' => $photo->getClientOriginalName(),
+            'path' => $path,
+            'type' => "photo",
+            'size' => $photo->getSize(),
+        ]);
+
+        $employee5 = Employee::create([
             'full_name' => [
                 'en' => 'Erzhan Nurbekov',
                 'ru' => 'Ержан Нурбеков',
@@ -105,6 +147,16 @@ class EmployeeSeeder extends Seeder
                 'uz' => 'uz test description',
                 'kk' => 'kk test description',
             ],
+        ]);
+
+        $photo = UploadedFile::fake()->image('employee5.jpg');
+        $path = FileUploadHelper::file($photo, 'photos');
+
+        $employee5->photo()->create([
+            'name' => $photo->getClientOriginalName(),
+            'path' => $path,
+            'type' => "photo",
+            'size' => $photo->getSize(),
         ]);
     }
 }

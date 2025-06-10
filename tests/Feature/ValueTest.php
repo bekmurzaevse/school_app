@@ -2,9 +2,12 @@
 
 namespace Tests\Feature;
 
+use App\Helpers\FileUploadHelper;
 use App\Models\Value;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\Storage;
 use Tests\TestCase;
 
 class ValueTest extends TestCase
@@ -88,6 +91,11 @@ class ValueTest extends TestCase
         $user = User::find(1)->first();
         $this->actingAs($user);
 
+        $name = 'value' . rand(1, 100) . '.jpg';
+
+        $photo = UploadedFile::fake()->image($name);
+        $path = FileUploadHelper::file($photo, 'photos');
+
         $data = [
             'name' => [
                 'en' => 'name en rule test',
@@ -101,10 +109,18 @@ class ValueTest extends TestCase
                 'uz' => 'text uz rule test',
                 'kk' => 'text kk rule test',
             ],
-            'photo_id' => 1,
+            'photo' => $photo,
         ];
 
         $response = $this->postJson('/api/v1/values/create', $data);
+
+        $val = Value::latest()->first();
+        $val->photo()->create([
+            'name' => $photo->getClientOriginalName(),
+            'path' => $path,
+            'type' => "photo",
+            'size' => $photo->getSize(),
+        ]);
 
         $response->assertStatus(200)->assertExactJson([
             'status' => 200,
@@ -116,8 +132,6 @@ class ValueTest extends TestCase
             'name->kk' => 'name kk rule test',
             'name->ru' => 'name ru rule test',
             'name->uz' => 'name uz rule test',
-            'school_id' => 1,
-            'photo_id' => 1,
             'text->en' => 'text en rule test',
             'text->kk' => 'text kk rule test',
             'text->ru' => 'text ru rule test',
@@ -134,7 +148,10 @@ class ValueTest extends TestCase
         $user = User::find(1)->first();
         $this->actingAs($user);
 
-        $valueId = Value::inRandomOrder()->first()->id;
+        $value = Value::inRandomOrder()->first();
+
+        $photo = UploadedFile::fake()->image('club.jpg');
+        $path = FileUploadHelper::file($photo, 'photos');
 
         $data = [
             'name' => [
@@ -149,10 +166,10 @@ class ValueTest extends TestCase
                 'uz' => 'updated text uz rule test',
                 'kk' => 'updated text kk rule test',
             ],
-            'photo_id' => 1,
+            'photo' => $photo,
         ];
 
-        $response = $this->putJson('/api/v1/values/update/' . $valueId, $data);
+        $response = $this->putJson('/api/v1/values/update/' . $value->id, $data);
 
         $response
             ->assertStatus(200)
@@ -171,13 +188,11 @@ class ValueTest extends TestCase
             ]);
 
         $this->assertDatabaseHas('values', [
-            'id' => $valueId,
+            'id' => $value->id,
             'name->en' => 'updated name en rule test',
             'name->kk' => 'updated name kk rule test',
             'name->ru' => 'updated name ru rule test',
             'name->uz' => 'updated name uz rule test',
-            'school_id' => 1,
-            'photo_id' => 1,
             'text->en' => 'updated text en rule test',
             'text->kk' => 'updated text kk rule test',
             'text->ru' => 'updated text ru rule test',

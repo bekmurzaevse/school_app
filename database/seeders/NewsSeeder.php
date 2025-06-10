@@ -2,9 +2,11 @@
 
 namespace Database\Seeders;
 
+use App\Helpers\FileUploadHelper;
 use App\Models\News;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Http\UploadedFile;
 
 class NewsSeeder extends Seeder
 {
@@ -13,7 +15,7 @@ class NewsSeeder extends Seeder
      */
     public function run(): void
     {
-        News::create([
+        $news1 = News::create([
             'title' => [
                 'en' => 'Local Artist Unveils Stunning New Exhibition',
                 'ru' => 'Местный художник представляет потрясающую новую выставку',
@@ -34,8 +36,19 @@ class NewsSeeder extends Seeder
             ],
             'author_id' => 1,
         ]);
+        $news1->tags()->attach([1,3,4]);
 
-        News::create([
+        $photo = UploadedFile::fake()->image('news1.jpg');
+        $path = FileUploadHelper::file($photo, 'photos');
+
+        $news1->coverImage()->create([
+            'name' => $photo->getClientOriginalName(),
+            'path' => $path,
+            'type' => "photo",
+            'size' => $photo->getSize(),
+        ]);
+
+        $news2 = News::create([
             'title' => [
                 'en' => 'Russian Scientists Develop New Arctic Research Station',
                 'ru' => 'Российские ученые разрабатывают новую арктическую исследовательскую станцию',
@@ -56,8 +69,19 @@ class NewsSeeder extends Seeder
             ],
             'author_id' => 1,
         ]);
+        $news2->tags()->attach([1,4]);
 
-        News::create([
+        $photo = UploadedFile::fake()->image('news2.jpg');
+        $path = FileUploadHelper::file($photo, 'photos');
+
+        $news2->coverImage()->create([
+            'name' => $photo->getClientOriginalName(),
+            'path' => $path,
+            'type' => "photo",
+            'size' => $photo->getSize(),
+        ]);
+
+        $news3 = News::create([
             'title' => [
                 'en' => 'England Announces New Investment in Renewable Energy Sector',
                 'ru' => 'Англия объявляет о новых инвестициях в сектор возобновляемой энергетики',
@@ -78,8 +102,19 @@ class NewsSeeder extends Seeder
             ],
             'author_id' => 2,
         ]);
+        $news3->tags()->attach([4,5]);
 
-        News::create([
+        $photo = UploadedFile::fake()->image('news3.jpg');
+        $path = FileUploadHelper::file($photo, 'photos');
+
+        $news3->coverImage()->create([
+            'name' => $photo->getClientOriginalName(),
+            'path' => $path,
+            'type' => "photo",
+            'size' => $photo->getSize(),
+        ]);
+
+        $news4 = News::create([
             'title' => [
                 'en' => 'Uzbekistan Launches National Program for Digital Literacy',
                 'ru' => 'В Узбекистане запускается национальная программа по цифровой грамотности',
@@ -99,6 +134,17 @@ class NewsSeeder extends Seeder
                 'kk' => 'Ózbekstan húkimeti xalıq arasında cifrlı sawatlılıqtı asırıw boyınsha keń qamtılǵan milliy programmanı járiyaladı. \'Hámme ushın cifrlı keleshek\' dep atalǵan baslama mámleket boylap biypul oqıw kursları hám resurslarini usınıs etedi, bunda kompyuterdiń tiykarǵı kónlikpeleri, internetten paydalanıw, onlayn qawipsizlik hám cifrlı baylanıs sıyaqlı jónelislerge itibar qaratıladı. Prezident Shavkat Mirziyoyev mámlekettiń ekonomikalıq rawajlanıwı hám zamanagóy dúnyada puqaralarina múmkinshiliklerin keńeytiw ushın cifrlı sawatlılıqtıń zárúrligini aytıp ótdi. Programma tálim mákemeleri hám texnologiya kompaniyaları menen sheriklikte ámelge asıriladı hám kelesi bes jıl ishinde millionlap Ózbekstanlıqlardı qamtıp alıw maqset etilgen.',
             ],
             'author_id' => 2,
+        ]);
+        $news4->tags()->attach([1,3,4,5]);
+
+        $photo = UploadedFile::fake()->image('news4.jpg');
+        $path = FileUploadHelper::file($photo, 'photos');
+
+        $news4->coverImage()->create([
+            'name' => $photo->getClientOriginalName(),
+            'path' => $path,
+            'type' => "photo",
+            'size' => $photo->getSize(),
         ]);
     }
 }

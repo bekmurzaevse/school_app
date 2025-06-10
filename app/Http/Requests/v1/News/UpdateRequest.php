@@ -15,6 +15,23 @@ class UpdateRequest extends FormRequest
     }
 
     /**
+     * Summary of prepareForValidation
+     * @return void
+     */
+    public function prepareForValidation(): void
+    {
+        $this->tags = explode(",", $this->tags);
+        $this->tags = array_map('intval', $this->tags);
+
+        if ($this->has('tags')) {
+            $this->merge([
+                'tags' => collect($this->tags)->map(fn($tag) => (int) $tag)->all(),
+            ]);
+        }
+
+    }
+
+    /**
      * Get the validation rules that apply to the request.
      *
      * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
