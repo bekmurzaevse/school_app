@@ -14,8 +14,8 @@ class EventServiceProvider extends ServiceProvider
         \App\Models\School::observe(\App\Observers\SchoolObserver::class);
         \App\Models\Position::observe(\App\Observers\PositionObserver::class);
         \App\Models\Album::observe(\App\Observers\AlbumObserver::class);
-        \App\Models\Photo::observe(\App\Observers\PhotoObserver::class);
-        \App\Models\File::observe(\App\Observers\FileObserver::class);
+        // \App\Models\Photo::observe(\App\Observers\PhotoObserver::class);
+        // \App\Models\File::observe(\App\Observers\FileObserver::class);
         \App\Models\Category::observe(\App\Observers\CategoryObserver::class);
         \App\Models\Event::observe(\App\Observers\EventObserver::class);
         \App\Models\Faq::observe(\App\Observers\FaqObserver::class);
@@ -26,7 +26,7 @@ class EventServiceProvider extends ServiceProvider
         \App\Models\Employee::observe(\App\Observers\EmployeeObserver::class);
         \App\Models\News::observe(\App\Observers\NewsObserver::class);
         \App\Models\Tag::observe(\App\Observers\TagObserver::class);
-        \App\Models\Attachment::observe(\App\Observers\DocumentObserver::class);
+        \App\Models\Attachment::observe(\App\Observers\AttachmentObserver::class);
         \App\Models\User::observe(\App\Observers\UserObserver::class);
         \App\Models\Rule::observe(\App\Observers\RuleObserver::class);
         \App\Models\Value::observe(\App\Observers\ValueObserver::class);
