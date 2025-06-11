@@ -29,11 +29,19 @@ class Position extends Model
         ];
     }
 
+    /**
+     * Summary of school
+     * @return BelongsTo<School, Position>
+     */
     public function school(): BelongsTo
     {
         return $this->belongsTo(School::class);
     }
 
+    /**
+     * Summary of employees
+     * @return HasMany<Employee, Position>
+     */
     public function employees(): HasMany
     {
         return $this->hasMany(Employee::class);

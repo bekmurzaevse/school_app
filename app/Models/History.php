@@ -23,6 +23,10 @@ class History extends Model
         ];
     }
 
+    /**
+     * Summary of school
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<School, History>
+     */
     public function school()
     {
         return $this->belongsTo(School::class);

@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace App\Actions\v1\Positions;
 
@@ -26,9 +26,9 @@ class DeleteAction
 
             return static::toResponse(
                 message: "$id - id li lawazim o'shirildi!",
-            );   
+            );
         } catch (ModelNotFoundException $ex) {
-            throw new ApiResponseException("$id - id li mektep bazada tabilmadi!", 404);
+            throw new ApiResponseException("$id - id li lawazim bazada tabilmadi!", 404);
         }
     }
 }

@@ -41,11 +41,10 @@ class TargetController extends Controller
     )]
     #[OA\Response(response: 401, description: 'Not allowed')]
     #[OA\Response(response: 404, description: 'Target tabilmadi')]
-    public function index() 
+    public function index()
     {
         //
     }
-
 
     #[OA\Post(
         path: '/api/v1/targets/create',
@@ -92,7 +91,6 @@ class TargetController extends Controller
     {
         // ...
     }
-    
 
     #[OA\Get(
         path: '/api/v1/targets/{id}',
@@ -168,7 +166,6 @@ class TargetController extends Controller
     {
         //
     }
-    
 
     #[OA\Delete(
         path: '/api/v1/targets/delete/{id}',

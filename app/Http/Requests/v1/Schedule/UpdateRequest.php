@@ -6,12 +6,15 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class UpdateRequest extends FormRequest
 {
-
     public function authorize(): bool
     {
         return true;
     }
 
+    /**
+     * Summary of rules
+     * @return array{description: string, file: string}
+     */
     public function rules(): array
     {
         return [

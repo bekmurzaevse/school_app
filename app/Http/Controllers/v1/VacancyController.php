@@ -16,7 +16,6 @@ use Illuminate\Http\JsonResponse;
 
 class VacancyController extends Controller
 {
-
     /**
      * Summary of index
      * @param \App\Actions\v1\Vacancy\IndexAction $action
@@ -71,5 +70,4 @@ class VacancyController extends Controller
     {
         return $action($id);
     }
-
 }

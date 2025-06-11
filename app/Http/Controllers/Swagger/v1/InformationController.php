@@ -154,5 +154,4 @@ class InformationController extends Controller
     {
         //
     }
-
 }

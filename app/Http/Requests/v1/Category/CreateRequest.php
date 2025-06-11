@@ -44,7 +44,6 @@ class CreateRequest extends FormRequest
             'name.uz.required' => "Uzb at ma'jbu'riy.",
             'name.ru.required' => "Ru at ma'jbu'riy.",
             'name.kk.required' => "Qq at ma'jbu'riy.",
-
             'description.array' => "description maydani array boliwi kerek.",
             'description.en.string' => "En description polya string boliwi kerek.",
             'description.uz.string' => "Uzb description polya string boliwi kerek.",

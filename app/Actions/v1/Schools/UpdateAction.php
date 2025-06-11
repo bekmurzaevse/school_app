@@ -40,5 +40,4 @@ class UpdateAction
             throw new ApiResponseException("$id - id li mektep bazada tabilmadi!", 404);
         }
     }
-
 }

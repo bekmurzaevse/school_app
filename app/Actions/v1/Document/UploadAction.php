@@ -5,6 +5,7 @@ namespace App\Actions\v1\Document;
 use App\Dto\v1\Document\UploadDto;
 use App\Models\School;
 use App\Traits\ResponseTrait;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
@@ -12,7 +13,12 @@ class UploadAction
 {
     use ResponseTrait;
 
-    public function __invoke(UploadDto $dto)
+    /**
+     * Summary of __invoke
+     * @param \App\Dto\v1\Document\UploadDto $dto
+     * @return JsonResponse
+     */
+    public function __invoke(UploadDto $dto): JsonResponse
     {
         $file = $dto->file;
 

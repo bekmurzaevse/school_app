@@ -80,10 +80,10 @@ class CreateRequest extends FormRequest
             'content.en.required' => 'Inglis tilinde short_content atı ma\'jbu\'riy.',
             'cover_image.image' => 'foto tipindegi mag\'liwmat beriliwi kerek',
             'cover_image.max' => 'foto nin\' razmeri 2 mb tan aspawi kerek',
-            // 'tags.array' => 'Tags ma\'jbu\'riy bolıwı kerek.',
-            // 'tags.*.required' => 'Tag ID ma\'jbu\'riy.',
-            // 'tags.*.integer' => 'Tag ID san bolıwı kerek.',
-            // 'tags.*.exists' => 'Tag ID tags kestesinde bar bolıwı kerek.',
+            'tags.array' => 'Tags ma\'jbu\'riy bolıwı kerek.',
+            'tags.*.required' => 'Tag ID ma\'jbu\'riy.',
+            'tags.*.integer' => 'Tag ID san bolıwı kerek.',
+            'tags.*.exists' => 'Tag ID tags kestesinde bar bolıwı kerek.',
         ];
     }
 }

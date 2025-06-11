@@ -156,5 +156,4 @@ class PositionController extends Controller
     {
         //
     }
-
 }

@@ -7,6 +7,7 @@ use OpenApi\Attributes as OA;
 
 class UserController extends Controller
 {
+    
     #[OA\Post(
         path: '/api/v1/auth/login',
         tags: ["User"],
@@ -97,7 +98,7 @@ class UserController extends Controller
                         new OA\Property(property: "en", type: "string", example: "en description"),
                     ]
                 ),
-                new OA\Property(property: "birth_date", type: "string", example: "2025-05-07"), 
+                new OA\Property(property: "birth_date", type: "string", example: "2025-05-07"),
             ]
         )
     )]

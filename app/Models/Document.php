@@ -30,11 +30,19 @@ class Document extends Model
         ];
     }
 
+    /**
+     * Summary of school
+     * @return BelongsTo<School, Document>
+     */
     public function school(): BelongsTo
     {
         return $this->belongsTo(School::class);
     }
 
+    /**
+     * Summary of category
+     * @return BelongsTo<Category, Document>
+     */
     public function category(): BelongsTo
     {
         return $this->belongsTo(Category::class);

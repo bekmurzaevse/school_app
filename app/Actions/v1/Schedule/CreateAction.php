@@ -12,6 +12,11 @@ class CreateAction
 {
     use ResponseTrait;
 
+    /**
+     * Summary of __invoke
+     * @param \App\Dto\v1\Schedule\CreateDto $dto
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function __invoke(CreateDto $dto): JsonResponse
     {
         $school = School::first();

@@ -44,17 +44,13 @@ class UpdateRequest extends FormRequest
             'name.uz.required' => "UZ name polya ma'jbu'riy",
             'name.ru.required' => "RU name polya ma'jbu'riy",
             'name.kk.required' => "KK name polya ma'jbu'riy",
-
             'description.array' => "description polya massiv boliw kerek",
             'description.en.string' => "EN description string boliw kerek",
             'description.uz.string' => "UZ description string boliw kerek",
             'description.ru.string' => "RU description string boliw kerek",
             'description.kk.string' => "KK description string boliw kerek",
-
             'event_id.exists' => "Bunday event_id bazada tabilmadi",
-
             'path.string' => "path polya string boliw kerek",
-
             'file.required' => "file polya ma'jbu'riy",
             'file.file' => "file boliw kerek",
             'file.mimes' => "file formati pdf, docx, jpg yaki png boliw kerek",

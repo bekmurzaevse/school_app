@@ -11,7 +11,6 @@ use Illuminate\Http\JsonResponse;
 
 class MainController extends Controller
 {
-
     /**
      * Summary of index
      * @param \App\Actions\v1\Main\IndexAction $action

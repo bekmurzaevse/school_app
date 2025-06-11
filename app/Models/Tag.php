@@ -12,7 +12,7 @@ class Tag extends Model
     use HasTranslations, SoftDeletes;
 
     public $translatable = [
-        'name', 
+        'name',
         'description'
     ];
     protected $fillable = [
@@ -28,6 +28,10 @@ class Tag extends Model
         ];
     }
 
+    /**
+     * Summary of news
+     * @return BelongsToMany<News, Tag, \Illuminate\Database\Eloquent\Relations\Pivot>
+     */
     public function news(): BelongsToMany
     {
         return $this->belongsToMany(News::class, 'news_tag', 'tag_id', 'news_id');

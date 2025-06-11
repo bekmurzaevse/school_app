@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Swagger\v1;
 use App\Http\Controllers\Controller;
 use OpenApi\Attributes as OA;
 
-
 class CategoryController extends Controller
 {
     #[OA\Get(
@@ -42,7 +41,7 @@ class CategoryController extends Controller
     )]
     #[OA\Response(response: 401, description: 'Not allowed')]
     #[OA\Response(response: 404, description: 'Kategoriyalar tabilmadi')]
-    public function index() 
+    public function index()
     {
         //
     }

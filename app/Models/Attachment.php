@@ -20,6 +20,10 @@ class Attachment extends Model
         'description',
     ];
 
+    /**
+     * Summary of casts
+     * @return array{created_at: string, updated_at: string}
+     */
     protected function casts(): array
     {
         return [
@@ -28,6 +32,10 @@ class Attachment extends Model
         ];
     }
 
+    /**
+     * Summary of attachable
+     * @return MorphTo<Model, Attachment>
+     */
     public function attachable(): MorphTo
     {
         return $this->morphTo();

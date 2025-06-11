@@ -24,6 +24,10 @@ class SchoolHour extends Model
         ];
     }
 
+    /**
+     * Summary of school
+     * @return BelongsTo<School, SchoolHour>
+     */
     public function school(): BelongsTo
     {
         return $this->belongsTo(School::class);

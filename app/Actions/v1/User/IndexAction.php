@@ -28,5 +28,4 @@ class IndexAction
             data: new UserCollection($users)
         );
     }
-
 }

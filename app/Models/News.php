@@ -33,6 +33,10 @@ class News extends Model
         ];
     }
 
+    /**
+     * Summary of author
+     * @return BelongsTo<User, News>
+     */
     public function author(): BelongsTo
     {
         return $this->belongsTo(User::class, 'author_id', 'id');

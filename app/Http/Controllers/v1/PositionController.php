@@ -71,5 +71,4 @@ class PositionController extends Controller
     {
         return $action($id);
     }
-
 }

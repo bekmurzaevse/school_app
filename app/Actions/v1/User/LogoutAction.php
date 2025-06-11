@@ -5,7 +5,6 @@ namespace App\Actions\v1\User;
 use App\Traits\ResponseTrait;
 use Illuminate\Http\JsonResponse;
 
-
 class LogoutAction
 {
     use ResponseTrait;

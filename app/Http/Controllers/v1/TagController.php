@@ -65,7 +65,7 @@ class TagController extends Controller
      * @param \App\Actions\v1\Tag\DeleteAction $action
      * @return JsonResponse
      */
-    public function delete(int $id, DeleteAction $action)
+    public function delete(int $id, DeleteAction $action): JsonResponse
     {
         return $action($id);
     }

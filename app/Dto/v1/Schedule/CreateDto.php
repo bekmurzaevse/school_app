@@ -14,6 +14,11 @@ readonly class CreateDto
         public ?UploadedFile $file_csv,
     ) {}
 
+    /**
+     * Summary of from
+     * @param \App\Http\Requests\v1\Schedule\CreateRequest $request
+     * @return CreateDto
+     */
     public static function from(CreateRequest $request): self
     {
         return new self(

@@ -51,7 +51,6 @@ class AlbumController extends Controller
                         property: "photos[]",
                         type: "array",
                         items: new OA\Items(type: "string", format:"binary"),
-                        description: "Tags id lar array ko'rinishida bo'lishi kerak",
                     ),
 
                 ]
@@ -110,10 +109,10 @@ class AlbumController extends Controller
             ),
         )
     )]
-    #[OA\Response(response: 200, description: 'Employee updated successfully')]
+    #[OA\Response(response: 200, description: 'Album updated successfully')]
     #[OA\Response(response: 401, description: 'Not allowed')]
-    #[OA\Response(response: 404, description: 'Employee not found')]
-    #[OA\Parameter(name: "id", in: "path", required: true, description: "Employee id", example: 1)]
+    #[OA\Response(response: 404, description: 'Album not found')]
+    #[OA\Parameter(name: "id", in: "path", required: true, description: "Album id", example: 1)]
     public function update()
     {
         //

@@ -56,7 +56,6 @@ class LoginAction
                     'rf_expired_at' => $refreshTokenExpiration->format('Y-m-d H:i:s'),
                 ]
             );
-            
         } catch (ModelNotFoundException $e) {
             throw new ModelNotFoundException('User Not FOund', 404);
         }
