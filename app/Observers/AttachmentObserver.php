@@ -22,16 +22,6 @@ class AttachmentObserver
                 'documents',
                 'documents:show',
             ]);
-        } elseif ($type == 'photo') {
-            $this->clear([
-                'photos',
-                'photos:show',
-            ]);
-        } elseif ($type == 'file') {
-            $this->clear([
-                'files',
-                'files:show',
-            ]);
         } elseif ($type == 'schedule') {
             $this->clear([
                 'schedules',
@@ -52,16 +42,6 @@ class AttachmentObserver
             $this->clear([
                 'documents',
                 'documents:show',
-            ]);
-        } elseif ($type == 'photo') {
-            $this->clear([
-                'photos',
-                'photos:show',
-            ]);
-        } elseif ($type == 'file') {
-            $this->clear([
-                'files',
-                'files:show',
             ]);
         } elseif ($type == 'schedule') {
             $this->clear([
@@ -84,16 +64,6 @@ class AttachmentObserver
                 'documents',
                 'documents:show',
             ]);
-        } elseif ($type == 'photo') {
-            $this->clear([
-                'photos',
-                'photos:show',
-            ]);
-        } elseif ($type == 'file') {
-            $this->clear([
-                'files',
-                'files:show',
-            ]);
         } elseif ($type == 'schedule') {
             $this->clear([
                 'schedules',
@@ -115,16 +85,6 @@ class AttachmentObserver
                 'documents',
                 'documents:show',
             ]);
-        } elseif ($type == 'photo') {
-            $this->clear([
-                'photos',
-                'photos:show',
-            ]);
-        } elseif ($type == 'file') {
-            $this->clear([
-                'files',
-                'files:show',
-            ]);
         } elseif ($type == 'schedule') {
             $this->clear([
                 'schedules',
@@ -145,16 +105,6 @@ class AttachmentObserver
             $this->clear([
                 'documents',
                 'documents:show',
-            ]);
-        } elseif ($type == 'photo') {
-            $this->clear([
-                'photos',
-                'photos:show',
-            ]);
-        } elseif ($type == 'file') {
-            $this->clear([
-                'files',
-                'files:show',
             ]);
         } elseif ($type == 'schedule') {
             $this->clear([

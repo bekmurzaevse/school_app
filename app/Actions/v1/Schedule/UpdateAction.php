@@ -33,23 +33,33 @@ class UpdateAction
             }
 
             $updateData = [
-                'file' => $dto->file,
                 'description' => $dto->description,
             ];
 
-            if ($dto->file) {
-                if ($attachment->path && Storage::disk('public')->exists($attachment->path)) {
-                    Storage::disk('public')->delete($attachment->path);
+            $formats = [
+                'pdf' => $dto->pdf,
+                'xls' => $dto->xls,
+                'csv' => $dto->csv,
+            ];
+
+            foreach ($formats as $ext => $file) {
+                if ($file) {
+                    $oldPath = 'schedule/' . pathinfo($attachment->name, PATHINFO_FILENAME) . '.' . $ext;
+                    if (Storage::disk('public')->exists($oldPath)) {
+                        Storage::disk('public')->delete($oldPath);
+                    }
+
+                    $baseName = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
+                    $fileName = $baseName . '_' . Str::random(10) . '.' . $ext;
+                    $filePath = 'schedule/' . $fileName;
+
+                    Storage::disk('public')->putFileAs('schedule', $file, $fileName);
+
+                    if ($ext === 'pdf') {
+                        $updateData['path'] = $filePath;
+                        $updateData['size'] = $file->getSize();
+                    }
                 }
-
-                $originalFilename = $dto->file->getClientOriginalName();
-                $fileName = pathinfo($originalFilename, PATHINFO_FILENAME);
-                $fileName = $fileName . '_' . Str::random(10) . '_' . now()->format('Y-m-d-H-i-s') . '.' . $dto->file->extension();
-
-                $savedPath = Storage::disk('public')->putFileAs('attachments', $dto->file, $fileName);
-
-                $updateData['path'] = $savedPath;
-                $updateData['size'] = $dto->file->getSize();
             }
 
             $attachment->update($updateData);

@@ -9,9 +9,10 @@ readonly class CreateDto
 {
     public function __construct(
         public ?string $description,
-        public UploadedFile $file
-    ) {
-    }
+        public UploadedFile $file_pdf,
+        public ?UploadedFile $file_xls,
+        public ?UploadedFile $file_csv,
+    ) {}
 
     /**
      * Summary of from
@@ -22,7 +23,9 @@ readonly class CreateDto
     {
         return new self(
             description: $request->get('description'),
-            file: $request->file('file'),
+            file_pdf: $request->file('file_pdf'),
+            file_xls: $request->file('file_xls'),
+            file_csv: $request->file('file_csv'),
         );
     }
 }

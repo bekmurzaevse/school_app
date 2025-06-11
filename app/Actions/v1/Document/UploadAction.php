@@ -29,7 +29,7 @@ class UploadAction
         $savedPath = Storage::disk('public')->putFileAs('documents', $file, $fileName);
 
         School::firstOrFail()->documents()->create([
-            'name' => $dto->name,
+            'name' => $fileName,
             'path' => $savedPath,
             'type' => 'document',
             'size' => $file->getSize(),
