@@ -64,7 +64,6 @@ class EventController extends Controller
     #[OA\Response(response: 200, description: 'Ta\'dbir a\'wmetli jaratildi!')]
     #[OA\Response(response: 401, description: 'Not allowed')]
     #[OA\Response(response: 422, description: 'Validation error')]
-    
     public function create()
     {
         //
@@ -87,7 +86,6 @@ class EventController extends Controller
     #[OA\Response(response: 200, description: 'Ta\'dbir haqqinda mag\'liwmatlar alindi')]
     #[OA\Response(response: 404, description: 'Ta\'dbir tabilmadi')]
     #[OA\Response(response: 401, description: 'Not authenticated')]
-    
     public function show()
     {
         //

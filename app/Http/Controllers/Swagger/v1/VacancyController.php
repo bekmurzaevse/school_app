@@ -154,5 +154,4 @@ class VacancyController extends Controller
     {
         //
     }
-
 }

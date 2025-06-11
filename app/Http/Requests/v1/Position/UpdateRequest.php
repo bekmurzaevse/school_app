@@ -44,5 +44,4 @@ class UpdateRequest extends FormRequest
             'name.en.unique' => "Bunday name.en bazada bar!",
         ];
     }
-
 }

@@ -14,6 +14,11 @@ readonly class UploadDto
     ) {
     }
 
+    /**
+     * Summary of from
+     * @param \App\Http\Requests\v1\Document\UploadRequest $request
+     * @return UploadDto
+     */
     public static function from(UploadRequest $request): self
     {
         return new self(

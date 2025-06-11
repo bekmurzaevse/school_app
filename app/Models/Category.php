@@ -27,6 +27,10 @@ class Category extends Model
         ];
     }
 
+    /**
+     * Summary of documents
+     * @return HasMany<Document, Category>
+     */
     public function documents(): HasMany
     {
         return $this->hasMany(Document::class);

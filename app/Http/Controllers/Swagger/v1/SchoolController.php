@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Swagger\v1;
 use App\Http\Controllers\Controller;
 use OpenApi\Attributes as OA;
 
-
 class SchoolController extends Controller
 {
 

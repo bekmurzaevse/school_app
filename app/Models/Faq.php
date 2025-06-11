@@ -24,6 +24,10 @@ class Faq extends Model
         ];
     }
 
+    /**
+     * Summary of school
+     * @return BelongsTo<School, Faq>
+     */
     public function school(): BelongsTo
     {
         return $this->belongsTo(School::class);

@@ -12,6 +12,10 @@ class ApiResponseException extends Exception
         protected $code
     ) {}
 
+    /**
+     * Summary of render
+     * @return mixed|\Illuminate\Http\JsonResponse
+     */
     public function render(): JsonResponse
     {
         return response()->json([

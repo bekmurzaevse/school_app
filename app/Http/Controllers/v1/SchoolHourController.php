@@ -16,7 +16,6 @@ use Illuminate\Http\JsonResponse;
 
 class SchoolHourController extends Controller
 {
-
     /**
      * Summary of index
      * @param \App\Actions\v1\SchoolHour\IndexAction $action

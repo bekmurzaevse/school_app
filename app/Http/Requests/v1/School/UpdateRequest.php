@@ -69,5 +69,4 @@ class UpdateRequest extends FormRequest
             'history.en.required' => "EN history polya ma'jbu'riy",
         ];
     }
-
 }

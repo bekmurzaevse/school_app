@@ -26,6 +26,10 @@ class Information extends Model
         ];
     }
 
+    /**
+     * Summary of school
+     * @return BelongsTo<School, Information>
+     */
     public function school(): BelongsTo
     {
         return $this->belongsTo(School::class);

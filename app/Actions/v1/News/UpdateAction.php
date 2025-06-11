@@ -63,5 +63,4 @@ class UpdateAction
             throw new ApiResponseException('News Not Found', 404);
         }
     }
-
 }

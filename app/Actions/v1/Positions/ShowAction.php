@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace App\Actions\v1\Positions;
 
@@ -31,9 +31,9 @@ class ShowAction
             return static::toResponse(
                 message: "$id - id li lawazim",
                 data: new PositionResource($position)
-            );   
+            );
         } catch(ModelNotFoundException $ex){
-            throw new ApiResponseException("$id - id li mektep tabilmadi", 404);
+            throw new ApiResponseException("$id - id li lawazim tabilmadi", 404);
         }
     }
 }

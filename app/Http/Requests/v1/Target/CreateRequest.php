@@ -47,7 +47,6 @@ class CreateRequest extends FormRequest
             'name.uz.unique' => "Bunday name.uz bazada bar!",
             'name.ru.unique' => "Bunday name.ru bazada bar!",
             'name.en.unique' => "Bunday name.en bazada bar!",
-
             'description.required' => "description polya ma'jbu'riy",
             'description.kk.required' => "KK description polya ma'jbu'riy",
             'description.uz.required' => "UZ description polya ma'jbu'riy",

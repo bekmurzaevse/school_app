@@ -2,21 +2,17 @@
 
 namespace App\Http\Controllers\v1;
 
-use App\Actions\v1\File\CreateAction;
 use App\Actions\v1\File\DeleteAction;
 use App\Actions\v1\File\IndexAction;
 use App\Actions\v1\File\ShowAction;
 use App\Actions\v1\File\UpdateAction;
 use App\Actions\v1\File\UploadAction;
-use App\Dto\v1\File\CreateDto;
 use App\Dto\v1\File\UpdateDto;
 use App\Dto\v1\File\UploadDto;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\v1\File\CreateRequest;
 use App\Http\Requests\v1\File\UpdateRequest;
 use App\Http\Requests\v1\File\UploadRequest;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Validation\Rules\In;
 
 class FileController extends Controller
 {

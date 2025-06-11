@@ -2,7 +2,6 @@
 
 namespace App\Dto\v1\Vacancy;
 
-use App\Http\Requests\v1\Vacancy\CreateRequest;
 use App\Http\Requests\v1\Vacancy\UpdateRequest;
 
 readonly class UpdateDto
@@ -15,6 +14,11 @@ readonly class UpdateDto
     ) {
     }
 
+    /**
+     * Summary of from
+     * @param \App\Http\Requests\v1\Vacancy\UpdateRequest $request
+     * @return UpdateDto
+     */
     public static function from(UpdateRequest $request): self
     {
         return new self(

@@ -25,7 +25,6 @@ class UpdateAction
     public function __invoke(int $id, UpdateDto $dto): JsonResponse
     {
         try {
-
             $school = School::first();
             $attachment = $school->schedules()->findOrFail($id);
 
@@ -64,5 +63,4 @@ class UpdateAction
             throw new ApiResponseException('Schedule tabilmadi', 404);
         }
     }
-
 }

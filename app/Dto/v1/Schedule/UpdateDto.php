@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace App\Dto\v1\Schedule;
 
@@ -12,6 +12,11 @@ readonly class UpdateDto
         public UploadedFile $file
     ) {}
 
+    /**
+     * Summary of from
+     * @param \App\Http\Requests\v1\Schedule\UpdateRequest $request
+     * @return UpdateDto
+     */
     public static function from(UpdateRequest $request): self
     {
         return new self(

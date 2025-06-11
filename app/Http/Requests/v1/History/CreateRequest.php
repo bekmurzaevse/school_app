@@ -36,7 +36,6 @@ class CreateRequest extends FormRequest
         return [
             'year.required' => "year polya ma'jbu'riy",
             'year.integer' => "year polya pu'tin san boliw kerek",
-
             'text.required' => "text polya ma'jbu'riy",
             'text.kk.required' => "KK text polya ma'jbu'riy",
             'text.uz.required' => "UZ text polya ma'jbu'riy",

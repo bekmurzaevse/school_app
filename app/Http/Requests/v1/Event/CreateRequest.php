@@ -46,17 +46,14 @@ class CreateRequest extends FormRequest
             'name.uz.required' => "Uzb ati ma'jbu'riy.",
             'name.ru.required' => "Ru ati ma'jbu'riy.",
             'name.en.required' => "En ati ma'jbu'riy.",
-
             'description.required' => "description maydani ma'jbu'riy.",
             'description.array' => "description maydani array boliwi kerek.",
             'description.kk.required' => "Kk description ma'jbu'riy.",
             'description.uz.required' => "Uzb description ma'jbu'riy.",
             'description.ru.required' => "Ru description ma'jbu'riy.",
             'description.en.required' => "En description ma'jbu'riy.",
-
             'start_time.required' => "Baslaniw waqti ma'jbu'riy.",
             'start_time.date_format' => "start_time formati qa'te. Duris format: Y-m-d H:i:s",
-
             'location.required' => "Ma'nzil (location) ma'jbu'riy.",
             'location.string' => "Ma'nzil (location) string boliwi kerek.",
         ];

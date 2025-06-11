@@ -61,8 +61,5 @@ class UpdateAction
         } catch (ModelNotFoundException $ex) {
             throw new ApiResponseException('Document Not Found', 404);
         }
-
-
-
     }
 }

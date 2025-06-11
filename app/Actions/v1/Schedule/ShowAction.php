@@ -33,7 +33,6 @@ class ShowAction
                     ->firstOrFail();
             });
 
-            // 
             if (!$schedule || !Storage::disk('public')->exists($schedule->path)) {
                 throw new ApiResponseException('Schedule Not Found', 404);
             }

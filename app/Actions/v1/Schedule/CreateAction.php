@@ -6,6 +6,7 @@ use App\Dto\v1\Schedule\CreateDto;
 use App\Helpers\FileUploadHelper;
 use App\Models\School;
 use App\Traits\ResponseTrait;
+use Illuminate\Http\JsonResponse;
 
 class CreateAction
 {
@@ -16,7 +17,7 @@ class CreateAction
      * @param \App\Dto\v1\Schedule\CreateDto $dto
      * @return \Illuminate\Http\JsonResponse
      */
-    public function __invoke(CreateDto $dto)
+    public function __invoke(CreateDto $dto): JsonResponse
     {
         $path = FileUploadHelper::file($dto->file, 'schedule');
 

@@ -39,5 +39,4 @@ class UpdateAction
             throw new ApiResponseException('Tag Not Found', 404);
         }
     }
-
 }

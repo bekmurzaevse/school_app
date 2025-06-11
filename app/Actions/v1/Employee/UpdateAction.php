@@ -55,5 +55,4 @@ class UpdateAction
             throw new ApiResponseException('Employee Not Found', 404);
         }
     }
-
 }
