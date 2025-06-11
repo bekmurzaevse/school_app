@@ -9,14 +9,18 @@ readonly class UpdateDto
 {
     public function __construct(
         public ?string $description,
-        public UploadedFile $file
+        public UploadedFile $pdf,
+        public ?UploadedFile $xls,
+        public ?UploadedFile $csv,
     ) {}
 
     public static function from(UpdateRequest $request): self
     {
         return new self(
             description: $request->get('description'),
-            file: $request->file('file'),
+            pdf: $request->file('pdf'),
+            xls: $request->file('xls'),
+            csv: $request->file('csv'),
         );
     }
 }
