@@ -9,9 +9,11 @@ use App\Actions\v1\Schedule\IndexAction;
 use App\Actions\v1\Schedule\ShowAction;
 use App\Actions\v1\Schedule\UpdateAction;
 use App\Dto\v1\Schedule\CreateDto;
+use App\Dto\v1\Schedule\DownloadDto;
 use App\Dto\v1\Schedule\UpdateDto;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\v1\Schedule\CreateRequest;
+use App\Http\Requests\v1\Schedule\DownloadRequest;
 use App\Http\Requests\v1\Schedule\UpdateRequest;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -34,9 +36,9 @@ class ScheduleController extends Controller
         return $action(CreateDto::from($request));
     }
 
-    public function download(int $id, DownloadAction $action):  StreamedResponse
+    public function download(int $id, DownloadRequest $request, DownloadAction $action):  StreamedResponse
     {
-        return $action($id);
+        return $action($id, DownloadDto::from($request));
     }
 
     public function update(int $id, UpdateRequest $request, UpdateAction $action): JsonResponse

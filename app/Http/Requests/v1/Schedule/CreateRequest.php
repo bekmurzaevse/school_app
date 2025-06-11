@@ -21,7 +21,9 @@ class CreateRequest extends FormRequest
     {
         return [
             'description' => 'nullable|string|max:255',
-            'file' => 'required|file|mimes:pdf,xls,xlsx,csv|max:2048', // 2MB max
+            'file_pdf' => 'required|file|mimes:pdf|max:2048',
+            'file_xls' => 'nullable|file|mimes:xls,xlsx|max:2048',
+            'file_csv' => 'nullable|file|mimes:csv|max:2048',
         ];
     }
 }
