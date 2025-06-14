@@ -2,11 +2,11 @@
 
 namespace Tests\Feature;
 
-use App\Models\Attachment;
 use App\Models\School;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\Storage;
 use Tests\TestCase;
 
 class ScheduleTest extends TestCase
@@ -22,7 +22,11 @@ class ScheduleTest extends TestCase
         $this->actingAs($user);
     }
 
-    public function test_schedule_can_get_all(): void
+    /**
+     * Summary of test_schedule_can_get_all_for_users
+     * @return void
+     */
+    public function test_schedule_can_get_all_for_users(): void
     {
         $response = $this->getJson('/api/v1/schedules');
 
@@ -43,6 +47,35 @@ class ScheduleTest extends TestCase
             ]);
     }
 
+    /**
+     * Summary of test_schedule_can_get_all_for_admins
+     * @return void
+     */
+    public function test_schedule_can_get_all_for_admins(): void
+    {
+        $response = $this->getJson('/api/v1/schedules/all');
+
+        $response
+            ->assertStatus(200)
+            ->assertJsonStructure([
+                'status',
+                'message',
+                'data' => [
+                    'items',
+                    'pagination' => [
+                        'current_page',
+                        'per_page',
+                        'last_page',
+                        'total',
+                    ],
+                ],
+            ]);
+    }
+
+    /**
+     * Summary of test_schedule_can_show
+     * @return void
+     */
     public function test_schedule_can_show(): void
     {
         $school = School::first();
@@ -68,21 +101,24 @@ class ScheduleTest extends TestCase
             ]);
     }
 
+    /**
+     * Summary of test_schedule_can_create
+     * @return void
+     */
     public function test_schedule_can_create(): void
     {
-
         $file = UploadedFile::fake()->create('schedule.pdf', 1000, 'application/pdf');
 
         $data = [
             'description' => "Mekteptin' sabaq kestesi",
-            'file' => $file
+            'file_pdf' => $file
         ];
 
         $response = $this->postJson('/api/v1/schedules/create', $data);
 
         $response->assertStatus(200)->assertExactJson([
             'status' => 200,
-            'message' => 'Schedule created',
+            'message' => 'Schedules successfully created',
         ]);
 
         $this->assertDatabaseHas('attachments', [
@@ -92,12 +128,18 @@ class ScheduleTest extends TestCase
         ]);
     }
 
+    /**
+     * Summary of test_schedule_can_update
+     * @return void
+     */
     public function test_schedule_can_update(): void
     {
-        $school = School::first();
-        $schedule = $school->schedules()->first();
+        $this->withoutExceptionHandling();
 
-        $file = UploadedFile::fake()->create('schedule_update.pdf', 1024, 'application/pdf');
+        $school = School::first();
+        $schedule = $school->schedules()->inRandomOrder()->first();
+
+        $file = UploadedFile::fake()->create('update.pdf', 1024, 'application/pdf');
 
         $data = [
             'file' => $file,
@@ -122,19 +164,25 @@ class ScheduleTest extends TestCase
                 ]
             ]);
 
+            if (Storage::disk('public')->exists($schedule->path)) {
+                Storage::disk('public')->delete($schedule->path);
+            }
+
         $this->assertDatabaseHas('attachments', [
             'id' => $schedule->id,
             'type' => 'schedule',
             'size' => $file->getSize(),
             'attachable_type' => School::class,
             'attachable_id' => $school->id,
-            'description' => "Mekteptin' sabaq kestesi - updated",
         ]);
     }
 
+    /**
+     * Summary of test_schedule_can_download
+     * @return void
+     */
     public function test_schedule_can_download()
     {
-
         $school = School::first();
         $scheduleId = $school->schedules()->first()->id;
 
@@ -143,12 +191,20 @@ class ScheduleTest extends TestCase
         $response->assertStatus(200);
     }
 
+    /**
+     * Summary of test_schedule_can_delete
+     * @return void
+     */
     public function test_schedule_can_delete(): void
     {
         $school = School::first();
-        $scheduleId = $school->schedules()->first()->id;
+        $schedule = $school->schedules()->first();
 
-        $response = $this->deleteJson('/api/v1/schedules/delete/' . $scheduleId);
+        if (Storage::disk('public')->exists($schedule->path)) {
+            Storage::disk('public')->delete($schedule->path);
+        }
+
+        $response = $this->deleteJson('/api/v1/schedules/delete/' . $schedule->id);
 
         $response
             ->assertStatus(200)

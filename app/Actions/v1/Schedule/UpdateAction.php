@@ -4,6 +4,7 @@ namespace App\Actions\v1\Schedule;
 
 use App\Dto\v1\Schedule\UpdateDto;
 use App\Exceptions\ApiResponseException;
+use App\Helpers\FileUploadHelper;
 use App\Models\School;
 use App\Traits\ResponseTrait;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
@@ -26,49 +27,37 @@ class UpdateAction
     {
         try {
             $school = School::first();
-            $attachment = $school->schedules()->findOrFail($id);
+            $schedule = $school->schedules()->findOrFail($id);
 
-            if ($attachment->type !== 'schedule') {
-                throw new ApiResponseException('Tek schedule turindegi attachment janalaniwi mumkin', 403);
+            if (!Str::endsWith($schedule->name, $dto->file->getClientOriginalExtension())) {
+                $data = explode('.', $schedule->name);
+                $reqExtension = $dto->file->getClientOriginalExtension();
+                $extension = end($data);
+
+                return static::toResponse(
+                    code: 422,
+                    message: "Qa'te mag'liwmat berildi! Siz $extension fayldin' ornina, $reqExtension tipindegi fayl jiberdin'iz!!!",
+                );
             }
 
-            $updateData = [
-                'description' => $dto->description,
-            ];
-
-            $formats = [
-                'pdf' => $dto->pdf,
-                'xls' => $dto->xls,
-                'csv' => $dto->csv,
-            ];
-
-            foreach ($formats as $ext => $file) {
-                if ($file) {
-                    $oldPath = 'schedule/' . pathinfo($attachment->name, PATHINFO_FILENAME) . '.' . $ext;
-                    if (Storage::disk('public')->exists($oldPath)) {
-                        Storage::disk('public')->delete($oldPath);
-                    }
-
-                    $baseName = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
-                    $fileName = $baseName . '_' . Str::random(10) . '.' . $ext;
-                    $filePath = 'schedule/' . $fileName;
-
-                    Storage::disk('public')->putFileAs('schedule', $file, $fileName);
-
-                    if ($ext === 'pdf') {
-                        $updateData['path'] = $filePath;
-                        $updateData['size'] = $file->getSize();
-                    }
-                }
+            if (Storage::disk('public')->exists($schedule->path)) {
+                Storage::disk('public')->delete($schedule->path);
             }
 
-            $attachment->update($updateData);
+            $path = FileUploadHelper::file($dto->file, 'schedule');
+
+            $schedule->update([
+                'name' => $dto->file->getClientOriginalName(),
+                'path' => $path,
+                'type' => 'schedule',
+                'size' => $dto->file->getSize(),
+                'description' => $dto->description ?? null,
+            ]);
 
             return static::toResponse(
                 message: 'Schedule awmetli janalandi',
-                data: $attachment
+                data: $schedule
             );
-
         } catch (ModelNotFoundException $ex) {
             throw new ApiResponseException('Schedule tabilmadi', 404);
         }

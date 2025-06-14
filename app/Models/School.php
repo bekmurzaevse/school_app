@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
+use Illuminate\Database\Eloquent\Relations\MorphOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\Translatable\HasTranslations;
 
@@ -155,5 +156,28 @@ class School extends Model
     public function schedules(): MorphMany
     {
         return $this->morphMany(Attachment::class, 'attachable')->where('type', 'schedule');
+    }
+
+    public function schedulesPdf(): MorphMany
+    {
+        return $this->morphMany(Attachment::class, 'attachable')
+            ->where('type', 'schedule')
+            ->where('name', 'like', '%pdf');
+    }
+
+    // public function schedulesByName(string $name): MorphMany
+    // {
+    //     return $this->morphMany(Attachment::class, 'attachable')
+    //         ->where('type', 'schedule')
+    //         // ->where('name', 'like', "$name%");
+    //         ->where('name', $name);
+    // }
+
+    public function scheduleByName(string $name)
+    {
+        return $this->morphOne(Attachment::class, 'attachable')
+            // ->where('type', 'schedule')
+            // ->where('name', 'like', "$name%");
+            ->where('name', '=', $name);
     }
 }

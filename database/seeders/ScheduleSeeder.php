@@ -23,10 +23,10 @@ class ScheduleSeeder extends Seeder
         $fileName = pathinfo($originalFilename, PATHINFO_FILENAME);
         $fileName = $fileName . '_' . Str::random(10) . '_' . now()->format('Y-m-d-H-i-s') . '.' . $file->extension();
 
-        $path = $file->storeAs('schedules', $fileName, 'public'); 
+        $path = $file->storeAs('schedules', $fileName, 'public');
 
         $school->schedules()->create([
-            'name' => "1-ha'pte sabaq kestesi",
+            'name' => $file->getClientOriginalName(),
             'path' => $path,
             'type' => 'schedule',
             'size' => $file->getSize(),

@@ -7,10 +7,18 @@ use OpenApi\Attributes as OA;
 
 class ScheduleController extends Controller
 {
-    #[OA\Get(path: '/api/v1/schedules', tags: ["Schedule"], summary: "Retrieve all schedules")]
+    #[OA\Get(path: '/api/v1/schedules', tags: ["Schedule"], summary: "Retrieve all schedulesfor users")]
     #[OA\Response(response: 200, description: 'Schedules collection with pagination')]
     #[OA\Response(response: 404, description: "Schedules not found")]
     public function index()
+    {
+        // Method implementation
+    }
+
+    #[OA\Get(path: '/api/v1/schedules/all', tags: ["Schedule"], summary: "Retrieve all schedules for admin", security: [['sanctum' => []]])]
+    #[OA\Response(response: 200, description: 'All Schedules collection with pagination')]
+    #[OA\Response(response: 404, description: "Schedules not found")]
+    public function indexAll()
     {
         // Method implementation
     }
@@ -30,10 +38,12 @@ class ScheduleController extends Controller
         content: new OA\MediaType(
             mediaType: "multipart/form-data",
             schema: new OA\Schema(
-                required: ["description", "file"],
+                required: ["file_pdf"],
                 properties: [
                     new OA\Property(property: "description", type: "string", example: "description kk"),
-                    new OA\Property(property: "file", type: "string", format: "binary"),
+                    new OA\Property(property: "file_pdf", type: "string", format: "binary", description: "fayllardin' atlari klass nomeri ha'm klass ha'ribi boliwi sha'rt!! example(7A.pdf, 9G.pdf, ...)"),
+                    new OA\Property(property: "file_xls", type: "string", format: "binary", description: "fayllardin' atlari klass nomeri ha'm klass ha'ribi boliwi sha'rt!! example(7A.xls, 9G.xls, ...)"),
+                    new OA\Property(property: "file_csv", type: "string", format: "binary", description: "fayllardin' atlari klass nomeri ha'm klass ha'ribi boliwi sha'rt!! example(7A.csv, 9G.csv, ...)"),
                 ]
             ),
         )
@@ -56,7 +66,7 @@ class ScheduleController extends Controller
                 required: ["description", "file", "_method"],
                 properties: [
                     new OA\Property(property: "description", type: "string", example: "description kk"),
-                    new OA\Property(property: "file", type: "string", format: "binary"),
+                    new OA\Property(property: "file", type: "string", format: "binary", description: "fayllardin' atlari klass nomeri ha'm klass ha'ribi boliwi sha'rt!! example(7A.pdf, 9G.xls, ...)"),
                     new OA\Property(property: "_method", type: "string", enum: ["PUT"], example: "PUT", nullable: false),
                 ]
             ),
@@ -72,7 +82,7 @@ class ScheduleController extends Controller
         // Method implementation
     }
 
-    #[OA\Get(path: '/api/v1/schedules/download/{id}', tags: ["Schedule"], summary: "Schedule download by id", security: [['sanctum' => []]])]
+    #[OA\Get(path: '/api/v1/schedules/download/{id}', tags: ["Schedule"], summary: "Schedule download by id")]
     #[OA\Parameter(name: "id", in: "path", required: true, description: "Schedule id", example: 1)]
     #[OA\Response(response: 200, description: 'Schedule download by id')]
     #[OA\Response(response: 404, description: "Schedule not found")]
@@ -90,6 +100,4 @@ class ScheduleController extends Controller
     {
         // Method implementation
     }
-
-
 }

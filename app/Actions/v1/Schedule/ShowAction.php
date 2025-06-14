@@ -28,9 +28,7 @@ class ShowAction
 
             $schedule = Cache::remember($key, now()->addDay(), function () use ($id) {
                 return School::firstOrFail()
-                    ->schedules()
-                    ->where('id', $id)
-                    ->firstOrFail();
+                    ->schedules()->findOrFail($id);
             });
 
             if (!$schedule || !Storage::disk('public')->exists($schedule->path)) {
@@ -41,7 +39,6 @@ class ShowAction
                 message: 'Successfully received',
                 data: new ScheduleResource($schedule),
             );
-
         } catch (ModelNotFoundException $ex) {
             throw new ApiResponseException('Schedule tabilmadi', 404);
         }

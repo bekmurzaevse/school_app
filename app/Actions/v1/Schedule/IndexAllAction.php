@@ -8,7 +8,7 @@ use App\Traits\ResponseTrait;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Cache;
 
-class IndexAction
+class IndexAllAction
 {
     use ResponseTrait;
 
@@ -22,7 +22,7 @@ class IndexAction
 
         $schedules = Cache::remember($key, now()->addDay(), function () {
             $school = School::first();
-            return $school->schedulesPdf()->paginate(10);
+            return $school->schedules()->paginate(10);
         });
 
         return static::toResponse(

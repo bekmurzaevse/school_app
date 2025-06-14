@@ -9,9 +9,7 @@ readonly class UpdateDto
 {
     public function __construct(
         public ?string $description,
-        public UploadedFile $pdf,
-        public ?UploadedFile $xls,
-        public ?UploadedFile $csv,
+        public UploadedFile $file,
     ) {}
 
     /**
@@ -23,9 +21,7 @@ readonly class UpdateDto
     {
         return new self(
             description: $request->get('description'),
-            pdf: $request->file('pdf'),
-            xls: $request->file('xls'),
-            csv: $request->file('csv'),
+            file: $request->file('file'),
         );
     }
 }
