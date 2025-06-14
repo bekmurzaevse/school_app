@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace App\Actions\v1\Schedule;
 
@@ -9,9 +9,8 @@ use App\Traits\ResponseTrait;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Facades\Storage;
 use Symfony\Component\HttpFoundation\StreamedResponse;
-use App\Http\Requests\v1\Schedule\DownloadRequest;
 
-class DownloadAction 
+class DownloadAction
 {
     use ResponseTrait;
 
@@ -25,27 +24,24 @@ class DownloadAction
     {
         try {
             $school = School::first();
+
             $schedule = $school->schedules()->findOrFail($id);
 
-            $format = strtolower($dto->format ?? 'pdf');
+            if ($dto->format == null || $dto->format == 'pdf') {
+                return Storage::disk('public')->download($schedule->path, $schedule->name);
+            } else {
+                $name = explode('.', $schedule->name);
+                $name = $name[0] . '.' . $dto->format;
 
-            $allowedFormats = ['pdf', 'xlsx', 'csv'];
-            if (!in_array($format, $allowedFormats)) {
-                throw new ApiResponseException("Qate format tan'landi: $format", 422);
+                $schedule = $school->scheduleByName($name)->firstOrFail();
+
+                if (!Storage::disk('public')->exists($schedule->path)) {
+                    throw new ApiResponseException(strtoupper($dto->format) . " formatdagi fayl joq", 404);
+                }
+                return Storage::disk('public')->download($schedule->path, $schedule->name);
             }
-
-            $baseName = pathinfo($schedule->name, PATHINFO_FILENAME);
-            $fileName = $baseName . '.' . $format;
-            $filePath = 'schedule/' . $fileName;
-
-            if (!Storage::disk('public')->exists($filePath)) {
-                throw new ApiResponseException(strtoupper($format) . " formatdagi fayl joq", 404);
-            }
-
-            return Storage::disk('public')->download($filePath, $fileName);
-
         } catch (ModelNotFoundException $e) {
-            throw new ApiResponseException('Schedule tabilmadi', 404);
+            throw new ApiResponseException('Schedule tabilmadi!', 404);
         }
     }
 }

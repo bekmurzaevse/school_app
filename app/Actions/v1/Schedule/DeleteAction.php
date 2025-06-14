@@ -38,7 +38,6 @@ class DeleteAction
             return static::toResponse(
                 message: 'Schedule attachment a\'wmetli o\'shirildi',
             );
-
         } catch (ModelNotFoundException $ex) {
             throw new ApiResponseException('Schedule attachment tabilmadi', 404);
         }

@@ -181,6 +181,7 @@ Route::middleware('auth:sanctum')->group(function () {
         });
 
         Route::prefix('schedules')->group(function () {
+            Route::get('/all', [ScheduleController::class, 'indexAll']); //for admin
             Route::post('/create', [ScheduleController::class, 'create']);
             Route::put('/update/{id}', [ScheduleController::class, 'update']);
             Route::delete('/delete/{id}', [ScheduleController::class, 'delete']);
