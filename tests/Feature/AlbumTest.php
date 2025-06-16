@@ -4,7 +4,6 @@ namespace Tests\Feature;
 
 use App\Helpers\FileUploadHelper;
 use App\Models\Album;
-use App\Models\School;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Http\UploadedFile;

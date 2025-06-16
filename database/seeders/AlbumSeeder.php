@@ -3,7 +3,6 @@
 namespace Database\Seeders;
 
 use App\Models\Album;
-use App\Models\School;
 use Illuminate\Database\Seeder;
 
 class AlbumSeeder extends Seeder

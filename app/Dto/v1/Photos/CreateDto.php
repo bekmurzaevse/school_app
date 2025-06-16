@@ -3,7 +3,6 @@
 namespace App\Dto\v1\Photos;
 
 use App\Http\Requests\v1\Photo\CreateRequest;
-use Illuminate\Http\UploadedFile;
 
 readonly class CreateDto
 {
