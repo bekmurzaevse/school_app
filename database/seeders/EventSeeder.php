@@ -28,7 +28,7 @@ class EventSeeder extends Seeder
                     'uz' => 'Har yili o‘tkaziladigan maktab fan ko‘rgazmasi',
                     'kk' => "Ha'r jili o'tkiziletug'in pa'n ko'zgizbesi",
                 ],
-                'school_id' => School::inRandomOrder()->first()->id,
+                'school_id' => School::first()->id,
                 'start_time' => now()->addDays(3),
                 'location' => 'Main Hall',
                 'created_at' => now(),
@@ -48,7 +48,7 @@ class EventSeeder extends Seeder
                 'uz' => 'Maktablararo futbol musobaqasi',
                 'kk' => 'Mektepler ara futbol jarisi',
             ],
-            'school_id' => School::inRandomOrder()->first()->id,
+            'school_id' => School::first()->id,
             'start_time' => now()->addDays(7),
             'location' => 'Football Field',
             'created_at' => now(),
@@ -67,7 +67,7 @@ class EventSeeder extends Seeder
                 'uz' => 'Yangi yil bayrami tadbiri haqida maʼlumotlar',
                 'kk' => "Jan'a jıl bayramı haqqında mag'lıwmatlar",
             ],
-            'school_id' => School::inRandomOrder()->first()->id,
+            'school_id' => School::first()->id,
             'start_time' => now()->addDays(30),
             'location' => 'Mektep zalı',
             'created_at' => now(),
@@ -86,12 +86,12 @@ class EventSeeder extends Seeder
                 'uz' => 'Navroz bayrami tadbiri haqida malumotlar',
                 'kk' => 'Nawriz bayrami haqqinda magliwmatlar',
             ],
-            'school_id' => School::inRandomOrder()->first()->id,
+            'school_id' => School::first()->id,
             'start_time' => now()->addDays(7),
             'location' => 'Mektep maydanshasi',
             'created_at' => now(),
             'updated_at' => now(),
         ]);
-        
+
     }
 }

@@ -3,7 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Position;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\School;
 use Illuminate\Database\Seeder;
 
 class PositionSeeder extends Seeder
@@ -20,8 +20,7 @@ class PositionSeeder extends Seeder
                 'ru' => "Директор",
                 'kk' => "Basliq",
             ],
-            // 'school_id' => SchoolSeeder::inRandomOrder()->id,
-            'school_id' => 1,
+            'school_id' => School::first()->id,
             'description' => [
                 'en' => "Description EN",
                 'uz' => "Description UZ",
@@ -36,8 +35,7 @@ class PositionSeeder extends Seeder
                 'ru' => "Заместитель директора",
                 'kk' => "Zam direktor",
             ],
-            // 'school_id' => SchoolSeeder::inRandomOrder()->id,
-            'school_id' => 1,
+            'school_id' => School::first()->id,
             'description' => [
                 'en' => "Description EN",
                 'uz' => "Description UZ",
@@ -52,8 +50,7 @@ class PositionSeeder extends Seeder
                 'ru' => "учитель",
                 'kk' => "Mug'allim",
             ],
-            // 'school_id' => SchoolSeeder::inRandomOrder()->id,
-            'school_id' => 1,
+            'school_id' => School::first()->id,
             'description' => [
                 'en' => "Description EN",
                 'uz' => "Description UZ",

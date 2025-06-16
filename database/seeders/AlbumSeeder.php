@@ -3,7 +3,6 @@
 namespace Database\Seeders;
 
 use App\Models\Album;
-use App\Models\School;
 use Illuminate\Database\Seeder;
 
 class AlbumSeeder extends Seeder
@@ -20,7 +19,6 @@ class AlbumSeeder extends Seeder
                 'ru' => "Навруз",
                 'kk' => "Nawriz",
             ],
-            // 'school_id' => SchoolSeeder::inRandomOrder()->id,
             'school_id' => 1,
             'description' => [
                 'en' => "Description EN",
@@ -37,7 +35,6 @@ class AlbumSeeder extends Seeder
                 'ru' => "Первый звонок 2025",
                 'kk' => "Birinshi qońıraw 2025",
             ],
-            // 'school_id' => SchoolSeeder::inRandomOrder()->id,
             'school_id' => 1,
             'description' => [
                 'en' => "Description EN",
@@ -54,7 +51,6 @@ class AlbumSeeder extends Seeder
                 'ru' => "Последний звонок",
                 'kk' => "Son'g'i qon'iraw",
             ],
-            // 'school_id' => School::inRandomOrder()->id,
             'school_id' => 1,
             'description' => [
                 'en' => "Description EN",

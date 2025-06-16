@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Helpers\FileUploadHelper;
+use App\Models\School;
 use Illuminate\Database\Seeder;
 use App\Models\Value;
 use Illuminate\Http\UploadedFile;
@@ -21,7 +22,7 @@ class ValueSeeder extends Seeder
                 'uz' => '1 name uz',
                 'kk' => '1 name kk',
             ],
-            'school_id' => 1,
+            'school_id' => School::first()->id,
             'text' => [
                 'en' => '1 text en',
                 'ru' => '1 text ru',
@@ -47,7 +48,7 @@ class ValueSeeder extends Seeder
                 'uz' => '2 name uz',
                 'kk' => '2 name kk',
             ],
-            'school_id' => 1,
+            'school_id' => School::first()->id,
             'text' => [
                 'en' => '2 text en',
                 'ru' => '2 text ru',
