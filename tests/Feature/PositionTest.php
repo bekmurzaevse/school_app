@@ -3,7 +3,6 @@
 namespace Tests\Feature;
 
 use App\Models\Position;
-use App\Models\School;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Str;

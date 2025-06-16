@@ -2,7 +2,6 @@
 
 namespace App\Http\Resources\v1\News;
 
-use App\Http\Resources\v1\Photo\PhotoResource;
 use App\Http\Resources\v1\Tag\TagResource;
 use App\Http\Resources\v1\User\UserResource;
 use Illuminate\Http\Request;

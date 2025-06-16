@@ -3,8 +3,6 @@
 namespace Tests\Feature;
 
 use App\Models\History;
-use App\Models\School;
-use App\Models\Target;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;

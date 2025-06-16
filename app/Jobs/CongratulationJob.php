@@ -2,11 +2,9 @@
 
 namespace App\Jobs;
 
-use App\Exceptions\ApiResponseException;
 use App\Models\Employee;
 use Carbon\Carbon;
 use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Queue\Queueable;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Http;
