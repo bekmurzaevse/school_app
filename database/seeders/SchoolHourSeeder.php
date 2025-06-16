@@ -2,8 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Models\School;
 use App\Models\SchoolHour;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class SchoolHourSeeder extends Seeder
@@ -14,7 +14,7 @@ class SchoolHourSeeder extends Seeder
     public function run(): void
     {
         SchoolHour::create([
-            'school_id' => 1,
+            'school_id' => School::first()->id,
             'title' => [
                 'kk' => 'kk title',
                 'uz' => 'uz title',
@@ -35,7 +35,7 @@ class SchoolHourSeeder extends Seeder
             ],
         ]);
         SchoolHour::create([
-            'school_id' => 1,
+            'school_id' => School::first()->id,
             'title' => [
                 'kk' => 'kk title 2',
                 'uz' => 'uz title 2',

@@ -21,7 +21,7 @@ class HistorySeeder extends Seeder
                 'ru' => 'Запущена первая экологичная кампания.',
                 'kk' => 'Birinshi ekologiyalıq baslama baslanǵan jıl.'
             ],
-            'school_id' => School::inRandomOrder()->first()->id,
+            'school_id' => School::first()->id,
         ]);
     }
 }

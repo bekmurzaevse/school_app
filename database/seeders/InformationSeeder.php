@@ -21,7 +21,7 @@ class InformationSeeder extends Seeder
                 "en" => "Pupils",
             ],
             'count' => rand(250, 1200),
-            'school_id' => School::inRandomOrder()->first()->id,
+            'school_id' => School::first()->id,
             'description' => [
                 "kk" => "KK description",
                 "uz" => "UZ description",
@@ -37,7 +37,7 @@ class InformationSeeder extends Seeder
                 "en" => "teachers",
             ],
             'count' => rand(250, 1200),
-            'school_id' => School::inRandomOrder()->first()->id,
+            'school_id' => School::first()->id,
             'description' => [
                 "kk" => "KK description",
                 "uz" => "UZ description",
@@ -53,7 +53,7 @@ class InformationSeeder extends Seeder
                 "en" => "Classes",
             ],
             'count' => rand(250, 1200),
-            'school_id' => School::inRandomOrder()->first()->id,
+            'school_id' => School::first()->id,
             'description' => [
                 "kk" => "KK description",
                 "uz" => "UZ description",

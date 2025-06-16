@@ -14,19 +14,19 @@ class DatabaseSeeder extends Seeder
     {
         $this->call([
             SchoolSeeder::class,
-            EventSeeder::class,
-            FileSeeder::class,
-            CategorySeeder::class,
+            // EventSeeder::class,
+            // FileSeeder::class,
+            // CategorySeeder::class,
             DocumentSeeder::class,
             PositionSeeder::class,
             AlbumSeeder::class,
-            PhotoSeeder::class,
+            // PhotoSeeder::class,
             EmployeeSeeder::class,
             UserPermissionSeeder::class,
             UserSeeder::class,
-            TagSeeder::class,
+            // TagSeeder::class,
             NewsSeeder::class,
-            NewsTagSeeder::class,
+            // NewsTagSeeder::class,
             ClubSeeder::class,
             RuleSeeder::class,
             ValueSeeder::class,
@@ -38,6 +38,5 @@ class DatabaseSeeder extends Seeder
             VacancySeeder::class,
             ScheduleSeeder::class,
         ]);
-
     }
 }
