@@ -14,13 +14,9 @@ class DatabaseSeeder extends Seeder
     {
         $this->call([
             SchoolSeeder::class,
-            // EventSeeder::class,
-            // FileSeeder::class,
-            // CategorySeeder::class,
             DocumentSeeder::class,
             PositionSeeder::class,
             AlbumSeeder::class,
-            // PhotoSeeder::class,
             EmployeeSeeder::class,
             UserPermissionSeeder::class,
             UserSeeder::class,

@@ -157,6 +157,10 @@ class School extends Model
         return $this->morphMany(Attachment::class, 'attachable')->where('type', 'schedule');
     }
 
+    /**
+     * Summary of schedulesPdf
+     * @return MorphMany<Attachment, School>
+     */
     public function schedulesPdf(): MorphMany
     {
         return $this->morphMany(Attachment::class, 'attachable')
@@ -164,19 +168,15 @@ class School extends Model
             ->where('name', 'like', '%pdf');
     }
 
-    // public function schedulesByName(string $name): MorphMany
-    // {
-    //     return $this->morphMany(Attachment::class, 'attachable')
-    //         ->where('type', 'schedule')
-    //         // ->where('name', 'like', "$name%");
-    //         ->where('name', $name);
-    // }
-
+    /**
+     * Summary of scheduleByName
+     * @param string $name
+     * @return \Illuminate\Database\Eloquent\Relations\MorphOne<Attachment, School>
+     */
     public function scheduleByName(string $name)
     {
         return $this->morphOne(Attachment::class, 'attachable')
-            // ->where('type', 'schedule')
-            // ->where('name', 'like', "$name%");
+            ->where('type', 'schedule')
             ->where('name', '=', $name);
     }
 }
