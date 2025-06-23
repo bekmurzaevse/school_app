@@ -38,13 +38,4 @@ class Document extends Model
     {
         return $this->belongsTo(School::class);
     }
-
-    /**
-     * Summary of category
-     * @return BelongsTo<Category, Document>
-     */
-    public function category(): BelongsTo
-    {
-        return $this->belongsTo(Category::class);
-    }
 }

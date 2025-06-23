@@ -5,9 +5,7 @@ use App\Http\Controllers\v1\AlbumController;
 use App\Http\Controllers\v1\ClubController;
 use App\Http\Controllers\v1\FaqController;
 use App\Http\Controllers\v1\HistoryController;
-use App\Http\Controllers\v1\PhotoController;
 use App\Http\Controllers\v1\DocumentController;
-use App\Http\Controllers\v1\CategoryController;
 use App\Http\Controllers\v1\EventController;
 use App\Http\Controllers\v1\FileController;
 use App\Http\Controllers\v1\PositionController;
@@ -92,20 +90,10 @@ Route::middleware('auth:sanctum')->group(function () {
             Route::put('/update/{id}', [AlbumController::class, 'update']);
             Route::delete('/delete/{id}', [AlbumController::class, 'delete']);
         });
-        Route::prefix('photos')->group(function () {
-            Route::post('/create', [PhotoController::class, 'create']);
-            Route::post('/update/{id}', [PhotoController::class, 'update']);
-            Route::delete('/delete/{id}', [PhotoController::class, 'delete']);
-        });
         Route::prefix('documents')->group(function () {
             Route::post('upload', [DocumentController::class, 'upload']);
             Route::put('update/{id}', [DocumentController::class, 'update']);
             Route::delete('delete/{id}', [DocumentController::class, 'delete']);
-        });
-        Route::prefix('categories')->group(function () {
-            Route::post('/create', [CategoryController::class, 'create']);
-            Route::put('/update/{id}', [CategoryController::class, 'update']);
-            Route::delete('/delete/{id}', [CategoryController::class, 'delete']);
         });
         Route::prefix('events')->group(function () {
             Route::post('/create', [EventController::class, 'create']);
@@ -229,18 +217,10 @@ Route::prefix('albums')->group(function () {
     Route::get('/', [AlbumController::class, 'index']);
     Route::get('/{id}', [AlbumController::class, 'show']);
 });
-Route::prefix('photos')->group(function () {
-    Route::get('/', [PhotoController::class, 'index']);
-    Route::get('/{id}', [PhotoController::class, 'show']);
-});
 Route::prefix('documents')->group(function () {
     Route::get('/', [DocumentController::class, 'index']);
     Route::get('show/{id}', [DocumentController::class, 'show']);
     Route::get('download/{id}', [DocumentController::class, 'download']);
-});
-Route::prefix('categories')->group(function () {
-    Route::get('/', [CategoryController::class, 'index']);
-    Route::get('/{id}', [CategoryController::class, 'show']);
 });
 Route::prefix('events')->group(function () {
     Route::get('/', [EventController::class, 'index']);
