@@ -6,8 +6,6 @@ use App\Http\Controllers\v1\ClubController;
 use App\Http\Controllers\v1\FaqController;
 use App\Http\Controllers\v1\HistoryController;
 use App\Http\Controllers\v1\DocumentController;
-use App\Http\Controllers\v1\EventController;
-use App\Http\Controllers\v1\FileController;
 use App\Http\Controllers\v1\PositionController;
 use App\Http\Controllers\v1\NewsController;
 use App\Http\Controllers\v1\RuleController;
@@ -61,17 +59,20 @@ Route::middleware('auth:sanctum')->group(function () {
             Route::put('/update/{id}', [SchoolController::class, 'update']);
             Route::delete('/delete/{id}', [SchoolController::class, 'delete']);
         });
+
         Route::prefix('employees')->group(function () {
             Route::get('/{id}', [EmployeeController::class, 'show']);
             Route::post('create', [EmployeeController::class, 'create']);
             Route::put('update/{id}', [EmployeeController::class, 'update']);
             Route::delete('delete/{id}', [EmployeeController::class, 'delete']);
         });
+
         Route::prefix('news')->group(function () {
             Route::post('create', [NewsController::class, 'create']);
             Route::put('update/{id}', [NewsController::class, 'update']);
             Route::delete('delete/{id}', [NewsController::class, 'delete']);
         });
+
         Route::prefix('tags')->group(function () {
             Route::get('/', [TagController::class, 'index']);
             Route::get('/{id}', [TagController::class, 'show']);
@@ -79,31 +80,24 @@ Route::middleware('auth:sanctum')->group(function () {
             Route::put('update/{id}', [TagController::class, 'update']);
             Route::delete('delete/{id}', [TagController::class, 'delete']);
         });
+
         Route::prefix('positions')->group(function () {
             Route::get('/{id}', [PositionController::class, 'show']);
             Route::post('/create', [PositionController::class, 'create']);
             Route::put('/update/{id}', [PositionController::class, 'update']);
             Route::delete('/delete/{id}', [PositionController::class, 'delete']);
         });
+
         Route::prefix('albums')->group(function () {
             Route::post('/create', [AlbumController::class, 'create']);
             Route::put('/update/{id}', [AlbumController::class, 'update']);
             Route::delete('/delete/{id}', [AlbumController::class, 'delete']);
         });
+
         Route::prefix('documents')->group(function () {
             Route::post('upload', [DocumentController::class, 'upload']);
             Route::put('update/{id}', [DocumentController::class, 'update']);
             Route::delete('delete/{id}', [DocumentController::class, 'delete']);
-        });
-        Route::prefix('events')->group(function () {
-            Route::post('/create', [EventController::class, 'create']);
-            Route::put('/update/{id}', [EventController::class, 'update']);
-            Route::delete('/delete/{id}', [EventController::class, 'delete']);
-        });
-        Route::prefix('files')->group(function () {
-            Route::post('/upload', [FileController::class, 'upload']);
-            Route::put('/update/{id}', [FileController::class, 'update']);
-            Route::delete('/delete/{id}', [FileController::class, 'delete']);
         });
 
         Route::prefix('users')->group(function () {
@@ -180,6 +174,8 @@ Route::middleware('auth:sanctum')->group(function () {
 /**
  *  Index page
  */
+Route::get('/', [MainController::class, 'index']);
+
 Route::prefix('rules')->group(function () {
     Route::get('/', [RuleController::class, 'index']);
     Route::get('/{id}', [RuleController::class, 'show']);
@@ -195,40 +191,36 @@ Route::prefix('clubs')->group(function () {
     Route::get('/{id}', [ClubController::class, 'show']);
 });
 
-Route::get('/', [MainController::class, 'index']);
-
 Route::prefix('schools')->group(function () {
     Route::get('/{id}', [SchoolController::class, 'show']);
 });
+
 Route::prefix('employees')->group(function () {
     Route::get('/', [EmployeeController::class, 'index']);
 });
+
 Route::prefix('news')->group(function () {
     Route::get('/', [NewsController::class, 'index']);
     Route::get('/{id}', [NewsController::class, 'show']);
 });
+
 Route::prefix('tags')->group(function () {
 
 });
+
 Route::prefix('positions')->group(function () {
     Route::get('/', [PositionController::class, 'index']);
 });
+
 Route::prefix('albums')->group(function () {
     Route::get('/', [AlbumController::class, 'index']);
     Route::get('/{id}', [AlbumController::class, 'show']);
 });
+
 Route::prefix('documents')->group(function () {
     Route::get('/', [DocumentController::class, 'index']);
     Route::get('show/{id}', [DocumentController::class, 'show']);
     Route::get('download/{id}', [DocumentController::class, 'download']);
-});
-Route::prefix('events')->group(function () {
-    Route::get('/', [EventController::class, 'index']);
-    Route::get('/{id}', [EventController::class, 'show']);
-});
-Route::prefix('files')->group(function () {
-    Route::get('/', [FileController::class, 'index']);
-    Route::get('/{id}', [FileController::class, 'show']);
 });
 
 Route::prefix('faqs')->group(function () {
@@ -245,18 +237,22 @@ Route::prefix('histories')->group(function () {
     Route::get('/', [HistoryController::class, 'index']);
     Route::get('/{id}', [HistoryController::class, 'show']);
 });
+
 Route::prefix('school-hours')->group(function () {
     Route::get('/', [SchoolHourController::class, 'index']);
     Route::get('/{id}', [SchoolHourController::class, 'show']);
 });
+
 Route::prefix('informations')->group(function () {
     Route::get('/', [InformationController::class, 'index']);
     Route::get('/{id}', [InformationController::class, 'show']);
 });
+
 Route::prefix('vacancies')->group(function () {
     Route::get('/', [VacancyController::class, 'index']);
     Route::get('/{id}', [VacancyController::class, 'show']);
 });
+
 Route::prefix('schedules')->group(function () {
     Route::get('/', [ScheduleController::class, 'index']);
     Route::get('/{id}', [ScheduleController::class, 'show']);

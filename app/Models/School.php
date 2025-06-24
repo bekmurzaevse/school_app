@@ -32,15 +32,6 @@ class School extends Model
     }
 
     /**
-     * Summary of events
-     * @return HasMany<Event, School>
-     */
-    public function events(): HasMany
-    {
-        return $this->hasMany(Event::class);
-    }
-
-    /**
      * Summary of users
      * @return HasMany<User, School>
      */
