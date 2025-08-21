@@ -179,8 +179,8 @@ Route::get('/', [MainController::class, 'index']);
 
 // Main
 Route::prefix('main')->group(function () {
-    Route::get('/main/rules', [MainController::class, 'rules']);
-    Route::get('/main/faqs', [MainController::class, 'faqs']);
+    Route::get('/rules', [MainController::class, 'rules']);
+    Route::get('/faqs', [MainController::class, 'faqs']);
     Route::get('/about', [MainController::class, 'about']);
     Route::get('/education', [MainController::class, 'education']);
     Route::get('/schedule', [MainController::class, 'schedules']);
