@@ -54,10 +54,10 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::get('list', [MainController::class, 'list']);
 
         Route::prefix('schools')->group(function () {
-            Route::get('/', [SchoolController::class, 'index']);
-            Route::post('/create', [SchoolController::class, 'create']);
+            // Route::get('/', [SchoolController::class, 'index']);
+            // Route::post('/create', [SchoolController::class, 'create']);
             Route::put('/update/{id}', [SchoolController::class, 'update']);
-            Route::delete('/delete/{id}', [SchoolController::class, 'delete']);
+            // Route::delete('/delete/{id}', [SchoolController::class, 'delete']);
         });
 
         Route::prefix('employees')->group(function () {
@@ -172,22 +172,19 @@ Route::middleware('auth:sanctum')->group(function () {
 
 });
 
-// Main
-Route::prefix('main')->group(function () {
-    Route::get('/about', [MainController::class, 'about']);
-    Route::get('/education', [MainController::class, 'education']);
-    Route::get('/schedule', [MainController::class, 'schedules']);
-});
-
 /**
  *  Index page
  */
 Route::get('/', [MainController::class, 'index']);
-Route::get('/main/rules', [MainController::class, 'rules']);
-Route::get('/main/faqs', [MainController::class, 'faqs']);
 
-
-
+// Main
+Route::prefix('main')->group(function () {
+    Route::get('/main/rules', [MainController::class, 'rules']);
+    Route::get('/main/faqs', [MainController::class, 'faqs']);
+    Route::get('/about', [MainController::class, 'about']);
+    Route::get('/education', [MainController::class, 'education']);
+    Route::get('/schedule', [MainController::class, 'schedules']);
+});
 
 Route::prefix('rules')->group(function () {
     Route::get('/', [RuleController::class, 'index']);
@@ -217,9 +214,9 @@ Route::prefix('news')->group(function () {
     Route::get('/{id}', [NewsController::class, 'show']);
 });
 
-Route::prefix('tags')->group(function () {
+// Route::prefix('tags')->group(function () {
 
-});
+// });
 
 Route::prefix('positions')->group(function () {
     Route::get('/', [PositionController::class, 'index']);

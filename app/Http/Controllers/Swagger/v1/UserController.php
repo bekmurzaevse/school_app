@@ -10,6 +10,7 @@ class UserController extends Controller
 
     #[OA\Post(
         path: '/api/v1/auth/login',
+        parameters: [new OA\Parameter(ref: "#/components/parameters/Accept-Language")],
         tags: ["User"],
         summary: "Login user",
     )]
@@ -34,6 +35,7 @@ class UserController extends Controller
 
     #[OA\Post(
         path: '/api/v1/auth/logout',
+        parameters: [new OA\Parameter(ref: "#/components/parameters/Accept-Language")],
         tags: ["User"],
         summary: "Logout user",
         security: [['sanctum' => []]]
@@ -66,7 +68,7 @@ class UserController extends Controller
         //
     }
 
-    #[OA\Post(path: '/api/v1/users/create', tags: ["User"], summary: "Create user", security: [['sanctum' => []]])]
+    #[OA\Post(path: '/api/v1/users/create', parameters: [new OA\Parameter(ref: "#/components/parameters/Accept-Language")], tags: ["User"], summary: "Create user", security: [['sanctum' => []]])]
     #[OA\RequestBody(
         required: true,
         description: "User creation data",
@@ -110,7 +112,7 @@ class UserController extends Controller
         //
     }
 
-    #[OA\Put(path: '/api/v1/users/update/{id}', tags: ["User"], summary: "Update user", security: [['sanctum' => []]])]
+    #[OA\Put(path: '/api/v1/users/update/{id}', parameters: [new OA\Parameter(ref: "#/components/parameters/Accept-Language")], tags: ["User"], summary: "Update user", security: [['sanctum' => []]])]
     #[OA\Parameter(name: "id", in: "path", required: true, description: "User id", example: 1)]
     #[OA\RequestBody(
         required: true,
@@ -157,7 +159,7 @@ class UserController extends Controller
         //
     }
 
-    #[OA\Delete(path: '/api/v1/users/delete/{id}', tags: ["User"], summary: "Delete user", security: [['sanctum' => []]])]
+    #[OA\Delete(path: '/api/v1/users/delete/{id}', parameters: [new OA\Parameter(ref: "#/components/parameters/Accept-Language")], tags: ["User"], summary: "Delete user", security: [['sanctum' => []]])]
     #[OA\Parameter(name: "id", in: "path", required: true, description: "User id", example: 1)]
     #[OA\Response(response: 200, description: 'User deleted successfully')]
     #[OA\Response(response: 404, description: "User not found")]

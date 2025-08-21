@@ -14,29 +14,24 @@ class IndexAction
 {
     use ResponseTrait;
 
-
-
-    public function __invoke()
+    /**
+     * Summary of __invoke
+     * @return JsonResponse
+     */
+    public function __invoke(): JsonResponse
     {
-        $school = School::with('positions.employees')->firstOrFail();
+        try{
+            $key = 'schools:show:' . app()->getLocale() . ':' . md5(request()->fullUrl());
+            $school = Cache::remember($key, now()->addDay(), function () {
+                return School::with('positions.employees')->firstOrFail();
+            });
 
-        return static::toResponse(
-                message: "School by id",
+            return static::toResponse(
+                message: "Home Page",
                 data: new IndexResource($school)
             );
-        // try{
-        //     $key = 'schools:show:' . app()->getLocale() . ':' . md5(request()->fullUrl());
-        //     $school = Cache::remember($key, now()->addDay(), function () use () {
-        //         return School::firstOrFail();
-        //     });
-        //     dd("test");
-
-        //     return static::toResponse(
-        //         message: "School by id",
-        //         data: new IndexResource($school)
-        //     );
-        // } catch(ModelNotFoundException $ex){
-        //     throw new ApiResponseException("id li mektep tabilmadi", 404);
-        // }
+        } catch(ModelNotFoundException $ex){
+            throw new ApiResponseException("Not Found", 404);
+        }
     }
 }
