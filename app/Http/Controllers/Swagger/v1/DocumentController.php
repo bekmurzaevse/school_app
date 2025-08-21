@@ -8,7 +8,7 @@ use OpenApi\Attributes as OA;
 class DocumentController extends Controller
 {
 
-    #[OA\Get(path: '/api/v1/documents', tags: ["Document"], summary: "Retrieve all documents")]
+    #[OA\Get(path: '/api/v1/documents', parameters: [new OA\Parameter(ref: "#/components/parameters/Accept-Language")], tags: ["Document"], summary: "Retrieve all documents")]
     #[OA\Response(response: 200, description: 'Documents collection with pagination')]
     #[OA\Response(response: 404, description: "Documents not found")]
     public function index()
@@ -16,7 +16,7 @@ class DocumentController extends Controller
         //
     }
 
-    #[OA\Get(path: '/api/v1/documents/show/{id}', tags: ["Document"], summary: "Document by id", security: [['sanctum' => []]])]
+    #[OA\Get(path: '/api/v1/documents/show/{id}', parameters: [new OA\Parameter(ref: "#/components/parameters/Accept-Language")], tags: ["Document"], summary: "Document by id", security: [['sanctum' => []]])]
     #[OA\Parameter(name: "id", in: "path", required: true, description: "Document id", example: 1)]
     #[OA\Response(response: 200, description: 'Document by id')]
     #[OA\Response(response: 404, description: "Document not found")]

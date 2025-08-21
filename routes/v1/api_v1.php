@@ -172,6 +172,13 @@ Route::middleware('auth:sanctum')->group(function () {
 
 });
 
+// Main
+Route::prefix('main')->group(function () {
+    Route::get('/about', [MainController::class, 'about']);
+    Route::get('/education', [MainController::class, 'education']);
+    Route::get('/schedule', [MainController::class, 'schedules']);
+});
+
 /**
  *  Index page
  */

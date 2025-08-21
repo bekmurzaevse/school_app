@@ -10,6 +10,7 @@ class SchoolHourController extends Controller
 
     #[OA\Get(
         path: '/api/v1/school-hours',
+        parameters: [new OA\Parameter(ref: "#/components/parameters/Accept-Language")],
         description: "All School Hours",
         tags: ["SchoolHour"],
         summary: "All School hours",
@@ -22,7 +23,7 @@ class SchoolHourController extends Controller
         //
     }
 
-    #[OA\Get(path: '/api/v1/school-hours/{id}', summary: "SchoolHour by id", tags: ["SchoolHour"])]
+    #[OA\Get(path: '/api/v1/school-hours/{id}', parameters: [new OA\Parameter(ref: "#/components/parameters/Accept-Language")], summary: "SchoolHour by id", tags: ["SchoolHour"])]
     #[OA\Parameter(
         name: "id",
         in: "path",

@@ -10,6 +10,7 @@ class AlbumController extends Controller
 
     #[OA\Get(
         path: '/api/v1/albums',
+        parameters: [new OA\Parameter(ref: "#/components/parameters/Accept-Language")],
         description: "All albums",
         tags: ["Album"],
         summary: "All albums",
@@ -35,7 +36,11 @@ class AlbumController extends Controller
             mediaType: "multipart/form-data",
             schema: new OA\Schema(
                 required: [
-                    "title[uz]", "title[ru]", "title[kk]", "title[en]", "photos[]"
+                    "title[uz]",
+                    "title[ru]",
+                    "title[kk]",
+                    "title[en]",
+                    "photos[]"
                 ],
                 properties: [
                     new OA\Property(property: "title[kk]", type: "string", example: "title kk"),
@@ -50,7 +55,7 @@ class AlbumController extends Controller
                     new OA\Property(
                         property: "photos[]",
                         type: "array",
-                        items: new OA\Items(type: "string", format:"binary"),
+                        items: new OA\Items(type: "string", format: "binary"),
                     ),
 
                 ]
@@ -65,7 +70,10 @@ class AlbumController extends Controller
         //
     }
 
-    #[OA\Get(path: '/api/v1/albums/{id}', summary: "Album by id", tags: ["Album"])]
+    #[OA\Get(path: '/api/v1/albums/{id}',
+        parameters: [new OA\Parameter(ref: "#/components/parameters/Accept-Language")],
+        summary: "Album by id",
+        tags: ["Album"])]
     #[OA\Parameter(
         name: "id",
         in: "path",
@@ -92,7 +100,12 @@ class AlbumController extends Controller
             mediaType: "multipart/form-data",
             schema: new OA\Schema(
                 required: [
-                    "title[uz]", "title[ru]", "title[kk]", "title[en]", "photos[]"],
+                    "title[uz]",
+                    "title[ru]",
+                    "title[kk]",
+                    "title[en]",
+                    "photos[]"
+                ],
                 properties: [
                     new OA\Property(property: "title[kk]", type: "string", example: "title kk"),
                     new OA\Property(property: "title[uz]", type: "string", example: "title uz"),
@@ -103,7 +116,7 @@ class AlbumController extends Controller
                     new OA\Property(
                         property: "photos[]",
                         type: "array",
-                        items: new OA\Items(type: "string", format:"binary"),
+                        items: new OA\Items(type: "string", format: "binary"),
                     )
                 ]
             ),

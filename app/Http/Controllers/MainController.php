@@ -5,6 +5,14 @@ namespace App\Http\Controllers;
 use App\Actions\v1\Main\FaqsIndexAction;
 use App\Actions\v1\Main\IndexAction;
 use App\Actions\v1\Main\RulesIndexAction;
+use App\Actions\v1\Main\AboutAction;
+use App\Actions\v1\Main\AddAction;
+use App\Actions\v1\Main\EducationAction;
+use App\Actions\v1\Main\IndexAction;
+use App\Actions\v1\Main\ListAction;
+use App\Actions\v1\Main\ScheduleAction;
+use App\Dto\v1\Main\AddDto;
+use App\Http\Requests\v1\Main\AddRequest;
 use Illuminate\Http\JsonResponse;
 
 class MainController extends Controller
@@ -52,6 +60,36 @@ class MainController extends Controller
     }
 
     public function faqs(FaqsIndexAction $action): JsonResponse
+    {
+        return $action();
+    }
+
+    /**
+     * Summary of about
+     * @param \App\Actions\v1\Main\AboutAction $action
+     * @return JsonResponse
+     */
+    public function about(AboutAction $action): JsonResponse
+    {
+        return $action();
+    }
+
+    /**
+     * Summary of education
+     * @param \App\Actions\v1\Main\EducationAction $action
+     * @return JsonResponse
+     */
+    public function education(EducationAction $action): JsonResponse
+    {
+        return $action();
+    }
+
+    /**
+     * Summary of schedules
+     * @param \App\Actions\v1\Main\ScheduleAction $action
+     * @return JsonResponse
+     */
+    public function schedules(ScheduleAction $action): JsonResponse
     {
         return $action();
     }

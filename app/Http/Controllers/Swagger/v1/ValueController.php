@@ -8,7 +8,7 @@ use OpenApi\Attributes as OA;
 class ValueController extends Controller
 {
 
-    #[OA\Get(path: '/api/v1/values', tags: ["Value"], summary: "Retrieve all values")]
+    #[OA\Get(path: '/api/v1/values', parameters: [new OA\Parameter(ref: "#/components/parameters/Accept-Language")], tags: ["Value"], summary: "Retrieve all values")]
     #[OA\Response(response: 200, description: 'Value collection with pagination')]
     #[OA\Response(response: 401, description: 'Unauthenticated')]
     public function index()
@@ -16,7 +16,7 @@ class ValueController extends Controller
         //
     }
 
-    #[OA\Get(path: '/api/v1/values/{id}', tags: ["Value"], summary: "Value by id", security: [['sanctum' => []]])]
+    #[OA\Get(path: '/api/v1/values/{id}', parameters: [new OA\Parameter(ref: "#/components/parameters/Accept-Language")], tags: ["Value"], summary: "Value by id", security: [['sanctum' => []]])]
     #[OA\Parameter(name: "id", in: "path", required: true, description: "Value id", example: 1)]
     #[OA\Response(response: 200, description: 'Value by id')]
     #[OA\Response(response: 401, description: 'Unauthenticated')]
@@ -38,8 +38,14 @@ class ValueController extends Controller
             mediaType: "multipart/form-data",
             schema: new OA\Schema(
                 required: [
-                    "name[uz]", "name[ru]", "name[kk]", "name[en]",
-                    "text[uz]", "text[ru]", "text[kk]", "text[en]",
+                    "name[uz]",
+                    "name[ru]",
+                    "name[kk]",
+                    "name[en]",
+                    "text[uz]",
+                    "text[ru]",
+                    "text[kk]",
+                    "text[en]",
                     "photo"
                 ],
                 properties: [
@@ -81,8 +87,14 @@ class ValueController extends Controller
             mediaType: "multipart/form-data",
             schema: new OA\Schema(
                 required: [
-                    "name[uz]", "name[ru]", "name[kk]", "name[en]",
-                    "text[uz]", "text[ru]", "text[kk]", "text[en]",
+                    "name[uz]",
+                    "name[ru]",
+                    "name[kk]",
+                    "name[en]",
+                    "text[uz]",
+                    "text[ru]",
+                    "text[kk]",
+                    "text[en]",
                     "photo"
                 ],
                 properties: [

@@ -10,6 +10,7 @@ class FaqController extends Controller
 
     #[OA\Get(
         path: '/api/v1/faqs',
+        parameters: [new OA\Parameter(ref: "#/components/parameters/Accept-Language")],
         description: "All FAQs",
         tags: ["FAQ"],
         summary: "All FAQs",
@@ -22,7 +23,7 @@ class FaqController extends Controller
         //
     }
 
-    #[OA\Get(path: '/api/v1/faqs/{id}', summary: "FAQ by id", tags: ["FAQ"])]
+    #[OA\Get(path: '/api/v1/faqs/{id}', parameters: [new OA\Parameter(ref: "#/components/parameters/Accept-Language")], summary: "FAQ by id", tags: ["FAQ"])]
     #[OA\Parameter(
         name: "id",
         in: "path",

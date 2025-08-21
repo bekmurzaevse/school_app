@@ -9,6 +9,7 @@ class TargetController extends Controller
 {
     #[OA\Get(
         path: '/api/v1/targets',
+        parameters: [new OA\Parameter(ref: "#/components/parameters/Accept-Language")],
         summary: 'Target dizimi',
         description: 'Barliq targetlerdi betlerge bo\'lingen halda qaytaradi',
         tags: ['Target']
@@ -104,11 +105,12 @@ class TargetController extends Controller
                 required: true,
                 description: 'Target ID si',
                 schema: new OA\Schema(type: 'integer', example: 1)
-            )
+            ),
+            new OA\Parameter(ref: "#/components/parameters/Accept-Language")
         ],
     )]
-    #[OA\Response(response:200, description: "Target")]
-    #[OA\Response(response:404, description: "Target Not Found")]
+    #[OA\Response(response: 200, description: "Target")]
+    #[OA\Response(response: 404, description: "Target Not Found")]
     public function show()
     {
         //

@@ -10,6 +10,7 @@ class InformationController extends Controller
 
     #[OA\Get(
         path: '/api/v1/informations',
+        parameters: [new OA\Parameter(ref: "#/components/parameters/Accept-Language")],
         description: "All informations",
         tags: ["Information"],
         summary: "All informations",
@@ -22,7 +23,7 @@ class InformationController extends Controller
         //
     }
 
-    #[OA\Get(path: '/api/v1/informations/{id}', summary: "Information by id", tags: ["Information"])]
+    #[OA\Get(path: '/api/v1/informations/{id}', parameters: [new OA\Parameter(ref: "#/components/parameters/Accept-Language")], summary: "Information by id", tags: ["Information"])]
     #[OA\Parameter(
         name: "id",
         in: "path",
