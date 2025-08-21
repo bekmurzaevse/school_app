@@ -10,6 +10,7 @@ class SchoolController extends Controller
 
     #[OA\Get(
         path: '/api/v1/schools',
+        parameters: [new OA\Parameter(ref: "#/components/parameters/Accept-Language")],
         description: "All schools",
         tags: ["School"],
         summary: "All schools",
@@ -82,7 +83,7 @@ class SchoolController extends Controller
         //
     }
 
-    #[OA\Get(path: '/api/v1/schools/{id}', summary: "School by id", tags: ["School"])]
+    #[OA\Get(path: '/api/v1/schools/{id}', parameters: [new OA\Parameter(ref: "#/components/parameters/Accept-Language")], summary: "School by id", tags: ["School"])]
     #[OA\Parameter(
         name: "id",
         in: "path",

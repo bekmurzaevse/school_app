@@ -9,6 +9,7 @@ class PositionController extends Controller
 {
     #[OA\Get(
         path: '/api/v1/positions',
+        parameters: [new OA\Parameter(ref: "#/components/parameters/Accept-Language")],
         description: "Ha'mme lawazimlar",
         tags: ["Position"],
         summary: "Ha'mme lawazimlar",
@@ -69,6 +70,7 @@ class PositionController extends Controller
 
     #[OA\Get(
         path: '/api/v1/positions/{id}',
+        parameters: [new OA\Parameter(ref: "#/components/parameters/Accept-Language")],
         summary: "id boyinsha lawazimdi aliw",
         tags: ["Position"],
         security: [['sanctum' => []]]

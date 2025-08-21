@@ -10,6 +10,7 @@ class VacancyController extends Controller
 
     #[OA\Get(
         path: '/api/v1/vacancies',
+        parameters: [new OA\Parameter(ref: "#/components/parameters/Accept-Language")],
         description: "All Vacancies",
         tags: ["Vacancy"],
         summary: "All Vacancy",
@@ -22,7 +23,7 @@ class VacancyController extends Controller
         //
     }
 
-    #[OA\Get(path: '/api/v1/vacancies/{id}', summary: "Vacancy by id", tags: ["Vacancy"])]
+    #[OA\Get(path: '/api/v1/vacancies/{id}', parameters: [new OA\Parameter(ref: "#/components/parameters/Accept-Language")], summary: "Vacancy by id", tags: ["Vacancy"])]
     #[OA\Parameter(
         name: "id",
         in: "path",

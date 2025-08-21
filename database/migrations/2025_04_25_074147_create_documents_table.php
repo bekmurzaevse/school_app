@@ -4,8 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class extends Migration {
     /**
      * Run the migrations.
      */
@@ -16,7 +15,6 @@ return new class extends Migration
             $table->json('name');
             $table->json('description')->nullable();
             $table->foreignId('school_id')->constrained('schools')->restrictOnDelete()->cascadeOnUpdate();
-            $table->foreignId('category_id')->constrained('categories')->restrictOnDelete()->cascadeOnUpdate();
             $table->string('path');
             $table->softDeletes();
             $table->timestamps();

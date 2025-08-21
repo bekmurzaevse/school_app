@@ -7,7 +7,7 @@ use OpenApi\Attributes as OA;
 
 class EmployeeController extends Controller
 {
-    #[OA\Get(path: '/api/v1/employees', tags: ["Employee"], summary: "Retrieve all employees", )]
+    #[OA\Get(path: '/api/v1/employees', parameters: [new OA\Parameter(ref: "#/components/parameters/Accept-Language")], tags: ["Employee"], summary: "Retrieve all employees", )]
     #[OA\Response(response: 200, description: 'Employees collection with pagination')]
     #[OA\Response(response: 401, description: 'Unauthenticated')]
     #[OA\Response(response: 404, description: 'Employees not found')]
@@ -16,7 +16,7 @@ class EmployeeController extends Controller
         //
     }
 
-    #[OA\Get(path: '/api/v1/employees/{id}', tags: ["Employee"], summary: "Employee by id", security: [['sanctum' => []]])]
+    #[OA\Get(path: '/api/v1/employees/{id}', parameters: [new OA\Parameter(ref: "#/components/parameters/Accept-Language")], tags: ["Employee"], summary: "Employee by id", security: [['sanctum' => []]])]
     #[OA\Parameter(name: "id", in: "path", required: true, description: "Employee id", example: 1)]
     #[OA\Response(response: 200, description: 'Employee by id')]
     #[OA\Response(response: 401, description: 'Unauthenticated')]
@@ -38,7 +38,12 @@ class EmployeeController extends Controller
             mediaType: "multipart/form-data",
             schema: new OA\Schema(
                 required: [
-                    "full_name[uz]", "full_name[ru]", "full_name[kk]", "full_name[en]", "phone"],
+                    "full_name[uz]",
+                    "full_name[ru]",
+                    "full_name[kk]",
+                    "full_name[en]",
+                    "phone"
+                ],
                 properties: [
                     new OA\Property(property: "full_name[kk]", type: "string", example: "full_name kk"),
                     new OA\Property(property: "full_name[uz]", type: "string", example: "full_name uz"),
@@ -81,7 +86,12 @@ class EmployeeController extends Controller
             mediaType: "multipart/form-data",
             schema: new OA\Schema(
                 required: [
-                    "full_name[uz]", "full_name[ru]", "full_name[kk]", "full_name[en]", "phone"],
+                    "full_name[uz]",
+                    "full_name[ru]",
+                    "full_name[kk]",
+                    "full_name[en]",
+                    "phone"
+                ],
                 properties: [
                     new OA\Property(property: "full_name[kk]", type: "string", example: "full_name kk"),
                     new OA\Property(property: "full_name[uz]", type: "string", example: "full_name uz"),
