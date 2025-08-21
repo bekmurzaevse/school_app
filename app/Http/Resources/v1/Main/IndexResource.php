@@ -37,7 +37,14 @@ class IndexResource extends JsonResource
             }),
             'teachers' => TeacherResource::collection($allEmployees),
             'description' => $this->description,
-            'info' => $this->info,
+            'informations' => $this->informations->map(function ($info){
+                return [
+                    'id' => $info->id,
+                    'title' => $info->title,
+                    'count' => $info->count,
+                    'description' => $info->description,
+                ];
+            }),
             'albums' => $this->albums->map(function ($album) {
                 return [
                     'id' => $album->id,

@@ -16,24 +16,24 @@ use Illuminate\Http\JsonResponse;
 
 class SchoolController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index(IndexAction $action): JsonResponse
-    {
-        return $action();
-    }
+    // /**
+    //  * Display a listing of the resource.
+    //  */
+    // public function index(IndexAction $action): JsonResponse
+    // {
+    //     return $action();
+    // }
 
-    /**
-     * Summary of create
-     * @param \App\Http\Requests\v1\School\CreateRequest $request
-     * @param \App\Actions\v1\Schools\CreateAction $action
-     * @return JsonResponse
-     */
-    public function create(CreateRequest $request, CreateAction $action): JsonResponse
-    {
-        return $action(CreateDto::from($request));
-    }
+    // /**
+    //  * Summary of create
+    //  * @param \App\Http\Requests\v1\School\CreateRequest $request
+    //  * @param \App\Actions\v1\Schools\CreateAction $action
+    //  * @return JsonResponse
+    //  */
+    // public function create(CreateRequest $request, CreateAction $action): JsonResponse
+    // {
+    //     return $action(CreateDto::from($request));
+    // }
 
     /**
      * Display the specified resource.
@@ -51,11 +51,11 @@ class SchoolController extends Controller
         return $action($id, UpdateDto::from($request));
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function delete(int $id, DeleteAction $action): JsonResponse
-    {
-        return $action($id);
-    }
+    // /**
+    //  * Remove the specified resource from storage.
+    //  */
+    // public function delete(int $id, DeleteAction $action): JsonResponse
+    // {
+    //     return $action($id);
+    // }
 }
