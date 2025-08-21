@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 use Symfony\Component\HttpFoundation\Response;
 
 class SetLocale
@@ -15,11 +16,20 @@ class SetLocale
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if ($request->hasHeader('Accept-Language')) {
-            app()->setLocale($request->header('Accept-Language'));
+        $locale = $request->header('Accept-Language');
+
+        if ($locale) {
+            // Agar header bor bo‘lsa va siz qo‘llab-quvvatlaydigan tillardan biri bo‘lsa
+            $available = ['en', 'ru', 'uz'];
+
+            if (in_array($locale, $available)) {
+                App::setLocale($locale);
+            }
         } else {
-            app()->setLocale('ru');
+            // Header yo‘q bo‘lsa — default tilni qo‘yamiz (masalan: uz)
+            App::setLocale(config('app.locale', 'ru'));
         }
+
         return $next($request);
     }
 }
