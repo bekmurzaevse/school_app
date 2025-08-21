@@ -169,12 +169,18 @@ Route::middleware('auth:sanctum')->group(function () {
             Route::delete('/delete/{id}', [ScheduleController::class, 'delete']);
         });
     });
+
 });
 
 /**
  *  Index page
  */
 Route::get('/', [MainController::class, 'index']);
+Route::get('/main/rules', [MainController::class, 'rules']);
+Route::get('/main/faqs', [MainController::class, 'faqs']);
+
+
+
 
 Route::prefix('rules')->group(function () {
     Route::get('/', [RuleController::class, 'index']);

@@ -18,7 +18,6 @@ class Document extends Model
         'name',
         'description',
         'school_id',
-        'category_id',
         'path',
     ];
 

@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\Translatable\HasTranslations;
@@ -169,5 +170,17 @@ class School extends Model
         return $this->morphOne(Attachment::class, 'attachable')
             ->where('type', 'schedule')
             ->where('name', '=', $name);
+    }
+
+    public function news(): HasManyThrough
+    {
+        return $this->hasManyThrough(
+            News::class, // oxirgi model
+            User::class, // o‘rta model
+            'school_id', // User modelidagi foreign key
+            'author_id',   // News modelidagi foreign key
+            'id',        // School primary key
+            'id'         // User primary key
+        );
     }
 }

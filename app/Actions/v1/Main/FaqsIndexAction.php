@@ -2,27 +2,25 @@
 
 namespace App\Actions\v1\Main;
 
-use App\Exceptions\ApiResponseException;
-use App\Http\Resources\v1\Main\IndexResource;
+use App\Http\Resources\v1\Main\FaqsIndexResource;
+use App\Http\Resources\v1\Main\RulesIndexResource;
 use App\Models\School;
 use App\Traits\ResponseTrait;
-use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Support\Facades\Cache;
 
-class IndexAction
+class FaqsIndexAction
 {
     use ResponseTrait;
 
 
 
-    public function __invoke()
+    public function __invoke(): JsonResponse
     {
-        $school = School::with('positions.employees')->firstOrFail();
+        $school = School::firstOrFail();
 
         return static::toResponse(
-                message: "School by id",
-                data: new IndexResource($school)
+                message: "Rules and Documents",
+                data: new FaqsIndexResource($school)
             );
         // try{
         //     $key = 'schools:show:' . app()->getLocale() . ':' . md5(request()->fullUrl());
