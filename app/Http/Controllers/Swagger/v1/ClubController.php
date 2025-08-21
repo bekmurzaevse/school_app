@@ -8,7 +8,7 @@ use OpenApi\Attributes as OA;
 class ClubController extends Controller
 {
 
-    #[OA\Get(path: '/api/v1/clubs', tags: ["Club"], summary: "Retrieve all clubs")]
+    #[OA\Get(path: '/api/v1/clubs', parameters: [new OA\Parameter(ref: "#/components/parameters/Accept-Language")], tags: ["Club"], summary: "Retrieve all clubs")]
     #[OA\Response(response: 200, description: 'Clubs collection with pagination')]
     #[OA\Response(response: 401, description: 'Unauthenticated')]
     public function index()
@@ -16,7 +16,7 @@ class ClubController extends Controller
         //
     }
 
-    #[OA\Get(path: '/api/v1/clubs/{id}', tags: ["Club"], summary: "Club by id", security: [['sanctum' => []]])]
+    #[OA\Get(path: '/api/v1/clubs/{id}', parameters: [new OA\Parameter(ref: "#/components/parameters/Accept-Language")], tags: ["Club"], summary: "Club by id", security: [['sanctum' => []]])]
     #[OA\Parameter(name: "id", in: "path", required: true, description: "Club id", example: 1)]
     #[OA\Response(response: 200, description: 'Club by id')]
     #[OA\Response(response: 401, description: 'Unauthenticated')]
@@ -38,9 +38,18 @@ class ClubController extends Controller
             mediaType: "multipart/form-data",
             schema: new OA\Schema(
                 required: [
-                    "name[uz]", "name[ru]", "name[kk]", "name[en]",
-                    "text[uz]", "text[ru]", "text[kk]", "text[en]",
-                    "schedule[uz]", "schedule[ru]", "schedule[kk]", "schedule[en]",
+                    "name[uz]",
+                    "name[ru]",
+                    "name[kk]",
+                    "name[en]",
+                    "text[uz]",
+                    "text[ru]",
+                    "text[kk]",
+                    "text[en]",
+                    "schedule[uz]",
+                    "schedule[ru]",
+                    "schedule[kk]",
+                    "schedule[en]",
                     "photo"
                 ],
                 properties: [
@@ -86,9 +95,18 @@ class ClubController extends Controller
             mediaType: "multipart/form-data",
             schema: new OA\Schema(
                 required: [
-                    "name[kk]", "name[uz]", "name[ru]", "name[en]",
-                    "text[kk]", "text[uz]", "text[ru]", "text[en]",
-                    "schedule[kk]", "schedule[uz]", "schedule[ru]", "schedule[en]",
+                    "name[kk]",
+                    "name[uz]",
+                    "name[ru]",
+                    "name[en]",
+                    "text[kk]",
+                    "text[uz]",
+                    "text[ru]",
+                    "text[en]",
+                    "schedule[kk]",
+                    "schedule[uz]",
+                    "schedule[ru]",
+                    "schedule[en]",
                     "photo"
                 ],
                 properties: [

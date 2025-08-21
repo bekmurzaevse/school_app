@@ -7,7 +7,7 @@ use OpenApi\Attributes as OA;
 
 class UserController extends Controller
 {
-    
+
     #[OA\Post(
         path: '/api/v1/auth/login',
         tags: ["User"],
@@ -46,7 +46,7 @@ class UserController extends Controller
         //
     }
 
-    #[OA\Get(path: '/api/v1/users', tags: ["User"], summary: "Retrieve all users", security: [['sanctum' => []]])]
+    #[OA\Get(path: '/api/v1/users', parameters: [new OA\Parameter(ref: "#/components/parameters/Accept-Language")], tags: ["User"], summary: "Retrieve all users", security: [['sanctum' => []]])]
     #[OA\Response(response: 200, description: 'Users collection with pagination')]
     #[OA\Response(response: 401, description: 'Unauthenticated')]
     #[OA\Response(response: 500, description: 'Internal server error')]
@@ -55,7 +55,7 @@ class UserController extends Controller
         //
     }
 
-    #[OA\Get(path: '/api/v1/users/{id}', tags: ["User"], summary: "User by id", security: [['sanctum' => []]])]
+    #[OA\Get(path: '/api/v1/users/{id}', parameters: [new OA\Parameter(ref: "#/components/parameters/Accept-Language")], tags: ["User"], summary: "User by id", security: [['sanctum' => []]])]
     #[OA\Parameter(name: "id", in: "path", required: true, description: "User id", example: 1)]
     #[OA\Response(response: 200, description: 'User by id')]
     #[OA\Response(response: 401, description: 'Unauthenticated')]

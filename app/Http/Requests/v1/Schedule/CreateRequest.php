@@ -21,9 +21,46 @@ class CreateRequest extends FormRequest
     {
         return [
             'description' => 'nullable|string|max:255',
-            'file_pdf' => 'required|file|mimes:pdf|max:2048',
-            'file_xls' => 'nullable|file|mimes:xls,xlsx|max:2048',
-            'file_csv' => 'nullable|file|mimes:csv|max:2048',
+            'file_pdf' => [
+                'required',
+                'file',
+                'mimetypes:application/pdf',
+                'max:2048',
+                function ($attribute, $value, $fail) {
+                    $filename = $value->getClientOriginalName();
+                    // Faqat 1-11 sinf va bitta A-Z harf (masalan: 1A.pdf, 10B.pdf, 11C.pdf)
+                    if (!preg_match('/^(?:[1-9]|10|11)[A-Z]\.pdf$/', $filename)) {
+                        $fail("The $attribute must be named like '1A.pdf', '5B.pdf' or '11C.pdf'.");
+                    }
+                },
+            ],
+            'file_xls' => [
+                'sometimes',
+                'file',
+                'mimetypes:mimetypes:application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+                'max:2048',
+                function ($attribute, $value, $fail) {
+                    $filename = $value->getClientOriginalName();
+                    if (!preg_match('/^(?:[1-9]|10|11)[A-Z]\.xls$/', $filename)) {
+                        $fail("The $attribute must be named like '1A.xls', '5B.xls' or '11C.xls'.");
+                    }
+                    if (!preg_match('/^(?:[1-9]|10|11)[A-Z]\.xlsx$/', $filename)) {
+                        $fail("The $attribute must be named like '1A.xlsx', '5B.xlsx' or '11C.xlsx'.");
+                    }
+                },
+            ],
+            'file_csv' => [
+                'sometimes',
+                'file',
+                'mimetypes:mimetypes:text/csv,application/vnd.ms-excel',
+                'max:2048',
+                function ($attribute, $value, $fail) {
+                    $filename = $value->getClientOriginalName();
+                    if (!preg_match('/^(?:[1-9]|10|11)[A-Z]\.csv$/', $filename)) {
+                        $fail("The $attribute must be named like '1A.csv', '5B.csv' or '11C.csv'.");
+                    }
+                },
+            ],
         ];
     }
 }

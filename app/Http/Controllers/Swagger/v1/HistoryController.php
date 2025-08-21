@@ -9,6 +9,7 @@ class HistoryController extends Controller
 {
     #[OA\Get(
         path: '/api/v1/histories',
+        parameters: [new OA\Parameter(ref: "#/components/parameters/Accept-Language")],
         description: "All histories",
         tags: ["History"],
         summary: "All histories",
@@ -20,7 +21,7 @@ class HistoryController extends Controller
         //
     }
 
-    #[OA\Get(path: '/api/v1/histories/{id}', summary: "History by id", tags: ["History"])]
+    #[OA\Get(path: '/api/v1/histories/{id}', parameters: [new OA\Parameter(ref: "#/components/parameters/Accept-Language")], summary: "History by id", tags: ["History"])]
     #[OA\Parameter(
         name: "id",
         in: "path",

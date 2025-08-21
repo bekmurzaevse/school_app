@@ -10,6 +10,7 @@ class MainController extends Controller
 {
     #[OA\Get(
         path: '/api/v1/',
+        parameters: [new OA\Parameter(ref: "#/components/parameters/Accept-Language")],
         description: "Home page",
         tags: ["Home"],
         summary: "Home page",
@@ -50,6 +51,7 @@ class MainController extends Controller
 
     #[OA\Get(
         path: '/api/v1/list',
+        parameters: [new OA\Parameter(ref: "#/components/parameters/Accept-Language")],
         description: "Employee list with birth date",
         tags: ["Home"],
         summary: "Employee list with birth date",

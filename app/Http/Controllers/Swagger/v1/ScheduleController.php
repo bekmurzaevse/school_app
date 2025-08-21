@@ -7,7 +7,7 @@ use OpenApi\Attributes as OA;
 
 class ScheduleController extends Controller
 {
-    #[OA\Get(path: '/api/v1/schedules', tags: ["Schedule"], summary: "Retrieve all schedulesfor users")]
+    #[OA\Get(path: '/api/v1/schedules', parameters: [new OA\Parameter(ref: "#/components/parameters/Accept-Language")], tags: ["Schedule"], summary: "Retrieve all schedulesfor users")]
     #[OA\Response(response: 200, description: 'Schedules collection with pagination')]
     #[OA\Response(response: 404, description: "Schedules not found")]
     public function index()
@@ -15,7 +15,7 @@ class ScheduleController extends Controller
         // Method implementation
     }
 
-    #[OA\Get(path: '/api/v1/schedules/all', tags: ["Schedule"], summary: "Retrieve all schedules for admin", security: [['sanctum' => []]])]
+    #[OA\Get(path: '/api/v1/schedules/all', parameters: [new OA\Parameter(ref: "#/components/parameters/Accept-Language")], tags: ["Schedule"], summary: "Retrieve all schedules for admin", security: [['sanctum' => []]])]
     #[OA\Response(response: 200, description: 'All Schedules collection with pagination')]
     #[OA\Response(response: 404, description: "Schedules not found")]
     public function indexAll()
@@ -23,7 +23,7 @@ class ScheduleController extends Controller
         // Method implementation
     }
 
-    #[OA\Get(path: '/api/v1/schedules/{id}', tags: ["Schedule"], summary: "Schedule by id", security: [['sanctum' => []]])]
+    #[OA\Get(path: '/api/v1/schedules/{id}', parameters: [new OA\Parameter(ref: "#/components/parameters/Accept-Language")], tags: ["Schedule"], summary: "Schedule by id", security: [['sanctum' => []]])]
     #[OA\Parameter(name: "id", in: "path", required: true, description: "Schedule id", example: 1)]
     #[OA\Response(response: 200, description: 'Schedule by id')]
     #[OA\Response(response: 404, description: "Schedule not found")]

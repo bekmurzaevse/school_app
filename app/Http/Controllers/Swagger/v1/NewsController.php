@@ -7,7 +7,7 @@ use OpenApi\Attributes as OA;
 
 class NewsController extends Controller
 {
-    #[OA\Get(path: '/api/v1/news', tags: ["News"], summary: "Retrieve all news", )]
+    #[OA\Get(path: '/api/v1/news', parameters: [new OA\Parameter(ref: "#/components/parameters/Accept-Language")], tags: ["News"], summary: "Retrieve all news", )]
     #[OA\Parameter(name: "page", in: "query", required: false, description: "Page", schema: new OA\Schema(type: "string"))]
     #[OA\Parameter(name: "per_page", in: "query", required: false, description: "Per page", schema: new OA\Schema(type: "string"))]
     #[OA\Parameter(
@@ -45,7 +45,7 @@ class NewsController extends Controller
         //
     }
 
-    #[OA\Get(path: '/api/v1/news/{id}', tags: ["News"], summary: "News by id")]
+    #[OA\Get(path: '/api/v1/news/{id}', parameters: [new OA\Parameter(ref: "#/components/parameters/Accept-Language")], tags: ["News"], summary: "News by id")]
     #[OA\Parameter(name: "id", in: "path", required: true, description: "News id", example: 1)]
     #[OA\Response(response: 200, description: 'News by id')]
     #[OA\Response(response: 401, description: 'Unauthenticated')]
@@ -67,10 +67,20 @@ class NewsController extends Controller
             mediaType: "multipart/form-data",
             schema: new OA\Schema(
                 required: [
-                    "title[uz]", "title[ru]", "title[kk]", "title[en]",
-                    "short_content[uz]", "short_content[ru]", "short_content[kk]", "short_content[en]",
-                    "content[uz]", "content[ru]", "content[kk]", "content[en]",
-                    "cover_image", "tags"
+                    "title[uz]",
+                    "title[ru]",
+                    "title[kk]",
+                    "title[en]",
+                    "short_content[uz]",
+                    "short_content[ru]",
+                    "short_content[kk]",
+                    "short_content[en]",
+                    "content[uz]",
+                    "content[ru]",
+                    "content[kk]",
+                    "content[en]",
+                    "cover_image",
+                    "tags"
                 ],
                 properties: [
                     new OA\Property(property: "title[kk]", type: "string", example: "title kk"),
@@ -119,10 +129,20 @@ class NewsController extends Controller
             mediaType: "multipart/form-data",
             schema: new OA\Schema(
                 required: [
-                    "title[uz]", "title[ru]", "title[kk]", "title[en]",
-                    "short_content[uz]", "short_content[ru]", "short_content[kk]", "short_content[en]",
-                    "content[uz]", "content[ru]", "content[kk]", "content[en]",
-                    "cover_image", "tags"
+                    "title[uz]",
+                    "title[ru]",
+                    "title[kk]",
+                    "title[en]",
+                    "short_content[uz]",
+                    "short_content[ru]",
+                    "short_content[kk]",
+                    "short_content[en]",
+                    "content[uz]",
+                    "content[ru]",
+                    "content[kk]",
+                    "content[en]",
+                    "cover_image",
+                    "tags"
                 ],
                 properties: [
                     new OA\Property(property: "title[kk]", type: "string", example: "title kk"),

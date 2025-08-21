@@ -8,7 +8,7 @@ use OpenApi\Attributes as OA;
 class RuleController extends Controller
 {
 
-    #[OA\Get(path: '/api/v1/rules', tags: ["Rule"], summary: "Retrieve all rules")]
+    #[OA\Get(path: '/api/v1/rules', parameters: [new OA\Parameter(ref: "#/components/parameters/Accept-Language")], tags: ["Rule"], summary: "Retrieve all rules")]
     #[OA\Response(response: 200, description: 'Rule collection with pagination')]
     #[OA\Response(response: 401, description: 'Unauthenticated')]
     public function index()
@@ -16,7 +16,7 @@ class RuleController extends Controller
         //
     }
 
-    #[OA\Get(path: '/api/v1/rules/{id}', tags: ["Rule"], summary: "Rule by id", security: [['sanctum' => []]])]
+    #[OA\Get(path: '/api/v1/rules/{id}', parameters: [new OA\Parameter(ref: "#/components/parameters/Accept-Language")], tags: ["Rule"], summary: "Rule by id", security: [['sanctum' => []]])]
     #[OA\Parameter(name: "id", in: "path", required: true, description: "Rule id", example: 1)]
     #[OA\Response(response: 200, description: 'Rule by id')]
     #[OA\Response(response: 401, description: 'Unauthenticated')]
