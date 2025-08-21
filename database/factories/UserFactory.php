@@ -30,7 +30,7 @@ class UserFactory extends Factory
                 'kk' => $this->faker->firstName,
             ],
             'username' => $this->faker->unique()->userName,
-            'password' => 'password', 
+            'password' => 'password',
             'description' => [
                 'uz' => $this->faker->sentence,
                 'ru' => $this->faker->sentence,
@@ -38,7 +38,7 @@ class UserFactory extends Factory
                 'kk' => $this->faker->sentence,
             ],
             'phone' => $this->faker->phoneNumber,
-            'school_id' => School::inRandomOrder()->first()->id, 
+            'school_id' => School::inRandomOrder()->first()->id,
             'birth_date' => $this->faker->date('Y-m-d', '2010-01-01'),
         ];
     }

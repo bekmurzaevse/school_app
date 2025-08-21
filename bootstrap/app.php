@@ -25,6 +25,9 @@ return Application::configure(basePath: dirname(__DIR__))
             'permission' => \Spatie\Permission\Middleware\PermissionMiddleware::class,
             'role_or_permission' => \Spatie\Permission\Middleware\RoleOrPermissionMiddleware::class,
         ]);
+        $middleware->group('api', [
+            \App\Http\Middleware\SetLocale::class,
+        ]);
     })
     ->withSchedule(function (Schedule $schedule) {
         $schedule->job(new CongratulationJob())->dailyAt('09:00');

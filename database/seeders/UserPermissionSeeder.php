@@ -16,8 +16,8 @@ class UserPermissionSeeder extends Seeder
     {
         app()[PermissionRegistrar::class]->forgetCachedPermissions();
 
-         // 1. Create simple permissions
-         $permissions = [
+        // 1. Create simple permissions
+        $permissions = [
             'view',   // user can only view
             'manage', // admin can do everything
         ];
@@ -28,11 +28,11 @@ class UserPermissionSeeder extends Seeder
 
         // 2. Create roles
         $admin = Role::firstOrCreate(['name' => 'admin']);
-        $user  = Role::firstOrCreate(['name' => 'user']);
+        $user = Role::firstOrCreate(['name' => 'user']);
 
         // 3. Assign permissions
         $admin->syncPermissions(['manage']);
         $user->syncPermissions(['view']);
-        
+
     }
 }
