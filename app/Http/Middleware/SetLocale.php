@@ -15,11 +15,11 @@ class SetLocale
      */
     public function handle(Request $request, Closure $next): Response
     {
-        // if ($request->hasHeader('Accept-Language')) {
-        //     app()->setLocale($request->header('Accept-Language'));
-        // }else {
-        //     app()->setLocale('ru');
-        // }
+        if ($request->hasHeader('Accept-Language')) {
+            app()->setLocale($request->header('Accept-Language'));
+        } else {
+            app()->setLocale('ru');
+        }
         return $next($request);
     }
 }
