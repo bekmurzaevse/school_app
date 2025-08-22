@@ -41,6 +41,7 @@ Route::prefix('auth')->middleware('guest:sanctum')->group(function () {
  */
 Route::middleware(['auth:sanctum', 'ability:access-token'])->group(function () {
     Route::prefix('auth')->group(function () {
+        Route::get('get-me', [UserController::class, 'getMe']);
         Route::post('logout', [UserController::class, 'logout']);
     });
 });
