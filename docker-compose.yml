@@ -1,63 +1,49 @@
 services:
-  nginx:
+  nginx_school:
     image: nginx:latest
-    container_name: project_nginx
+    container_name: school_nginx
     volumes:
       - ./:/var/www/backend
       - ./_docker/images/nginx/localhost:/etc/nginx/conf.d
-      - nginx_data:/etc/nginx
-      - nginx_logs:/etc/nginx/logs
+      - nginx_data_school:/etc/nginx
+      - nginx_logs_school:/etc/nginx/logs
     ports:
-      - 8000:80
+      - 8001:80
     restart: always
     depends_on:
-      - php
+      - php_school
     networks:
-      - project_network
+      - school_network
 
-  php:
+  php_school:
     build:
       context: .
       dockerfile: ./_docker/images/php/Dockerfile
-    container_name: project_php
+    container_name: school_php
     volumes:
       - ./:/var/www/backend
     restart: always
     networks:
-      - project_network
+      - school_network
 
-  postgres:
+  postgres_school:
     image: postgres:15
-    container_name: project_postgres
+    container_name: school_postgres
     restart: always
     environment:
       POSTGRES_DB: school_db
       POSTGRES_USER: user
       POSTGRES_PASSWORD: 123
     volumes:
-      - pgdata:/var/lib/postgresql/data
+      - pgdata_school:/var/lib/postgresql/data
     ports:
-      - "5432:5432"
+      - "5433:5432"
     networks:
-      - project_network
+      - school_network
 
-  pgadmin:
-    image: dpage/pgadmin4
-    container_name: project_pgadmin
-    restart: always
-    environment:
-      PGADMIN_DEFAULT_EMAIL: admin@admin.com
-      PGADMIN_DEFAULT_PASSWORD: admin123
-    ports:
-      - "5050:80"
-    networks:
-      - project_network
-    depends_on:
-      - postgres
-
-  redis:
+  redis_school:
     image: redis:latest
-    container_name: project_redis
+    container_name: school_redis
     command:
       [
           "sh",
@@ -66,54 +52,54 @@ services:
       ]
     restart: always
     ports:
-      - "6379:6379"
+      - "6380:6379"
     volumes:
-      - redis_data:/data
+      - redis_data_school:/data
     environment:
       REDIS_PASSWORD: ${REDIS_PASSWORD}
     networks:
-      - project_network
+      - school_network
 
-  queue:
+  queue_school:
     build:
       context: .
       dockerfile: ./_docker/images/php/Dockerfile
-    container_name: laravel_queue
+    container_name: school_queue
     working_dir: /var/www
     volumes:
       - .:/var/www
     command: php artisan queue:work --tries=3 --sleep=3
     depends_on:
-      - php
-      - redis
+      - php_school
+      - redis_school
     networks:
-      - project_network
+      - school_network
 
   # Laravel scheduler (cron)
-  scheduler:
+  scheduler_school:
     build:
       context: .
       dockerfile: ./_docker/images/php/Dockerfile
-    container_name: laravel_scheduler
+    container_name: school_scheduler
     working_dir: /var/www
     volumes:
       - .:/var/www
     command: sh -c "while true; do php artisan schedule:run --verbose --no-interaction; sleep 60; done"
     depends_on:
-      - php
+      - php_school
     networks:
-      - project_network
+      - school_network
 
 networks:
-  project_network:
+  school_network:
     driver: bridge
 
 volumes:
-  nginx_data:
+  nginx_data_school:
     driver: local
-  nginx_logs:
+  nginx_logs_school:
     driver: local
-  pgdata:
+  pgdata_school:
     driver: local
-  redis_data:
+  redis_data_school:
     driver: local
