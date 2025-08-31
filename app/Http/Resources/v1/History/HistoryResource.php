@@ -12,9 +12,9 @@ class HistoryResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'school' => new SchoolResource($this->school),
+            // 'school' => new SchoolResource($this->school),
             'year' => $this->year,
-            'text' => $this->text,
+            'text' => $this->getTranslations('text'),
             'created_at' => $this->created_at->format('Y-m-d H:i:s'),
             'updated_at' => $this->updated_at->format('Y-m-d H:i:s'),
         ];

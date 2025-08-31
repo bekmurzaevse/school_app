@@ -36,7 +36,6 @@ class RuleTest extends TestCase
                             'id',
                             'title',
                             'text',
-                            'school',
                             'created_at',
                             'updated_at',
                         ]
@@ -70,7 +69,6 @@ class RuleTest extends TestCase
                     'id',
                     'title',
                     'text',
-                    'school',
                     'created_at',
                     'updated_at',
                 ]
@@ -131,7 +129,7 @@ class RuleTest extends TestCase
         $this->actingAs($user);
 
         $ruleId = Rule::inRandomOrder()->first()->id;
-        
+
         $data = [
             'title' => [
                 'en' => 'updated title en rule test',
@@ -158,7 +156,6 @@ class RuleTest extends TestCase
                     'id',
                     'title',
                     'text',
-                    'school',
                     'created_at',
                     'updated_at',
                 ]

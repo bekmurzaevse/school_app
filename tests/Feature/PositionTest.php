@@ -36,7 +36,6 @@ class PositionTest extends TestCase
                              [
                                  'id',
                                  'name',
-                                 'school',
                                  'description',
                              ]
                          ],
@@ -49,7 +48,6 @@ class PositionTest extends TestCase
                      ]
                  ]);
     }
-
 
     /**
      * Summary of test_position_can_create

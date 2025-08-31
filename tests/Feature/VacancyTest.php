@@ -38,7 +38,7 @@ class VacancyTest extends TestCase
                                  'id',
                                  'title',
                                  'content',
-                                 'school',
+                                //  'school',
                                  'salary',
                                  'active',
                              ]

@@ -20,6 +20,9 @@ class UpdateRequest extends FormRequest
      */
     public function prepareForValidation(): void
     {
+        if (is_array($this->tags)) {
+            $this->tags = implode(',', $this->tags);
+        }
         $this->tags = explode(",", $this->tags);
         $this->tags = array_map('intval', $this->tags);
 

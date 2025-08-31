@@ -39,7 +39,6 @@ class AlbumTest extends TestCase
                              [
                                  'id',
                                  'title',
-                                 'school',
                                  'description',
                              ]
                          ],

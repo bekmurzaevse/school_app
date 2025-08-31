@@ -17,9 +17,10 @@ class PositionResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'name' => $this->name,
-            'school' => new SchoolResource($this->school),
-            'description' => $this->description,
+            // 'name' => $this->name,
+            'name' => $this->getTranslations('name'),
+            // 'school' => new SchoolResource($this->school),
+            'description' => $this->getTranslations('description'),
             'created_at' => $this->created_at->format('Y-m-d H:i:s'),
             'updated_at' => $this->updated_at->format('Y-m-d H:i:s'),
         ];

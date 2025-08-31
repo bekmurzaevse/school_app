@@ -34,10 +34,9 @@ class FaqTest extends TestCase
                      'data' => [
                          'items' => [
                              [
-                                 'id',
-                                 'school',
-                                 'question',
-                                 'answer',
+                                'id',
+                                'question',
+                                'answer',
                              ]
                          ],
                          'pagination' => [
@@ -202,5 +201,4 @@ class FaqTest extends TestCase
                 'message',
             ]);
     }
-
 }

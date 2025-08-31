@@ -18,9 +18,9 @@ class NewsResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'title' => $this->title,
-            'short_content' => $this->short_content,
-            'content' => $this->content,
+            'title' => $this->getTranslations('title'),
+            'short_content' => $this->getTranslations('short_content'),
+            'content' => $this->getTranslations('content'),
             'author' => new UserResource($this->author),
             'cover_image' => $this->coverImage,
             'tags' => TagResource::collection($this->tags),

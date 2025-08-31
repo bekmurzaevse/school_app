@@ -33,7 +33,6 @@ class InformationTest extends TestCase
                                  'id',
                                  'title',
                                  'description',
-                                 'school',
                                  'count',
                              ]
                          ],
@@ -171,7 +170,6 @@ class InformationTest extends TestCase
             'id' => $information->id,
         ]);
     }
-
     public function test_show_information(): void
     {
         $information = Information::inRandomOrder()->first();

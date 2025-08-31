@@ -107,7 +107,7 @@ class ScheduleTest extends TestCase
      */
     public function test_schedule_can_create(): void
     {
-        $file = UploadedFile::fake()->create('schedule.pdf', 1000, 'application/pdf');
+        $file = UploadedFile::fake()->create('2A.pdf', 1000, 'application/pdf');
 
         $data = [
             'description' => "Mekteptin' sabaq kestesi",
@@ -134,8 +134,6 @@ class ScheduleTest extends TestCase
      */
     public function test_schedule_can_update(): void
     {
-        $this->withoutExceptionHandling();
-
         $school = School::first();
         $schedule = $school->schedules()->inRandomOrder()->first();
 
