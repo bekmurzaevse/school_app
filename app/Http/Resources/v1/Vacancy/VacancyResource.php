@@ -17,11 +17,11 @@ class VacancyResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'title' => $this->title,
-            'content' => $this->content,
+            'title' => $this->getTranslations('title'),
+            'content' => $this->getTranslations('content'),
             'active' => $this->active,
             'salary' => $this->salary,
-            'school' => new SchoolResource($this->school),
+            // 'school' => new SchoolResource($this->school),
             'created_at' => $this->created_at->format('Y-m-d H:i:s'),
             'updated_at' => $this->updated_at->format('Y-m-d H:i:s'),
         ];

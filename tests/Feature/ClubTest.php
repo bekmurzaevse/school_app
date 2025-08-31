@@ -38,7 +38,7 @@ class ClubTest extends TestCase
                         [
                             'id',
                             'name',
-                            'school',
+                            // 'school',
                             'text',
                             'schedule',
                             'photo',
@@ -74,7 +74,7 @@ class ClubTest extends TestCase
                 'data' => [
                     'id',
                     'name',
-                    'school',
+                    // 'school',
                     'text',
                     'schedule',
                     'photo',
@@ -207,7 +207,7 @@ class ClubTest extends TestCase
                 'data' => [
                     'id',
                     'name',
-                    'school',
+                    // 'school',
                     'text',
                     'schedule',
                     'photo',

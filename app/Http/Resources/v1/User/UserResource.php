@@ -17,10 +17,10 @@ class UserResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'full_name' => $this->full_name,
-            'description' => $this->description,
+            'full_name' => $this->getTranslations('full_name'),
+            'description' => $this->getTranslations('description'),
             'phone' => $this->phone,
-            'school' => new SchoolResource($this->school),
+            // 'school' => new SchoolResource($this->school),
             'birth_date' => $this->birth_date,
             'created_at' => $this->created_at->format('Y-m-d H:i:s'),
             'updated_at' => $this->updated_at->format('Y-m-d H:i:s'),

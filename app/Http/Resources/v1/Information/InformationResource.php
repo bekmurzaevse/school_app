@@ -17,10 +17,10 @@ class InformationResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'title' => $this->title,
+            'title' => $this->getTranslations('title'),
             'count' => $this->count,
-            'description' => $this->description,
-            'school' => new SchoolResource($this->school),
+            'description' => $this->getTranslations('description'),
+            // 'school' => new SchoolResource($this->school),
             'created_at' => $this->created_at->format('Y-m-d H:i:s'),
             'updated_at' => $this->updated_at->format('Y-m-d H:i:s'),
         ];

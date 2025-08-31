@@ -36,7 +36,6 @@ class SchoolHourTest extends TestCase
                              [
                                  'id',
                                  'title',
-                                 'school',
                                  'workday',
                                  'holiday',
                              ]

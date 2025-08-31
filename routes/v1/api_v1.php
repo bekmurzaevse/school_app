@@ -32,7 +32,12 @@ Route::pattern('username', '[a-z0-9_-]{3,16}');
 /**
  * Login
  */
-Route::prefix('auth')->middleware('guest:sanctum')->group(function () {
+Route::prefix('auth')
+// ->middleware('guest:sanctum')
+->group(function () {
+    Route::get('test', function () {
+        return "TEST";
+    });
     Route::post('login', [UserController::class, 'login']);
 });
 
