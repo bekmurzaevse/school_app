@@ -12,7 +12,7 @@ readonly class UpdateDto
         public string $password,
         public ?array $description,
         public string $phone,
-        public int $schoolId,
+        // public int $schoolId,
         public string $birthDate,
     ) {
     }
@@ -30,7 +30,7 @@ readonly class UpdateDto
             password: $request->get('password'),
             description: $request->get('description'),
             phone: $request->get('phone'),
-            schoolId: $request->get('school_id'),
+            // schoolId: $request->get('school_id'),
             birthDate: $request->get('birth_date'),
         );
     }
