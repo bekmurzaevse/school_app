@@ -31,7 +31,7 @@ class UpdateAction
                 'password' => $dto->password,
                 'description' => $dto->description,
                 'phone' => $dto->phone,
-                'school_id' => $dto->schoolId,
+                // 'school_id' => $dto->schoolId,
                 'birth_date' => $dto->birthDate,
             ]);
 

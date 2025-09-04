@@ -44,7 +44,7 @@ class UpdateRequest extends FormRequest
                 'string',
                 Rule::unique('users', 'phone')->ignore($this->route('id')),
         ],
-            'school_id' => 'required|integer|exists:schools,id',
+            // 'school_id' => 'required|integer|exists:schools,id',
             'birth_date' => 'required|date_format:Y-m-d|before:today',
         ];
     }
