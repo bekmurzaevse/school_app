@@ -24,10 +24,10 @@ class UpdateRequest extends FormRequest
         return [
             'year' => 'required|integer',
             'text' => 'required|array',
-            'text.kk' => 'required|string|unique:histories,text->kk,',
-            'text.uz' => 'required|string|unique:histories,text->uz,',
-            'text.ru' => 'required|string|unique:histories,text->ru,',
-            'text.en' => 'required|string|unique:histories,text->en,',
+            'text.kk' => 'required|string',
+            'text.uz' => 'required|string',
+            'text.ru' => 'required|string',
+            'text.en' => 'required|string',
         ];
     }
 

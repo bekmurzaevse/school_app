@@ -27,5 +27,6 @@ class EventServiceProvider extends ServiceProvider
         \App\Models\Rule::observe(\App\Observers\RuleObserver::class);
         \App\Models\Value::observe(\App\Observers\ValueObserver::class);
         \App\Models\Club::observe(\App\Observers\ClubObserver::class);
+        \App\Models\Information::observe(\App\Observers\InformationObserver::class);
     }
 }

@@ -24,6 +24,16 @@ class UpdateAction
     public function __invoke(int $id, UpdateDto $dto): JsonResponse
     {
         try {
+            foreach (['kk', 'uz', 'ru', 'en'] as $lang) {
+                $exists = History::whereRaw("text->>'$lang' = ?", [$dto->text[$lang]])
+                    ->where('id', '<>', $id)
+                    ->exists();
+
+                if ($exists) {
+                    throw new ApiResponseException("History with same {$lang} text already exists", 422);
+                }
+            }
+
             $history = History::with('school')->findOrFail($id);
             $history->update([
                 'year' => $dto->year,
