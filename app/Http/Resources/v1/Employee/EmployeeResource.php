@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources\v1\Employee;
 
+use App\Http\Resources\v1\Attachment\AttachmentResource;
 use App\Http\Resources\v1\Position\PositionResource;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
@@ -19,7 +20,7 @@ class EmployeeResource extends JsonResource
             'id' => $this->id,
             'full_name' => $this->getTranslations('full_name'),
             'phone' => $this->phone,
-            'photo' => $this->photo,
+            'photo' => new AttachmentResource($this->photo),
             'email' => $this->email,
             'position' => new PositionResource($this->position),
             'birth_date' => $this->birth_date->format('Y-m-d'),
