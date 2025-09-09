@@ -227,6 +227,7 @@ Route::prefix('news')->group(function () {
 
 Route::prefix('positions')->group(function () {
     Route::get('/', [PositionController::class, 'index']);
+    Route::get('/list', [PositionController::class, 'list']);
 });
 
 Route::prefix('albums')->group(function () {
