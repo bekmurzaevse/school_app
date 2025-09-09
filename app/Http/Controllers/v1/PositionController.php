@@ -5,6 +5,7 @@ namespace App\Http\Controllers\v1;
 use App\Actions\v1\Positions\CreateAction;
 use App\Actions\v1\Positions\DeleteAction;
 use App\Actions\v1\Positions\IndexAction;
+use App\Actions\v1\Positions\IndexListAction;
 use App\Actions\v1\Positions\ShowAction;
 use App\Actions\v1\Positions\UpdateAction;
 use App\Dto\v1\Positions\CreateDto;
@@ -22,6 +23,16 @@ class PositionController extends Controller
      * @return JsonResponse
      */
     public function index(IndexAction $action): JsonResponse
+    {
+        return $action();
+    }
+
+    /**
+     * Summary of list
+     * @param \App\Actions\v1\Positions\IndexListAction $action
+     * @return JsonResponse
+     */
+    public function list(IndexListAction $action): JsonResponse
     {
         return $action();
     }

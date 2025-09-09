@@ -17,6 +17,8 @@ class PositionObserver
         $this->clear([
             'positions',
             'positions:show',
+            'positions:list',
+            'positions:list',
         ]);
     }
 
@@ -29,6 +31,7 @@ class PositionObserver
         $this->clear([
             'positions',
             'positions:show',
+            'positions:list',
         ]);
     }
 
@@ -41,6 +44,7 @@ class PositionObserver
         $this->clear([
             'positions',
             'positions:show',
+            'positions:list',
         ]);
     }
 
@@ -53,6 +57,7 @@ class PositionObserver
         $this->clear([
             'positions',
             'positions:show',
+            'positions:list',
         ]);
     }
 
@@ -65,6 +70,7 @@ class PositionObserver
         $this->clear([
             'positions',
             'positions:show',
+            'positions:list',
         ]);
     }
 }

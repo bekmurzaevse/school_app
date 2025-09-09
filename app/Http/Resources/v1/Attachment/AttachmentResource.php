@@ -1,13 +1,12 @@
 <?php
 
-namespace App\Http\Resources\v1\Value;
+namespace App\Http\Resources\v1\Attachment;
 
-use App\Http\Resources\v1\Attachment\AttachmentResource;
-use App\Http\Resources\v1\School\SchoolResource;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Support\Facades\Storage;
 
-class ValueResource extends JsonResource
+class AttachmentResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -18,10 +17,8 @@ class ValueResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'name' => $this->getTranslations('name'),
-            'text' => $this->getTranslations('text'),
-            // 'school' => new SchoolResource($this->school),
-            'photo' => new AttachmentResource($this->photo),
+            'name' => $this->name,
+            'path' => Storage::disk('public')->url($this->path),
             'created_at' => $this->created_at->format('Y-m-d H:i:s'),
             'updated_at' => $this->updated_at->format('Y-m-d H:i:s'),
         ];
