@@ -36,14 +36,11 @@ class ClubSeeder extends Seeder
             ],
         ]);
 
-        $photo = UploadedFile::fake()->image('test.jpg');
-        $path = FileUploadHelper::file($photo, 'photos');
-
         $club1->photo()->create([
-            'name' => $photo->getClientOriginalName(),
-            'path' => $path,
+            'name' => 'club1',
+            'path' => 'photos/club1.jpeg',
             'type' => "photo",
-            'size' => $photo->getSize(),
+            'size' => 1024,
         ]);
 
         $club2 = Club::create([
@@ -68,14 +65,11 @@ class ClubSeeder extends Seeder
             ],
         ]);
 
-        $photo = UploadedFile::fake()->image('test2.jpg');
-        $path = FileUploadHelper::file($photo, 'photos');
-
         $club2->photo()->create([
-            'name' => $photo->getClientOriginalName(),
-            'path' => $path,
+            'name' => 'club2',
+            'path' => 'photos/club2.jpeg',
             'type' => "photo",
-            'size' => $photo->getSize(),
+            'size' => 1024,
         ]);
     }
 }

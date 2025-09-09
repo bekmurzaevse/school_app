@@ -33,14 +33,11 @@ class EmployeeSeeder extends Seeder
             ],
         ]);
 
-        $photo = UploadedFile::fake()->image('employee1.jpg');
-        $path = FileUploadHelper::file($photo, 'photos');
-
         $employee1->photo()->create([
-            'name' => $photo->getClientOriginalName(),
-            'path' => $path,
+            'name' => 'employee1',
+            'path' => 'photos/employee1.jpeg',
             'type' => "photo",
-            'size' => $photo->getSize(),
+            'size' => 1024,
         ]);
 
         $employee2 = Employee::create([
@@ -62,14 +59,11 @@ class EmployeeSeeder extends Seeder
             ],
         ]);
 
-        $photo = UploadedFile::fake()->image('employee2.jpg');
-        $path = FileUploadHelper::file($photo, 'photos');
-
         $employee2->photo()->create([
-            'name' => $photo->getClientOriginalName(),
-            'path' => $path,
+            'name' => 'employee2',
+            'path' => 'photos/employee2.jpeg',
             'type' => "photo",
-            'size' => $photo->getSize(),
+            'size' => 1024,
         ]);
 
         $employee3 = Employee::create([
@@ -91,14 +85,11 @@ class EmployeeSeeder extends Seeder
             ],
         ]);
 
-        $photo = UploadedFile::fake()->image('employee3.jpg');
-        $path = FileUploadHelper::file($photo, 'photos');
-
         $employee3->photo()->create([
-            'name' => $photo->getClientOriginalName(),
-            'path' => $path,
+            'name' => 'employee3',
+            'path' => 'photos/employee3.jpeg',
             'type' => "photo",
-            'size' => $photo->getSize(),
+            'size' => 1024,
         ]);
 
         $employee4 = Employee::create([
@@ -120,14 +111,11 @@ class EmployeeSeeder extends Seeder
             ],
         ]);
 
-        $photo = UploadedFile::fake()->image('employee4.jpg');
-        $path = FileUploadHelper::file($photo, 'photos');
-
         $employee4->photo()->create([
-            'name' => $photo->getClientOriginalName(),
-            'path' => $path,
+            'name' => 'employee4',
+            'path' => 'photos/employee4.jpeg',
             'type' => "photo",
-            'size' => $photo->getSize(),
+            'size' => 1024,
         ]);
 
         $employee5 = Employee::create([
@@ -149,14 +137,11 @@ class EmployeeSeeder extends Seeder
             ],
         ]);
 
-        $photo = UploadedFile::fake()->image('employee5.jpg');
-        $path = FileUploadHelper::file($photo, 'photos');
-
         $employee5->photo()->create([
-            'name' => $photo->getClientOriginalName(),
-            'path' => $path,
+            'name' => 'employee5',
+            'path' => 'photos/employee5.jpeg',
             'type' => "photo",
-            'size' => $photo->getSize(),
+            'size' => 1024,
         ]);
     }
 }

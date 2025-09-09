@@ -12,7 +12,7 @@ class AlbumSeeder extends Seeder
      */
     public function run(): void
     {
-        Album::create([
+        $album1 = Album::create([
             'title' => [
                 'en' => "Navruz",
                 'uz' => "Navro'z",
@@ -27,8 +27,20 @@ class AlbumSeeder extends Seeder
                 'kk' => "Description KK",
             ],
         ]);
+        $album1->photos()->create([
+            'name' => 'album1',
+            'path' => 'photos/album1.jpeg',
+            'type' => "photo",
+            'size' => 1024,
+        ]);
+        $album1->photos()->create([
+            'name' => 'album1',
+            'path' => 'photos/album2.jpeg',
+            'type' => "photo",
+            'size' => 1024,
+        ]);
 
-        Album::create([
+        $album2 = Album::create([
             'title' => [
                 'en' => "First Call 2025",
                 'uz' => "Birinchi qo‘ng‘iroq 2025",
@@ -44,7 +56,20 @@ class AlbumSeeder extends Seeder
             ],
         ]);
 
-        Album::create([
+        $album2->photos()->create([
+            'name' => 'album2',
+            'path' => 'photos/album3.jpeg',
+            'type' => "photo",
+            'size' => 1024,
+        ]);
+        $album2->photos()->create([
+            'name' => 'album2',
+            'path' => 'photos/album4.jpeg',
+            'type' => "photo",
+            'size' => 1024,
+        ]);
+
+        $album3 = Album::create([
             'title' => [
                 'en' => "Last Bell",
                 'uz' => "So'ngi qo'ng'iroq",
@@ -58,6 +83,19 @@ class AlbumSeeder extends Seeder
                 'ru' => "Description RU",
                 'kk' => "Description KK",
             ],
+        ]);
+
+        $album3->photos()->create([
+            'name' => 'album3',
+            'path' => 'photos/album5.jpeg',
+            'type' => "photo",
+            'size' => 1024,
+        ]);
+        $album3->photos()->create([
+            'name' => 'album3',
+            'path' => 'photos/album6.jpeg',
+            'type' => "photo",
+            'size' => 1024,
         ]);
     }
 }

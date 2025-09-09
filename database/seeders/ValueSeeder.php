@@ -31,14 +31,11 @@ class ValueSeeder extends Seeder
             ],
         ]);
 
-        $photo = UploadedFile::fake()->image('value1.jpg');
-        $path = FileUploadHelper::file($photo, 'photos');
-
         $val1->photo()->create([
-            'name' => $photo->getClientOriginalName(),
-            'path' => $path,
+            'name' => 'value1',
+            'path' => 'photos/value1.jpeg',
             'type' => "photo",
-            'size' => $photo->getSize(),
+            'size' => 1000,
         ]);
 
         $val2 = Value::create([
@@ -57,14 +54,11 @@ class ValueSeeder extends Seeder
             ],
         ]);
 
-        $photo = UploadedFile::fake()->image('value2.jpg');
-        $path = FileUploadHelper::file($photo, 'photos');
-
         $val2->photo()->create([
-            'name' => $photo->getClientOriginalName(),
-            'path' => $path,
+            'name' => 'value2',
+            'path' => 'photos/value2.jpeg',
             'type' => "photo",
-            'size' => $photo->getSize(),
+            'size' => 1000,
         ]);
     }
 }

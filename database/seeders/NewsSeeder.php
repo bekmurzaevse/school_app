@@ -35,16 +35,14 @@ class NewsSeeder extends Seeder
             ],
             'author_id' => 1,
         ]);
-        $news1->tags()->attach([1,3,4]);
+        $news1->tags()->attach([1, 3, 4]);
 
-        $photo = UploadedFile::fake()->image('news1.jpg');
-        $path = FileUploadHelper::file($photo, 'photos');
 
         $news1->coverImage()->create([
-            'name' => $photo->getClientOriginalName(),
-            'path' => $path,
+            'name' => 'news1',
+            'path' => 'photos/news1.jpeg',
             'type' => "photo",
-            'size' => $photo->getSize(),
+            'size' => 1024,
         ]);
 
         $news2 = News::create([
@@ -68,16 +66,13 @@ class NewsSeeder extends Seeder
             ],
             'author_id' => 1,
         ]);
-        $news2->tags()->attach([1,4]);
-
-        $photo = UploadedFile::fake()->image('news2.jpg');
-        $path = FileUploadHelper::file($photo, 'photos');
+        $news2->tags()->attach([1, 4]);
 
         $news2->coverImage()->create([
-            'name' => $photo->getClientOriginalName(),
-            'path' => $path,
+            'name' => 'news2',
+            'path' => 'photos/news2.jpeg',
             'type' => "photo",
-            'size' => $photo->getSize(),
+            'size' => 1024,
         ]);
 
         $news3 = News::create([
@@ -101,16 +96,13 @@ class NewsSeeder extends Seeder
             ],
             'author_id' => 2,
         ]);
-        $news3->tags()->attach([4,5]);
-
-        $photo = UploadedFile::fake()->image('news3.jpg');
-        $path = FileUploadHelper::file($photo, 'photos');
+        $news3->tags()->attach([4, 5]);
 
         $news3->coverImage()->create([
-            'name' => $photo->getClientOriginalName(),
-            'path' => $path,
+            'name' => 'news3',
+            'path' => 'photos/news3.jpeg',
             'type' => "photo",
-            'size' => $photo->getSize(),
+            'size' => 1024,
         ]);
 
         $news4 = News::create([
@@ -127,23 +119,20 @@ class NewsSeeder extends Seeder
                 'kk' => 'Ulıwma milliy baslama puqaralardı XXI ásir ushın zárúr bolǵan cifrlı kónlikpeler menen támiyinlewge qaratılǵan.',
             ],
             'content' => [
-                'en' => 'The government of Uzbekistan has announced a comprehensive national program to enhance digital literacy among its population. The initiative, titled \'Digital Future for All,\' will offer free training courses and resources across the country, focusing on basic computer skills, internet usage, online safety, and digital communication. President Shavkat Mirziyoyev emphasized the importance of digital literacy for the nation\'s economic development and the empowerment of its citizens in the modern world. The program will be implemented in partnership with educational institutions and technology companies, with the goal of reaching millions of Uzbek citizens over the next five years.',
+                'en' => 'The government of Uzbekistan has announced a comprehensive national program to enhance digital literacy among its population. The initiative, titled \'Digital Future for All,\' will offer free training courses and resources across the country, focusing on basic computer skills, internet usage, online safety, and digital communication. President Shavkat Mirziyoyev emphasized the1024of digital literacy for the nation\'s economic development and the empowerment of its citizens in the modern world. The program will be implemented in partnership with educational institutions and technology companies, with the goal of reaching millions of Uzbek citizens over the next five years.',
                 'ru' => 'Правительство Узбекистана объявило о всеобъемлющей национальной программе по повышению цифровой грамотности среди населения. Инициатива под названием \'Цифровое будущее для всех\' предложит бесплатные учебные курсы и ресурсы по всей стране, с акцентом на базовые компьютерные навыки, использование интернета, онлайн-безопасность и цифровую коммуникацию. Президент Шавкат Мирзиёев подчеркнул важность цифровой грамотности для экономического развития страны и расширения прав и возможностей ее граждан в современном мире. Программа будет реализована в партнерстве с образовательными учреждениями и технологическими компаниями с целью охвата миллионов граждан Узбекистана в течение следующих пяти лет.',
                 'uz' => 'O\'zbekiston hukumati aholi o\'rtasida raqamli savodxonlikni oshirish bo\'yicha keng qamrovli milliy dasturni e\'lon qildi. \'Hamma uchun raqamli kelajak\' deb nomlangan tashabbus mamlakat bo\'ylab bepul o\'quv kurslari va resurslarini taklif etadi, bunda kompyuterning asosiy ko\'nikmalari, internetdan foydalanish, onlayn xavfsizlik va raqamli aloqa kabi yo\'nalishlarga e\'tibor qaratiladi. Prezident Shavkat Mirziyoyev mamlakatning iqtisodiy rivojlanishi va zamonaviy dunyoda fuqarolarining imkoniyatlarini kengaytirish uchun raqamli savodxonlikning muhimligini ta\'kidladi. Dastur ta\'lim muassasalari va texnologiya kompaniyalari bilan hamkorlikda amalga oshiriladi va kelgusi besh yil ichida millionlab o\'zbekistonliklarni qamrab olish maqsad qilingan.',
                 'kk' => 'Ózbekstan húkimeti xalıq arasında cifrlı sawatlılıqtı asırıw boyınsha keń qamtılǵan milliy programmanı járiyaladı. \'Hámme ushın cifrlı keleshek\' dep atalǵan baslama mámleket boylap biypul oqıw kursları hám resurslarini usınıs etedi, bunda kompyuterdiń tiykarǵı kónlikpeleri, internetten paydalanıw, onlayn qawipsizlik hám cifrlı baylanıs sıyaqlı jónelislerge itibar qaratıladı. Prezident Shavkat Mirziyoyev mámlekettiń ekonomikalıq rawajlanıwı hám zamanagóy dúnyada puqaralarina múmkinshiliklerin keńeytiw ushın cifrlı sawatlılıqtıń zárúrligini aytıp ótdi. Programma tálim mákemeleri hám texnologiya kompaniyaları menen sheriklikte ámelge asıriladı hám kelesi bes jıl ishinde millionlap Ózbekstanlıqlardı qamtıp alıw maqset etilgen.',
             ],
             'author_id' => 2,
         ]);
-        $news4->tags()->attach([1,3,4,5]);
-
-        $photo = UploadedFile::fake()->image('news4.jpg');
-        $path = FileUploadHelper::file($photo, 'photos');
+        $news4->tags()->attach([1, 3, 4, 5]);
 
         $news4->coverImage()->create([
-            'name' => $photo->getClientOriginalName(),
-            'path' => $path,
+            'name' => 'news4',
+            'path' => 'photos/news4.jpeg',
             'type' => "photo",
-            'size' => $photo->getSize(),
+            'size' => 1024,
         ]);
     }
 }

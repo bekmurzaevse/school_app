@@ -33,13 +33,13 @@ Route::pattern('username', '[a-z0-9_-]{3,16}');
  * Login
  */
 Route::prefix('auth')
-// ->middleware('guest:sanctum')
-->group(function () {
-    Route::get('test', function () {
-        return "TEST";
+    // ->middleware('guest:sanctum')
+    ->group(function () {
+        Route::get('test', function () {
+            return "TEST";
+        });
+        Route::post('login', [UserController::class, 'login']);
     });
-    Route::post('login', [UserController::class, 'login']);
-});
 
 /**
  * User Logout
@@ -89,6 +89,7 @@ Route::middleware('auth:sanctum')->group(function () {
 
         Route::prefix('positions')->group(function () {
             Route::get('/{id}', [PositionController::class, 'show']);
+            Route::get('/list', [PositionController::class, 'list']);
             Route::post('/create', [PositionController::class, 'create']);
             Route::put('/update/{id}', [PositionController::class, 'update']);
             Route::delete('/delete/{id}', [PositionController::class, 'delete']);
