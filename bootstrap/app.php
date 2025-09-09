@@ -1,6 +1,8 @@
 <?php
 
 use App\Jobs\CongratulationJob;
+use Illuminate\Auth\Access\AuthorizationException;
+use Illuminate\Auth\AuthenticationException;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
@@ -12,9 +14,9 @@ use Symfony\Component\HttpKernel\Exception\HttpException;
 
 return Application::configure(basePath: dirname(__DIR__))
     ->withRouting(
-        web: __DIR__.'/../routes/web.php',
-        api: __DIR__.'/../routes/api.php',
-        commands: __DIR__.'/../routes/console.php',
+        web: __DIR__ . '/../routes/web.php',
+        api: __DIR__ . '/../routes/api.php',
+        commands: __DIR__ . '/../routes/console.php',
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware) {
@@ -24,6 +26,7 @@ return Application::configure(basePath: dirname(__DIR__))
             'role' => \Spatie\Permission\Middleware\RoleMiddleware::class,
             'permission' => \Spatie\Permission\Middleware\PermissionMiddleware::class,
             'role_or_permission' => \Spatie\Permission\Middleware\RoleOrPermissionMiddleware::class,
+            'auth' => \App\Http\Middleware\Authenticate::class,
         ]);
         $middleware->group('api', [
             \App\Http\Middleware\SetLocale::class,
@@ -33,6 +36,19 @@ return Application::configure(basePath: dirname(__DIR__))
         $schedule->job(new CongratulationJob())->dailyAt('09:00');
     })
     ->withExceptions(function (Exceptions $exceptions) {
+        $exceptions->render(function (AuthenticationException $ex) {
+            return response()->json([
+                'status' => Response::HTTP_UNAUTHORIZED,
+                'message' => $ex->getMessage(),
+            ], Response::HTTP_UNAUTHORIZED);
+        });
+
+        $exceptions->render(function (AuthorizationException $ex) {
+            return response()->json([
+                'status' => Response::HTTP_FORBIDDEN,
+                'message' => $ex->getMessage(),
+            ], Response::HTTP_FORBIDDEN);
+        });
 
         $exceptions->render(function (HttpException $ex) {
             return response()->json([
