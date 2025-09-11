@@ -35,7 +35,7 @@ class EmployeeSeeder extends Seeder
 
         $employee1->photo()->create([
             'name' => 'employee1',
-            'path' => 'photos/employee1.jpeg',
+            'path' => 'photos/employe1.jpeg',
             'type' => "photo",
             'size' => 1024,
         ]);
@@ -61,7 +61,7 @@ class EmployeeSeeder extends Seeder
 
         $employee2->photo()->create([
             'name' => 'employee2',
-            'path' => 'photos/employee2.jpeg',
+            'path' => 'photos/employe2.jpeg',
             'type' => "photo",
             'size' => 1024,
         ]);
@@ -87,7 +87,7 @@ class EmployeeSeeder extends Seeder
 
         $employee3->photo()->create([
             'name' => 'employee3',
-            'path' => 'photos/employee3.jpeg',
+            'path' => 'photos/employe3.jpeg',
             'type' => "photo",
             'size' => 1024,
         ]);
@@ -113,7 +113,7 @@ class EmployeeSeeder extends Seeder
 
         $employee4->photo()->create([
             'name' => 'employee4',
-            'path' => 'photos/employee4.jpeg',
+            'path' => 'photos/employe4.jpeg',
             'type' => "photo",
             'size' => 1024,
         ]);
@@ -139,7 +139,7 @@ class EmployeeSeeder extends Seeder
 
         $employee5->photo()->create([
             'name' => 'employee5',
-            'path' => 'photos/employee5.jpeg',
+            'path' => 'photos/employe5.jpeg',
             'type' => "photo",
             'size' => 1024,
         ]);
