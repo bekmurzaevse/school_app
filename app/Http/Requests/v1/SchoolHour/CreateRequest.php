@@ -3,6 +3,7 @@
 namespace App\Http\Requests\v1\SchoolHour;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class CreateRequest extends FormRequest
 {
@@ -23,10 +24,26 @@ class CreateRequest extends FormRequest
     {
         return [
             'title' => 'required|array',
-            'title.kk' => 'required|string|unique:school_hours,title->kk',
-            'title.uz' => 'required|string|unique:school_hours,title->uz',
-            'title.ru' => 'required|string|unique:school_hours,title->ru',
-            'title.en' => 'required|string|unique:school_hours,title->en',
+            'title.kk' => [
+                'required',
+                'string',
+                Rule::unique('school_hours', 'title->kk')->whereNull('deleted_at'),
+            ],
+            'title.uz' => [
+                'required',
+                'string',
+                Rule::unique('school_hours', 'title->uz')->whereNull('deleted_at'),
+            ],
+            'title.ru' => [
+                'required',
+                'string',
+                Rule::unique('school_hours', 'title->ru')->whereNull('deleted_at'),
+            ],
+            'title.en' => [
+                'required',
+                'string',
+                Rule::unique('school_hours', 'title->en')->whereNull('deleted_at'),
+            ],
             'workday' => 'required|array',
             'workday.kk' => 'required|string',
             'workday.uz' => 'required|string',

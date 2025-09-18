@@ -3,6 +3,7 @@
 namespace App\Http\Requests\v1\School;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class CreateRequest extends FormRequest
 {
@@ -28,10 +29,26 @@ class CreateRequest extends FormRequest
             'name.ru' => 'required|string',
             'name.en' => 'required|string',
             'history' => 'required|array',
-            'history.kk' => 'required|string|unique:schools,history->kk',
-            'history.uz' => 'required|string|unique:schools,history->uz',
-            'history.ru' => 'required|string|unique:schools,history->ru',
-            'history.en' => 'required|string|unique:schools,history->en',
+            'history.kk' => [
+                'required',
+                'string',
+                Rule::unique('schools', 'history->kk')->whereNull('deleted_at'),
+            ],
+            'history.uz' => [
+                'required',
+                'string',
+                Rule::unique('schools', 'history->uz')->whereNull('deleted_at'),
+            ],
+            'history.ru' => [
+                'required',
+                'string',
+                Rule::unique('schools', 'history->ru')->whereNull('deleted_at'),
+            ],
+            'history.en' => [
+                'required',
+                'string',
+                Rule::unique('schools', 'history->en')->whereNull('deleted_at'),
+            ],
             'phone' => 'required|string|unique:schools,phone',
             'location' => 'required|string',
             'description' => 'nullable|array',

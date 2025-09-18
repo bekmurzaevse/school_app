@@ -3,6 +3,7 @@
 namespace App\Http\Requests\v1\Faq;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class CreateRequest extends FormRequest
 {
@@ -23,15 +24,47 @@ class CreateRequest extends FormRequest
     {
         return [
             'question' => 'required|array',
-            'question.kk' => 'required|string|unique:faqs,question->kk',
-            'question.uz' => 'required|string|unique:faqs,question->uz',
-            'question.ru' => 'required|string|unique:faqs,question->ru',
-            'question.en' => 'required|string|unique:faqs,question->en',
+            'question.kk' => [
+                'required',
+                'string',
+                Rule::unique('faqs', 'question->kk')->whereNull('deleted_at'),
+            ],
+            'question.uz' => [
+                'required',
+                'string',
+                Rule::unique('faqs', 'question->uz')->whereNull('deleted_at'),
+            ],
+            'question.ru' => [
+                'required',
+                'string',
+                Rule::unique('faqs', 'question->ru')->whereNull('deleted_at'),
+            ],
+            'question.en' => [
+                'required',
+                'string',
+                Rule::unique('faqs', 'question->en')->whereNull('deleted_at'),
+            ],
             'answer' => 'required|array',
-            'answer.kk' => 'required|string|unique:faqs,answer->kk',
-            'answer.uz' => 'required|string|unique:faqs,answer->uz',
-            'answer.ru' => 'required|string|unique:faqs,answer->ru',
-            'answer.en' => 'required|string|unique:faqs,answer->en',
+            'answer.kk' => [
+                'required',
+                'string',
+                Rule::unique('faqs', 'answer->kk')->whereNull('deleted_at'),
+            ],
+            'answer.uz' => [
+                'required',
+                'string',
+                Rule::unique('faqs', 'answer->uz')->whereNull('deleted_at'),
+            ],
+            'answer.ru' => [
+                'required',
+                'string',
+                Rule::unique('faqs', 'answer->ru')->whereNull('deleted_at'),
+            ],
+            'answer.en' => [
+                'required',
+                'string',
+                Rule::unique('faqs', 'answer->en')->whereNull('deleted_at'),
+            ],
         ];
     }
 

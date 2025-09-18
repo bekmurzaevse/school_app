@@ -44,7 +44,7 @@ class UpdateAction
 
             $savedPath = Storage::disk('public')->putFileAs('documents', $file, $fileName);
 
-            School::firstOrFail()->documents()->where('id', $id)->update(
+            $doc->update(
                 [
                     'name' => $dto->name,
                     'path' => $savedPath,

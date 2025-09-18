@@ -31,8 +31,8 @@ class UpdateRequest extends FormRequest
             'username' => [
                 'required',
                 'string',
-                Rule::unique('users', 'username')->ignore($this->route('id')),
-        ],
+                Rule::unique('users', 'username')->ignore($this->route('id'))->whereNull('deleted_at'),
+            ],
             'password' => 'required|string',
             'description' => 'nullable|array',
             'description.kk' => 'nullable|string',
@@ -42,8 +42,8 @@ class UpdateRequest extends FormRequest
             'phone' => [
                 'required',
                 'string',
-                Rule::unique('users', 'phone')->ignore($this->route('id')),
-        ],
+                Rule::unique('users', 'phone')->ignore($this->route('id'))->whereNull('deleted_at'),
+            ],
             // 'school_id' => 'required|integer|exists:schools,id',
             'birth_date' => 'required|date_format:Y-m-d|before:today',
         ];

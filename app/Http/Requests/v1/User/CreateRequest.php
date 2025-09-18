@@ -3,6 +3,7 @@
 namespace App\Http\Requests\v1\User;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class CreateRequest extends FormRequest
 {
@@ -27,14 +28,22 @@ class CreateRequest extends FormRequest
             'full_name.uz' => 'required|string',
             'full_name.ru' => 'required|string',
             'full_name.en' => 'required|string',
-            'username' => 'required|string|unique:users,username',
+            'username' => [
+                'required',
+                'string',
+                Rule::unique('users', 'username')->whereNull('deleted_at'),
+            ],
             'password' => 'required|string|min:8',
             'description' => 'nullable|array',
             'description.kk' => 'nullable|string',
             'description.uz' => 'nullable|string',
             'description.ru' => 'nullable|string',
             'description.en' => 'nullable|string',
-            'phone' => 'required|string|min:12|unique:users,phone',
+            'phone' => [
+                'required',
+                'string',
+                Rule::unique('users', 'phone')->whereNull('deleted_at'),
+            ],
             'birth_date' => 'required|date_format:Y-m-d|before:today',
         ];
     }

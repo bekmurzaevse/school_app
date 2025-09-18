@@ -3,6 +3,7 @@
 namespace App\Http\Requests\v1\Album;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class UpdateRequest extends FormRequest
 {
@@ -23,15 +24,33 @@ class UpdateRequest extends FormRequest
     {
         return [
             'title' => 'required|array',
-            'title.kk' => 'required|string|unique:albums,title->kk',
-            'title.uz' => 'required|string|unique:albums,title->uz',
-            'title.ru' => 'required|string|unique:albums,title->ru',
-            'title.en' => 'required|string|unique:albums,title->en',
+            'title.kk' => [
+                'required',
+                'string',
+                Rule::unique('albums', 'title->kk')->whereNull('deleted_at'),
+            ],
+            'title.uz' => [
+                'required',
+                'string',
+                Rule::unique('albums', 'title->uz')->whereNull('deleted_at'),
+            ],
+            'title.ru' => [
+                'required',
+                'string',
+                Rule::unique('albums', 'title->ru')->whereNull('deleted_at'),
+            ],
+            'title.en' => [
+                'required',
+                'string',
+                Rule::unique('albums', 'title->en')->whereNull('deleted_at'),
+            ],
             'description' => 'nullable|array',
             'description.kk' => 'nullable|string',
             'description.uz' => 'nullable|string',
             'description.ru' => 'nullable|string',
             'description.en' => 'nullable|string',
+            'photos' => 'required|array|max:10',
+            'photos.*' => 'required|image|mimes:jpeg,png,jpg|max:2048',
         ];
     }
 

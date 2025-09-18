@@ -174,15 +174,15 @@ class AlbumTest extends TestCase
 
         $response = $this->putJson("/api/v1/albums/update/" . $album->id, $data);
 
-        foreach ($album->photos as $photo) {
-            $path = FileUploadHelper::file($photo, 'photos');
-            $album->photos()->create([
-                'name' => $photo->getClientOriginalName(),
-                'path' => $path,
-                'type' => "photo",
-                'size' => $photo->getSize(),
-            ]);
-        }
+        // foreach ($album->photos as $photo) {
+        //     $path = FileUploadHelper::file($photo, 'photos');
+        //     $album->photos()->create([
+        //         'name' => $photo->getClientOriginalName(),
+        //         'path' => $path,
+        //         'type' => "photo",
+        //         'size' => $photo->getSize(),
+        //     ]);
+        // }
 
         $response
             ->assertStatus(200)
