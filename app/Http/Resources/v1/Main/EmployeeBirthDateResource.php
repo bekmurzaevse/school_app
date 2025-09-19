@@ -16,7 +16,7 @@ class EmployeeBirthDateResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'full_name' => $this->full_name,
+            'full_name' => $this->getTranslations('full_name'),
             'birth_date' => $this->birth_date,
         ];
     }

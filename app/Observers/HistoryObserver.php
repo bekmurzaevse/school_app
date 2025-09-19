@@ -12,7 +12,8 @@ class HistoryObserver
     {
         $this->clear([
             'histories',
-            'histories:show'
+            'histories:show',
+            'about:'
         ]);
     }
 
@@ -20,7 +21,8 @@ class HistoryObserver
     {
         $this->clear([
             'histories',
-            'histories:show'
+            'histories:show',
+            'about:'
         ]);
     }
 
@@ -28,7 +30,8 @@ class HistoryObserver
     {
         $this->clear([
             'histories',
-            'histories:show'
+            'histories:show',
+            'about:'
         ]);
     }
 
@@ -36,7 +39,8 @@ class HistoryObserver
     {
         $this->clear([
             'histories',
-            'histories:show'
+            'histories:show',
+            'about:'
         ]);
     }
 
@@ -44,7 +48,8 @@ class HistoryObserver
     {
         $this->clear([
             'histories',
-            'histories:show'
+            'histories:show',
+            'about:'
         ]);
     }
 }

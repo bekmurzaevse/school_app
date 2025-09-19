@@ -19,8 +19,8 @@ class RulesIndexResource extends JsonResource
             'rules' => $this->rules->map(function ($rule) {
                 return [
                     'id' => $rule->id,
-                    'title' => $rule->title,
-                    'text' => $rule->text,
+                    'title' => $rule->getTranslations('title'),
+                    'text' => $rule->getTranslations('text'),
                 ];
             }),
             'documents' => $this->documents->map(function ($document){

@@ -12,7 +12,8 @@ class TargetObserver
     {
         $this->clear([
             'targets',
-            'targets:show'
+            'targets:show',
+            'about:',
         ]);
     }
 
@@ -20,7 +21,8 @@ class TargetObserver
     {
         $this->clear([
             'targets',
-            'targets:show'
+            'targets:show',
+            'about:'
         ]);
     }
 
@@ -28,7 +30,8 @@ class TargetObserver
     {
         $this->clear([
             'targets',
-            'targets:show'
+            'targets:show',
+            'about:'
         ]);
     }
 
@@ -36,7 +39,8 @@ class TargetObserver
     {
         $this->clear([
             'targets',
-            'targets:show'
+            'targets:show',
+            'about:'
         ]);
     }
 
@@ -44,7 +48,8 @@ class TargetObserver
     {
         $this->clear([
             'targets',
-            'targets:show'
+            'targets:show',
+            'about:'
         ]);
     }
 }
