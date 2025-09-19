@@ -17,7 +17,7 @@ class ValueObserver
         $this->clear([
             'values',
             'values:show',
-            'about:'
+            'about'
         ]);
     }
 
@@ -30,7 +30,7 @@ class ValueObserver
         $this->clear([
             'values',
             'values:show',
-            'about:'
+            'about'
         ]);
     }
 
@@ -43,7 +43,7 @@ class ValueObserver
         $this->clear([
             'values',
             'values:show',
-            'about:'
+            'about'
         ]);
     }
 
@@ -56,7 +56,7 @@ class ValueObserver
         $this->clear([
             'values',
             'values:show',
-            'about:'
+            'about'
         ]);
     }
 
@@ -69,7 +69,7 @@ class ValueObserver
         $this->clear([
             'values',
             'values:show',
-            'about:'
+            'about'
         ]);
     }
 }
