@@ -19,21 +19,21 @@ class AboutResource extends JsonResource
             'missions' => optional($this->targets)->map(function ($target) {
                 return [
                     'id' => $target->id,
-                    'name' => $target->name,
-                    'description' => $target->description,
+                    'name' => $target->getTranslations('name'),
+                    'description' => $target->getTranslations('description'),
                 ];
             }),
             'histories' => optional($this->histories)->map(function ($history) {
                 return [
                     'id' => $history->id,
                     'year' => $history->year,
-                    'text' => $history->text,
+                    'text' => $history->getTranslations('text'),
                 ];
             }),
             'values' => optional($this->values)->map(function ($value) {
                 return [
                     'id' => $value->id,
-                    'name' => $value->name,
+                    'name' => $value->getTranslations('name'),
                 ];
             })
         ];

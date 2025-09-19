@@ -31,7 +31,7 @@ class UpdateRequest extends FormRequest
             'phone' => [
                 'required',
                 'string',
-                Rule::unique('employees', 'phone')->ignore($this->route('id'))
+                Rule::unique('employees', 'phone')->ignore($this->route('id'))->whereNull('deleted_at')
             ],
             'photo' => 'required|image|mimes:jpeg,png,jpg|max:2048',
             'email' => 'required|email',

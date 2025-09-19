@@ -18,9 +18,9 @@ class EducationResource extends JsonResource
             'activities' => optional($this->clubs)->map(function ($club) {
                 return [
                     'id' => $club->id,
-                    'name' => $club->name,
-                    'text' => $club->text,
-                    'schedule' => $club->schedule,
+                    'name' => $club->getTranslations('name'),
+                    'text' => $club->getTranslations('text'),
+                    'schedule' => $club->getTranslations('schedule'),
                     'photo' => [
                         'id' => $club->photo->id,
                         'name' => $club->photo->name,

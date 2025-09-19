@@ -20,6 +20,10 @@ class DeleteAction
      */
     public function __invoke(int $id): JsonResponse
     {
+        if (app()->environment('local') && $id === 1) {
+            throw new ApiResponseException('This user cannot be deleted in local environment.', 403);
+        }
+
         try {
             $user = User::findOrFail($id);
             $user->delete();

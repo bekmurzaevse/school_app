@@ -3,6 +3,7 @@
 namespace App\Http\Requests\v1\Target;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class UpdateRequest extends FormRequest
 {
@@ -23,10 +24,26 @@ class UpdateRequest extends FormRequest
     {
         return [
             'name' => 'required|array',
-            'name.kk' => 'required|string|unique:targets,name->kk',
-            'name.uz' => 'required|string|unique:targets,name->uz',
-            'name.ru' => 'required|string|unique:targets,name->ru',
-            'name.en' => 'required|string|unique:targets,name->en',
+            'name.kk' => [
+                'required',
+                'string',
+                Rule::unique('targets', 'name->kk')->whereNull('deleted_at'),
+            ],
+            'name.uz' => [
+                'required',
+                'string',
+                Rule::unique('targets', 'name->uz')->whereNull('deleted_at'),
+            ],
+            'name.ru' => [
+                'required',
+                'string',
+                Rule::unique('targets', 'name->ru')->whereNull('deleted_at'),
+            ],
+            'name.en' => [
+                'required',
+                'string',
+                Rule::unique('targets', 'name->en')->whereNull('deleted_at'),
+            ],
             'description' => 'required|array',
             'description.kk' => 'required|string',
             'description.uz' => 'required|string',

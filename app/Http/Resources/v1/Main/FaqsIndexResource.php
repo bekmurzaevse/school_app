@@ -18,8 +18,8 @@ class FaqsIndexResource extends JsonResource
             'faqs' => $this->faqs->map(function ($faq) {
                 return [
                     'id' => $faq->id,
-                    'question' => $faq->question,
-                    'answer' => $faq->answer,
+                    'question' => $faq->getTranslations('question'),
+                    'answer' => $faq->getTranslations('answer'),
                 ];
             }),
             'contanct_info' => [

@@ -3,6 +3,7 @@
 namespace App\Http\Requests\v1\Position;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class CreateRequest extends FormRequest
 {
@@ -23,10 +24,26 @@ class CreateRequest extends FormRequest
     {
         return [
             'name' => 'required|array',
-            'name.kk' => 'required|string|unique:positions,name->kk',
-            'name.uz' => 'required|string|unique:positions,name->uz',
-            'name.ru' => 'required|string|unique:positions,name->ru',
-            'name.en' => 'required|string|unique:positions,name->en',
+            'name.kk' => [
+                'required',
+                'string',
+                Rule::unique('positions', 'name->kk')->whereNull('deleted_at'),
+            ],
+            'name.uz' => [
+                'required',
+                'string',
+                Rule::unique('positions', 'name->uz')->whereNull('deleted_at'),
+            ],
+            'name.ru' => [
+                'required',
+                'string',
+                Rule::unique('positions', 'name->ru')->whereNull('deleted_at'),
+            ],
+            'name.en' => [
+                'required',
+                'string',
+                Rule::unique('positions', 'name->en')->whereNull('deleted_at'),
+            ],
             'description' => 'nullable|array',
             'description.kk' => 'nullable|string',
             'description.uz' => 'nullable|string',
@@ -49,5 +66,4 @@ class CreateRequest extends FormRequest
             'name.en.unique' => "Bunday name.en bazada bar!",
         ];
     }
-
 }

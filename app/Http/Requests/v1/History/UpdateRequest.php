@@ -3,6 +3,7 @@
 namespace App\Http\Requests\v1\History;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class UpdateRequest extends FormRequest
 {
@@ -24,10 +25,26 @@ class UpdateRequest extends FormRequest
         return [
             'year' => 'required|integer',
             'text' => 'required|array',
-            'text.kk' => 'required|string',
-            'text.uz' => 'required|string',
-            'text.ru' => 'required|string',
-            'text.en' => 'required|string',
+            'text.kk' => [
+                'required',
+                'string',
+                Rule::unique('histories', 'text->kk')->whereNull('deleted_at'),
+            ],
+            'text.uz' => [
+                'required',
+                'string',
+                Rule::unique('histories', 'text->uz')->whereNull('deleted_at'),
+            ],
+            'text.ru' => [
+                'required',
+                'string',
+                Rule::unique('histories', 'text->ru')->whereNull('deleted_at'),
+            ],
+            'text.en' => [
+                'required',
+                'string',
+                Rule::unique('histories', 'text->en')->whereNull('deleted_at'),
+            ],
         ];
     }
 

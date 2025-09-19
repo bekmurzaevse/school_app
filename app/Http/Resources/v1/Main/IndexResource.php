@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources\v1\Main;
 
+use App\Http\Resources\v1\Attachment\AttachmentResource;
 use App\Models\News;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
@@ -29,27 +30,27 @@ class IndexResource extends JsonResource
             'last_news' => $lastNews->map(function ($news) {
                 return [
                     'id' => $news->id,
-                    'title' => $news->title,
-                    'short_content' => $news->short_content,
-                    'content' => $news->content,
-                    'cover_image' => new PhotoResource($news->coverImage),
+                    'title' => $news->getTranslations('title'),
+                    'short_content' => $news->getTranslations('short_content'),
+                    'content' => $news->getTranslations('content'),
+                    'cover_image' => new AttachmentResource($news->coverImage),
                 ];
             }),
             'teachers' => TeacherResource::collection($allEmployees),
-            'description' => $this->description,
+            'description' => $this->getTranslations('description'),
             'informations' => $this->informations->map(function ($info){
                 return [
                     'id' => $info->id,
-                    'title' => $info->title,
+                    'title' => $info->getTranslations('title'),
                     'count' => $info->count,
-                    'description' => $info->description,
+                    'description' => $info->getTranslations('description'),
                 ];
             }),
             'albums' => $this->albums->map(function ($album) {
                 return [
                     'id' => $album->id,
-                    'title' => $album->title,
-                    'description' => $this->description,
+                    'title' => $album->getTranslations('title'),
+                    'description' => $this->getTranslations('description'),
                     // 'photos' => $album->photos,
                     'photos' => $album->photos->map(function ($photo){
                         return [
