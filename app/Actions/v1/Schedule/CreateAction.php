@@ -58,3 +58,4 @@ class CreateAction
         return static::toResponse(message: 'Schedules successfully created');
     }
 }
+
