@@ -4,8 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class extends Migration {
     /**
      * Run the migrations.
      */
@@ -15,11 +14,13 @@ return new class extends Migration
             $table->id();
             $table->json('name');
             $table->json('history');
-            $table->string('phone')->unique();
+            $table->string('phone');
             $table->string('location');
             $table->json('description')->nullable();
             $table->softDeletes();
             $table->timestamps();
+
+            $table->unique(['phone', 'deleted_at']);
         });
     }
 

@@ -13,13 +13,16 @@ return new class extends Migration {
         Schema::create('employees', function (Blueprint $table) {
             $table->id();
             $table->json('full_name');
-            $table->string('phone')->unique();
-            $table->string('email')->unique();
+            $table->string('phone');
+            $table->string('email');
             $table->foreignId('position_id')->constrained('positions')->cascadeOnUpdate()->restrictOnDelete();
             $table->date('birth_date');
             $table->json('description')->nullable();
             $table->softDeletes();
             $table->timestamps();
+
+            $table->unique(['phone', 'deleted_at']);
+            $table->unique(['email', 'deleted_at']);
         });
     }
 

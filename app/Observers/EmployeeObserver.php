@@ -17,6 +17,7 @@ class EmployeeObserver
         $this->clear([
             'employees',
             'employees:show',
+            'schools:show'
         ]);
     }
 
@@ -29,6 +30,7 @@ class EmployeeObserver
         $this->clear([
             'employees',
             'employees:show',
+            'schools:show'
         ]);
     }
 
@@ -41,6 +43,7 @@ class EmployeeObserver
         $this->clear([
             'employees',
             'employees:show',
+            'schools:show'
         ]);
     }
 
@@ -53,6 +56,7 @@ class EmployeeObserver
         $this->clear([
             'employees',
             'employees:show',
+            'schools:show'
         ]);
     }
 
@@ -65,6 +69,7 @@ class EmployeeObserver
         $this->clear([
             'employees',
             'employees:show',
+            'schools:show'
         ]);
     }
 }
