@@ -51,16 +51,7 @@ class IndexResource extends JsonResource
                     'id' => $album->id,
                     'title' => $album->getTranslations('title'),
                     'description' => $this->getTranslations('description'),
-                    // 'photos' => $album->photos,
-                    'photos' => $album->photos->map(function ($photo){
-                        return [
-                            'id' => $photo->id,
-                            'name' => $photo->name,
-                            'path' => $photo->path,
-                            'size' => $photo->size,
-                            'description' => $photo->description,
-                        ];
-                    }),
+                    'photos' => AttachmentResource::collection($album->photos),
                 ];
             }),
         ];

@@ -4,6 +4,7 @@ namespace App\Http\Resources\v1\Main;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Support\Facades\Storage;
 
 class TeacherResource extends JsonResource
 {
@@ -16,7 +17,7 @@ class TeacherResource extends JsonResource
     {
         return [
             'full_name' => $this->full_name,
-            'photo' => $this->photo->path,
+            'photo' => Storage::disk('public')->url($this->photo?->path),
             'position' => $this->position->name,
             // dd($this->users->flatMap(fn($user) => $user->news));
             // 'id' => $this->id, $allNews = $school->users->flatMap(fn($user) => $user->news);
