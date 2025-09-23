@@ -19,6 +19,7 @@ class SchoolResource extends JsonResource
             'name' => $this->getTranslations('name'),
             'history' => $this->getTranslations('history'),
             'phone' => $this->phone,
+            'email' => $this->email,
             'location' => $this->location,
             'description' => $this->getTranslations('description'),
             'created_at' => $this->created_at->format('Y-m-d H:i:s'),

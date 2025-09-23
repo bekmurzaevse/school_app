@@ -10,6 +10,7 @@ readonly class UpdateDto
         public array $name,
         public array $history,
         public string $phone,
+        public string $email,
         public string $location,
         public ?array $description,
     ) {
@@ -26,6 +27,7 @@ readonly class UpdateDto
             name: $request->get('name'),
             history: $request->get('history'),
             phone: $request->get('phone'),
+            email: $request->get('email'),
             location: $request->get('location'),
             description: $request->get('description'),
         );

@@ -26,6 +26,7 @@ class SchoolSeeder extends Seeder
                 'kk' => "Tariyx",
             ],
             'phone' => "123456789",
+            'email' => "school17@example.com",
             'location' => "location address",
             'description' => [
                 'en' => "Description EN",
@@ -49,6 +50,7 @@ class SchoolSeeder extends Seeder
         //         'kk' => "Tariyx",
         //     ],
         //     'phone' => "456789123",
+        //     'email' => "school20@example.com",
         //     'location' => "location address",
         //     'description' => [
         //         'en' => "Description EN",

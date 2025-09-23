@@ -34,6 +34,7 @@ class IndexResource extends JsonResource
                     'short_content' => $news->getTranslations('short_content'),
                     'content' => $news->getTranslations('content'),
                     'cover_image' => new AttachmentResource($news->coverImage),
+                    'created_at' => $news->created_at->format('Y-m-d'),
                 ];
             }),
             'teachers' => TeacherResource::collection($allEmployees),

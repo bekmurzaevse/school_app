@@ -15,6 +15,7 @@ return new class extends Migration {
             $table->json('name');
             $table->json('history');
             $table->string('phone');
+            $table->string('email')->unique();
             $table->string('location');
             $table->json('description')->nullable();
             $table->softDeletes();
