@@ -28,6 +28,7 @@ class UpdateAction
                 'name' => $dto->name ?? $school->name,
                 'history' => $dto->history ?? $school->history,
                 'phone' => $dto->phone ?? $school->phone,
+                'email' => $dto->email ?? $school->email,
                 'location' => $dto->location ?? $school->location,
                 'description' => $dto->description ?? $school->description,
             ]);

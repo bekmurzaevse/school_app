@@ -22,6 +22,7 @@ class CreateAction
             'name' => $dto->name,
             'history' => $dto->history,
             'phone' => $dto->phone,
+            'email' => $dto->email,
             'location' => $dto->location,
             'description' => $dto->description,
         ];

@@ -20,6 +20,7 @@ class School extends Model
         'name',
         'history',
         'phone',
+        'email',
         'location',
         'description',
     ];
